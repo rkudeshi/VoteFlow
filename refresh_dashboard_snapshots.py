@@ -20,7 +20,7 @@ def main():
         assert snapshot["election"] == "2026"
         assert snapshot["activityThrough"] <= snapshot["reportDate"]
         assert snapshot["early"] >= 0 and snapshot["mail"] >= 0
-        assert snapshot["outstanding"] >= 0
+        assert snapshot.get("outstanding", 0) >= 0
         previous = latest.get(snapshot["locality"])
         if not previous or snapshot["retrievedAt"] > previous["retrievedAt"]:
             latest[snapshot["locality"]] = snapshot

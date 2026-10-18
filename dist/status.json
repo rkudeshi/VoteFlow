@@ -173,5 +173,26 @@
     "message": "Loaded county totals, mail-return details and voting-site counts.",
     "through": "2026-10-15",
     "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
+  },
+  {
+    "at": "2026-10-18T21:32:15.613267+00:00",
+    "source": "Loudoun County dashboard",
+    "message": "Updated daily voting-site counts.",
+    "through": "2026-10-18",
+    "url": "https://www.loudoun.gov/5564/Loudoun-Elections-Dashboard"
+  },
+  {
+    "at": "2026-10-18T21:32:15.923015+00:00",
+    "source": "Locality dashboards",
+    "message": "Updated voting-site counts for Arlington County.",
+    "through": "2026-10-17",
+    "url": null
+  },
+  {
+    "at": "2026-10-18T21:33:43.166560+00:00",
+    "source": "Locality dashboards",
+    "message": "Updated voting-site counts for Alexandria City.",
+    "through": "2026-10-15",
+    "url": null
   }
 ]

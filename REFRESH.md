@@ -106,13 +106,22 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    daily charts use official history and projections already use official rows.
    Raw DAL data remains for fields unavailable in the PDF, especially precincts.
    Never offer a source selector or competing Fairfax totals to visitors.
-4. When Alexandria or Arlington satellite sites are open, check the live
-   Tableau or Power BI site/day views. Save a content snapshot under
-   `sources/site-snapshots/dashboard/`, then run
-   `python refresh_dashboard_snapshots.py` after `refresh_dal.py`. Dashboard
-   snapshots keep activity dates separate from report and retrieval dates; a
-   corrected snapshot replaces the affected site/day observation. Skip these
-   dashboards while only the main office is open.
+4. County dashboards (Loudoun, Arlington, Alexandria): run
+   `node capture_dashboards.cjs`. It fingerprints each source and writes nothing
+   when unchanged; a change saves the raw data and dated screenshots under
+   `sources/dashboard-archive/<locality>/<date>/` so every imported number has
+   an image to check against. Commit those files. Then:
+   - Loudoun: `python refresh_sites.py --file <latest arcgis-feed.json>`.
+   - Arlington: `python refresh_arlington.py` (decodes the Power BI capture,
+     maps 2024 column names to the same weekday 104 weeks later, reconciles
+     sites to the Snapshot total, fails closed otherwise).
+   - Alexandria: Tableau blocks scripted data, so read the saved
+     EarlyVotingbyLocation.png and Overview.png and write a snapshot in
+     `sources/site-snapshots/dashboard/` (format of the September 22 file),
+     transcribing only what the image shows.
+   Then run `python refresh_dashboard_snapshots.py`. Dashboard snapshots keep
+   activity dates separate from report and retrieval dates; a corrected
+   snapshot replaces the affected site/day observation.
 5. When Prince William satellite sites are open, check its official site-level
    feed or dashboard. `python refresh_pwc.py` currently captures countywide Wix
    figures and therefore should not run as the aggregate source. Retain its raw
@@ -134,9 +143,10 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    workflow validates and publishes dist/; confirm the deployment succeeds.
 
 The previous Sites refresh instructions used hourly checks at :30, America/New_York.
-The active schedule is two Claude scheduled tasks in the VoteFlow project
+The active schedule is three Claude scheduled tasks in the VoteFlow project
 (America/New_York): DAL hourly from 6:45 a.m. until that day's file is imported,
-and the Fairfax PDF hourly from 8 a.m. to 3 p.m. Do not create other schedules. Check DAL for all 133 Virginia
+the Fairfax PDF hourly from 8 a.m. to 3 p.m., and county dashboards (step 4)
+at 9:10 a.m. and 9:10 p.m. Do not create other schedules. Check DAL for all 133 Virginia
 localities and Fairfax's PDF every run. Check a locality dashboard or linked feed
 only while satellite early-voting locations are open and it can add per-site
 turnout. Use sources/site-audit/coverage.json as the starting source list, not a
