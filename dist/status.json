@@ -159,5 +159,19 @@
     "message": "Loaded absentee voting data through October 15 for all 133 localities. Precinct activity coverage remains September 23.",
     "through": "2026-10-15",
     "url": null
+  },
+  {
+    "at": "2026-10-18T20:38:46.411169+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-10-17",
+    "url": null
+  },
+  {
+    "at": "2026-10-18T20:38:47.650877+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-10-15",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
   }
 ]
