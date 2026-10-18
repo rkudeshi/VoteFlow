@@ -397,18 +397,19 @@ class Locality extends DCLogic {
         const a = tA(i); if (a == null) continue;
         const rowA = live ? rowByDate[VF.addDays(cur.date, i - 46)] : null; // the daily table's own counts where the source publishes them
         const b = tB(i), dA = rowA ? pick(rowA.de, rowA.dm) : a - (i ? tA(i - 1) || 0 : 0), dB = b == null ? null : b - (i && tB(i - 1) != null ? tB(i - 1) : 0);
-        if (!dA && !dB) continue; // both closed
+        if (!dA && !dB && !sd.rows.length) continue; // before the first day either election had votes; later closed days stay, shown as dashes
         const kA = VF.addDays(cur.date, i - 46), kB = VF.addDays(sdRefEl.date, i - 46), flA = VF.dayFlag(kA, cur.date), flB = VF.dayFlag(kB, sdRefEl.date);
         sd.rows.unshift({ nA: dA, nB: dB, e: i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46), dA: dmd(kA), dAs: DOW[parse(kA).getDay()] + ' ' + (parse(kA).getMonth() + 1) + '/' + parse(kA).getDate(), dB: dmd(kB), vA: fz(dA), vB: dB == null ? '—' : fz(dB),
           flA: flA && flA !== 'Election Day' ? flA : '', flB: flB && flB !== 'Election Day' ? flB : '',
           diff: dB == null ? '—' : pctTxt(dA, dB), diffFg: tone(dA, dB || 0), runA: f(a), runB: b == null ? '—' : f(b), run: b ? pctTxt(a, b) : '—', runFg: tone(a, b || 0) });
       }
+      while (sd.rows.length && !sd.rows[0].nA && !sd.rows[0].nB) sd.rows.shift(); // ...through the last day of votes
       // Shade each day's ballots by volume (same muted scale as Daily numbers) so busy days stand out.
       const SDS = VF.dark ? ['transparent', '#3b3f47', '#454a53', '#50565f', '#5d646e'] : ['transparent', '#F4F5F7', '#ECEEF1', '#E3E6EA', '#D8DCE2'];
       const sdMax = Math.max(1, ...sd.rows.map((r) => Math.max(r.nA || 0, r.nB || 0)));
       const sdLvl = (v) => !v ? 0 : 1 + Math.min(3, Math.floor(v / sdMax * 4));
       sd.rows.forEach((r) => { r.bgA = SDS[sdLvl(r.nA)]; r.bgB = SDS[sdLvl(r.nB)]; });
-      sd.note = (sdM === 'early' ? 'In-person ballots only. ' : sdM === 'mail' ? 'Mail ballots only; offices process mail on their own schedules, so daily counts swing. ' : 'In-person and mail ballots together. ') + 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
+      sd.note = (sdM === 'early' ? 'In-person ballots only. ' : sdM === 'mail' ? 'Mail ballots only; offices process mail on their own schedules, so daily counts swing. ' : 'In-person and mail ballots together. ') + 'Days line up by how many days remain before Election Day, so weekdays match. Every day from the first day of votes to the latest is listed, weekends and holidays included; a dash means no ballots that day. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
     // Fairfax: in-person ballots by site — this election site by site, and one site across years.
     const bs = { on: false };
@@ -487,7 +488,7 @@ class Locality extends DCLogic {
         const days = live ? D.rows.map((r) => ({ d: r.d, v: dv(r) }))
           : S ? S.e.map((v, i) => v == null || i === 0 || S.e[i - 1] == null ? null : { d: VF.addDays(cur.date, i - 46), v: m(i) - m(i - 1) }).filter(Boolean) : [];
         return VF.dayLines(days, live).rhythm.replace(' ballots', calM === 'early' ? ' in-person ballots' : ' mail ballots'); })(),
-      sameday: sd.on && sd.rows.length ? (() => { const last = sd.rows.slice(0, 10), up = last.filter((r) => r.diffFg === '#00694F').length; return 'Ahead of ' + sd.refLabel + ' on ' + up + ' of the last ' + last.length + ' voting days'; })() : ''
+      sameday: sd.on && sd.rows.length ? (() => { const last = sd.rows.filter((r) => r.nA || r.nB).slice(0, 10), up = last.filter((r) => r.diffFg === '#00694F').length; return 'Ahead of ' + sd.refLabel + ' on ' + up + ' of the last ' + last.length + ' voting days'; })() : ''
     };
     // Trend notes for the live election, written at build time from the latest data (trends.py).
     const insight = { on: live && !!D.trend, text: D.trend || '' };
