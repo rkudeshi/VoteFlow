@@ -445,13 +445,14 @@
       const draw = () => render(h(Logic, props), el);
       draw();
     },
-    /* URLs: /va/<locality>/<election date>, /va/statewide/<election date>, /va/<locality> (its elections).
-       Election ids stay internal; VF.site (built into /data/site.js) maps them to ISO dates. */
+    /* URLs: /va/<locality>/<election>, /va/statewide/<election>, /va/<locality> (its elections).
+       Election ids stay internal; VF.site (built into /data/site.js) maps them to URL slugs:
+       year-month (2026-11), or the full date when two elections share a month. */
     site: { live: '2026', elections: [], localities: [] },
-    dateOf: (eid) => (VF.site.elections.find((x) => x.id === eid) || {}).date,
-    eidOf: (d) => (VF.site.elections.find((x) => x.date === d) || {}).id,
-    stateUrl: (eid) => eid === VF.site.live || !VF.dateOf(eid) ? '/' : '/va/statewide/' + VF.dateOf(eid),
-    locUrl: (lid, eid) => '/va/' + lid + '/' + (VF.dateOf(eid) || VF.dateOf(VF.site.live)),
+    slugOf: (eid) => (VF.site.elections.find((x) => x.id === eid) || {}).slug,
+    eidOf: (s) => (VF.site.elections.find((x) => x.slug === s) || {}).id,
+    stateUrl: (eid) => eid === VF.site.live || !VF.slugOf(eid) ? '/' : '/va/statewide/' + VF.slugOf(eid),
+    locUrl: (lid, eid) => '/va/' + lid + '/' + (VF.slugOf(eid) || VF.slugOf(VF.site.live)),
     placeUrl: (lid) => '/va/' + lid,
     /* Routes: /, /status, /about, /va, /va/statewide[/<date>], /va/<locality>[/<date>]; anything else is not found. */
     route(pathname) {

@@ -1,6 +1,6 @@
 """Generate real GitHub Pages entry files so deep links return HTTP 200.
 
-The current site (dist/index.html) uses /va/<locality>/<election date>, /va/statewide/<election date>
+The current site (dist/index.html) uses /va/<locality>/<election month>, /va/statewide/<election month>
 and /va/<locality>; the previous design (dist/old/v2/index.html) keeps /old/v2/2026/fairfax-county.
 """
 import json
@@ -8,6 +8,8 @@ from pathlib import Path
 root=Path(__file__).resolve().parent/'dist'
 data=json.loads((root/'region.json').read_text())
 dates=[e['electionDate'] for e in data['elections'].values()]
+# Year-month (2026-11); the full date only when two elections share a month (matches build_voteflow.py).
+dates=[d if [x[:7] for x in dates].count(d[:7])>1 else d[:7] for d in dates]
 paths=['status','about','va','va/statewide']+[f'va/statewide/{d}' for d in dates]
 for loc in data['names']:
  paths.append(f'va/{loc["id"]}')

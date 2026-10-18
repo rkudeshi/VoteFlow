@@ -127,6 +127,9 @@ body:not(.vf-scrolled) .vf-logomark{width:40px !important;height:40px !important
 body:not(.vf-scrolled) .vf-logomark > span{font-size:16px !important}
 body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
 @media (max-width: 700px){body:not(.vf-scrolled) .vf-logotext{font-size:22px !important}body:not(.vf-scrolled) .vf-logomark{width:34px !important;height:34px !important}}
+@keyframes fxFlutter{0%,100%{transform:rotate(14deg) translateY(0)}50%{transform:rotate(8deg) translateY(-8px)}}
+.fx-flutter{transform-box:fill-box;transform-origin:center;animation:fxFlutter 3s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.fx-flutter{animation:none;transform:rotate(12deg)}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -150,11 +153,31 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
   </header>
 
   <main class="fx-main" style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
-    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 40px 36px">
-      <div style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">Page not found</div>
-      <h1 class="vf-h1" style="margin: 6px 0 0; font-family: 'Unbounded', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -0.04em; line-height: 1">This link may be broken, or the page has moved.</h1>
-      <p style="margin: 16px 0 0; color: #4A5260; font-size: 17px; max-width: 640px">VoteFlow recently changed its web addresses. Pages now look like <b style="font-family: 'DM Mono', monospace; font-size: 15px; color: #121417; white-space: nowrap">/va/fairfax-county/2026-11-03</b>.</p>
-      <a class="fx-pill" href="/" style="margin-top: 24px; min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Go to the homepage →</a>
+    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 40px 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 48px">
+      <div style="flex: 1 1 380px; min-width: 0">
+        <div style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">Page not found</div>
+        <h1 class="vf-h1" style="margin: 6px 0 0; font-family: 'Unbounded', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -0.04em; line-height: 1">This link may be broken, or the page has moved.</h1>
+        <p style="margin: 16px 0 0; color: #4A5260; font-size: 17px; max-width: 560px">This ballot missed the box. Head back to the homepage to find what you were looking for.</p>
+        <a class="fx-pill" href="/" style="margin-top: 24px; min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Go to the homepage →</a>
+      </div>
+      <svg class="fx-lost" viewBox="0 0 320 260" width="320" role="img" aria-label="A ballot that missed the ballot box" style="flex: 0 1 320px; max-width: 100%; height: auto">
+        <ellipse cx="150" cy="238" rx="120" ry="12" fill="#ECEEF2"></ellipse>
+        <rect x="60" y="120" width="160" height="112" rx="14" fill="#41557F" stroke="#121417" stroke-width="4"></rect>
+        <rect x="48" y="104" width="184" height="26" rx="8" fill="#5A6F9C" stroke="#121417" stroke-width="4"></rect>
+        <rect x="104" y="112" width="72" height="8" rx="4" fill="#121417"></rect>
+        <text x="140" y="190" text-anchor="middle" style="font: 800 30px 'Unbounded', sans-serif; letter-spacing: -0.03em" fill="#FFFFFF">VOTE</text>
+        <g class="fx-flutter">
+          <rect x="196" y="18" width="78" height="100" rx="6" fill="#FFFFFF" stroke="#121417" stroke-width="4"></rect>
+          <circle cx="214" cy="42" r="7" fill="none" stroke="#121417" stroke-width="3"></circle>
+          <rect x="228" y="39" width="34" height="6" rx="3" fill="#C9CDD4"></rect>
+          <circle cx="214" cy="66" r="7" fill="#7C4DDB" stroke="#121417" stroke-width="3"></circle>
+          <rect x="228" y="63" width="34" height="6" rx="3" fill="#C9CDD4"></rect>
+          <circle cx="214" cy="90" r="7" fill="none" stroke="#121417" stroke-width="3"></circle>
+          <rect x="228" y="87" width="34" height="6" rx="3" fill="#C9CDD4"></rect>
+        </g>
+        <text x="288" y="150" text-anchor="middle" style="font: 800 52px 'Unbounded', sans-serif" fill="#FFD23F" stroke="#121417" stroke-width="3" paint-order="stroke">?</text>
+        <path d="M188 70 q-30 -10 -44 20" fill="none" stroke="#121417" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"></path>
+      </svg>
     </section>
   </main>
 

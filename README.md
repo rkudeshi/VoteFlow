@@ -4,7 +4,7 @@ Virginia early-voting turnout dashboard covering all 133 localities, historical 
 
 The website is static HTML, JavaScript, and saved JSON data. It needs no server, database, API key, or package installation.
 
-- **Current design** (`dist/index.html`, `dist/vf/`): pages are HTML templates in `dist/vf/templates/` with logic in `dist/vf/pages/`, rendered by a small runtime (`dist/vf/runtime.js`) on a vendored copy of Preact (`dist/vf/preact.min.js`, MIT). Routes: `/`, `/va/statewide/<election date>`, `/va/<locality>` (its election history), `/va/<locality>/<election date>`, `/status`, `/about`; dates are ISO (`2026-11-03`) and unknown paths show a not-found page.
+- **Current design** (`dist/index.html`, `dist/vf/`): pages are HTML templates in `dist/vf/templates/` with logic in `dist/vf/pages/`, rendered by a small runtime (`dist/vf/runtime.js`) on a vendored copy of Preact (`dist/vf/preact.min.js`, MIT). Routes: `/`, `/va/statewide/<election>`, `/va/<locality>` (its election history), `/va/<locality>/<election>`, `/status`, `/about`. An election is its year and month (`2026-11`), or its full ISO date (`2026-11-03`) only when two elections share a month. Unknown paths show a not-found page.
 - **Page data** (`dist/data/`, not committed): `build_voteflow.py` turns the saved data into one bundle per election (`home-<election>.json`) and one per locality (`loc/<locality>.json`). The publish workflow runs it on every deploy.
 - **Previous design** (`dist/old/v2/`): the earlier dashboard, kept at `/old/v2/`. It reads the same saved data files from the site root.
 
