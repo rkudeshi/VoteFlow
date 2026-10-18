@@ -710,9 +710,9 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           </sc-for>
         </div>
       </div>
-      <div style="padding: 18px 36px 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
-        <span style="font-size: 14px; color: #4A5260">{{countLabel}} · Turnout, in-person and mail columns are shares of all registered voters (active + inactive). Return rate is returned ÷ requested mail ballots.</span>
+      <div style="padding: 18px 36px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
         <button class="fx-pill" onClick="{{toggleAll}}" style="min-height: 46px; padding: 0 20px; border: 2px solid #121417; border-radius: 999px; background: #121417; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{allLabel}}</button>
+        <span style="font-size: 14px; color: #4A5260">{{countLabel}} · Turnout, in-person and mail columns are shares of all registered voters (active + inactive). Return rate is returned ÷ requested mail ballots.</span>
       </div>
     </section>
 

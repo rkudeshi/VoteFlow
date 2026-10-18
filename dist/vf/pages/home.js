@@ -1,7 +1,7 @@
 class Home extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), method: 'all', measure: 'count', show: {}, chTick: 0, hi: null, cal: null, win: 'deadline', calM: 'all', calTick: 0, mapMeasure: 'p', hover: null, tip: null, sortKey: 'p', sortDir: -1, all: false, q: '', region: '' };
+    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), method: 'all', measure: 'count', show: {}, chTick: 0, hi: null, cal: null, win: 'deadline', calM: 'all', calTick: 0, mapMeasure: 'p', hover: null, tip: null, sortKey: 'r', sortDir: -1, all: false, q: '', region: '' };
   }
   componentDidMount() {
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);

@@ -2,7 +2,7 @@ class Locality extends DCLogic {
   constructor(props) {
     super(props);
     this.SRC = '/data/loc/' + props.lid + '.json';
-    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), eid: props.eid, method: 'all', measure: 'count', win: 'deadline', show: {}, chTick: 0, hi: null, cal: null, calM: 'all', calTick: 0, tip: null, pIdx: null, pMeasure: 'p', pMethod: 'all', pHover: null, playing: false };
+    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), eid: props.eid, method: 'all', measure: 'count', win: 'deadline', show: {}, chTick: 0, hi: null, cal: null, calM: 'early', calTick: 0, sdM: 'early', tip: null, pIdx: null, pMeasure: 'p', pMethod: 'all', pHover: null, playing: false };
   }
   componentDidMount() {
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
@@ -380,17 +380,22 @@ class Locality extends DCLogic {
     const sdOpts = EL.filter((x) => x.id !== eid && x.series);
     const sdId = sdOpts.some((x) => x.id === this.state.sdRef) ? this.state.sdRef : (sdOpts.find((x) => x.id === '2025') || sdOpts[0] || {}).id;
     const sdRefEl = sdOpts.find((x) => x.id === sdId);
+    const shortEl = (x) => x.label.replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026');
+    const sdM = this.state.sdM;
     const sd = { on: !!(sdRefEl && cur.series), ref: sdId, refLabel: sdRefEl ? sdRefEl.label.replace('April 2026 special', 'April 2026') : '', curLabel: cur.label, rows: [],
+      curShort: shortEl(cur), refShort: sdRefEl ? shortEl(sdRefEl) : '',
+      mOpts: [['all', 'All'], ['early', 'In person'], ['mail', 'By mail']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ sdM: v }) }, pill(sdM, v))),
       opts: sdOpts.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026'), text2: x.type })), pick: (v) => this.setState({ sdRef: v }) };
     if (sd.on) {
-      const A = cur.series, B = sdRefEl.series, tA = (i) => A.e[i] == null ? null : A.e[i] + A.m[i], tB = (i) => B.e[i] == null ? null : B.e[i] + B.m[i];
+      const pick = (e, m) => sdM === 'early' ? e : sdM === 'mail' ? m : e + m;
+      const A = cur.series, B = sdRefEl.series, tA = (i) => A.e[i] == null ? null : pick(A.e[i], A.m[i]), tB = (i) => B.e[i] == null ? null : pick(B.e[i], B.m[i]);
       const rowByDate = {}; D.rows.forEach((r) => { rowByDate[r.d] = r; });
       const pctTxt = (a, b) => !b ? (a ? 'new' : '–') : (a >= b ? '+' : '–') + Math.abs(Math.round((a / b - 1) * 100)) + '%';
       const tone = (a, b) => !b || a === b ? '#4A5260' : a > b ? '#00694F' : '#B42318';
       for (let i = 0; i <= Math.min(endI, 52); i++) {
         const a = tA(i); if (a == null) continue;
         const rowA = live ? rowByDate[VF.addDays(cur.date, i - 46)] : null; // the daily table's own counts where the source publishes them
-        const b = tB(i), dA = rowA ? rowA.de + rowA.dm : a - (i ? tA(i - 1) || 0 : 0), dB = b == null ? null : b - (i && tB(i - 1) != null ? tB(i - 1) : 0);
+        const b = tB(i), dA = rowA ? pick(rowA.de, rowA.dm) : a - (i ? tA(i - 1) || 0 : 0), dB = b == null ? null : b - (i && tB(i - 1) != null ? tB(i - 1) : 0);
         if (!dA && !dB) continue; // both closed
         const kA = VF.addDays(cur.date, i - 46), kB = VF.addDays(sdRefEl.date, i - 46), flA = VF.dayFlag(kA, cur.date), flB = VF.dayFlag(kB, sdRefEl.date);
         sd.rows.unshift({ nA: dA, nB: dB, e: i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46), dA: dmd(kA), dAs: DOW[parse(kA).getDay()] + ' ' + (parse(kA).getMonth() + 1) + '/' + parse(kA).getDate(), dB: dmd(kB), vA: fz(dA), vB: dB == null ? '—' : fz(dB),
@@ -402,7 +407,7 @@ class Locality extends DCLogic {
       const sdMax = Math.max(1, ...sd.rows.map((r) => Math.max(r.nA || 0, r.nB || 0)));
       const sdLvl = (v) => !v ? 0 : 1 + Math.min(3, Math.floor(v / sdMax * 4));
       sd.rows.forEach((r) => { r.bgA = SDS[sdLvl(r.nA)]; r.bgB = SDS[sdLvl(r.nB)]; });
-      sd.note = 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
+      sd.note = (sdM === 'early' ? 'In-person ballots only. ' : sdM === 'mail' ? 'Mail ballots only; offices process mail on their own schedules, so daily counts swing. ' : 'In-person and mail ballots together. ') + 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
     // Fairfax: in-person ballots by site — this election site by site, and one site across years.
     const bs = { on: false };
@@ -475,7 +480,12 @@ class Locality extends DCLogic {
     const take = {
       compare: live && cmpEl && cur.series && cmpEl.series ? (() => { const A = cur.series, B = cmpEl.series; let li = -1; for (let i = 0; i < 53; i++) if (A.e[i] != null) li = i;
         const t = (S, i) => S.e[i] == null ? null : S.e[i] + S.m[i]; return li >= 7 ? VF.gapLine(t(A, li) / t(B, li), t(A, li - 7) / t(B, li - 7), cmpEl.label) : ''; })() : '',
-      byday: dl.busiest, calendar: dl.rhythm,
+      byday: dl.busiest, calendar: (() => { // follows the calendar's method toggle
+        if (calM === 'all') return dl.rhythm;
+        const S = cur.series, m = (i) => calM === 'early' ? S.e[i] : S.m[i];
+        const days = live ? D.rows.map((r) => ({ d: r.d, v: dv(r) }))
+          : S ? S.e.map((v, i) => v == null || i === 0 || S.e[i - 1] == null ? null : { d: VF.addDays(cur.date, i - 46), v: m(i) - m(i - 1) }).filter(Boolean) : [];
+        return VF.dayLines(days, live).rhythm.replace(' ballots', calM === 'early' ? ' in-person ballots' : ' mail ballots'); })(),
       sameday: sd.on && sd.rows.length ? (() => { const last = sd.rows.slice(0, 10), up = last.filter((r) => r.diffFg === '#00694F').length; return 'Ahead of ' + sd.refLabel + ' on ' + up + ' of the last ' + last.length + ' voting days'; })() : ''
     };
     // Trend notes for the live election, written at build time from the latest data (trends.py).

@@ -817,6 +817,47 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </section>
     </sc-if>
 
+    <sc-if value="{{showPrecincts}}"><sc-if value="{{sd.on}}" hint-placeholder-val="{{ false }}">
+    <section id="sameday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 0 20px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; padding: 0 36px 16px" class="sd-pad">
+        <div>
+          <div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{sd.curLabel}}</div>
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Same day, last time</h2><sc-if value="{{take.sameday}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 10px 0 0; display: inline-flex; align-items: center; gap: 8px; padding: 5px 13px 5px 10px; border-radius: 999px; background: #F1F2F5; font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #2A2F38"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFD23F; flex-shrink: 0"></span>{{take.sameday}}</p></sc-if>
+          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Each day of early voting next to the same day before Election Day in {{sd.refLabel}}.</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+          <div role="group" aria-label="Ballot method" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+            <sc-for list="{{sd.mOpts}}" as="o" hint-placeholder-count="3"><button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button></sc-for>
+          </div>
+          <div style="min-width: 260px; flex: 0 1 320px"><vf-combo items="{{sd.opts}}" value="{{sd.ref}}" onpick="{{sd.pick}}" label="Compare with"></vf-combo></div>
+        </div>
+      </div>
+      <div style="overflow-x: auto">
+        <div class="sd-grid" style="min-width: 820px">
+          <div class="sd-row sd-head" style="display: grid; grid-template-columns: 0.6fr 1.3fr 0.9fr 1.3fr 0.9fr 0.8fr 1fr 1fr 0.8fr; padding: 0 26px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .05em; align-items: end">
+            <span class="sd-x" style="padding: 10px">Days to E-Day</span><span style="padding: 10px">Date</span><span style="padding: 10px; text-align: right">{{sd.curShort}}</span>
+            <span class="sd-x" style="padding: 10px">{{sd.refShort}} date</span><span style="padding: 10px; text-align: right">{{sd.refShort}}</span><span style="padding: 10px; text-align: right">Change that day</span>
+            <span class="sd-x" style="padding: 10px; text-align: right">Running total {{sd.curShort}}</span><span class="sd-x" style="padding: 10px; text-align: right">Running total {{sd.refShort}}</span><span style="padding: 10px; text-align: right">Running total change</span>
+          </div>
+          <sc-for list="{{sd.rows}}" as="r" hint-placeholder-count="12">
+            <div class="sd-row" style="display: grid; grid-template-columns: 0.6fr 1.3fr 0.9fr 1.3fr 0.9fr 0.8fr 1fr 1fr 0.8fr; padding: 0 26px; border-bottom: 1px solid #ECEEF2; font-size: 15px; align-items: center">
+              <span class="sd-x" style="padding: 9px 10px; font: 500 12px 'DM Mono', monospace; color: #4A5260">{{r.e}}</span>
+              <b style="padding: 9px 10px"><span class="sd-w">{{r.dA}}</span><span class="sd-n">{{r.dAs}}</span><sc-if value="{{r.flA}}"><span class="sd-x" style="display: block; width: fit-content; margin-top: 3px; padding: 1px 7px; border-radius: 999px; background: #F1F2F5; color: #5F6775; font: 600 11px 'Hanken Grotesk', sans-serif">{{r.flA}}</span></sc-if></b>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; background: {{r.bgA}}">{{r.vA}}</span>
+              <span class="sd-x" style="padding: 9px 10px; color: #4A5260">{{r.dB}}<sc-if value="{{r.flB}}"><span style="display: block; width: fit-content; margin-top: 3px; padding: 1px 7px; border-radius: 999px; background: #F1F2F5; color: #5F6775; font: 600 11px 'Hanken Grotesk', sans-serif">{{r.flB}}</span></sc-if></span>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260; background: {{r.bgB}}">{{r.vB}}</span>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; white-space: nowrap; color: {{r.diffFg}}">{{r.diff}}</span>
+              <span class="sd-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{r.runA}}</span>
+              <span class="sd-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{r.runB}}</span>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; white-space: nowrap; color: {{r.runFg}}">{{r.run}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin: 14px 0 0; padding: 0 36px; font-size: 13.5px; line-height: 1.5; color: #4A5260" class="sd-pad">{{sd.note}}</p>
+    </section>
+    </sc-if></sc-if>
+
     <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 0 20px">
       <div style="padding: 0 36px 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
         <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Daily numbers</h2></div>
@@ -893,41 +934,6 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </section>
 
     <sc-if value="{{showPrecincts}}">
-    <sc-if value="{{sd.on}}" hint-placeholder-val="{{ false }}">
-    <section id="sameday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 0 20px">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; padding: 0 36px 16px" class="sd-pad">
-        <div>
-          <div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{sd.curLabel}}</div>
-          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Same day, last time</h2><sc-if value="{{take.sameday}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 10px 0 0; display: inline-flex; align-items: center; gap: 8px; padding: 5px 13px 5px 10px; border-radius: 999px; background: #F1F2F5; font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #2A2F38"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #FFD23F; flex-shrink: 0"></span>{{take.sameday}}</p></sc-if>
-          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Each day of early voting next to the same day before Election Day in {{sd.refLabel}}.</p>
-        </div>
-        <div style="min-width: 260px; flex: 0 1 320px"><vf-combo items="{{sd.opts}}" value="{{sd.ref}}" onpick="{{sd.pick}}" label="Compare with"></vf-combo></div>
-      </div>
-      <div style="overflow-x: auto">
-        <div class="sd-grid" style="min-width: 760px">
-          <div class="sd-row sd-head" style="display: grid; grid-template-columns: 0.6fr 1.3fr 0.9fr 1.3fr 0.9fr 0.8fr 1fr 1fr 0.8fr; padding: 0 26px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .05em; align-items: end">
-            <span class="sd-x" style="padding: 10px">Day</span><span style="padding: 10px">This year</span><span style="padding: 10px; text-align: right">Ballots</span>
-            <span class="sd-x" style="padding: 10px">{{sd.refLabel}}</span><span style="padding: 10px; text-align: right">Then</span><span style="padding: 10px; text-align: right">That day</span>
-            <span class="sd-x" style="padding: 10px; text-align: right">Running, now</span><span class="sd-x" style="padding: 10px; text-align: right">Running, then</span><span style="padding: 10px; text-align: right">Running</span>
-          </div>
-          <sc-for list="{{sd.rows}}" as="r" hint-placeholder-count="12">
-            <div class="sd-row" style="display: grid; grid-template-columns: 0.6fr 1.3fr 0.9fr 1.3fr 0.9fr 0.8fr 1fr 1fr 0.8fr; padding: 0 26px; border-bottom: 1px solid #ECEEF2; font-size: 15px; align-items: center">
-              <span class="sd-x" style="padding: 9px 10px; font: 500 12px 'DM Mono', monospace; color: #4A5260">{{r.e}}</span>
-              <b style="padding: 9px 10px"><span class="sd-w">{{r.dA}}</span><span class="sd-n">{{r.dAs}}</span><sc-if value="{{r.flA}}"><span class="sd-x" style="display: block; width: fit-content; margin-top: 3px; padding: 1px 7px; border-radius: 999px; background: #F1F2F5; color: #5F6775; font: 600 11px 'Hanken Grotesk', sans-serif">{{r.flA}}</span></sc-if></b>
-              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; background: {{r.bgA}}">{{r.vA}}</span>
-              <span class="sd-x" style="padding: 9px 10px; color: #4A5260">{{r.dB}}<sc-if value="{{r.flB}}"><span style="display: block; width: fit-content; margin-top: 3px; padding: 1px 7px; border-radius: 999px; background: #F1F2F5; color: #5F6775; font: 600 11px 'Hanken Grotesk', sans-serif">{{r.flB}}</span></sc-if></span>
-              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260; background: {{r.bgB}}">{{r.vB}}</span>
-              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; white-space: nowrap; color: {{r.diffFg}}">{{r.diff}}</span>
-              <span class="sd-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{r.runA}}</span>
-              <span class="sd-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{r.runB}}</span>
-              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; font-weight: 700; white-space: nowrap; color: {{r.runFg}}">{{r.run}}</span>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-      <p style="margin: 14px 0 0; padding: 0 36px; font-size: 13.5px; line-height: 1.5; color: #4A5260" class="sd-pad">{{sd.note}}</p>
-    </section>
-    </sc-if>
 
     <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
       <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
