@@ -8,6 +8,7 @@ from urllib.parse import urljoin, unquote
 from source_fetch import fetch_bytes
 from pathlib import Path
 from datetime import datetime
+from zoneinfo import ZoneInfo
 R=Path(__file__).resolve().parent
 HOME='https://www.fairfaxcounty.gov/elections/'
 KEYS=['government_center','mt_vernon','north_county','burke','centreville','franconia','great_falls','herndon_fortnightly','jim_scott','lorton','mason','mclean','sully','thomas_jefferson','tysons_pimmit','west_springfield']
@@ -58,17 +59,24 @@ def main():
  p=R/'dist/region.json';d=json.loads(p.read_text());old=d['official']['2026']
  if old.get('contentHash')==digest:
   print(json.dumps({'changed':False,'reportDate':old['reportDate'],'activityThrough':old['activityThrough']}));return
+ # Keep a dated copy of every new PDF before parsing, so reports that fail to
+ # parse or reconcile are still preserved for review.
+ dest=R/'sources/fairfax-snapshots';dest.mkdir(exist_ok=True);saved=sorted(dest.glob('*-'+digest[:12]+'.pdf'))
+ pending=saved[0] if saved else dest/('retrieved-'+datetime.now(ZoneInfo('America/New_York')).date().isoformat()+'-'+digest[:12]+'.pdf')
+ if not saved:pending.write_bytes(raw)
  with tempfile.TemporaryDirectory() as td:
   pdf=Path(td)/'report.pdf';out=Path(td)/'report.txt';pdf.write_bytes(raw);subprocess.run(['pdftotext','-layout',str(pdf),str(out)],check=True,capture_output=True);text=out.read_text();o=parse(text,url,digest)
  assert o['activityThrough']>=old['activityThrough'],'Report coverage regressed; retain saved observations and review'
  if old.get('userReport'):o['userReport']=old['userReport']
  d['official']['2026']=o
  content=json.dumps(d,separators=(',',':'));changed=content!=p.read_text()
+ final=dest/(o['reportDate']+'-'+digest[:12]+'.pdf')
+ if pending!=final:pending.replace(final)
+ final.with_suffix('.txt').write_text(text)
  if changed:
-  dest=R/'sources/fairfax-snapshots';dest.mkdir(exist_ok=True);(dest/(o['reportDate']+'-'+digest[:12]+'.pdf')).write_bytes(raw);(dest/(o['reportDate']+'-'+digest[:12]+'.txt')).write_text(text)
   tmp=p.with_suffix('.tmp');tmp.write_text(content);tmp.replace(p)
  if changed:
   from status_log import record
   record('Fairfax County PDF','Loaded county totals, mail-return details and voting-site counts.',o['activityThrough'],url)
- print(json.dumps({'changed':changed,'reportDate':o['reportDate'],'activityThrough':o['activityThrough'],'total':sum(o['history'][-1]['cumulative'][k] for k in ['early','postal','dropbox'])}))
+ print(json.dumps({'changed':changed,'reportDate':o['reportDate'],'activityThrough':o['activityThrough'],'snapshot':final.relative_to(R).as_posix(),'total':sum(o['history'][-1]['cumulative'][k] for k in ['early','postal','dropbox'])}))
 if __name__=='__main__':main()

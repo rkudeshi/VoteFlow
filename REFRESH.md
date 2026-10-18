@@ -2,7 +2,10 @@
 
 ## Automatic recovery and Fairfax checks
 Fetch Fairfax report contents on each hourly check. Identical PDF bytes exit
-without parsing, rebuilding, or writing status entries. DAL remains a daily
+without parsing, rebuilding, or writing status entries.
+Every new PDF is kept in `sources/fairfax-snapshots/` and committed, named
+`<report date>-<hash>.pdf` with its text; a PDF that fails to parse is kept as
+`retrieved-<Eastern retrieval date>-<hash>.pdf` for review. Never delete these. DAL remains a daily
 refresh. Both fetchers retry transient network errors and HTTP 408/429/5xx
 failures up to three attempts with short backoff; permanent errors remain errors.
 Fairfax accepts two- or four-digit report years and detailed activity on the
