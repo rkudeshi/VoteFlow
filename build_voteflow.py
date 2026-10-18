@@ -579,10 +579,13 @@ def main():
                 if r['d'] in by_day:
                     r['site'] = {k: v for k, v in by_day[r['d']].items() if v}
             names = SITE_REPORT_NAMES[lid]
-            through = max(d for d in by_day if any(r['d'] == d for r in rows)) if any(r['d'] in by_day for r in rows) else None
+            partial = report.get('coverage') == 'partial'
+            # A partial (latest-day-only) feed can be a day ahead of DAL; show that day's site counts anyway.
+            through = max(by_day) if partial else max((r['d'] for r in rows if r['d'] in by_day), default=None)
             # Loudoun's feed shows only the latest day, so days nobody captured have no counts.
             site_meta = {'siteKeys': {v[0]: k for k, v in names.items()}, 'siteLabels': {k: v[1] for k, v in names.items()},
-                         'sitePartial': report.get('coverage') == 'partial', 'siteSource': SITE_REPORT_SOURCES[lid], 'siteThrough': through}
+                         'sitePartial': partial, 'siteSource': SITE_REPORT_SOURCES[lid], 'siteThrough': through,
+                         'siteLatest': {k: v for k, v in by_day[through].items() if v} if partial else None}
         pm = json.loads((ROOT / MANIFEST[lid]['file']).read_text())
         P, ph = projector(pm['features'])
         tol = 2.2 if len(pm['features']) > 150 else 1.6

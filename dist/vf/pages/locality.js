@@ -295,10 +295,10 @@ class Locality extends DCLogic {
     // sites
     const siteTotals = {};
     // With partial coverage (days not captured), site totals would undercount, so show the latest captured day instead.
-    (D.sitePartial ? D.rows.filter((r) => r.d === D.siteThrough) : D.rows).forEach((r) => { if (r.site) Object.keys(r.site).forEach((kk) => { siteTotals[kk] = (siteTotals[kk] || 0) + r.site[kk]; }); });
+    (D.sitePartial ? [{ site: D.siteLatest }] : D.rows).forEach((r) => { if (r.site) Object.keys(r.site).forEach((kk) => { siteTotals[kk] = (siteTotals[kk] || 0) + r.site[kk]; }); });
     const asOf = parse(D.rows[D.rows.length - 1].d);
     const sites = D.sites.map((s) => {
-      const fo = parse(s.firstOpen); const open = fo <= asOf; const days = Math.round((fo - asOf) / 864e5);
+      const fo = parse(s.firstOpen); const open = fo <= asOf || !!(siteTotals[keyFor(s.name)]); const days = Math.round((fo - asOf) / 864e5);
       const kk = keyFor(s.name); const bal = kk && siteTotals[kk] != null ? f(siteTotals[kk]) + (D.sitePartial ? ' in-person ballots on ' + dmd(D.siteThrough) : ' in-person ballots so far') : (open ? 'Per-site counts not published' : 'Opens ' + dmd(s.firstOpen));
       return { name: s.name, address: s.address, rules: s.rules, ballots: bal, status: open ? (s.satellite ? 'OPEN' : 'MAIN OFFICE') : 'IN ' + days + ' DAYS',
         chipBg: open ? '#D3F1E6' : '#E4D9FA', chipFg: open ? '#00694F' : '#4E2A9E', border: open ? '#00A37A' : '#ECEEF2', bg: open ? '#FFFFFF' : '#F8F9FB' };
@@ -501,7 +501,7 @@ class Locality extends DCLogic {
     const siteRows = D.sites.map((s5, i) => {
       const key = keyFor(s5.name); const tot2 = key && siteTotals[key] != null ? siteTotals[key] : soloE;
       const hrs = Object.entries(hoursBy[s5.name] || {}).filter(([d6]) => parse(d6) <= asOf).reduce((x, [, hh]) => x + hh, 0);
-      const open = parse(s5.firstOpen) <= asOf; const days = Math.round((parse(s5.firstOpen) - asOf) / 864e5);
+      const open = parse(s5.firstOpen) <= asOf || !!(key && siteTotals[key]); const days = Math.round((parse(s5.firstOpen) - asOf) / 864e5);
       return { s5, i, key, tot2, hrs, open, days };
     });
     const siteAll = !!this.state.siteAll, siteOpen = this.state.siteOpen || {};
