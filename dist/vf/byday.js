@@ -30,10 +30,26 @@
       const share = dP + dB > 0 ? dB / (dP + dB) : fx.p[i] + fx.b[i] > 0 ? fx.b[i] / (fx.p[i] + fx.b[i]) : 0;
       r.dmB = Math.round(Math.max(0, r.dm) * share); r.dmP = Math.max(0, r.dm) - r.dmB; });
     const split = !!fx && act.some((r) => r && r.dmB != null);
+    const hasSched = Object.keys(o.sched || {}).length > 0;
+    // Open capacity in site-hours. Under the 2026 law every locality offers in-person voting every
+    // day from the Sunday 16 days out (E–16) through the last Saturday (E–3); before that, assume
+    // the registrar's office keeps weekday hours. Schedules that list the office replace that guess.
+    const LAW0 = 30, WKND = 1.3, stdH = (dow) => dow === 0 ? 5 : 8;
+    const capOf = (i) => {
+      if (i > 43) return 0;
+      const d = dayDate(i), dow = d.getDay(), office = dow >= 1 && dow <= 5 || i >= LAW0;
+      if (o.gate === 'none') return stdH(dow);
+      const sc = hasSched ? o.sched[iso(d)] : null;
+      let h = sc ? sc.h || sc.n * stdH(dow) : 0;
+      if (office && (!o.officeKnown || (!sc && i >= LAW0))) h += stdH(dow);
+      return h;
+    };
+    const cap = Array.from({ length: 53 }, (_, i) => capOf(i));
+    // A trailing open day with no ballots at all usually hasn't been counted yet: estimate it.
+    if (live) while (lastI > 0 && act[lastI] && !act[lastI].de && !act[lastI].dm && cap[lastI] > 0 && o.refs.length) { act[lastI] = null; lastI--; }
     const refs = live ? o.refs.filter((x) => x.series && x.series.e[lastI]) : [];
     const med = (arr) => { const q = arr.slice().sort((x, y) => x - y); const L2 = q.length; return !L2 ? null : L2 % 2 ? q[(L2 - 1) / 2] : (q[L2 / 2 - 1] + q[L2 / 2]) / 2; };
     const estFor = (key, i) => { const v = refs.map((r) => { const s2 = r.series; if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null; return Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; }).filter((x) => x != null); return med(v); };
-    const hasSched = Object.keys(o.sched || {}).length > 0;
     // Day-by-day medians give the shape; scale them so the remaining total matches the median
     // remaining total across reference elections (daily medians alone run low for lumpy reports).
     const estLevel = {};
@@ -42,16 +58,26 @@
       const whole = med(refs.map((r) => { const s2 = r.series; return s2[key][end] != null && s2[key][lastI] ? (s2[key][end] - s2[key][lastI]) * ser[key][lastI] / s2[key][lastI] : null; }).filter((x) => x != null));
       estLevel[key] = sum > 0 && whole != null ? Math.max(0, whole) / sum : 1;
     });
+    const refE = Array.from({ length: 53 }, (_, i) => live && i > lastI && i < 46 && cap[i] > 0 ? (estFor('e', i) || 0) * (estLevel.e || 1) : 0);
+    // Past elections were mostly closed on weekends, so their same-day counts can't speak for a
+    // weekend this year. There, use the ballots per site-hour on the nearest weekdays before and
+    // after (reported or estimated) times this day's site-hours, with weekend hours running about
+    // 30% busier, as the first 2026 weekend days showed (Arlington Oct 17, Loudoun Oct 18).
+    const dayIn = (j) => j <= lastI ? (act[j] ? Math.max(0, act[j].de) : 0) : refE[j];
+    const rateNear = (i) => {
+      const r = [];
+      [-1, 1].forEach((step) => { for (let j = i + step, n = 0; j >= 0 && j <= 43 && n < 7; j += step, n++) {
+        const dow = dayDate(j).getDay(); if (dow === 0 || dow === 6 || !cap[j]) continue;
+        const v = dayIn(j); if (v > 0) { r.push(v / cap[j]); break; } } });
+      return r.length ? r.reduce((a, b) => a + b, 0) / r.length : 0;
+    };
     const plan = Array.from({ length: 53 }, (_, i) => {
       if (!live || i <= lastI || !refs.length) return null;
-      // Without a published site schedule, assume the registrar's office: weekdays, plus the
-      // two Saturdays before Election Day; in-person early voting ends that last Saturday (E–3).
-      const k3 = iso(dayDate(i)), dow = dayDate(i).getDay();
-      const officeDay = i <= 43 && (dow >= 1 && dow <= 5 || i === 36 || i === 43);
-      const open = o.gate === 'none' ? i <= 43 : (hasSched && o.sched[k3]) || (!o.officeKnown && officeDay);
-      const pe = (i < 46 && open ? (estFor('e', i) || 0) * (estLevel.e || 1) : 0), pmail = (estFor('m', i) || 0) * (estLevel.m || 1);
-      const err = i <= 36 ? 0.21 : 0.30;
-      return { e: pe, m: pmail, eLo: pe * Math.exp(-err), eHi: pe * Math.exp(err), mLo: pmail * Math.exp(-err), mHi: pmail * Math.exp(err) };
+      let pe = refE[i], filled = false;
+      if (cap[i] > 0 && i < 46) { const dw = dayDate(i).getDay(), comp = rateNear(i) * cap[i] * (dw === 0 || dw === 6 ? WKND : 1); if (pe < 0.3 * comp) { pe = comp; filled = true; } }
+      const pmail = (estFor('m', i) || 0) * (estLevel.m || 1);
+      const err = filled ? 0.40 : i <= 36 ? 0.21 : 0.30, errM = i <= 36 ? 0.21 : 0.30;
+      return { e: pe, m: pmail, filled, cap: cap[i], eLo: pe * Math.exp(-err), eHi: pe * Math.exp(err), mLo: pmail * Math.exp(-errM), mHi: pmail * Math.exp(errM) };
     });
     const N = bdWin === 'today' ? (live ? lastI + 1 : T + 1) : endI + 1;
     const usePlan = live && bdWin !== 'today' && refs.length > 0;
@@ -115,7 +141,7 @@
           { k: 'By mail, projected final', v: '≈ ' + rnd(finM), sub: 'Range ' + rnd(curM + remMLo) + '–' + rnd(curM + remMHi), sub2: rnd(remM) + ' still to arrive, through ' + dmd(iso(dayDate(endI))), dot: '#7C4DDB' }
         ]; })() : [],
       legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: split ? 'Returned by mail' : 'By mail', bg: '#7C4DDB', border: '0' }].concat(split && bdM !== 'early' ? [{ l: 'Drop box', bg: '#C4AEF6', border: '0' }] : []).concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
-      note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates only fall on days a site is open' + (hasSched ? '' : ' (assumed: weekdays and the last two Saturdays)') + '. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
+      note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates cover every day a site is open, including every day from ' + dmd(iso(dayDate(LAW0))) + ' through ' + dmd(iso(dayDate(43))) + ', when state law keeps every locality open' + (hasSched || o.gate === 'none' ? '' : ' (other days assumed: the registrar’s office on weekdays)') + '. Where past elections were mostly closed, as on most weekends, the in-person estimate is this year’s ballots per site-hour on the nearest weekdays, about 30% higher on weekends, times that day’s site-hours. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
     };
     if (split && bdM !== 'early') bd.note += ' Mail returns are split into returned by mail and drop box using Fairfax County’s own daily report.';
     const barInfo = (i) => {
@@ -123,10 +149,11 @@
       const eL = i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46);
       const rowsB = [];
       if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, ...(r.dmB != null ? [{ k: 'Returned by mail', v: fz(r.dmP) }, { k: 'Drop box', v: fz(r.dmB) }] : [{ k: 'By mail', v: fz(r.dm) }]), { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / o.reg * 100).toFixed(2) + '%' });
-      if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) });
+      if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) }, ...(p.e && o.gate !== 'none' ? [{ k: 'Site-hours open', v: rnd(p.cap) }] : []));
       // Plain-language note: the same day in past elections, scaled to this election's pace.
       let note = '';
-      if (!r && p) {
+      if (!r && p && p.filled) note = 'Past November elections had little or no in-person voting on this day, so the in-person estimate is this year’s ballots per site-hour on the nearest weekdays' + (dd.getDay() % 6 ? '' : ', plus about 30% for a weekend') + ' (about ' + rnd(p.e / p.cap) + ' an hour), times ' + (o.gate === 'none' ? 'this day’s usual hours.' : 'the ' + rnd(p.cap) + ' site-hours open' + (sc ? '.' : ' (assumed: the registrar’s office).'));
+      else if (!r && p) {
         const vals = refs.map((ref) => { const s2 = ref.series; let v = 0, ok = false;
           ['e', 'm'].forEach((key) => { if (key === 'e' && !p.e) return; if (s2[key][i] != null && s2[key][i - 1] != null && s2[key][lastI]) { v += Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; ok = true; } });
           return ok ? v : null; }).filter((x) => x != null).sort((a, b) => a - b);

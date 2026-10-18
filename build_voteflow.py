@@ -342,8 +342,24 @@ def fmt_span(t):
     return fmt_t(t[0]) + ' – ' + fmt_t(t[1]) if t else ''
 
 
+WEEKDAYS = {'monday': 0, 'tuesday': 1, 'wednesday': 2, 'thursday': 3, 'friday': 4, 'saturday': 5, 'sunday': 6}
+
+
+def weekdays_in(head):
+    """'Monday-Thursday', 'Tuesday/Thursday', 'Monday, Wednesday, Friday', 'Sunday' -> weekday numbers."""
+    out = set()
+    for part in re.split(r',|/|\band\b', head.lower()):
+        names = re.findall(r'(monday|tuesday|wednesday|thursday|friday|saturday|sunday)', part)
+        if '-' in part and len(names) == 2:
+            out.update(range(WEEKDAYS[names[0]], WEEKDAYS[names[1]] + 1))
+        else:
+            out.update(WEEKDAYS[n] for n in names)
+    return out
+
+
 def parse_rules(rules):
-    wk = None; explicit = {}; closed = set()
+    """Weekly hours by weekday, hours on listed dates, and closed dates for one site."""
+    wk = {}; explicit = {}; closed = set()
     for r in rules:
         span = None
         mt = re.search(r':\s*(.+?)\s+to\s+(.+?)(?:\s*\(|$)', r)
@@ -351,12 +367,18 @@ def parse_rules(rules):
             a, b = parse_time(mt.group(1)), parse_time(mt.group(2))
             if a is not None and b is not None:
                 span = (a, b)
-        for cm in re.finditer(r'CLOSED\s+(Sept|Sep|Oct|Nov)\.?\s*(\d+)', r):
+        for cm in re.finditer(r'(?:CLOSED|Excluding)\s+(Sept|Sep|Oct|Nov)\.?\s*(\d+)', r, re.I):
             closed.add(dt.date(2026, MONTHS[cm.group(1)], int(cm.group(2))))
-        head = r.split(':')[0]
-        if head.startswith('Monday-Friday'):
-            wk = span; continue
-        for dm in re.finditer(r'(Sept|Sep|Oct|Nov)\.?\s*(\d+)(?:\s*-\s*(\d+))?', head):
+        # "Monday-Friday (CLOSED Oct. 12)" and "Saturday (Excluding Oct. 17)" are weekly rules.
+        head = re.sub(r'\((?:CLOSED|Excluding)[^)]*\)', '', r.split(':')[0], flags=re.I)
+        dates = list(re.finditer(r'(Sept|Sep|Oct|Nov)\.?\s*(\d+)(?:\s*-\s*(\d+))?', head))
+        if not dates:
+            for wd in weekdays_in(head):
+                wk[wd] = span
+            continue
+        if span is None:  # e.g. "Oct. 1 and Oct. 15: open until 6:30 p.m." keeps the weekly hours
+            continue
+        for dm in dates:
             mo = MONTHS[dm.group(1)]; a = int(dm.group(2)); b = int(dm.group(3) or a)
             for dd in range(a, b + 1):
                 explicit[dt.date(2026, mo, dd)] = span
@@ -376,12 +398,19 @@ def site_schedule(lid, start, end):
     days, sites = {}, []
     if not sat:
         return days, sites
+    # Weekly hours stop with in-person early voting on the Saturday before Election Day.
+    last_day = date(election_meta(LIVE)['date']) - dt.timedelta(days=3)
     for s in sat['sites']:
         wk, ex, closed = parse_rules(s['rules'])
         first = date(s['firstOpen'])
         pretty = []
-        if wk:
-            pretty.append(f'Weekdays (Mon–Fri) from {dlabel(first)}: {fmt_span(wk)}')
+        weekly = {}
+        for wd, span in sorted(wk.items()):
+            if span:
+                weekly.setdefault(span, []).append(wd)
+        for span, wds in weekly.items():
+            names = 'Weekdays (Mon–Fri)' if wds == [0, 1, 2, 3, 4] else ', '.join(DOW3[x] for x in wds)
+            pretty.append(f'{names} from {dlabel(first)}: {fmt_span(span)}')
         for d0 in sorted(ex):
             if ex[d0]:
                 pretty.append(f'{dlabel(d0)}: {fmt_span(ex[d0])}')
@@ -394,8 +423,8 @@ def site_schedule(lid, start, end):
             if d0 >= first and d0 not in closed:
                 if d0 in ex:
                     span = ex[d0]
-                elif d0.weekday() < 5 and wk:
-                    span = wk
+                elif d0 <= last_day:
+                    span = wk.get(d0.weekday())
             if span:
                 x = days.setdefault(d0.isoformat(), {'n': 0, 'h': 0, 'open': []})
                 x['n'] += 1; x['h'] += round(span[1] - span[0], 2); x['open'].append([s['name'], fmt_span(span), round(span[1] - span[0], 2)])
