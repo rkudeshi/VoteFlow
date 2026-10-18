@@ -143,10 +143,12 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    workflow validates and publishes dist/; confirm the deployment succeeds.
 
 The previous Sites refresh instructions used hourly checks at :30, America/New_York.
-The active schedule is three Claude scheduled tasks in the VoteFlow project
+The active schedule is Claude scheduled tasks in the VoteFlow project
 (America/New_York): DAL hourly from 6:45 a.m. until that day's file is imported,
-the Fairfax PDF hourly from 9:05 a.m. to 2:05 p.m., and county dashboards (step 4)
-at 9:10 a.m. and 9:10 p.m. Do not create other schedules. Check DAL for all 133 Virginia
+the Fairfax PDF hourly from 9:05 a.m. to 2:05 p.m., and county dashboards (step 4):
+Loudoun and Arlington at 5:30, 6, 6:30 and 7 p.m. (they post after polls close),
+and all dashboards hourly 9:10 a.m.–2:10 p.m. (Alexandria posts next morning; this
+is also the backup for the evening checks). Do not create other schedules. Check DAL for all 133 Virginia
 localities and Fairfax's PDF every run. Check a locality dashboard or linked feed
 only while satellite early-voting locations are open and it can add per-site
 turnout. Use sources/site-audit/coverage.json as the starting source list, not a

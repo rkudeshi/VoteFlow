@@ -10,7 +10,9 @@ calendar. Each column is the same weekday 104 weeks later (9/20/2024 shows as
 Friday September 18, 2026), as checked against the calendar page screenshot.
 Only days before the report's refresh date are imported; a nonzero count on or
 after it means the mapping moved, so the import fails closed. Zero days are
-closed days, not observations. The calendar visual has shown a doubled total
+closed days, not observations. Cumulative early and mail ballots by precinct
+also go into dist/precinct-data/2026-arlington-county.json for the activity
+date (the state's precinct files stopped updating after September 23). The calendar visual has shown a doubled total
 for a day (5,780 for October 17 while the site table and Snapshot page agree on
 2,890); the site table is used.
 """
@@ -21,6 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ARCHIVE = ROOT / "sources" / "dashboard-archive" / "arlington-county"
+PRECINCTS = ROOT / "dist" / "precinct-data" / "2026-arlington-county.json"
 OUT = ROOT / "sources" / "site-snapshots" / "dashboard"
 SOURCE = "https://vote.arlingtonva.gov/Elections/Results-Data"
 SITES = {"EV1 - Courthouse": "courthouse", "EV2 - Langston Brown": "langston_brown", "EV3 - Walter Reed": "walter_reed"}
@@ -63,6 +66,29 @@ def activity_date(column):
     return (date(year, month, day) + OFFSET).isoformat()
 
 
+def update_precincts(rows, day, early, mail):
+    """Cumulative early/mail by precinct for one activity date; every saved precinct must match."""
+    data = json.loads(PRECINCTS.read_text())
+    by_code = {}
+    for r in rows:
+        code, _, name = r["Precinct"].partition(" - ")
+        by_code[str(int(code))] = (name, int(r["Early Voting"] or 0), int(r["Mail Ballots Cast"] or 0))
+    assert set(by_code) == set(data["precincts"]), "Arlington precinct list changed; review before importing"
+    assert sum(v[1] for v in by_code.values()) == early and sum(v[2] for v in by_code.values()) == mail, "Precinct counts do not add up"
+    for code, p in data["precincts"].items():
+        name, e, m = by_code[code]
+        assert name == p["name"], (code, name, p["name"])
+        registered = next((v[2] for _, v in sorted(p["history"].items()) if v[2]), 0)
+        p["history"][day] = [e, m, registered]
+        p["history"] = dict(sorted(p["history"].items()))
+    data["dates"] = sorted({d for p in data["precincts"].values() for d in p["history"]})
+    text = json.dumps(data, separators=(",", ":"))
+    if text == PRECINCTS.read_text():
+        return False
+    PRECINCTS.write_text(text)
+    return True
+
+
 def main():
     latest = json.loads((ARCHIVE / "latest.json").read_text())
     capture = json.loads((ROOT / latest["dataFile"]).read_text())
@@ -100,12 +126,13 @@ def main():
         "capture": latest["dataFile"],
         "sitesDaily": days,
     }
+    precincts_changed = update_precincts(decode(q["precincts"]), snapshot["activityThrough"], early, snapshot["mail"])
     path = OUT / f"{refreshed}-arlington.json"
     text = json.dumps(snapshot, indent=2) + "\n"
     changed = not path.exists() or path.read_text() != text
     if changed:
         path.write_text(text)
-    print(json.dumps({"source": "Arlington dashboard", "changed": changed, "snapshot": str(path.relative_to(ROOT)), "activityThrough": snapshot["activityThrough"], "latestDay": days[-1]}))
+    print(json.dumps({"source": "Arlington dashboard", "changed": changed, "snapshot": str(path.relative_to(ROOT)), "activityThrough": snapshot["activityThrough"], "latestDay": days[-1], "precinctsChanged": precincts_changed}))
 
 
 if __name__ == "__main__":

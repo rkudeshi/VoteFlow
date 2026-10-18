@@ -157,6 +157,18 @@ EL = D['elections']
 LIVE = '2026'
 ORDER = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020']
 ARCH_META = {'2020': ('2020-11-03', 'Presidential'), '2021': ('2021-11-02', 'State / local'), '2022': ('2022-11-08', 'Midterm')}
+# Locality dashboards (siteReports): site key -> (site name on the page, short label).
+# The registrar's office is the page's placeholder main-office row.
+SITE_REPORT_NAMES = {
+    'arlington-county': {'courthouse': ("Registrar's office", 'Courthouse'), 'langston_brown': ('Langston-Brown Community Center', 'Langston-Brown'),
+                         'walter_reed': ('Walter Reed Community Center', 'Walter Reed')},
+    'loudoun-county': {'leesburg': ("Registrar's office", 'Leesburg office'), 'sterling': ('Claude Moore Recreation Center', 'Claude Moore'),
+                       'dulles_south': ('Dulles South Recreation Center', 'Dulles South'), 'purcellville': ('Carver Senior Center', 'Carver Center'),
+                       'ashburn': ('Ashburn Recreation and Community Center', 'Ashburn')},
+    'alexandria-city': {'alexandria_office': ("Registrar's office", 'Main office'), 'beatley': ('Charles E. Beatley Jr Central Library', 'Beatley Library')},
+}
+SITE_REPORT_SOURCES = {'arlington-county': 'Arlington County’s dashboard', 'loudoun-county': 'Loudoun County’s dashboard', 'alexandria-city': 'the City of Alexandria’s dashboard'}
+
 # Map positions for sites the geocoded site list does not cover yet (approximate; flagged in the UI).
 APPROX_SITES = {'richmond-city': {"Registrar's office": (37.5935, -77.4741), 'Richmond City Hall': (37.5407, -77.4336),
                                   'Hickory Hill Community Center': (37.4987, -77.4573)}}
@@ -559,6 +571,18 @@ def main():
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
                 r['post'] = x.get('postal'); r['box'] = x.get('dropbox')
             rows.append(r); prev = h
+        site_meta = {}
+        report = D.get('siteReports', {}).get(lid, {}).get(LIVE) if lid in SITE_REPORT_NAMES else None
+        if report and report.get('history'):
+            by_day = {x['date']: x['sites'] for x in report['history']}
+            for r in rows:
+                if r['d'] in by_day:
+                    r['site'] = {k: v for k, v in by_day[r['d']].items() if v}
+            names = SITE_REPORT_NAMES[lid]
+            through = max(d for d in by_day if any(r['d'] == d for r in rows)) if any(r['d'] in by_day for r in rows) else None
+            # Loudoun's feed shows only the latest day, so days nobody captured have no counts.
+            site_meta = {'siteKeys': {v[0]: k for k, v in names.items()}, 'siteLabels': {k: v[1] for k, v in names.items()},
+                         'sitePartial': report.get('coverage') == 'partial', 'siteSource': SITE_REPORT_SOURCES[lid], 'siteThrough': through}
         pm = json.loads((ROOT / MANIFEST[lid]['file']).read_text())
         P, ph = projector(pm['features'])
         tol = 2.2 if len(pm['features']) > 150 else 1.6
@@ -620,7 +644,7 @@ def main():
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
-             'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
+             'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')
 

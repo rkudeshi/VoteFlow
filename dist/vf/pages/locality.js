@@ -231,8 +231,8 @@ class Locality extends DCLogic {
     }
     const byDate = {}; drows.forEach((r) => { byDate[r.d] = r; });
     const satOpens = {}; D.sites.forEach((s) => { if (s.satellite) satOpens[s.firstOpen] = (satOpens[s.firstOpen] || 0) + 1; });
-    const SITE_NAMES = { government_center: 'Government Center', north_county: 'North County', mt_vernon: 'Mount Vernon', burke: 'Burke Centre', centreville: 'Centreville', franconia: 'Franconia', great_falls: 'Great Falls', herndon_fortnightly: 'Herndon Fortnightly', jim_scott: 'Jim Scott', lorton: 'Lorton', mason: 'Mason', mclean: 'McLean', sully: 'Sully', thomas_jefferson: 'Thomas Jefferson', tysons_pimmit: 'Tysons-Pimmit', west_springfield: 'West Springfield', laurel_hill: 'Laurel Hill', providence: 'Providence', gerry_hyland: 'Gerry Hyland' };
-    const keyFor = (name) => { const low = name.toLowerCase(); if ((low.startsWith('registrar') || low.includes('government center')) && D.id === 'fairfax-county') return 'government_center'; const ks = Object.keys(SITE_NAMES).filter((kk) => kk !== 'government_center'); return ks.find((kk) => low.includes(SITE_NAMES[kk].toLowerCase())) || ks.find((kk) => low.startsWith(SITE_NAMES[kk].toLowerCase().split(/[ -]/)[0])); };
+    const SITE_NAMES = { government_center: 'Government Center', north_county: 'North County', mt_vernon: 'Mount Vernon', burke: 'Burke Centre', centreville: 'Centreville', franconia: 'Franconia', great_falls: 'Great Falls', herndon_fortnightly: 'Herndon Fortnightly', jim_scott: 'Jim Scott', lorton: 'Lorton', mason: 'Mason', mclean: 'McLean', sully: 'Sully', thomas_jefferson: 'Thomas Jefferson', tysons_pimmit: 'Tysons-Pimmit', west_springfield: 'West Springfield', laurel_hill: 'Laurel Hill', providence: 'Providence', gerry_hyland: 'Gerry Hyland', ...(D.siteLabels || {}) };
+    const keyFor = (name) => { if (D.siteKeys) return D.siteKeys[name]; const low = name.toLowerCase(); if ((low.startsWith('registrar') || low.includes('government center')) && D.id === 'fairfax-county') return 'government_center'; const ks = Object.keys(SITE_NAMES).filter((kk) => kk !== 'government_center'); return ks.find((kk) => low.includes(SITE_NAMES[kk].toLowerCase())) || ks.find((kk) => low.startsWith(SITE_NAMES[kk].toLowerCase().split(/[ -]/)[0])); };
     const wxOf = (w) => w ? w.l + ', ' + w.hi + '°/' + w.lo + '°' + (w.p >= 0.01 ? ' · ' + w.p.toFixed(2) + '″' : '') : '—';
     const isWet = (w) => !!(w && (w.wet || w.p >= 0.25 || /rain|drizzle|shower|storm/i.test(w.l)));
 
@@ -294,11 +294,12 @@ class Locality extends DCLogic {
 
     // sites
     const siteTotals = {};
-    D.rows.forEach((r) => { if (r.site) Object.keys(r.site).forEach((kk) => { siteTotals[kk] = (siteTotals[kk] || 0) + r.site[kk]; }); });
+    // With partial coverage (days not captured), site totals would undercount, so show the latest captured day instead.
+    (D.sitePartial ? D.rows.filter((r) => r.d === D.siteThrough) : D.rows).forEach((r) => { if (r.site) Object.keys(r.site).forEach((kk) => { siteTotals[kk] = (siteTotals[kk] || 0) + r.site[kk]; }); });
     const asOf = parse(D.rows[D.rows.length - 1].d);
     const sites = D.sites.map((s) => {
       const fo = parse(s.firstOpen); const open = fo <= asOf; const days = Math.round((fo - asOf) / 864e5);
-      const kk = keyFor(s.name); const bal = kk && siteTotals[kk] != null ? f(siteTotals[kk]) + ' in-person ballots so far' : (open ? 'Per-site counts not published' : 'Opens ' + dmd(s.firstOpen));
+      const kk = keyFor(s.name); const bal = kk && siteTotals[kk] != null ? f(siteTotals[kk]) + (D.sitePartial ? ' in-person ballots on ' + dmd(D.siteThrough) : ' in-person ballots so far') : (open ? 'Per-site counts not published' : 'Opens ' + dmd(s.firstOpen));
       return { name: s.name, address: s.address, rules: s.rules, ballots: bal, status: open ? (s.satellite ? 'OPEN' : 'MAIN OFFICE') : 'IN ' + days + ' DAYS',
         chipBg: open ? '#D3F1E6' : '#E4D9FA', chipFg: open ? '#00694F' : '#4E2A9E', border: open ? '#00A37A' : '#ECEEF2', bg: open ? '#FFFFFF' : '#F8F9FB' };
     });
@@ -514,7 +515,7 @@ class Locality extends DCLogic {
       rateMove: (ev) => this.setState({ tip: this.tipAt(ev, 'rate', i) }),
       toggle: () => this.setState({ siteOpen: Object.assign({}, siteOpen, { [i]: !siteOpen[i] }) }) }; });
     const scaleR = D.mapH / 1000;
-    const sm = { has: D.sites.some((x) => x.xy), base: D.precincts.map((p) => p.d), sizeNote: totAll ? 'Circle size = in-person ballots so far' : (D.sites.some((x) => x.approx) ? 'Positions approximate' : ''),
+    const sm = { has: D.sites.some((x) => x.xy), base: D.precincts.map((p) => p.d), sizeNote: totAll ? (D.sitePartial ? 'Circle size = in-person ballots on ' + dmd(D.siteThrough) : 'Circle size = in-person ballots so far') : (D.sites.some((x) => x.approx) ? 'Positions approximate' : ''),
       dots: siteRows.filter(({ s5 }) => s5.xy).map(({ s5, i, tot2, open }) => { const r = (tot2 ? 16 + Math.sqrt(tot2 / maxSite) * 26 : 18) * Math.max(1, scaleR * 0.9);
         return { x: s5.xy[0], y: s5.xy[1], r: r.toFixed(1), ty: (s5.xy[1] + r * 0.35).toFixed(1), fs: Math.round(r * 0.9), n: i + 1, fill: open ? '#00A37A' : '#FFFFFF', stroke: open ? '#FFFFFF' : '#7C4DDB', tc: open ? '#FFFFFF' : '#5B2FB8',
           ringCls: open ? 'fx-ring2' : '', delay: (300 + i * 70) + 'ms', move: (ev) => this.setState({ tip: this.tipAt(ev, 'site', i) }), click: () => this.setState({ siteOpen: Object.assign({}, siteOpen, { [i]: !siteOpen[i] }) }) }; }) };
@@ -523,7 +524,7 @@ class Locality extends DCLogic {
     const siteInfo = (i) => { const { s5, tot2, hrs, open, days } = siteRows[i]; return { bg: s5.satellite ? '#F1F2F5' : '#FFFFFF', kicker: (s5.satellite ? 'Satellite site ' + (i + 1) : 'Main office') + ' · ' + (open ? 'open' : 'opens in ' + days + ' days'), title: s5.name, sub: s5.address + (s5.approx ? ' · position approximate' : ''),
       rows: [{ k: 'In-person ballots', v: tot2 != null ? f(tot2) : 'not published' }, { k: 'Scheduled hours so far', v: hrs ? f(hrs) : '—' }, { k: 'Ballots per hour', v: tot2 != null && hrs ? String(Math.round(tot2 / hrs)) : '—' }],
       hasList: true, listHead: 'Hours', list: s5.rules.slice(0, 8).map((x) => ({ k: x, v: '' })) }; };
-    const siteTableNote = soloE != null ? 'All in-person early ballots so far were cast at the registrar’s office. Click the row for its address and hours.' : (Object.keys(siteTotals).length ? 'Per-site counts from the county daily report through ' + dmd(heatDates[heatDates.length - 1]) + '. Per hour uses scheduled site-hours. ' : 'This locality does not publish per-site ballot counts. ') + 'Click a row for its address and hours.';
+    const siteTableNote = soloE != null ? 'All in-person early ballots so far were cast at the registrar’s office. Click the row for its address and hours.' : (Object.keys(siteTotals).length ? (D.siteSource ? 'Per-site counts from ' + D.siteSource + ' through ' + dmd(D.siteThrough) + '.' + (D.sitePartial ? ' It shows only the latest day, so site ballots are for ' + dmd(D.siteThrough) + ' alone, and days that weren’t captured have no per-site counts.' : '') : 'Per-site counts from the county daily report through ' + dmd(heatDates[heatDates.length - 1]) + '.') + ' Per hour uses scheduled site-hours. ' : 'This locality does not publish per-site ballot counts. ') + 'Click a row for its address and hours.';
     const siteAllToggle = () => this.setState({ siteAll: !siteAll });
 
     // ---- site rhythm: every site, every early-voting day
@@ -537,16 +538,18 @@ class Locality extends DCLogic {
     rSites.forEach(({ s5, key }) => { let run = 0; rVal[s5.name] = allDates.map((d7) => {
       const h = (hoursBy[s5.name] || {})[d7] || 0; const past = d7 <= lastData;
       const rr = past ? D.rows.find((r) => r.d === d7) : null; const raw = rr && rr.site && key ? (rr.site[key] || 0) : 0; run += raw;
-      const v = !past ? null : rhM === 'daily' ? raw : rhM === 'cum' ? run : (h ? raw / h : null);
+      const gap = !!(D.sitePartial && past && h && !(rr && rr.site));
+      const v = !past || gap ? null : rhM === 'daily' ? raw : rhM === 'cum' ? run : (h ? raw / h : null);
       if (v != null) rMax = Math.max(rMax, v);
-      return { v, raw, h, d: d7, past, run }; }); });
+      return { v, raw, h, d: d7, past, run, gap }; }); });
     const fmtR = (v) => rhM === 'rate' ? String(Math.round(v)) : v >= 1000 ? (v / 1000).toFixed(1) + 'K' : String(Math.round(v));
     const cellOf = (s5, j, ri, ci) => { const c = rVal[s5.name][j]; let bg, fg = '#121417', border = '0', txt = '';
-      if (!c.past) { if (c.h) { bg = '#FFFFFF'; border = '1.5px dashed #C6CBD4'; } else bg = '#F8F9FB'; }
+      if (c.gap) { bg = '#FFFFFF'; border = '1.5px dashed #C6CBD4'; txt = '?'; }
+      else if (!c.past) { if (c.h) { bg = '#FFFFFF'; border = '1.5px dashed #C6CBD4'; } else bg = '#F8F9FB'; }
       else if (!c.h && !c.raw) bg = '#F1F2F5';
       else { const q = (c.v || 0) / (rMax || 1); /* lighter greens keep dark text readable */ const RG = VF.dark ? ['#2b4d42', '#2f604f', '#357a64', '#3e987c'] : ['#E3F5ED', '#C2EBDB', '#93DCC0', '#5CC9A3']; bg = !c.v ? '#F1F2F5' : RG[q < 0.25 ? 0 : q < 0.5 ? 1 : q < 0.75 ? 2 : 3]; if (!rhFit && c.v) txt = fmtR(c.v); }
       return { bg, fg, border, txt, delay: (ri * 30 + ci * 6) + 'ms',
-        tip: shortName(s5) + ' · ' + dmd(c.d) + ': ' + (!c.past ? (c.h ? 'scheduled, ' + c.h + ' h' : 'closed') : !c.h && !c.raw ? 'closed' : fz(c.raw) + ' ballots' + (c.h ? ' in ' + c.h + ' h (' + Math.round(c.raw / c.h) + '/h)' : '')) }; };
+        tip: shortName(s5) + ' · ' + dmd(c.d) + ': ' + (c.gap ? 'open, count not captured' : !c.past ? (c.h ? 'scheduled, ' + c.h + ' h' : 'closed') : !c.h && !c.raw ? 'closed' : fz(c.raw) + ' ballots' + (c.h ? ' in ' + c.h + ' h (' + Math.round(c.raw / c.h) + '/h)' : '')) }; };
     const totOf = (arr) => { const pastA = arr.filter((c) => c.past); const sum = pastA.reduce((x, c) => x + c.raw, 0); const hh = pastA.reduce((x, c) => x + c.h, 0);
       return rhM === 'rate' ? (hh && sum ? String(Math.round(sum / hh)) : '—') : sum ? f(sum) : '—'; };
     let rhHead, rhRows;
@@ -566,7 +569,7 @@ class Locality extends DCLogic {
       grid: nameW + 'px 64px repeat(' + nCols + ', minmax(' + (rhFit ? '4px' : cellW + 'px') + ', 1fr))',
       minW: rhFit ? '0' : (nameW + 64 + nCols * (cellW + 3)) + 'px', cellH: rhFit ? '20px' : '30px',
       totLabel: rhM === 'rate' ? 'Avg/hr' : 'Total',
-      ctrls: [rhOpt('Metric', 'rhM', rhM, [['daily', 'Daily ballots'], ['cum', 'Cumulative ballots'], ['rate', 'Ballots/hour']]), rhOpt('Display', 'rhFit', rhFit, [[false, 'Readable numbers'], [true, rhSwap ? 'Fit all sites' : 'Fit all dates']])] };
+      ctrls: [rhOpt('Metric', 'rhM', rhM, [['daily', 'Daily ballots'], ['cum', 'Cumulative ballots'], ['rate', 'Ballots/hour']].filter(([v]) => !(D.sitePartial && v === 'cum'))), rhOpt('Display', 'rhFit', rhFit, [[false, 'Readable numbers'], [true, rhSwap ? 'Fit all sites' : 'Fit all dates']])] };
 
     // ---- precinct maps (three)
     const P = D.precincts; const lastIdx = D.pdates.length - 1; const pIdx = this.state.pIdx == null ? lastIdx : this.state.pIdx;
