@@ -138,7 +138,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
         <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
       <span class="vf-tag" style="font: 500 14px 'Hanken Grotesk', sans-serif; color: #8a93a3; padding-left: 14px; border-left: 1px solid #3a3f48; white-space: nowrap">Analyzing early voting data</span>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #b7bcc6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #ffd23f; font-weight: 700; white-space: nowrap"><span class="vf-long">Send me an email</span><span class="vf-short">Email me</span></a></span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #b7bcc6; text-align: right; line-height: 1.35"><span class="vf-long">Questions, see an issue, or want a feature? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #ffd23f; font-weight: 700; white-space: nowrap"><span class="vf-long">Send me an email</span><span class="vf-short">Email me</span></a></span>
     </div>
   </div>
 
@@ -159,7 +159,22 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 18px; padding: 14px 22px; display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: baseline; font-size: 15px; color: #4A5260">
       <span style="display: inline-flex; align-items: center; gap: 8px"><span class="fx-live" style="width: 8px; height: 8px; border-radius: 50%; background: #00A37A"></span>Ballot data through <b style="color: #121417">{{through}}</b> · {{lastLoad}}</span>
       <span>Covers all <b style="color: #121417">133 localities</b>, with elections back to 2020</span>
-      <span>New ballot files load every morning around <b style="color: #121417">7 AM ET</b></span>
+      <span>New state files load every morning around <b style="color: #121417">7 AM ET</b>, county dashboards as they post</span>
+    </section>
+
+    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; max-width: 100%">
+      <h2 style="margin: 0 0 14px; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where the data comes from</h2>
+      <div style="max-width: 760px; font-size: 18px; line-height: 1.6; color: #2A2F38">
+        <p style="margin: 0 0 14px">Most of VoteFlow comes from data reported by the Virginia Department of Elections. Its daily absentee files give each locality's running totals of early in-person and mail ballots. The site checks for a new file every morning and usually has it loaded by about 7 AM Eastern.</p>
+        <p style="margin: 0 0 14px">Some localities with satellite early voting sites also publish their own numbers, including turnout at each site. VoteFlow checks those county dashboards and picks up new numbers within about an hour of them going up:</p>
+        <ul style="margin: 0 0 14px; padding-left: 22px">
+          <li style="margin: 0 0 6px"><b>Arlington and Loudoun counties</b> update nightly, about an hour after early voting sites close.</li>
+          <li style="margin: 0"><b>Fairfax County and Alexandria</b> update by around midday the next day.</li>
+        </ul>
+        <p style="margin: 0 0 14px">Because these sources arrive at different times, a locality's page can show part of a day's numbers first, with more detail filled in when the next source arrives.</p>
+        <p style="margin: 0">Fairfax County publishes the most. Its <a href="https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf" style="color: #121417; font-weight: 700">daily absentee and early voting report (PDF)</a> includes ballots by early voting site, mail ballots returned by post versus drop box, and more, going back to 2020. That lets the <a href="/va/fairfax-county/2026-11" style="color: #121417; font-weight: 700">Fairfax County page</a> show turnout at every early voting site, each site across past elections, and the full county report tables.</p>
+      </div>
+      <a class="fx-pill" href="/va/fairfax-county/2026-11" style="margin-top: 24px; min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Explore Fairfax County →</a>
     </section>
 
     <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; max-width: 100%">
@@ -167,7 +182,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       <div style="max-width: 760px; font-size: 18px; line-height: 1.6; color: #2A2F38">
         <p style="margin: 0 0 14px">Hi, I'm Ravi Udeshi. I'm an election administrator who loves technology and building things.</p>
         <p style="margin: 0 0 14px">When I worked in a local Virginia elections office, I was always curious how early voting was unfolding day by day. I kept detailed spreadsheets of the daily numbers, compared them with past elections, and tried to project where turnout might end up and how busy the days ahead would be.</p>
-        <p style="margin: 0 0 14px">VoteFlow is the modern version of those spreadsheets, for every locality in Virginia. It updates automatically every morning.</p>
+        <p style="margin: 0 0 14px">VoteFlow is the modern version of those spreadsheets, for every locality in Virginia. It updates automatically throughout the day.</p>
         <p style="margin: 0 0 14px">There are no ads or sponsorships here. It's a passion project, made to be useful to election administrators and anyone else who's curious about elections data.</p>
         <p style="margin: 0 0 14px">If there's something you'd like to see added, <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #121417; font-weight: 700">send me an email</a>, and maybe I can add it!</p>
       </div>
@@ -180,15 +195,6 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       </div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; max-width: 100%">
-      <h2 style="margin: 0 0 14px; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where there's more detail</h2>
-      <div style="max-width: 760px; font-size: 18px; line-height: 1.6; color: #2A2F38">
-        <p style="margin: 0 0 14px">Most of VoteFlow comes from the state's daily absentee files, which give each locality's running totals of early in-person and mail ballots. Some localities publish much more than that themselves.</p>
-        <p style="margin: 0 0 14px">Fairfax County publishes a <a href="https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf" style="color: #121417; font-weight: 700">daily absentee and early voting report (PDF)</a> with ballots by early voting site, mail ballots returned by post versus drop box, and more, going back to 2020. That lets the <a href="/va/fairfax-county/2026-11" style="color: #121417; font-weight: 700">Fairfax County page</a> show turnout at every early voting site, each site across past elections, and the full county report tables.</p>
-        <p style="margin: 0">I'm working on adding site-level data for other localities that publish it. Their pages will get the same detail as it comes in.</p>
-      </div>
-      <a class="fx-pill" href="/va/fairfax-county/2026-11" style="margin-top: 24px; min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Explore Fairfax County →</a>
-    </section>
 
     <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; max-width: 100%">
       <h2 style="margin: 0 0 14px; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Why Virginia?</h2>
@@ -203,7 +209,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
   </main>
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
-    <span>Have a question, or a feature that would help you? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="font-weight: 700; color: #121417">Send me an email</a>.</span>
+    <span>Have a question, see something that looks wrong, or want a feature that would help you? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="font-weight: 700; color: #121417">Send me an email</a>.</span>
     <span style="display: inline-flex; align-items: center; gap: 4px 10px; flex-wrap: wrap"><a href="/about" style="font-weight: 700; color: #121417">About this site</a><span aria-hidden="true" style="color: #B7BCC6">|</span><a href="#settings" style="font-weight: 700; color: #121417">Settings</a><span aria-hidden="true" style="color: #B7BCC6">|</span><span>Made by Ravi Udeshi</span><span style="display: inline-flex; gap: 2px"><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow" aria-label="Email" title="Email" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M4 7l8 6 8-6"></path></svg></a><a href="https://www.linkedin.com/in/raviudeshi" aria-label="LinkedIn" title="LinkedIn" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"></path></svg></a><a href="https://x.com/rkudeshi" aria-label="X" title="X" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"></path></svg></a><a href="https://www.threads.net/@rkudeshi" aria-label="Threads" title="Threads" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16.5 11.2c-.3-2.4-1.9-3.7-4.3-3.7-2.6 0-4.2 1.8-4.2 4.5 0 2.8 1.7 4.5 4.2 4.5 2.2 0 3.6-1.2 3.6-3 0-2.1-2.2-2.9-4.6-2.6-1.6.2-2.6 1-2.6 2.1"></path><path d="M19.5 7.5C18 4.6 15.4 3 12.1 3 6.8 3 3.5 6.6 3.5 12s3.3 9 8.6 9c3.7 0 6.6-1.8 7.6-4.8"></path></svg></a><a href="https://bsky.app/profile/rkudeshi.bsky.social" aria-label="Bluesky" title="Bluesky" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.3 4.4C8.6 6.1 11 9.6 12 11.6c1-2 3.4-5.5 5.7-7.2 1.6-1.2 4.3-2.2 4.3.9 0 .6-.4 5.2-.6 5.9-.7 2.6-3.3 3.2-5.6 2.8 4 .7 5 2.9 2.8 5.2-4.2 4.3-6-1.1-6.5-2.5l-.1-.3-.1.3c-.5 1.4-2.3 6.8-6.5 2.5-2.2-2.3-1.2-4.5 2.8-5.2-2.3.4-4.9-.2-5.6-2.8C2.4 10.5 2 5.9 2 5.3c0-3.1 2.7-2.1 4.3-.9z"></path></svg></a></span></span>
   </footer>
 </div>
