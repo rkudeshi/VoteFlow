@@ -568,6 +568,19 @@ def main():
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
         lid = l['id']
+        # Same-night dashboard totals (provisional.py) extend this page past DAL's last day.
+        # DAL wins: only dates after its last row are added, and fields the dashboard
+        # doesn't report carry forward from DAL.
+        l_dal = l
+        prov = {d: x for d, x in D.get('provisional', {}).get(lid, {}).items() if d > l['history'][-1]['date']}
+        if prov:
+            l = dict(l, history=list(l['history']))
+            for d, x in sorted(prov.items()):
+                last = l['history'][-1]
+                h = {k: last.get(k) for k in ('early', 'mail', 'outstanding', 'provisional', 'fwab')}
+                h.update({k: x[k] for k in ('early', 'mail') if k in x})
+                h.update({'date': d, 'activityDate': d, 'total': h['early'] + h['mail'], 'source': x['source'], 'carried': [k for k in ('mail',) if k not in x]})
+                l['history'].append(h)
         days_sched, sites = site_schedule(lid, start, end)
         # Every registrar's office offers early voting from day one. When the schedule source
         # doesn't list it, show it without address or hours (those come from the registrar).
@@ -599,6 +612,10 @@ def main():
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
                 r['post'] = x.get('postal'); r['box'] = x.get('dropbox')
+            if h.get('source'):
+                r['prov'] = h['source']
+                if 'mail' in h.get('carried', []):
+                    r['dm'] = None
             rows.append(r); prev = h
         site_meta = {}
         report = D.get('siteReports', {}).get(lid, {}).get(LIVE) if lid in SITE_REPORT_NAMES else None
@@ -646,7 +663,7 @@ def main():
                 x, y = P(ll[1], ll[0]); st['xy'] = [round(x, 1), round(y, 1)]; st['approx'] = flag
         elections = []
         for eid in ORDER:
-            lh = loc_hist(eid, lid)
+            lh = l if eid == LIVE else loc_hist(eid, lid)
             if not lh:
                 continue
             meta = election_meta(eid)
@@ -669,11 +686,12 @@ def main():
         n, nxt = sat_summary(lid, today)
         sat_dates = [date(x['firstOpen']) for x in D.get('satellites', {}).get(LIVE, {}).get(lid, {}).get('sites', []) if x['satellite']]
         ref25 = next((x['series'] for x in elections if x['id'] == '2025'), None)
-        cur26 = next((x['series'] for x in elections if x['id'] == LIVE), None)
-        notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(l['history'][-1]['date']),
+        # Trend notes compare against statewide DAL, so they use DAL days only.
+        cur26 = series(l_dal['history'], election_meta(LIVE)['date'], l_dal['registered'])
+        notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(l_dal['history'][-1]['date']),
                             sat_dates, rank_now.get(lid), rank_wk.get(lid)) if cur26 else ''
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
-             'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
+             'inactive': l.get('inactive'), 'rankV': by_total.index(l_dal) + 1, 'rankP': by_pct.index(l_dal) + 1, 'rankR': by_reg.index(l_dal) + 1,
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}

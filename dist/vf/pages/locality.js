@@ -85,7 +85,8 @@ class Locality extends DCLogic {
     const emW = (s) => Array.from(s).reduce((a, ch) => a + (ch === ',' || ch === '.' ? 0.3 : ch === '%' ? 1.29 : ch === '1' ? 0.52 : 0.9) - 0.04, 0);
     const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - var(--hg) - 8px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
     const hero = { pctLbl: live ? 'turnout so far' : 'early turnout', fs: heroFs((tot / cur.reg * 100).toFixed(1), tot), live, past: !live, kicker: live ? 'Early votes cast · through ' + dmd(D.rows[D.rows.length - 1].d) : cur.label + ' · final early vote',
-      votes: f(tot * k), pct: (tot / cur.reg * 100 * k).toFixed(1), reg: f(cur.reg), regNote: '.',
+      votes: f(tot * k), pct: (tot / cur.reg * 100 * k).toFixed(1), reg: f(cur.reg), regNote: (() => { const pr = live ? D.rows[D.rows.length - 1] : null; if (!pr || !pr.prov) return '.';
+        const dal = D.rows.filter((r) => !r.prov).pop(); return '. ' + dmd(pr.d) + ' in-person ballots are from the ' + pr.prov + (pr.dm == null ? '; mail ballots are through ' + dmd(dal ? dal.d : pr.d) : '') + ', until the state’s daily file confirms them.'; })(),
       ip: f(cur.early * k), m: f(cur.mail * k), ipW: (cur.early / tot * 100).toFixed(1), mW: (cur.mail / tot * 100).toFixed(1),
       dateLabel: MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear(), typeLabel, atT: f(cur.atT), TL, eDayLabel: DOW[eDate.getDay()] + ' ' + MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear() };
     // Pace chips, newest election first. The live election compares at today's point; a past

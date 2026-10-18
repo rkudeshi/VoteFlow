@@ -194,5 +194,12 @@
     "message": "Updated voting-site counts for Alexandria City.",
     "through": "2026-10-15",
     "url": null
+  },
+  {
+    "at": "2026-10-18T22:46:29.849983+00:00",
+    "source": "Loudoun County dashboard",
+    "message": "Updated daily voting-site counts.",
+    "through": "2026-10-18",
+    "url": "https://www.loudoun.gov/5564/Loudoun-Elections-Dashboard"
   }
 ]

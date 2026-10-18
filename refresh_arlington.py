@@ -21,6 +21,8 @@ import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+from provisional import record as provisional
+
 ROOT = Path(__file__).resolve().parent
 ARCHIVE = ROOT / "sources" / "dashboard-archive" / "arlington-county"
 PRECINCTS = ROOT / "dist" / "precinct-data" / "2026-arlington-county.json"
@@ -126,6 +128,8 @@ def main():
         "capture": latest["dataFile"],
         "sitesDaily": days,
     }
+    # The Snapshot totals match DAL's cumulative early and mail counts.
+    provisional("arlington-county", snapshot["activityThrough"], {"early": early, "mail": snapshot["mail"]}, "Arlington County dashboard", capture["retrievedAt"])
     precincts_changed = update_precincts(decode(q["precincts"]), snapshot["activityThrough"], early, snapshot["mail"])
     path = OUT / f"{refreshed}-arlington.json"
     text = json.dumps(snapshot, indent=2) + "\n"

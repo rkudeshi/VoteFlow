@@ -39,6 +39,10 @@ def main():
   snapshot_day,snapshot,site_values=observation(text)
   days[snapshot_day]={'date':snapshot_day,'sites':site_values,'early':sum(site_values.values()),'countyCumulative':snapshot['EV_Total'],'reportedAt':dt(snapshot['Date_Updated']).isoformat()}
  o['history']=[days[d] for d in sorted(days)];o['coverageStart']=min(days)
+ # EV_Total matches DAL's cumulative early in-person count; its mail fields use
+ # different definitions, so only early voting is used before DAL arrives.
+ from provisional import record as provisional
+ provisional('loudoun-county',day,{'early':a['EV_Total']},'Loudoun County dashboard',dt(a['Date_Updated']).isoformat(),base)
  content=json.dumps(base,separators=(',',':'));changed=content!=basepath.read_text()
  if changed:
   temp=basepath.with_suffix('.tmp');temp.write_text(content);temp.replace(basepath)

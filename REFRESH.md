@@ -92,8 +92,12 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    an alternate countywide series. For Loudoun, `python refresh_sites.py`
    archives per-site days as published; the live ArcGIS feed exposes only the
    latest day. Preserve gaps, partial site coverage and prior verified site
-   counts. Do not let its EV_Total, Ballots_Returned or Ballots_Mailed fields
-   replace DAL aggregates. If a site feed fails, keep its previous data and
+   counts. Its EV_Total (same definition as DAL's cumulative early in
+   person) is stored under `provisional` in region.json and shown that evening
+   for any day DAL doesn't have yet; Ballots_Returned/Ballots_Mailed use other
+   definitions and are not used. DAL always wins once its file has the day.
+   Arlington's Snapshot early and mail totals (they match DAL) are stored the
+   same way by refresh_arlington.py. See provisional.py. If a site feed fails, keep its previous data and
    continue the DAL update.
 3. Run `python refresh_fairfax.py`. Fetch the linked PDF contents every time,
    even if its filename, URL, report date or HTTP metadata is unchanged. The
