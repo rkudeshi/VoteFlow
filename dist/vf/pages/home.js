@@ -251,7 +251,7 @@ class Home extends DCLogic {
     // 2026 vs. 2025 on the same day, as a change: +14% ▲ / −13% ▼
     const vsTxt = (c) => !c ? '—' : c >= 100 ? '+' + (c - 100) + '% ▲' : '−' + (100 - c) + '% ▼';
     const nextTxt = (x) => x === 'open' ? 'Open now' : x ? dmd(x) : '—';
-    const linkOf = (id) => '/' + EID + '/' + id;
+    const linkOf = (id) => VF.locUrl(id, EID);
     const locInfo = (ho) => ({ kicker: ho.rg, title: ho.n, sub: ho.p.toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: true, href: linkOf(ho.id), hasList: false, list: [],
       rows: [{ k: 'Registered voters', v: f(ho.r) }, { k: 'Active voters', v: f(ho.ac) }, { k: 'Early ballots', v: f(ho.v) }, { k: 'In person', v: f(ho.e) + ' · ' + (ho.e / ho.r * 100).toFixed(1) + '%' }, { k: 'By mail', v: f(ho.m) + ' · ' + (ho.m / ho.r * 100).toFixed(1) + '%' }, { k: 'Mail outstanding', v: f(ho.o) } ].concat(live ? [{ k: 'vs. 2025, same day', v: vsTxt(ho.c) }, { k: 'Satellite sites', v: ho.sat ? String(ho.sat) : 'None' }, { k: 'Next satellites open', v: nextTxt(ho.next) }] : []) });
     const ho = D.locs.find((o) => o.id === hovId);
@@ -311,7 +311,7 @@ class Home extends DCLogic {
       hdr: { eid: EID, lid: '',
         elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026'), text2: o.type })),
         locs: [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(allLocs), allLocs.map((o) => ({ value: o.value, text: o.text }))),
-        pickE: (v) => { if (v !== EID) location.href = v === '2026' ? '/' : '/' + v; },
+        pickE: (v) => { if (v !== EID) location.href = VF.stateUrl(v); },
         pickL: (v) => { v = VF.unRecent(v); if (v) location.href = linkOf(v); } },
       band: { asOf: dmd(D.asOf) },
       mini: D.locs.map((o) => { const q = o.p, mh = this.state.miniHover === o.id; return { d: o.d, move: (ev) => this.setState({ miniHover: o.id, tip: this.tipAt(ev, 'mini', o.id) }), go: () => { location.href = linkOf(o.id); }, stroke: mh ? '#121417' : '#E6E8EC', fill: mh ? '#FFD23F' : q < pq[0] ? '#B3E6D3' : q < pq[1] ? '#5CC9A3' : q < pq[2] ? '#00A37A' : '#006B50', delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),

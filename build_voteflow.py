@@ -696,6 +696,10 @@ def main():
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
+    # URL map for the router: /va/<locality>/<election date>, /va/statewide/<election date>.
+    site = {'live': LIVE, 'elections': [{'id': x, 'date': election_meta(x)['date'], 'label': election_meta(x)['label']} for x in ORDER],
+            'localities': sorted(NAMES)}
+    (OUT / 'site.js').write_text('VF.site=' + json.dumps(site, separators=(',', ':')) + ';\n')
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')
 
 

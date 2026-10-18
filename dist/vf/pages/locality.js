@@ -19,13 +19,13 @@ class Locality extends DCLogic {
       const s = performance.now();
       const step = (n) => { const t = Math.min(1, (n - s) / 1800); this.setState({ t }); if (t < 1) this.raf = requestAnimationFrame(step); };
       this.raf = requestAnimationFrame(step);
-    }).catch(() => { location.replace('/' + this.props.eid); });
+    }).catch(() => { location.replace(VF.stateUrl(this.props.eid)); });
   }
   componentDidUpdate() {
     const D = this.state.data; if (!D) return;
     const cur = D.elections.find((x) => x.id === this.state.eid);
-    const path = '/' + this.state.eid + '/' + D.id;
-    if (location.pathname.replace(/\/scenarios$|\/$/, '') !== path) history.replaceState(null, '', path);
+    const path = VF.locUrl(D.id, this.state.eid);
+    if (location.pathname.replace(/\/$/, '') !== path) history.replaceState(null, '', path);
     const title = D.name + (cur && this.state.eid !== '2026' ? ' · ' + cur.label : '') + ' · VoteFlow';
     if (document.title !== title) document.title = title;
   }
@@ -649,14 +649,14 @@ class Locality extends DCLogic {
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026'), text2: x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
         pickE: (v) => { if (v === eid) return; this.setState({ eid: v, show: Object.assign({}, this.state.show, { [v]: true }), cal: null, hi: null, tip: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }); },
-        pickL: (v) => { v = VF.unRecent(v); if (v === D.id) return; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },
+        pickL: (v) => { v = VF.unRecent(v); if (v === D.id) return; location.href = v ? VF.locUrl(v, eid) : VF.stateUrl(eid); } },
       where: this.state.vaMap ? { vb: '0 0 1000 ' + this.state.vaMap.h,
         // a ring around the locality so small cities are easy to spot
         ring: (() => { const nums = (this.state.vaMap.p[D.id] || '').match(/-?\d+(\.\d+)?/g) || []; if (nums.length < 2) return { on: false };
           let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; for (let k = 0; k + 1 < nums.length; k += 2) { const x = +nums[k], y = +nums[k + 1]; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
           return { on: true, cx: ((x0 + x1) / 2).toFixed(1), cy: ((y0 + y1) / 2).toFixed(1), r: Math.max(22, Math.max(x1 - x0, y1 - y0) / 2 + 12).toFixed(1) }; })(), paths: Object.keys(this.state.vaMap.p).map((id) => ({ d: this.state.vaMap.p[id], fill: id === D.id ? '#41557F' : '#D3D7DE', stroke: id === D.id ? '#121417' : '#FFFFFF', sw: id === D.id ? 3 : 1, order: id === D.id ? 1 : 0 })).sort((a, b) => a.order - b.order) } : { vb: '0 0 1000 440', paths: [], ring: { on: false } },
       showSites: live && D.sites.length > 0, siteMany: D.sites.length > 1, showPrecincts: live && D.precincts.some((p) => p.r),
-      fxr, loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
+      fxr, loading: false, ready: true, backHref: VF.stateUrl(eid), placeHref: VF.placeUrl(D.id), L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
       ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: VF.calLegend, sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)
     };

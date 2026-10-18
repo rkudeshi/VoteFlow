@@ -6,6 +6,7 @@ novavote-site.tar.gz
 
 # Generated clean routes and resumable weather download cache
 /dist/20*/
+/dist/va/
 /dist/status/
 /dist/about/
 /dist/old/v2/about/

@@ -445,13 +445,28 @@
       const draw = () => render(h(Logic, props), el);
       draw();
     },
-    /* Path routing: /, /status, /<election>, /<election>/<locality>[/scenarios] */
+    /* URLs: /va/<locality>/<election date>, /va/statewide/<election date>, /va/<locality> (its elections).
+       Election ids stay internal; VF.site (built into /data/site.js) maps them to ISO dates. */
+    site: { live: '2026', elections: [], localities: [] },
+    dateOf: (eid) => (VF.site.elections.find((x) => x.id === eid) || {}).date,
+    eidOf: (d) => (VF.site.elections.find((x) => x.date === d) || {}).id,
+    stateUrl: (eid) => eid === VF.site.live || !VF.dateOf(eid) ? '/' : '/va/statewide/' + VF.dateOf(eid),
+    locUrl: (lid, eid) => '/va/' + lid + '/' + (VF.dateOf(eid) || VF.dateOf(VF.site.live)),
+    placeUrl: (lid) => '/va/' + lid,
+    /* Routes: /, /status, /about, /va, /va/statewide[/<date>], /va/<locality>[/<date>]; anything else is not found. */
     route(pathname) {
       const parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
-      if (parts[0] === 'status' || parts[0] === 'about') return { page: parts[0], props: {} };
-      const eid = /^20\d\d(-special)?$/.test(parts[0] || '') ? parts[0] : '2026';
-      if (parts[1]) return { page: 'locality', props: { eid, lid: parts[1] } };
-      return { page: 'home', props: { eid } };
+      const live = VF.site.live, none = { page: 'notfound', props: {} };
+      if (!parts.length) return { page: 'home', props: { eid: live } };
+      if (parts.length === 1 && (parts[0] === 'status' || parts[0] === 'about')) return { page: parts[0], props: {} };
+      if (parts[0] !== 'va' || parts.length > 3) return none;
+      if (parts.length === 1) return { page: 'home', props: { eid: live } };
+      const eid = parts[2] ? VF.eidOf(parts[2]) : live;
+      if (!eid) return none;
+      if (parts[1] === 'statewide') return { page: 'home', props: { eid } };
+      if (!VF.site.localities.includes(parts[1])) return none;
+      if (parts.length === 2) return { page: 'place', props: { lid: parts[1] } };
+      return { page: 'locality', props: { eid, lid: parts[1] } };
     }
   };
 })();

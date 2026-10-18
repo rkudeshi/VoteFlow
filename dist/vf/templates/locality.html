@@ -208,6 +208,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           <vf-combo items="{{hdr.locs}}" value="{{hdr.lid}}" onpick="{{hdr.pickL}}" label="Locality" placeholder="Find a county or city…" search="true" icon="search"></vf-combo>
           <vf-combo items="{{hdr.elections}}" value="{{hdr.eid}}" onpick="{{hdr.pickE}}" label="Election"></vf-combo>
         </div>
+        <a href="{{placeHref}}" style="display: inline-flex; align-items: center; min-height: 32px; margin-top: 8px; font-weight: 700; font-size: 15px">Every election in {{L.name}} →</a>
       </div>
       <div class="vf-where" style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
         <svg viewBox="{{where.vb}}" width="300" role="img" aria-label="{{L.name}} on a map of Virginia" style="max-width: 100%; display: block">
