@@ -41,9 +41,17 @@ def main():
  out=ROOT/'dist/weather';out.mkdir(exist_ok=True)
  metadata={'method':'Locality bounding-box center; gridded estimate','timezone':'America/New_York','provider':'Open-Meteo historical weather API','endpoint':'https://archive-api.open-meteo.com/v1/archive','generatedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'locations':locations,'coverage':{}}
  ranges={'2020':('2020-09-18','2020-11-08'),'2021':('2021-09-17','2021-11-07'),'2022':('2022-09-23','2022-11-14')}
+ old=json.loads((out/'manifest.json').read_text()).get('coverage',{}) if (out/'manifest.json').exists() else {}
  for y,e in region['elections'].items():
   start,end=ranges.get(y,(min(l['history'][0]['date'] for l in e['localities']),max(l['history'][-1]['date'] for l in e['localities'])))
-  result={};missing=[]
+  result={};missing=[];saved=out/f'{y}.json';prior=old.get(y);first=start
+  # Reuse saved weather; fetch only dates after the saved coverage so routine
+  # refreshes stay well inside the provider's daily request limit.
+  if prior and saved.exists() and prior['start']==start:
+   if prior['end']>=end:
+    metadata['coverage'][y]=prior;print('CACHED',y,flush=True);continue
+   result=json.loads(saved.read_text());missing=list(map(tuple,prior.get('missing',[])))
+   start=(dt.date.fromisoformat(prior['end'])+dt.timedelta(days=1)).isoformat()
   for offset in range(0,len(locations),10):
    batch=locations[offset:offset+10]
    params={'latitude':','.join(str(l['latitude']) for l in batch),'longitude':','.join(str(l['longitude']) for l in batch),'start_date':start,'end_date':end,'daily':'temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code,snowfall_sum,wind_speed_10m_max','temperature_unit':'fahrenheit','precipitation_unit':'inch','wind_speed_unit':'mph','timezone':'America/New_York'}
@@ -63,10 +71,14 @@ def main():
      if any(v is None for v in vals.values()):missing.append((loc['id'],date));continue
      code=int(vals['weather_code']);precip=vals['precipitation_sum'];snow=vals['snowfall_sum']
      rows[date]={'code':code,'label':label(code),'tempMax':round(vals['temperature_2m_max'],1),'tempMin':round(vals['temperature_2m_min'],1),'precip':round(precip,3),'snow':snow,'wind':vals['wind_speed_10m_max'],'wet':precip>=.25,'snowy':snow>0}
-    result[f'{slug(loc["id"])}-{y}-general']=rows
+    result.setdefault(f'{slug(loc["id"])}-{y}-general',{}).update(rows)
    print(y,offset+len(batch),'of',len(locations),flush=True)
   (out/f'{y}.json').write_text(json.dumps(result,separators=(',',':'))+'\n')
-  metadata['coverage'][y]={'start':start,'end':end,'localities':len(result),'records':sum(map(len,result.values())),'missing':missing}
+  # Coverage ends at the last date every locality has, so days the provider
+  # has not filled yet are fetched again on the next run.
+  covered=min(max(rows,default=first) for rows in result.values())
+  missing=[m for m in missing if m[1]<=covered]
+  metadata['coverage'][y]={'start':first,'end':covered,'localities':len(result),'records':sum(map(len,result.values())),'missing':missing}
   (out/'manifest.json').write_text(json.dumps(metadata,indent=2)+'\n')
   print('SAVED',y,metadata['coverage'][y],flush=True)
 if __name__=='__main__':main()

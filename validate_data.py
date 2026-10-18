@@ -24,6 +24,7 @@ for locality,years in supplement['localities'].items():
   headline=record['archivedVoting']['headline']
   assert headline['early']+headline['mail']==headline['total']
   d['elections'][year]['localities'].append(record)
+wcov=json.loads((r/'weather/manifest.json').read_text())['coverage']
 for y,e in d['elections'].items():
  weather=json.loads((r/f'weather/{y}.json').read_text())
  assert len(weather)==133,(y,'weather locality coverage')
@@ -31,7 +32,11 @@ for y,e in d['elections'].items():
   h=l['history'];assert [v['date'] for v in h]==sorted(set(v['date'] for v in h)),(y,l['id'])
   for v in h:
    assert v['total']==v['early']+v['mail'],(y,l['id'],v['date'])
-   w=weather[f'{l["id"]}-{y}-general'][v['date']]
+   # Weather lags ballot data when the provider is unavailable; days after the
+   # saved weather coverage may be missing, but never days inside it.
+   w=weather[f'{l["id"]}-{y}-general'].get(v['date'])
+   if w is None and v['date']>wcov[y]['end']:continue
+   assert w,(y,l['id'],v['date'],'weather')
    assert all(w.get(k) is not None for k in ['tempMax','tempMin','precip','code'])
    assert w['tempMax']>=w['tempMin'] and w['precip']>=0
 for id,ys in d.get('siteReports',{}).items():

@@ -28,8 +28,10 @@ Use clean path URLs. Do not commit generated route copies.
 Daily-chart ticks use the exact same noon-UTC date positions as the columns.
 Trim only leading/trailing days without daily ballot activity; preserve interior
 zero days and negative reporting corrections. Comparison charts use a taller view.
-Run `python refresh_weather.py` after importing ballot data. It resumes cached
-downloads and respects rate limits. Commit `dist/weather/*.json` and its manifest.
+Run `python refresh_weather.py` after importing ballot data. It reuses saved
+weather and fetches only days after the saved coverage, respecting rate limits.
+If the weather provider fails, ballot data still validates and publishes; the
+missing recent days are filled on the next run. Commit `dist/weather/*.json` and its manifest.
 Weather keys use complete locality IDs: Richmond City and Richmond County, for
 example, must not share observations. Daily high/low temperature, precipitation,
 snow, wind, and weather code are saved in local time for each tracked election.
@@ -129,8 +131,9 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    workflow validates and publishes dist/; confirm the deployment succeeds.
 
 The previous Sites refresh instructions used hourly checks at :30, America/New_York.
-The active schedule is managed separately by the user in ChatGPT; follow that
-scheduled task's timing rather than creating another schedule here. Check DAL for all 133 Virginia
+The active schedule is two Claude scheduled tasks in the VoteFlow project
+(America/New_York): DAL hourly from 6:45 a.m. until that day's file is imported,
+and the Fairfax PDF hourly from 8 a.m. to 3 p.m. Do not create other schedules. Check DAL for all 133 Virginia
 localities and Fairfax's PDF every run. Check a locality dashboard or linked feed
 only while satellite early-voting locations are open and it can add per-site
 turnout. Use sources/site-audit/coverage.json as the starting source list, not a
