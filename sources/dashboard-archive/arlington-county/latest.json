@@ -1,12 +1,12 @@
 {
-  "fingerprint": "6adc3b9b5628a04e",
-  "capturedAt": "2026-10-18T21:31:43.835Z",
+  "fingerprint": "7fb078c5e8a8a37d",
+  "capturedAt": "2026-10-19T13:21:48.578Z",
   "files": [
-    "sources/dashboard-archive/arlington-county/2026-10-18/1731-powerbi-data.json",
-    "sources/dashboard-archive/arlington-county/2026-10-18/1731-snapshot.jpg",
-    "sources/dashboard-archive/arlington-county/2026-10-18/1731-early-votes-by-day.jpg",
-    "sources/dashboard-archive/arlington-county/2026-10-18/1731-historical-comparison.jpg",
-    "sources/dashboard-archive/arlington-county/2026-10-18/1731-votes-cast-by-precinct.jpg"
+    "sources/dashboard-archive/arlington-county/2026-10-19/0921-powerbi-data.json",
+    "sources/dashboard-archive/arlington-county/2026-10-19/0921-snapshot.jpg",
+    "sources/dashboard-archive/arlington-county/2026-10-19/0921-early-votes-by-day.jpg",
+    "sources/dashboard-archive/arlington-county/2026-10-19/0921-historical-comparison.jpg",
+    "sources/dashboard-archive/arlington-county/2026-10-19/0921-votes-cast-by-precinct.jpg"
   ],
-  "dataFile": "sources/dashboard-archive/arlington-county/2026-10-18/1731-powerbi-data.json"
+  "dataFile": "sources/dashboard-archive/arlington-county/2026-10-19/0921-powerbi-data.json"
 }

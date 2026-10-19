@@ -1,0 +1,183 @@
+{
+  "election": "2026",
+  "locality": "alexandria-city",
+  "source": "https://www.alexandriava.gov/elections/election-dashboard-november-3-2026",
+  "retrievedAt": "2026-10-19T09:21:51-04:00",
+  "reportDate": "2026-10-19",
+  "activityThrough": "2026-10-18",
+  "early": 9371,
+  "mail": 5531,
+  "issued": 11413,
+  "outstanding": 5481,
+  "capture": "sources/dashboard-archive/alexandria-city/2026-10-19/0921-EarlyVotingbyLocation.png",
+  "sitesDaily": [
+    {
+      "date": "2026-09-18",
+      "early": 682,
+      "sites": {
+        "alexandria_office": 682,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-21",
+      "early": 396,
+      "sites": {
+        "alexandria_office": 396,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-22",
+      "early": 202,
+      "sites": {
+        "alexandria_office": 202,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-23",
+      "early": 281,
+      "sites": {
+        "alexandria_office": 281,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-24",
+      "early": 285,
+      "sites": {
+        "alexandria_office": 285,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-25",
+      "early": 383,
+      "sites": {
+        "alexandria_office": 383,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "early": 260,
+      "sites": {
+        "alexandria_office": 260,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "early": 307,
+      "sites": {
+        "alexandria_office": 307,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "early": 292,
+      "sites": {
+        "alexandria_office": 292,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-01",
+      "early": 284,
+      "sites": {
+        "alexandria_office": 284,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-02",
+      "early": 466,
+      "sites": {
+        "alexandria_office": 466,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "early": 449,
+      "sites": {
+        "alexandria_office": 449,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "early": 374,
+      "sites": {
+        "alexandria_office": 374,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "early": 331,
+      "sites": {
+        "alexandria_office": 331,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "early": 316,
+      "sites": {
+        "alexandria_office": 316,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-09",
+      "early": 588,
+      "sites": {
+        "alexandria_office": 588,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "early": 473,
+      "sites": {
+        "alexandria_office": 473,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "early": 325,
+      "sites": {
+        "alexandria_office": 325,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "early": 332,
+      "sites": {
+        "alexandria_office": 332,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "early": 497,
+      "sites": {
+        "alexandria_office": 497,
+        "beatley": 0
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "early": 1848,
+      "sites": {
+        "alexandria_office": 747,
+        "beatley": 1101
+      }
+    }
+  ]
+}
