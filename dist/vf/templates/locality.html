@@ -251,7 +251,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
-      <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters{{hero.regNote}}</p>
+      <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters.</p>
       <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
         <div class="fx-meter vf-seg1" style="width: {{hero.ipW}}%; background: #00A37A"></div>
         <div class="fx-meter vf-seg2" style="width: {{hero.mW}}%; background: #7C4DDB; animation-delay: .25s"></div>
@@ -260,6 +260,9 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
         <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #00A37A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
         <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
       </div>
+      <sc-if value="{{hero.provNote}}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 8px 0 0; font-size: 13px; color: #4A5260">{{hero.provNote}}</p>
+      </sc-if>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="3">
           <span class="fx-pill" style="padding: 8px 12px; background: #F1F2F5; border-radius: 10px; font-size: 14px; font-weight: 600"><b style="font-size: 16px">{{pc.ratio}}</b> {{pc.label}}</span>
