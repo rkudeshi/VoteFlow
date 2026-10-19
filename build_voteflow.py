@@ -16,7 +16,7 @@ import datetime as dt
 import json
 import math
 import re
-from fairfax_history import merged_history
+from fairfax_history import county_history, merged_history
 from trends import trend_notes
 from pathlib import Path
 
@@ -49,6 +49,12 @@ ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['n
 for locality in D['elections']['2026']['localities']:
     if locality['id'] == 'fairfax-county':
         locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
+# A final county report replaces DAL outright for that election (April 2026's DAL had a partial April 26 file).
+for _eid, _off in D.get('official', {}).items():
+    if _off.get('final') and _eid in D['elections']:
+        for locality in D['elections'][_eid]['localities']:
+            if locality['id'] == 'fairfax-county':
+                locality['history'] = county_history(_off, locality['history'])
 
 
 FX_MON = {'Sep': 9, 'Oct': 10, 'Nov': 11}
@@ -701,7 +707,7 @@ def main():
         fx_mail = None
         if lid == 'fairfax-county':
             fx_mail = {}
-            for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']:
+            for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026-special', '2026']:
                 hh = D.get('official', {}).get(y, {}).get('history')
                 if hh:
                     c = hh[-1].get('cumulative') or {}

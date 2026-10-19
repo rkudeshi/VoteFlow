@@ -27,6 +27,14 @@ class FairfaxRefreshTests(unittest.TestCase):
                 result = parse(path.read_text(), 'https://example.test/report.pdf', 'test')
                 self.assertEqual(result['reportDate'], path.name[:10])
 
+    def test_april_special_report_counts_election_day_precinct_drop_boxes(self):
+        text = (ROOT / 'sources/fairfax-snapshots/april-2026-special/2026-04-24-61050ee3accb.txt').read_text()
+        result = parse(text, 'https://example.test/report.pdf', 'test', election='April 21, 2026', election_day='2026-04-21')
+        self.assertEqual(result['history'][-1]['cumulative'], dict(sent=77100, postal=46372, dropbox=10716, early=126536))
+        self.assertEqual(next(r for r in result['history'] if r['date'] == '2026-04-21')['dropbox'], 329 + 2375)
+        with self.assertRaises(AssertionError):
+            parse(text, 'https://example.test/report.pdf', 'test', election='April 21, 2026')
+
     def test_inconsistent_totals_and_future_detail_are_rejected(self):
         for text in (self.current_text().replace('73,607', '73,608'),
                      self.current_text().replace('10/14/26', '10/13/26')):

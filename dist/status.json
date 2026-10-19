@@ -201,5 +201,12 @@
     "message": "Updated daily voting-site counts.",
     "through": "2026-10-18",
     "url": "https://www.loudoun.gov/5564/Loudoun-Elections-Dashboard"
+  },
+  {
+    "at": "2026-10-19T05:24:58.926964+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded the county\u2019s final April 2026 special election report; its totals now replace the Daily Absentee List counts for Fairfax.",
+    "through": "2026-04-23",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/AB_Daily_Report_Apr-21-2026.pdf"
   }
 ]
