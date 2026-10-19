@@ -94,6 +94,9 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    refresher joins precincts by code, files counts under the DAL day whose
    county totals match (run it after refresh_dal.py), never overwrites an
    existing precinct day, and skips a locality whose totals don't line up.
+   It is also the backup for a late DAL file: county totals a day ahead of
+   DAL go into region.json `provisional` under the Daily Absentee List label
+   (no same-night footnote) until refresh_dal.py loads that day.
    Commit the snapshot files with the data. Public wording stays "Daily
    Absentee List"; the exact source is recorded only in .private/.
 2. Use DAL for non-Fairfax countywide aggregates. Run site-level dashboard

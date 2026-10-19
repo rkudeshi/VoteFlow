@@ -633,7 +633,8 @@ def main():
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
                 r['post'] = x.get('postal'); r['box'] = x.get('dropbox')
-            if h.get('source'):
+            # Backup totals from the same Daily Absentee List records need no same-night footnote.
+            if h.get('source') and h['source'] != 'Daily Absentee List':
                 r['prov'] = h['source']
                 if 'mail' in h.get('carried', []):
                     r['dm'] = None

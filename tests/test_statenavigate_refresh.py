@@ -1,7 +1,7 @@
 import json, sys, unittest
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from refresh_statenavigate import match_day, plan, precinct_code
+from refresh_statenavigate import backup, match_day, plan, precinct_code
 
 def day(d, early, mail):
     return {'date': d, 'early': early, 'mail': mail}
@@ -43,6 +43,22 @@ class StateNavigateRefreshTests(unittest.TestCase):
             p['history']['2026-10-17'] = [1, 1, 1]
         out, _ = plan(tracker([('101 - A', 40, 10), ('201 - B', 50, 10)], 90, 20), REGION, lambda p: json.dumps(saved))
         self.assertEqual(out, {})
+
+    def test_backup_totals_ahead_of_dal(self):
+        data = tracker([('101 - A', 50, 10), ('201 - B', 50, 15)], 100, 25)
+        data['current']['observed_at'] = '2026-10-19T03:05:00+00:00'
+        data['current']['groups']['county']['51001']['source_dates'] = {'mail_in_date': ['2026-10-18'], 'on_machine_date': ['2026-10-18'], 'countable_date': ['2026-10-17']}
+        region = json.loads(json.dumps(REGION)); region['elections']['2026']['localities'][0]['history'].pop()
+        self.assertEqual(backup(data, region), {'test-county': '2026-10-17'})
+        self.assertEqual(region['provisional']['test-county']['2026-10-17']['early'], 100)
+        # Precincts then match the backup day.
+        out, report = plan(data, region, lambda p: json.dumps(SAVED))
+        self.assertEqual(report['imported'], {'test-county': '2026-10-17'})
+        # Not ahead of DAL, or a county dashboard already has the day: nothing added.
+        self.assertEqual(backup(data, json.loads(json.dumps(REGION))), {})
+        region = json.loads(json.dumps(REGION)); region['elections']['2026']['localities'][0]['history'].pop()
+        region['provisional'] = {'test-county': {'2026-10-17': {'early': 95, 'source': 'Test County dashboard'}}}
+        self.assertEqual(backup(data, region), {})
 
 if __name__ == '__main__':
     unittest.main()
