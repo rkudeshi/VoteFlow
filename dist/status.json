@@ -222,5 +222,13 @@
     "message": "Loaded county totals, mail-return details and voting-site counts.",
     "through": "2026-10-18",
     "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
+  },
+  {
+    "at": "2026-10-19T17:46:10.686046+00:00",
+    "source": "Daily Absentee List",
+    "message": "Checked for new data. The latest published file still runs through 2026-10-17; nothing new to load.",
+    "through": "2026-10-17",
+    "url": null,
+    "check": true
   }
 ]
