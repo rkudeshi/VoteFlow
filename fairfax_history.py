@@ -33,18 +33,14 @@ def merged_history(dal, official):
     return [days[d] for d in sorted(days)]
 
 
-def county_history(official, dal=()):
-    """A final county report as the whole display history: the county's own activity dates and
-    daily counts, with no DAL days mixed in (Ravi, Oct 2026: the county report supersedes DAL)."""
-    rows = []
-    for county in official.get('history', []):
-        c = county.get('cumulative') or {}
-        if any(c.get(k) is None for k in ('early', 'postal', 'dropbox')):
+
+def drop_partial_files(history):
+    """Rows from a partial DAL file: early and mail both fall, and the next row equals the row before."""
+    out = []
+    for i, row in enumerate(history):
+        prev, nxt = (history[i - 1] if i else None), (history[i + 1] if i + 1 < len(history) else None)
+        if prev and nxt and row.get('early') is not None and row['early'] < prev.get('early', 0) and row.get('mail', 0) < prev.get('mail', 0) \
+                and (nxt.get('early'), nxt.get('mail')) == (prev.get('early'), prev.get('mail')):
             continue
-        daily = {'early': county.get('early') or 0, 'mail': (county.get('postal') or 0) + (county.get('dropbox') or 0)}
-        rows.append({'date': county['date'], 'activityDate': county['date'], 'early': c['early'], 'mail': c['postal'] + c['dropbox'],
-                     'total': c['early'] + c['postal'] + c['dropbox'], 'sent': c.get('sent'), 'daily': daily})
-    # Unreturned ballots aren't in the county report; keep DAL's final count for them.
-    if rows and dal:
-        rows[-1]['outstanding'] = max(dal, key=lambda r: r['date']).get('outstanding')
-    return rows
+        out.append(row)
+    return out

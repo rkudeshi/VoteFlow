@@ -236,12 +236,13 @@ Use each source's own daily counts, not differences between unlike sources.
 Do not clamp away negative corrections. Keep older county mail breakdowns dated;
 do not present them as parts of a newer DAL mail total.
 
-Where Fairfax publishes its own report, it supersedes DAL (Ravi, October 2026).
-For a finished election with the county's final report, `official[<election>].final`
-makes that report Fairfax's whole history (`fairfax_history.county_history`); only
-DAL's unreturned count is kept. April 2026 is loaded with
-`python import_fairfax_special.py` from `sources/fairfax-snapshots/april-2026-special/`.
-That folder is separate because the top-level snapshots are November 2026 reports.
+Past elections (Ravi, October 2026): DAL supplies Fairfax totals; the county report
+supplements them (mail post/drop-box split, site counts, details DAL lacks). Saved
+county copies can be incomplete (2023's stops after November 4). A one-day partial DAL
+file, where every count falls and the next file restores the day before exactly, is
+dropped at build time (`fairfax_history.drop_partial_files`; Fairfax April 26, 2026).
+April 2026's county report is loaded with `python import_fairfax_special.py` from
+`sources/fairfax-snapshots/april-2026-special/`, kept apart from the November reports.
 
 Do not run ELECT schedule checks as part of daily turnout updates. Schedule and
 optional site-feed failures must not block otherwise valid DAL/Fairfax publication.

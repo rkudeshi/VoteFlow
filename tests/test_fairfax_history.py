@@ -1,8 +1,14 @@
 import copy
 import unittest
-from fairfax_history import merged_history
+from fairfax_history import drop_partial_files, merged_history
 
 class FairfaxHistoryTests(unittest.TestCase):
+    def test_partial_file_dropped_but_real_correction_kept(self):
+        rows = [{'date': 'a', 'early': 100, 'mail': 50}, {'date': 'b', 'early': 30, 'mail': 15}, {'date': 'c', 'early': 100, 'mail': 50}]
+        self.assertEqual([r['date'] for r in drop_partial_files(rows)], ['a', 'c'])
+        rows[2]['early'] = 99
+        self.assertEqual(len(drop_partial_files(rows)), 3)
+
     def test_county_replaces_matching_day_but_keeps_newer_dal(self):
         dal = [{'date': '2026-10-09', 'early': 10, 'mail': 6}, {'date': '2026-10-10', 'early': 12, 'mail': 8}, {'date': '2026-10-11', 'early': 13, 'mail': 9}]
         county = {'history': [{'date': '2026-10-10', 'early': 4, 'postal': 3, 'dropbox': 1, 'cumulative': {'early': 15, 'postal': 7, 'dropbox': 3}}]}
