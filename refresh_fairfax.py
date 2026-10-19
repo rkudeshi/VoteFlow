@@ -13,12 +13,12 @@ R=Path(__file__).resolve().parent
 HOME='https://www.fairfaxcounty.gov/elections/'
 KEYS=['government_center','mt_vernon','north_county','burke','centreville','franconia','great_falls','herndon_fortnightly','jim_scott','lorton','mason','mclean','sully','thomas_jefferson','tysons_pimmit','west_springfield']
 def fetch(url):return fetch_bytes(url)
-def parse(text,url,digest):
+def parse(text,url,digest,election='November 3, 2026',election_day=None):
  pages=text.split('\f');assert len(pages)>=6,'Unexpected PDF layout'
  first=pages[0]
  match=re.search(r'\b(\d{1,2}/\d{1,2}/(?:2026|26))\b',first);assert match,'Missing or unrecognized report date'
  report=datetime.strptime(match[1],'%m/%d/%Y' if len(match[1].split('/')[-1])==4 else '%m/%d/%y').date().isoformat()
- assert 'November 3, 2026' in first
+ assert election in first
  def nums(s):return [int(n.replace(',','')) for n in re.findall(r'(?<![\w.])\d[\d,]*(?![\w.])',s)]
  head=next(line for line in first.splitlines() if line.strip().startswith('Total '));totals=nums(head)[:6];registered,sent,postal,dropbox,early=totals[:5]
  ballot_total=int(re.search(r'Total Ballots Cast\s+([\d,]+)',first)[1].replace(',',''));assert postal+dropbox+early==ballot_total
@@ -41,6 +41,11 @@ def parse(text,url,digest):
     assert len(vs)-1 in (3,16), 'Unexpected site columns; review the PDF layout'
     row['sites']={k:vs[i+1] if i+1<len(vs) else None for i,k in enumerate(KEYS)}
     assert sum(v for v in row['sites'].values() if v is not None)==vs[0],day
+  # Final reports add drop-box ballots collected at Election Day precincts as one undated line.
+  ed=re.search(r'^\s*ED Precincts\s+([\d,]+)\s*$',pages[page],re.M) if metric=='dropbox' else None
+  if ed:
+   assert election_day,'Election Day precinct drop-box line needs the election date'
+   row=by.setdefault(election_day,{'date':election_day,'sites':{}});row['dropbox']=(row.get('dropbox') or 0)+nums(ed[1])[0];cutoffs.append(election_day)
  last=max(cutoffs);c={k:0 for k in tabletotals};history=[]
  for day,row in sorted(by.items()):
   for k in c:

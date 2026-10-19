@@ -31,3 +31,20 @@ def merged_history(dal, official):
         if row.get('early') is not None and row.get('mail') is not None:
             row['total'] = row['early'] + row['mail']
     return [days[d] for d in sorted(days)]
+
+
+def county_history(official, dal=()):
+    """A final county report as the whole display history: the county's own activity dates and
+    daily counts, with no DAL days mixed in (Ravi, Oct 2026: the county report supersedes DAL)."""
+    rows = []
+    for county in official.get('history', []):
+        c = county.get('cumulative') or {}
+        if any(c.get(k) is None for k in ('early', 'postal', 'dropbox')):
+            continue
+        daily = {'early': county.get('early') or 0, 'mail': (county.get('postal') or 0) + (county.get('dropbox') or 0)}
+        rows.append({'date': county['date'], 'activityDate': county['date'], 'early': c['early'], 'mail': c['postal'] + c['dropbox'],
+                     'total': c['early'] + c['postal'] + c['dropbox'], 'sent': c.get('sent'), 'daily': daily})
+    # Unreturned ballots aren't in the county report; keep DAL's final count for them.
+    if rows and dal:
+        rows[-1]['outstanding'] = max(dal, key=lambda r: r['date']).get('outstanding')
+    return rows
