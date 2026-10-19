@@ -9,13 +9,12 @@ URL='https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Docume
 def main():
  digest=hashlib.sha256(PDF.read_bytes()).hexdigest()
  o=parse(PDF.with_suffix('.txt').read_text(),URL,digest,election='April 21, 2026',election_day='2026-04-21')
- o['final']=True
  p=R/'dist/region.json';d=json.loads(p.read_text())
  if d['official'].get('2026-special')==o:
   print(json.dumps({'changed':False}));return
  d['official']['2026-special']=o
  tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(d,separators=(',',':')));tmp.replace(p)
  from status_log import record
- record('Fairfax County PDF','Loaded the county’s final April 2026 special election report; its totals now replace the Daily Absentee List counts for Fairfax.',o['activityThrough'],URL)
+ record('Fairfax County PDF','Loaded the county’s final April 2026 special election report for Fairfax mail-return and voting-site details.',o['activityThrough'],URL)
  print(json.dumps({'changed':True,'activityThrough':o['activityThrough'],'total':sum(o['history'][-1]['cumulative'][k] for k in ['early','postal','dropbox'])}))
 if __name__=='__main__':main()

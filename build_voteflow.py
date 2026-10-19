@@ -16,7 +16,7 @@ import datetime as dt
 import json
 import math
 import re
-from fairfax_history import county_history, merged_history
+from fairfax_history import drop_partial_files, merged_history
 from trends import trend_notes
 from pathlib import Path
 
@@ -49,12 +49,11 @@ ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['n
 for locality in D['elections']['2026']['localities']:
     if locality['id'] == 'fairfax-county':
         locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
-# A final county report replaces DAL outright for that election (April 2026's DAL had a partial April 26 file).
-for _eid, _off in D.get('official', {}).items():
-    if _off.get('final') and _eid in D['elections']:
-        for locality in D['elections'][_eid]['localities']:
-            if locality['id'] == 'fairfax-county':
-                locality['history'] = county_history(_off, locality['history'])
+# Display only: a one-day partial DAL file (every count drops, then the next file restores the day
+# before exactly, as Fairfax on April 26, 2026) isn't an observation. Real corrections don't bounce back.
+for _e in D['elections'].values():
+    for locality in _e['localities']:
+        locality['history'] = drop_partial_files(locality['history'])
 
 
 FX_MON = {'Sep': 9, 'Oct': 10, 'Nov': 11}
