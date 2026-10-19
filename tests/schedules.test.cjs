@@ -17,7 +17,16 @@ test('Fairfax groups distinguish Government Center, two early satellites, and re
  const groups=S.groups(data.calendars['fairfax-county']['2026']);assert.deepEqual(groups.map(g=>g.sites.length).sort((a,b)=>a-b),[1,2,13]);
  assert.equal(groups.find(g=>g.sites.length===1).sites[0].key,'government_center');
 });
+// Freeze Fairfax 2026 at October 15 so the closed days and the Oct 18 Sunday stay in
+// the forecast window as daily imports advance.
+function asOf(day){
+ const r=structuredClone(raw),l=r.elections['2026'].localities.find(x=>x.id==='fairfax-county');
+ l.history=l.history.filter(h=>h.date<=day);
+ const o=r.official?.['2026'];if(o?.history)o.history=o.history.filter(h=>h.date<=day);
+ return S.prepare(r);
+}
 test('planning predicts zero on verified closed days and permits scheduled weekends',()=>{
+ const data=asOf('2026-10-15');
  const result=P.run(data,'fairfax-county','2026');assert.equal(result.hasSchedule,true);
  const closed=result.future.filter(r=>P.exposure(data,'fairfax-county','2026',r.date).hours===0);assert(closed.length>0);
  for(const r of closed){assert.equal(r.mean,0);assert.equal(r.low,0);assert.equal(r.high,0);}
