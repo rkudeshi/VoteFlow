@@ -182,7 +182,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       <nav class="vf-sections" aria-label="Page sections" style="display: inline-flex; gap: 3px; padding: 4px; border-radius: 999px; background: hsla(0,0%,100%,.07); max-width: 100%; box-sizing: border-box; overflow-x: auto; scrollbar-width: none">
         <a class="vf-navlink" href="#flow" data-sec="flow">Overview</a>
         <a class="vf-navlink" href="#compare" data-sec="compare">History</a>
-        <a class="vf-navlink" href="#byday" data-sec="byday calendar daily sameday">Days</a>
+        <a class="vf-navlink" href="#byday" data-sec="byday calendar daily sameday provisional">Days</a>
         <a class="vf-navlink" href="#sites" data-sec="sites rhythm bysite">Sites</a>
         <a class="vf-navlink" href="#precincts" data-sec="precincts">Precincts</a>
       </nav>
@@ -936,6 +936,28 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       </div>
       </sc-if>
     </section>
+
+    <sc-if value="{{hero.live}}">
+    <section id="provisional" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
+      <div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div>
+      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Provisional ballots</h2>
+      <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 14px"><b style="font-family: 'Unbounded', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -0.02em">{{prov.n}}</b><span style="font-size: 16px; color: #4A5260">{{prov.word}} so far, through {{prov.asOf}}</span></div>
+      <sc-if value="{{prov.has}}">
+      <div style="margin-top: 16px; max-width: 520px; border-top: 2px solid #121417">
+        <div style="display: grid; grid-template-columns: 1fr 110px 110px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
+          <span style="padding: 10px">Date</span><span style="padding: 10px; text-align: right">New</span><span style="padding: 10px; text-align: right">Running total</span>
+        </div>
+        <sc-for list="{{prov.rows}}" as="pr" hint-placeholder-count="3">
+          <div class="fx-row" style="display: grid; grid-template-columns: 1fr 110px 110px; border-bottom: 1px solid #ECEEF2; font-size: 14px">
+            <b style="padding: 9px 10px; white-space: nowrap">{{pr.date}}</b><span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{pr.nw}}</span><span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{pr.run}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: #4A5260">Only days when the count changed are listed.</p>
+      </sc-if>
+      <p style="margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: #4A5260">The state's daily absentee file reports a single provisional count, so same-day registration provisionals aren't shown separately.</p>
+    </section>
+    </sc-if>
 
     <sc-if value="{{showPrecincts}}">
 
