@@ -148,7 +148,7 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
 
 The previous Sites refresh instructions used hourly checks at :30, America/New_York.
 The active schedule is Claude scheduled tasks in the VoteFlow project
-(America/New_York): DAL hourly from 6:45 a.m. until that day's file is imported,
+(America/New_York): DAL every half hour from 5:45 a.m. until that day's file is imported,
 the Fairfax PDF hourly from 9:05 a.m. to 2:05 p.m., and county dashboards (step 4):
 Loudoun and Arlington at 5:30, 6, 6:30 and 7 p.m. (they post after polls close),
 and all dashboards hourly 9:10 a.m.–2:10 p.m. (Alexandria posts next morning; this
