@@ -1,0 +1,20 @@
+{
+  "defaultViewName": "Overview",
+  "authorName": "City of Alexandria Virginia",
+  "profileName": "city.of.alexandria.virginia",
+  "viewCount": 1552,
+  "lastUpdateDate": 1792418768973,
+  "title": "Election Dashboard November 2026",
+  "blogUrl": "http://www.alexandriava.gov/performance",
+  "description": "Election Dashboard November 2026",
+  "viewInfos": [
+    {
+      "sheetRepoUrl": "ElectionDashboardNovember2026/sheets/Overview",
+      "sheetTitle": "Overview"
+    },
+    {
+      "sheetRepoUrl": "ElectionDashboardNovember2026/sheets/EarlyVotingbyLocation",
+      "sheetTitle": "Early Voting by Location"
+    }
+  ]
+}
