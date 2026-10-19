@@ -46,8 +46,11 @@ OFFICE_SCHEDULES = json.loads((ROOT.parent / 'sources' / 'office-schedules.json'
 OFFICE_LISTINGS = json.loads((ROOT.parent / 'sources' / 'registrar-offices.json').read_text())['offices']
 ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['name'])]
 # Display-only merge. Never write county values over the saved DAL observations.
+# Turnout rankings keep the DAL-only history so every locality is compared on one source.
+DAL26 = {}
 for locality in D['elections']['2026']['localities']:
     if locality['id'] == 'fairfax-county':
+        DAL26[locality['id']] = drop_partial_files(locality['history'])
         locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
 # Display only: a one-day partial DAL file (every count drops, then the next file restores the day
 # before exactly, as Fairfax on April 26, 2026) isn't an observation. Real corrections don't bounce back.
@@ -556,13 +559,20 @@ def main():
 
     # ---- locality bundles
     start, end = dt.date(2026, 9, 18), dt.date(2026, 11, 2)
-    by_total = sorted(e26['localities'], key=lambda x: -tot(x['history'][-1]))
-    by_pct = sorted(e26['localities'], key=lambda x: -tot(x['history'][-1]) / x['registered'])
+    # Rankings compare localities on the latest day every locality has reported, so one
+    # locality's newer county numbers (e.g. the Fairfax PDF a day ahead of DAL) can't
+    # vault it past localities that haven't reported that day yet.
+    # They also use DAL for every locality, not a county source on some days and DAL on others.
+    shared = min(DAL26.get(l['id'], l['history'])[-1]['date'] for l in e26['localities'])
+    def tot_shared(l):
+        return next((tot(h) for h in reversed(DAL26.get(l['id'], l['history'])) if h['date'] <= shared), 0)
+    by_total = sorted(e26['localities'], key=lambda x: -tot_shared(x))
+    by_pct = sorted(e26['localities'], key=lambda x: -tot_shared(x) / x['registered'])
     by_reg = sorted(e26['localities'], key=lambda x: -x['registered'])
     official = {x['date']: x for x in D.get('official', {}).get(LIVE, {}).get('history', [])}
     # Turnout rank now and a week earlier, for the trend notes.
-    s26 = {l['id']: series(l['history'], election_meta(LIVE)['date'], l['registered']) for l in e26['localities']}
-    li26 = max(i for x in s26.values() if x for i, v in enumerate(x['e']) if v is not None)
+    s26 = {l['id']: series(DAL26.get(l['id'], l['history']), election_meta(LIVE)['date'], l['registered']) for l in e26['localities']}
+    li26 = 46 - (date(election_meta(LIVE)['date']) - date(shared)).days
     def rank_at(i):
         vals = sorted(((((x['e'][i] or 0) + (x['m'][i] or 0)) / x['r'] if x and x['e'][i] is not None else 0, lid) for lid, x in s26.items()), reverse=True)
         return {lid: n + 1 for n, (_, lid) in enumerate(vals)}
@@ -573,7 +583,8 @@ def main():
     for eid in ORDER:
         rows_e = [(lid, loc_hist(eid, lid)) for lid in NAMES]
         rows_e = [(lid, h) for lid, h in rows_e if h and h.get('history') and h.get('registered')]
-        by_p = sorted(rows_e, key=lambda x: -tot(x[1]['history'][-1]) / x[1]['registered'])
+        last_tot = (lambda h: tot_shared(h)) if eid == LIVE else (lambda h: tot(h['history'][-1]))
+        by_p = sorted(rows_e, key=lambda x: -last_tot(x[1]) / x[1]['registered'])
         by_r = sorted(rows_e, key=lambda x: -x[1]['registered'])
         ranks[eid] = {lid: {'rankP': n + 1} for n, (lid, _) in enumerate(by_p)}
         for n, (lid, _) in enumerate(by_r):
@@ -717,9 +728,11 @@ def main():
         n, nxt = sat_summary(lid, today)
         sat_dates = [date(x['firstOpen']) for x in D.get('satellites', {}).get(LIVE, {}).get(lid, {}).get('sites', []) if x['satellite']]
         ref25 = next((x['series'] for x in elections if x['id'] == '2025'), None)
-        # Trend notes compare against statewide DAL, so they use DAL days only.
-        cur26 = series(l_dal['history'], election_meta(LIVE)['date'], l_dal['registered'])
-        notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(l_dal['history'][-1]['date']),
+        # Trend notes compare against statewide DAL, so they use DAL only, through the last day
+        # every locality has (a county report a day ahead would skew the comparison).
+        h_cmp = [h for h in DAL26.get(lid, l_dal['history']) if h['date'] <= shared]
+        cur26 = series(h_cmp, election_meta(LIVE)['date'], l_dal['registered']) if h_cmp else None
+        notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(h_cmp[-1]['date']) if h_cmp else today,
                             sat_dates, rank_now.get(lid), rank_wk.get(lid)) if cur26 else ''
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l_dal) + 1, 'rankP': by_pct.index(l_dal) + 1, 'rankR': by_reg.index(l_dal) + 1,
