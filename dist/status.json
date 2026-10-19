@@ -208,5 +208,12 @@
     "message": "Loaded the county\u2019s final April 2026 special election report; its totals now replace the Daily Absentee List counts for Fairfax.",
     "through": "2026-04-23",
     "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/Documents/PDF/AB_Daily_Report_Apr-21-2026.pdf"
+  },
+  {
+    "at": "2026-10-19T05:18:20.331373+00:00",
+    "source": "Daily Absentee List",
+    "message": "Updated precinct counts for 132 localities from Daily Absentee List records.",
+    "through": "2026-10-17",
+    "url": null
   }
 ]

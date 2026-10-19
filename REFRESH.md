@@ -86,6 +86,16 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    locality and vetted precinct histories, preserves registration denominators,
    validates mail component totals and saves changed source snapshots. It prints
    changedFiles. A second run with the same ZIP must report zero changed files.
+1a. Precinct counts: the state's precinct metric files stopped after September 23.
+   Run `node capture_statenavigate.cjs`, then `python refresh_statenavigate.py`.
+   The capture opens a public tracker built from the same Daily Absentee List
+   records and saves its precinct data and a screenshot under
+   `sources/precinct-snapshots/<date>/` (nothing written when unchanged). The
+   refresher joins precincts by code, files counts under the DAL day whose
+   county totals match (run it after refresh_dal.py), never overwrites an
+   existing precinct day, and skips a locality whose totals don't line up.
+   Commit the snapshot files with the data. Public wording stays "Daily
+   Absentee List"; the exact source is recorded only in .private/.
 2. Use DAL for non-Fairfax countywide aggregates. Run site-level dashboard
    refreshers only while one or more satellite early-voting locations are open
    and the source reports per-site turnout. Dashboards are for site counts, not
