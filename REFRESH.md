@@ -175,6 +175,16 @@ when that office is offsite. The satellite list currently contains 17 multi-site
 localities. Regions are editorial browsing groups; Northern Virginia is exactly
 the original nine. No new precinct layers were created for this expansion.
 
+Registrar offices: `python3 refresh_offices.py` saves every office's address and
+regular weekday hours from the state's contact lookup to
+`sources/registrar-offices.json`; pages show them, but the office stays out of the
+day-by-day schedule because extended and weekend hours aren't listed there.
+Where a locality publishes its office's full early-voting hours, transcribe them
+into `sources/office-schedules.json` (Loudoun, Arlington and Alexandria so far);
+the office then joins the schedule, calendar and ballots-per-hour figures, and
+days before the first satellite opens credit that day's in-person ballots to the
+office.
+
 DAL refresh iterates all 133 current localities. Keep all fixed denominators and
 historical series. New 2023/2024 localities use official November 1 registration
 reports archived in sources; existing denominators are preserved. Some official

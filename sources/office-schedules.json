@@ -1,0 +1,49 @@
+{
+  "note": "Registrar office early-voting hours for November 2026, transcribed from each locality's own early-voting page, for offices the state's early-voting site list leaves out. Rules use the same wording build_voteflow.py parses for satellites. Checked 2026-10-19.",
+  "offices": {
+    "loudoun-county": {
+      "name": "Office of Elections (Leesburg)",
+      "address": "750 Miller Drive SE, Suite 150, Leesburg, VA 20175",
+      "firstOpen": "2026-09-18",
+      "source": "https://www.loudoun.gov/EarlyVoting",
+      "rules": [
+        "Monday-Friday (CLOSED Oct. 12): 8:30 a.m. to 5 p.m.",
+        "Oct. 18: 11 a.m. to 4 p.m.",
+        "Oct. 20, Oct. 22, Oct. 27, Oct. 29: 8:30 a.m. to 7 p.m.",
+        "Oct. 24: 9 a.m. to 5 p.m.",
+        "Oct. 25: 11 a.m. to 4 p.m.",
+        "Oct. 31: 9 a.m. to 5 p.m."
+      ]
+    },
+    "arlington-county": {
+      "name": "Courthouse Plaza (Elections office)",
+      "address": "2100 Clarendon Blvd, Suite 320, Arlington, VA 22201",
+      "firstOpen": "2026-09-18",
+      "source": "https://vote.arlingtonva.gov/Early-Voting",
+      "rules": [
+        "Monday-Friday: 9 a.m. to 5 p.m.",
+        "Oct. 17: 9 a.m. to 5 p.m.",
+        "Oct. 18: 11 a.m. to 4 p.m.",
+        "Oct. 22-23: 9 a.m. to 7 p.m.",
+        "Oct. 24: 9 a.m. to 5 p.m.",
+        "Oct. 25: 11 a.m. to 4 p.m.",
+        "Oct. 29-30: 9 a.m. to 7 p.m.",
+        "Oct. 31: 9 a.m. to 5 p.m."
+      ]
+    },
+    "alexandria-city": {
+      "name": "Office of Voter Registration and Elections",
+      "address": "132 N. Royal Street, Suite 100, Alexandria, VA 22314",
+      "firstOpen": "2026-09-18",
+      "source": "https://www.alexandriava.gov/elections/key-early-voting-dates-deadlines",
+      "rules": [
+        "Monday-Friday (CLOSED Oct. 12): 8 a.m. to 5 p.m.",
+        "Oct. 18: 11 a.m. to 4 p.m.",
+        "Oct. 24: 8 a.m. to 5 p.m.",
+        "Oct. 25: 11 a.m. to 4 p.m.",
+        "Oct. 26-29: 8 a.m. to 7 p.m.",
+        "Oct. 31: 8 a.m. to 5 p.m."
+      ]
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import datetime as dt
 import unittest
+from pathlib import Path
 
 from build_voteflow import parse_rules
 
@@ -21,6 +22,18 @@ class ScheduleRulesTest(unittest.TestCase):
         self.assertEqual(wk[3], (14, 19))
         self.assertEqual(sorted(ex), [dt.date(2026, 10, 18), dt.date(2026, 10, 25)])
         self.assertEqual(closed, {dt.date(2026, 10, 12)})
+
+    def test_office_schedules_parse(self):
+        import json
+        offices = json.loads(Path(__file__).resolve().parent.parent.joinpath('sources', 'office-schedules.json').read_text())['offices']
+        wk, ex, closed = parse_rules(offices['loudoun-county']['rules'])
+        self.assertEqual(wk[0], (8.5, 17))
+        self.assertEqual(ex[dt.date(2026, 10, 18)], (11, 16))
+        self.assertEqual(ex[dt.date(2026, 10, 29)], (8.5, 19))
+        self.assertEqual(closed, {dt.date(2026, 10, 12)})
+        for lid, office in offices.items():
+            wk, ex, closed = parse_rules(office['rules'])
+            self.assertEqual(sorted(wk), [0, 1, 2, 3, 4], lid)
 
 
 if __name__ == '__main__':

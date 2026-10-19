@@ -305,7 +305,7 @@ class Locality extends DCLogic {
         chipBg: open ? '#D3F1E6' : '#E4D9FA', chipFg: open ? '#00694F' : '#4E2A9E', border: open ? '#00A37A' : '#ECEEF2', bg: open ? '#FFFFFF' : '#F8F9FB' };
     });
     const openNow = D.sites.filter((s) => parse(s.firstOpen) <= asOf).length;
-    const siteSummary = D.sites.length + ' locations: ' + openNow + ' open now' + (D.next && D.next !== 'open' ? ', ' + (D.sites.length - openNow) + ' more from ' + dmd(D.next) : '') + '.';
+    const siteSummary = D.sites.length + (D.sites.length === 1 ? ' location: ' : ' locations: ') + openNow + ' open now' + (D.next && D.next !== 'open' && D.sites.length > openNow ? ', ' + (D.sites.length - openNow) + ' more from ' + dmd(D.next) : '') + '.';
     const heatKeys = Object.keys(siteTotals);
     const heatDates = D.rows.filter((r) => r.site !== undefined).map((r) => r.d);
     let heatMax = 1; D.rows.forEach((r) => { if (r.site) Object.values(r.site).forEach((v) => { heatMax = Math.max(heatMax, v); }); });
@@ -526,7 +526,7 @@ class Locality extends DCLogic {
     const siteInfo = (i) => { const { s5, tot2, hrs, open, days } = siteRows[i]; return { bg: s5.satellite ? '#F1F2F5' : '#FFFFFF', kicker: (s5.satellite ? 'Satellite site ' + (i + 1) : 'Main office') + ' · ' + (open ? 'open' : 'opens in ' + days + ' days'), title: s5.name, sub: s5.address + (s5.approx ? ' · position approximate' : ''),
       rows: [{ k: 'In-person ballots', v: tot2 != null ? f(tot2) : 'not published' }, { k: 'Scheduled hours so far', v: hrs ? f(hrs) : '—' }, { k: 'Ballots per hour', v: tot2 != null && hrs ? String(Math.round(tot2 / hrs)) : '—' }],
       hasList: true, listHead: 'Hours', list: s5.rules.slice(0, 8).map((x) => ({ k: x, v: '' })) }; };
-    const siteTableNote = soloE != null ? 'All in-person early ballots so far were cast at the registrar’s office. Click the row for its address and hours.' : (Object.keys(siteTotals).length ? (D.siteSource ? 'Per-site counts from ' + D.siteSource + ' through ' + dmd(D.siteThrough) + '.' + (D.sitePartial ? ' It shows only the latest day, so site ballots are for ' + dmd(D.siteThrough) + ' alone, and days that weren’t captured have no per-site counts.' : '') : 'Per-site counts from the county daily report through ' + dmd(heatDates[heatDates.length - 1]) + '.') + ' Per hour uses scheduled site-hours. ' : 'This locality does not publish per-site ballot counts. ') + 'Click a row for its address and hours.';
+    const siteTableNote = soloE != null ? 'All in-person early ballots so far were cast at the registrar’s office. Click the row for its address and hours.' : (Object.keys(siteTotals).length ? (D.siteSource ? 'Per-site counts from ' + D.siteSource + ' through ' + dmd(D.siteThrough) + '.' + (D.sitePartial ? ' It shows only the latest day, so site ballots are for ' + dmd(D.siteThrough) + ' alone, and days that weren’t captured have no per-site counts.' : '') + (D.siteOfficeOnly ? ' Before ' + dmd(D.sites.filter((x) => x.satellite).map((x) => x.firstOpen).sort()[0]) + ' the office was the only site open, so each day’s in-person ballots are counted there.' : '') : 'Per-site counts from the county daily report through ' + dmd(heatDates[heatDates.length - 1]) + '.') + ' Per hour uses scheduled site-hours. ' : 'This locality does not publish per-site ballot counts. ') + 'Click a row for its address and hours.';
     const siteAllToggle = () => this.setState({ siteAll: !siteAll });
 
     // ---- site rhythm: every site, every early-voting day
@@ -534,7 +534,8 @@ class Locality extends DCLogic {
     const schedDates = Object.keys(D.sched).sort();
     const lastData = heatDates.length ? heatDates[heatDates.length - 1] : '';
     const allDates = []; if (schedDates.length) { const d0 = parse(schedDates[0]), d1 = parse(schedDates[schedDates.length - 1]); for (let d = new Date(d0); d <= d1; d.setDate(d.getDate() + 1)) allDates.push(iso(d)); }
-    const rSites = siteRows.slice().sort((a, b) => ((b.tot2 || 0) - (a.tot2 || 0)) || a.s5.firstOpen.localeCompare(b.s5.firstOpen));
+    // The office leads, then sites by ballots.
+    const rSites = siteRows.slice().sort((a, b) => (a.s5.satellite - b.s5.satellite) || ((b.tot2 || 0) - (a.tot2 || 0)) || a.s5.firstOpen.localeCompare(b.s5.firstOpen));
     const shortName = (s5) => { const kk = keyFor(s5.name); return kk && SITE_NAMES[kk] ? SITE_NAMES[kk] : s5.name.replace(/ (Governmental|Government|Regional|Community) .*$/, '').replace(/ Library$/, ''); };
     let rMax = 0; const rVal = {};
     rSites.forEach(({ s5, key }) => { let run = 0; rVal[s5.name] = allDates.map((d7) => {

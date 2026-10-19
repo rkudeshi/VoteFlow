@@ -40,6 +40,10 @@ for _e in D['elections'].values():
         if 'name' in _l:
             _l['name'] = nice(_l['name'])
 NAMES = {n['id']: n for n in D['names']}
+# Registrar offices: full early-voting hours where the locality publishes them (office-schedules.json),
+# otherwise the state's listed address and regular hours (registrar-offices.json, refresh_offices.py).
+OFFICE_SCHEDULES = json.loads((ROOT.parent / 'sources' / 'office-schedules.json').read_text())['offices']
+OFFICE_LISTINGS = json.loads((ROOT.parent / 'sources' / 'registrar-offices.json').read_text())['offices']
 ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['name'])]
 # Display-only merge. Never write county values over the saved DAL observations.
 for locality in D['elections']['2026']['localities']:
@@ -396,11 +400,14 @@ def dlabel(d):
 def site_schedule(lid, start, end):
     sat = D.get('satellites', {}).get(LIVE, {}).get(lid)
     days, sites = {}, []
-    if not sat:
+    listed = list(sat['sites']) if sat else []
+    if lid in OFFICE_SCHEDULES and not any(not s['satellite'] for s in listed):
+        listed.insert(0, dict(OFFICE_SCHEDULES[lid], satellite=False))
+    if not listed:
         return days, sites
     # Weekly hours stop with in-person early voting on the Saturday before Election Day.
     last_day = date(election_meta(LIVE)['date']) - dt.timedelta(days=3)
-    for s in sat['sites']:
+    for s in listed:
         wk, ex, closed = parse_rules(s['rules'])
         first = date(s['firstOpen'])
         pretty = []
@@ -416,7 +423,8 @@ def site_schedule(lid, start, end):
                 pretty.append(f'{dlabel(d0)}: {fmt_span(ex[d0])}')
         for d0 in sorted(closed):
             pretty.append(f'Closed {dlabel(d0)}')
-        sites.append({'name': s['name'], 'address': s['address'], 'firstOpen': s['firstOpen'], 'satellite': s['satellite'], 'rules': pretty or s['rules']})
+        sites.append({'name': s['name'], 'address': s['address'], 'firstOpen': s['firstOpen'], 'satellite': s['satellite'], 'rules': pretty or s['rules'],
+                      **({'url': s['source']} if s.get('source') else {})})
         d0 = start
         while d0 <= end:
             span = None
@@ -594,8 +602,16 @@ def main():
                                 o[0] = s0['name']
         office_known = any(not s['satellite'] for s in sites)
         if not office_known:
-            sites.insert(0, {'name': "Registrar's office", 'address': '', 'firstOpen': start.isoformat(), 'satellite': False,
-                             'rules': [], 'placeholder': True, 'url': NAMES[lid].get('officeSource')})
+            # Address and regular hours from the state's registrar listing; its extended and weekend
+            # early-voting hours aren't listed, so the office stays out of the day-by-day schedule.
+            ol = OFFICE_LISTINGS.get(lid, {})
+            hrs = ['%s: %s' % (d0, fmt_span([int(a[:2]) + int(a[3:]) / 60, int(b[:2]) + int(b[3:]) / 60])) for d0, (a, b) in ol.get('hours', {}).items()]
+            if hrs and len(set(x.split(': ')[1] for x in hrs)) == 1 and list(ol['hours']) == ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']:
+                hrs = ['Weekdays (Mon–Fri): ' + hrs[0].split(': ')[1]]
+            sites.insert(0, {'name': "Registrar's office", 'address': ol.get('address', ''), 'firstOpen': start.isoformat(), 'satellite': False,
+                             'rules': [x + ' (regular office hours)' for x in hrs] + (['Extended and weekend early-voting hours: check with the registrar'] if hrs else []),
+                             'placeholder': True, 'url': NAMES[lid].get('officeSource')})
+        sites.sort(key=lambda s0: s0['satellite'])  # the office leads
         rows, prev = [], None
         for h in l['history']:
             if h['date'] < '2026-09-18':
@@ -624,13 +640,22 @@ def main():
             for r in rows:
                 if r['d'] in by_day:
                     r['site'] = {k: v for k, v in by_day[r['d']].items() if v}
-            names = SITE_REPORT_NAMES[lid]
-            partial = report.get('coverage') == 'partial'
+            office = sites[0]['name'] if not sites[0]['satellite'] else "Registrar's office"
+            names = {k: (office if v[0] == "Registrar's office" else v[0], v[1]) for k, v in SITE_REPORT_NAMES[lid].items()}
+            okey = next(k for k, v in SITE_REPORT_NAMES[lid].items() if v[0] == "Registrar's office")
+            # Before the first satellite opened, the office was the only site: its count is the day's in-person total.
+            first_sat = min((s0['firstOpen'] for s0 in sites if s0['satellite']), default='9999-12-31')
+            office_only = None
+            for r in rows:
+                if 'site' not in r and r['d'] < first_sat and r['de'] > 0:
+                    r['site'] = {okey: r['de']}; office_only = r['d']
+            # Loudoun's feed shows only the latest day, so days nobody captured have no counts, unless
+            # the office-only days fill every gap.
+            partial = report.get('coverage') == 'partial' and any('site' not in r for r in rows if r['de'] > 0)
             # A partial (latest-day-only) feed can be a day ahead of DAL; show that day's site counts anyway.
-            through = max(by_day) if partial else max((r['d'] for r in rows if r['d'] in by_day), default=None)
-            # Loudoun's feed shows only the latest day, so days nobody captured have no counts.
+            through = max([max(by_day)] * (report.get('coverage') == 'partial') + [r['d'] for r in rows if 'site' in r], default=None)
             site_meta = {'siteKeys': {v[0]: k for k, v in names.items()}, 'siteLabels': {k: v[1] for k, v in names.items()},
-                         'sitePartial': partial, 'siteSource': SITE_REPORT_SOURCES[lid], 'siteThrough': through,
+                         'sitePartial': partial, 'siteSource': SITE_REPORT_SOURCES[lid], 'siteThrough': through, 'siteOfficeOnly': office_only,
                          'siteLatest': {k: v for k, v in by_day[through].items() if v} if partial else None}
         pm = json.loads((ROOT / MANIFEST[lid]['file']).read_text())
         P, ph = projector(pm['features'])

@@ -1,0 +1,3597 @@
+{
+ "source": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup",
+ "retrievedAt": "2026-10-19T00:38:26+00:00",
+ "offices": {
+  "accomack-county": {
+   "facility": "Accomack County Voter Registration Office",
+   "address": "24387 Joynes Neck Rd, Accomac, VA 23301-1807",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=15b7e141-2d1d-44c2-a50a-aae021bc9b7d"
+  },
+  "albemarle-county": {
+   "facility": "Albemarle County Voter Registration & Elections",
+   "address": "1600 5th St, Charlottesville, VA 22902-6495",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b28c7d59-123a-4a81-9926-db24b0bbb7c3"
+  },
+  "alexandria-city": {
+   "facility": "City of Alexandria",
+   "address": "132 N Royal St Ste 100, Alexandria, VA 22314-3246",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=7315adb8-47f9-4d29-a2d2-81ec7466ba26"
+  },
+  "alleghany-county": {
+   "facility": "Alleghany County Voter Registration & Elections",
+   "address": "110 Rosedale Ave Fl 1, Covington, VA 24426-1294",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a2846a72-482e-499c-b7bb-bacfee627155"
+  },
+  "amelia-county": {
+   "facility": "Amelia County General Registrar's Office",
+   "address": "9127 Washington St, Amelia Court House, VA 23002-4897",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=292c305b-876b-4bee-bab3-c29103069fe5"
+  },
+  "amherst-county": {
+   "facility": "Dept of Elections & Voter Registration Office",
+   "address": "113 Taylor St, Amherst, VA 24521-2705",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2a6adc62-dd4c-4e9b-8ef8-ebfaff2207ba"
+  },
+  "appomattox-county": {
+   "facility": "Appomattox",
+   "address": "367 Virginia Ave, Appomattox, VA 24522-4016",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=48644056-329a-4653-a804-4ecddbd2fdd3"
+  },
+  "arlington-county": {
+   "facility": "Arlington County Elections",
+   "address": "2100 Clarendon Blvd Ste 320, Arlington, VA 22201-5445",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=42670945-0e91-4bd6-83ad-cc3acf4a9a9c"
+  },
+  "augusta-county": {
+   "facility": "Augusta County Office of Voter Registration",
+   "address": "18 Government Center Ln, Verona, VA 24482-2639",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f5041ad4-134b-4fba-a137-544380e5eb91"
+  },
+  "bath-county": {
+   "facility": "BATH COUNTY GENERAL REGISTRAR",
+   "address": "65 Courthouse Hill Rd Rm 103, Warm Springs, VA 24484-2277",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eea2a156-c74b-4352-b031-51a135e44ee5"
+  },
+  "bedford-county": {
+   "facility": "Bedford County Office of Elections",
+   "address": "1239 Turning Point RD, Bedford, VA 24523",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=520c6151-e44a-4252-86d6-e248a889a6fb"
+  },
+  "bland-county": {
+   "facility": "Bland County Voter Registration and Elections Office",
+   "address": "20 Fairground St Ste 101, Bland, VA 24315-5486",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eb0c11ec-97bd-49c8-bcfe-206db251caab"
+  },
+  "botetourt-county": {
+   "facility": "Dept of Elections & Voter Registration",
+   "address": "2 E Main St, Fincastle, VA 24090-3014",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=651b455f-b23f-49d0-a498-93c2bb904e17"
+  },
+  "bristol-city": {
+   "facility": "Office of Elections and Voter Registration",
+   "address": "300 Lee St Ste 101, Bristol, VA 24201-4327",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=93d29757-38c4-4a88-8c8b-2dde66e6d1e8"
+  },
+  "brunswick-county": {
+   "facility": "Brunswick County Registrar's Office",
+   "address": "100 Tobacco St Rm 103, Lawrenceville, VA 23868-1825",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "04:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "04:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "04:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "04:30"
+    ],
+    "Friday": [
+     "08:30",
+     "04:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5e3d1733-5d21-4311-b867-d2b458252ffa"
+  },
+  "buchanan-county": {
+   "facility": "Voter Registration and Elections",
+   "address": "23784 Riverside Dr, Grundy, VA 24614-6190",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c10c905c-6373-405e-beca-61e69d92076d"
+  },
+  "buckingham-county": {
+   "facility": "County of Buckingham",
+   "address": "13360 W James Anderson Hwy, Buckingham, VA 23921-3135",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=84e19b92-72f9-4d3d-93c2-d836d39a2292"
+  },
+  "buena-vista-city": {
+   "facility": "Office of the Registrar City of Buena Vista",
+   "address": "2039 Sycamore Ave, Buena Vista, VA 24416-3133",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b5eba4ce-4f19-4b1f-9b18-0cbbfd5ed98e"
+  },
+  "campbell-county": {
+   "facility": "Campbell County Department of Elections",
+   "address": "41 Court House Ln, Rustburg, VA 24588-9701",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a6daa62a-14fe-4cf4-b5b6-2085209519fe"
+  },
+  "caroline-county": {
+   "facility": "Caroline County General Registrars Office",
+   "address": "212 N Main St, Bowling Green, VA 22427-9416",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "05:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=827e8f7f-be33-4bbf-ae12-25bd31e265d7"
+  },
+  "carroll-county": {
+   "facility": "VOTER REGISTRATION OFFICE",
+   "address": "605 Pine St Ste 3, Hillsville, VA 24343-1463",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=fe5fb01e-74c3-49be-8212-0f3a4a99c903"
+  },
+  "charles-city-county": {
+   "facility": "General Registrar Office",
+   "address": "13100 The Glebe LN, Charles City, VA 23030",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f30e5c2f-34dc-4b94-8093-49571d2b0036"
+  },
+  "charlotte-county": {
+   "facility": "Charlotte County General Registrar's Office",
+   "address": "420 Thomas Jefferson HWY, Charlotte C H, VA 23923",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=4c0182d5-64ed-4978-8a8a-2c43da22f063"
+  },
+  "charlottesville-city": {
+   "facility": "Charlottesville City Voter Registration & Elections",
+   "address": "120 7th ST NE, City Hall Annex, Room 142, Charlottesville, VA 22902",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=d4abd5f6-7488-4075-9098-c0a27dde28d6"
+  },
+  "chesapeake-city": {
+   "facility": "Office of the General Registrar",
+   "address": "411 Cedar Rd, Chesapeake, VA 23322-5566",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a146d001-b9e2-4047-b035-e34b2c3ac216"
+  },
+  "chesterfield-county": {
+   "facility": "GENERAL REGISTRAR CHESTERFIELD COUNTY",
+   "address": "9848 Lori Rd, Chesterfield, VA 23832-6623",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=992c4f7b-0ad4-4875-a4ad-e8ee198b5a79"
+  },
+  "clarke-county": {
+   "facility": "Clarke County Office of Elections",
+   "address": "101 Chalmers Ct, Berryville, VA 22611-1387",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b821c3e8-c73b-4e0a-95c5-917b58887f93"
+  },
+  "colonial-heights-city": {
+   "facility": "Colonial Heights City General Registrar",
+   "address": "201 James AVE, Colonial Heights, VA 23834",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b32e1214-47fe-4776-aa21-d233ddcd7a2d"
+  },
+  "covington-city": {
+   "facility": "Voter Registration",
+   "address": "515 E Pine St, Covington, VA 24426-1647",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "05:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8caf638a-3b4d-4077-9b74-30dbb938f4f5"
+  },
+  "craig-county": {
+   "facility": "Craig County Voter Registration",
+   "address": "155 Main St, New Castle, VA 24127-8077",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=3b179b51-1181-4aa4-87a4-deeda9bfee51"
+  },
+  "culpeper-county": {
+   "facility": "Culpeper County General Registrar's Office",
+   "address": "131 N Main St, Culpeper, VA 22701-3025",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1267efcd-e8ae-484c-b5c9-515a04188ad2"
+  },
+  "cumberland-county": {
+   "facility": "Cumberland County Voter Registration Office",
+   "address": "1487 Anderson Hwy, Cumberland, VA 23040-2220",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "04:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=556dba0d-90c6-466d-a8e9-2862d5d29d1a"
+  },
+  "danville-city": {
+   "facility": "Voter Registration and Electoral Board Office",
+   "address": "530 Main St Ste 100, Danville, VA 24541-1329",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5857ab85-aae9-4324-9692-5097d2c65c91"
+  },
+  "dickenson-county": {
+   "facility": "Office of Voter Registration and Elections",
+   "address": "818 Happy Valley Dr Rm 138, Clintwood, VA 24228-7214",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=3698573b-10e5-4de1-9cac-201048c5fb78"
+  },
+  "dinwiddie-county": {
+   "facility": "Dinwiddie County Voter Registration",
+   "address": "14016 Boydton Plank Rd, Dinwiddie, VA 23841-2500",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5b9d9cbc-1503-4fa6-b286-1c7d9929ee09"
+  },
+  "emporia-city": {
+   "facility": "Voter Registration Office",
+   "address": "102 Commonwealth Blvd, Emporia, VA 23847-1225",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9146e67-19d0-4ed3-82d1-aecd0ad74bad"
+  },
+  "essex-county": {
+   "facility": "Essex County General Registrar's Office",
+   "address": "205 Cross St Ste B, Tappahannock, VA 22560-2240",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=270691fc-5814-47d7-802d-c5cf29dd7514"
+  },
+  "fairfax-city": {
+   "facility": "City of Fairfax General Registrar's Office",
+   "address": "10455 Armstrong St, Fairfax, VA 22030-3600",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1e4cbba5-fe11-40da-a00b-81cd45890544"
+  },
+  "fairfax-county": {
+   "facility": "Fairfax County Office of Elections",
+   "address": "12000 Government Center Pkwy Ste 323, Fairfax, VA 22035-0001",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=374509bf-c308-4a3d-ac41-2af2635b38ac"
+  },
+  "falls-church-city": {
+   "facility": "Office of Voter Registration and Elections",
+   "address": "300 Park Ave Rm 206C, Falls Church, VA 22046-3301",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b599aef9-20fe-41f9-a599-78d31588fa2e"
+  },
+  "fauquier-county": {
+   "facility": "County of Fauquier",
+   "address": "528 Waterloo Rd Ste 200, Warrenton, VA 20186-3011",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=9864156b-441b-4106-8c7e-63be670ef6d1"
+  },
+  "floyd-county": {
+   "facility": "Floyd County General Registrar's Office",
+   "address": "100 E Main St Rm 302, Floyd, VA 24091-2101",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=959e28ee-5281-4895-958e-7afd8c739683"
+  },
+  "fluvanna-county": {
+   "facility": "Fluvanna County Office of Elections",
+   "address": "265 Turkeysag Trl Ste 115, Palmyra, VA 22963-2654",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=75f5e922-e9a8-4a31-8a4e-fe2913988ee3"
+  },
+  "franklin-city": {
+   "facility": "Franklin City Voter Registration and Elections",
+   "address": "100 S Main St, Franklin, VA 23851-1606",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=75101a82-748e-458e-bdbe-195eb5b89998"
+  },
+  "franklin-county": {
+   "facility": "Franklin County General Registrar's Office",
+   "address": "1255 Franklin St # SUITE106, Rocky Mount, VA 24151-1290",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=73c719b3-09ca-41f0-994f-c0d1f8d5989d"
+  },
+  "frederick-county": {
+   "facility": "Frederick County Voter Registration Office",
+   "address": "343 Sunnyside Plaza Dr, Winchester, VA 22603-4281",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=d7549425-7136-48c8-9659-7f9107537e28"
+  },
+  "fredericksburg-city": {
+   "facility": "Voter Registration & Elections",
+   "address": "601 Caroline St Ste 500, Fredericksburg, VA 22401-5954",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=ef61e82b-f7c1-4d73-8464-c5ea3202cb44"
+  },
+  "galax-city": {
+   "facility": "Galax City Voter Registration",
+   "address": "111 E Grayson St Rm 102, Galax, VA 24333-2903",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=cc38922c-587e-472b-b554-0d66ec8654f9"
+  },
+  "giles-county": {
+   "facility": "Giles County General Registrar's Office",
+   "address": "201 N Main St Ste 1, Pearisburg, VA 24134-1611",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=64369b21-6b84-47f6-b71e-d026741cbeab"
+  },
+  "gloucester-county": {
+   "facility": "Elections and Voter Registration",
+   "address": "6467 Main St Bldg ONE, Gloucester, VA 23061-6102",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=aa8e8b31-42ab-43fa-b4d2-96beeb1891a1"
+  },
+  "goochland-county": {
+   "facility": "Goochland County Office of the General Registrar",
+   "address": "1876 Sandy Hook Rd, Goochland, VA 23063-3105",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1dbd110f-40c5-4de9-84aa-572abedff299"
+  },
+  "grayson-county": {
+   "facility": "Voter Registration",
+   "address": "129 Davis St Rm 101, Independence, VA 24348-9601",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1ea60567-478e-4602-b72d-510de57c34e8"
+  },
+  "greene-county": {
+   "facility": "Greene County General Registrar's Office",
+   "address": "PO Box 341, # 32 Stanard St, Stanardsville, VA 22973-0341",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e842dcb3-c9be-473a-a4f0-02a5f737007f"
+  },
+  "greensville-county": {
+   "facility": "Greensville County Registrar's Office",
+   "address": "1781 Greensville County Cir, Emporia, VA 23847-6347",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2e106eb6-b176-404c-a2d1-14868dd1baa8"
+  },
+  "halifax-county": {
+   "facility": "Halifax County Voter Registrar's Office",
+   "address": "1030 Mary Bethune St # LL3, Halifax, VA 24558-3213",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8321c283-da77-416a-a37e-3fa9ab6752e2"
+  },
+  "hampton-city": {
+   "facility": "City of Hampton General Registrar's Office",
+   "address": "101 Kings Way, Hampton, VA 23669-3582",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9ac1339-4cf4-49a1-8dee-9738cf868d00"
+  },
+  "hanover-county": {
+   "facility": "Hanover Co. Voter Registration & Elections",
+   "address": "7497 County Complex Rd Rm 119, Hanover, VA 23069-1529",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=62d7ffb3-9244-489a-8428-67d874bdbc86"
+  },
+  "harrisonburg-city": {
+   "facility": "City of Harrisonburg Voter Registration Office",
+   "address": "409 S Main St, Harrisonburg, VA 22801-3610",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=611c3a3e-011a-423b-a8da-ba87fae813d7"
+  },
+  "henrico-county": {
+   "facility": "Office of Voter Registration and Elections",
+   "address": "4305 E Parham Rd, Henrico, VA 23228-2745",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=10223a08-6b99-4783-9258-f7f9e1b8778a"
+  },
+  "henry-county": {
+   "facility": "Henry County Voter Registration/Electoral Board Office",
+   "address": "3300 Kings Mountain Rd Rm 103, Martinsville, VA 24112-6798",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=789f87d4-3b32-4173-815a-65f6f821e82f"
+  },
+  "highland-county": {
+   "facility": "Highland County Voter Registration Office",
+   "address": "97 Highland Center DR, Modular C, Monterey, VA 24465",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6ee46cc9-fa41-416f-bfb3-bec8a5b6b6c2"
+  },
+  "hopewell-city": {
+   "facility": "Voter Registration Office",
+   "address": "106 N Main St, Hopewell, VA 23860-2719",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=ea9cad0f-949e-47f0-b391-f74740d084c2"
+  },
+  "isle-of-wight-county": {
+   "facility": "Voter Registration & Elections",
+   "address": "17106 Monument CIR, Isle of Wight, VA 23397",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=7baf472e-9a3a-4b5c-b148-e73b6ef1aac4"
+  },
+  "james-city-county": {
+   "facility": "James City County Office of Elections",
+   "address": "4095 Ironbound Rd, Williamsburg, VA 23188-2793",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=199da66a-5f67-44b3-9e16-beadaf1d0805"
+  },
+  "king-and-queen-county": {
+   "facility": "King and Queen County",
+   "address": "232 Allens Cir, King And Queen Court House, VA 23085-2007",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=717a2376-1326-49a5-b7c3-273771902448"
+  },
+  "king-george-county": {
+   "facility": "King George County Registrar",
+   "address": "10459 Courthouse Dr Ste 102, King George, VA 22485-3865",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e984ecca-2315-4c56-bbc8-450bca4245b7"
+  },
+  "king-william-county": {
+   "facility": "King William County General Registrar's Office",
+   "address": "180 Horse Landing Rd # 1, King William, VA 23086-2705",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b42ffd80-6ba0-4357-8463-60033a888e7d"
+  },
+  "lancaster-county": {
+   "facility": "Lancaster County",
+   "address": "8311 Mary Ball Rd, Lancaster, VA 22503-2534",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=24c5ccf1-e36a-4f59-8234-04789a8a9da3"
+  },
+  "lee-county": {
+   "facility": "Voter Registration Office",
+   "address": "133 School Board PL, Jonesville, VA 24263",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b4a85e50-cc43-42d8-8a81-8ae8b83b72fa"
+  },
+  "lexington-city": {
+   "facility": "Office of the General Registrar",
+   "address": "300 Diamond St Ste B, Lexington, VA 24450-2802",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=49a0b916-1f61-4942-ac3f-e015b55ea724"
+  },
+  "loudoun-county": {
+   "facility": "Office of Elections",
+   "address": "750 Miller Dr SE Ste 150, Leesburg, VA 20175-7618",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=934fcd11-d0a3-4165-b83f-bd4635daabde"
+  },
+  "louisa-county": {
+   "facility": "Louisa County General Registrar's Office",
+   "address": "103 MCDONALD ST, Louisa, VA 23093",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=49789a69-bc49-4149-9039-e6bc1ff275c0"
+  },
+  "lunenburg-county": {
+   "facility": "Voter Registration",
+   "address": "160 Courthouse Sq, Lunenburg, VA 23952-2223",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f1510126-533b-4d45-90d6-a01f6bb30150"
+  },
+  "lynchburg-city": {
+   "facility": "Registrar's Office",
+   "address": "825 Kemper St, Lynchburg, VA 24501-1303",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c0bc50dd-bbe4-4ccf-ab52-8662c225e284"
+  },
+  "madison-county": {
+   "facility": "Madison County Voter Registration Office",
+   "address": "414 N Main St, Madison, VA 22727-3038",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f4b32946-8662-4311-acdc-3e709815c36e"
+  },
+  "manassas-city": {
+   "facility": "City of Manassas Voter Registration and Elections Dept",
+   "address": "9025 Center St, Manassas, VA 20110-5403",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2bea5c7b-ed10-4473-b00f-b9ce389fc631"
+  },
+  "manassas-park-city": {
+   "facility": "Voter Registration",
+   "address": "100 Park Central PLZ Suite 103, Manassas Park, VA 20111-5270",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=448cd631-7186-4a34-bce6-15082ebbe8ec"
+  },
+  "martinsville-city": {
+   "facility": "Martinsville City",
+   "address": "55 W Church St Rm 122, Martinsville, VA 24112-6209",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c5736928-4566-4957-aad2-2d3ba9e8c673"
+  },
+  "mathews-county": {
+   "facility": "Mathews County Voter Registration and Elections Office",
+   "address": "10604 Buckley Hall RD, Mathews, VA 23109",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1681b63b-ec1a-4e4b-8375-cde9c2464ff9"
+  },
+  "mecklenburg-county": {
+   "facility": "Mecklenburg County General Registrar",
+   "address": "316 Washington ST, Boydton, VA 23917-3101",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=494f17b2-fabf-4384-80cd-e433119da3e9"
+  },
+  "middlesex-county": {
+   "facility": "Middlesex County",
+   "address": "105 BOWDEN ST, SALUDA, VA 23149",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f7dbcc8a-008f-4449-b837-ab217c7b656e"
+  },
+  "montgomery-county": {
+   "facility": "Montgomery County Office Of Elections",
+   "address": "1546 N Franklin St, Christiansburg, VA 24073-1412",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=692ab05f-8ee5-42a6-8f6e-b3e785c2c804"
+  },
+  "nelson-county": {
+   "facility": "Nelson County General Registrar's Office",
+   "address": "571 Front ST, Lovingston, VA 22949",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=015d2b82-2857-4cb5-bc75-e8ca26f20f83"
+  },
+  "new-kent-county": {
+   "facility": "NEW KENT COUNTY GENERAL REGISTRAR",
+   "address": "7911 Courthouse Way Ste 400, New Kent, VA 23124-2244",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=58a82c57-8834-472b-a080-3bdad8687c2a"
+  },
+  "newport-news-city": {
+   "facility": "Voter Registration",
+   "address": "2400 Washington Ave, Newport News, VA 23607-4301",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0a0d3620-30b3-4d02-8b81-7891c791bb65"
+  },
+  "norfolk-city": {
+   "facility": "Norfolk Office of Elections",
+   "address": "810 Union St Ste 100, Norfolk, VA 23510-2736",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f76bfdc4-2aae-435a-a180-0bd05923d1c8"
+  },
+  "northampton-county": {
+   "facility": "Northampton County Voter Registration",
+   "address": "16404 COURTHOUSE RD, Eastville, VA 23347",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=693c40bf-2437-41c7-be21-de7f9f76315c"
+  },
+  "northumberland-county": {
+   "facility": "General Registrar's Office",
+   "address": "45 Back ST, Heathsville, VA 22473-3336",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=876337b6-732d-452b-ae55-7c83afa3c4e6"
+  },
+  "norton-city": {
+   "facility": "NORTON CITY REGISTRARS OFFICE",
+   "address": "201 Park Ave NE, Norton, VA 24273-1505",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b22ed879-6989-4d60-8ec8-0ecac6864ff9"
+  },
+  "nottoway-county": {
+   "facility": "Nottoway County General Registrar's Office",
+   "address": "507 Ingleside ST, Burkeville, VA 23922-3016",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=83119eb9-3a23-4645-a66a-29c25c92b36f"
+  },
+  "orange-county": {
+   "facility": "Orange County",
+   "address": "130 N Madison Rd, Orange, VA 22960-1305",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a4097b5e-924e-4820-a99c-b9ec13202058"
+  },
+  "page-county": {
+   "facility": "Voter Registration & Elections",
+   "address": "103 S Court St Ste D, Luray, VA 22835-1262",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1a138dc9-4a1c-4770-97d8-db27694315f2"
+  },
+  "patrick-county": {
+   "facility": "Patrick County General Registrar's Office",
+   "address": "106 Rucker St Rm 216, Stuart, VA 24171-1619",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=03ad2b60-9dd4-4d21-8771-5f926e2064c5"
+  },
+  "petersburg-city": {
+   "facility": "Voter Registrations & Elections",
+   "address": "229 N Market St, Petersburg, VA 23803-3207",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=4b6fb5ce-d544-4f9b-9e9c-9b7e597ed7f0"
+  },
+  "pittsylvania-county": {
+   "facility": "Pittsylvania County Voter Registration",
+   "address": "18 Depot St, Chatham, VA 24531-3352",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=81d78070-8cc1-4fb5-b667-d853148a2e4c"
+  },
+  "poquoson-city": {
+   "facility": "Poquoson City General Registrar's Office",
+   "address": "500 City Hall Ave, Poquoson, VA 23662-1996",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0d48adb6-fad8-4622-a8d1-49bd2bc9688c"
+  },
+  "portsmouth-city": {
+   "facility": "Office of the General Registrar",
+   "address": "801 Crawford St Fl 1, Portsmouth, VA 23704-3822",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8d310595-9702-4123-9fc3-b444eb4b238b"
+  },
+  "powhatan-county": {
+   "facility": "Powhatan's Office of Elections & Voter Registration",
+   "address": "3910 Old Buckingham Rd Ste E, Powhatan, VA 23139-5757",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6e3e2cf4-4fd8-4f9d-8d3f-7b308e81edc9"
+  },
+  "prince-edward-county": {
+   "facility": "Prince Edward County General Registrar's Office",
+   "address": "Prince Edward County Courthouse, 124 N. Main Street , 2nd Floor, Farmville, VA 23901",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1168ffb7-0284-4f8c-b323-f9630e2fe20f"
+  },
+  "prince-george-county": {
+   "facility": "Voter Registration",
+   "address": "6602 Courts Dr Ste 243, Prince George, VA 23875-2503",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=fd527e0f-a2c9-47ab-bfc5-bd582041e673"
+  },
+  "prince-william-county": {
+   "facility": "Prince William County Office of Elections",
+   "address": "9250 Lee Ave Ste 1, Manassas, VA 20110-5554",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0a929de5-ee6a-47c0-8dfc-7ed92ec49d9a"
+  },
+  "pulaski-county": {
+   "facility": "Office of Elections",
+   "address": "87 Commerce St, Pulaski, VA 24301-5619",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1f4f0d44-bf0e-4d5e-a544-990799fa417b"
+  },
+  "radford-city": {
+   "facility": "Office of Elections",
+   "address": "619 Second ST Ste 143, Radford, VA 24141-1454",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=678df151-0ad1-4f55-a36d-62fb899e888d"
+  },
+  "rappahannock-county": {
+   "facility": "Registrar of Voters",
+   "address": "262A Gay St, Washington, VA 22747-1981",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e9c69a4a-f237-4eed-b3ac-01d17dca67cd"
+  },
+  "richmond-city": {
+   "facility": "Richmond City Office of Elections",
+   "address": "2134 W Laburnum Ave, Richmond, VA 23227-4342",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=186fd109-f099-43c0-bb26-ed067b5aa78b"
+  },
+  "richmond-county": {
+   "facility": "Richmond County General Registrar's Office",
+   "address": "101 Court Cir, Warsaw, VA 22572-3145",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=23fec407-62c0-43fc-9604-bd8f14658058"
+  },
+  "roanoke-city": {
+   "facility": "Roanoke City Voter Registration and Elections",
+   "address": "317 Kimball Ave NE, Roanoke, VA 24016-2005",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e67e3433-034c-4f87-8d15-9f4033d3dda7"
+  },
+  "roanoke-county": {
+   "facility": "Roanoke County Department of Elections",
+   "address": "900 Chestnut St, Vinton, VA 24179-3521",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c5ecf0fa-5db1-4de1-bd20-4fa50cb7490e"
+  },
+  "rockbridge-county": {
+   "facility": "Rockbridge County Voter Registration",
+   "address": "150 S Main St, Lexington, VA 24450-2359",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0a984eb4-2f30-406a-8f98-fde595c5aa4a"
+  },
+  "rockingham-county": {
+   "facility": "Rockingham County",
+   "address": "20 E Gay St, Harrisonburg, VA 22802-4108",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=cfd0d9bf-2bf7-45bc-b129-001f828d7b34"
+  },
+  "russell-county": {
+   "facility": "Russell County Office of Voter Registration & Elections",
+   "address": "96 Russell St, Lebanon, VA 24266-4558",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=67f1fdd8-d6be-42c6-948a-804256bb3c55"
+  },
+  "salem-city": {
+   "facility": "Salem City Registrar's Office",
+   "address": "19 E Clay St, Salem, VA 24153-3758",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "17:00"
+    ],
+    "Friday": [
+     "08:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2c55e392-fa66-4d4f-a4df-bae3914a91af"
+  },
+  "scott-county": {
+   "facility": "Scott County Voter Registration",
+   "address": "190 Beech St Ste 204, Gate City, VA 24251-3605",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=bb164223-8bf5-4b4b-8b18-57110ac00dad"
+  },
+  "shenandoah-county": {
+   "facility": "Voter Registration",
+   "address": "600 N Main St Ste 103, Woodstock, VA 22664-1855",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=46f54421-cc23-493a-93b1-cf3b4606bc03"
+  },
+  "smyth-county": {
+   "facility": "Smyth County Department of Elections",
+   "address": "121 Bagley Cir Ste 422, Marion, VA 24354-3140",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2055ca5c-ff4e-4172-963c-8b0ee2ee8ec3"
+  },
+  "southampton-county": {
+   "facility": "Southampton County General Registrar's Office",
+   "address": "22305 Main St, Courtland, VA 23837-1026",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a5821066-8969-4e63-b816-de261ee24937"
+  },
+  "spotsylvania-county": {
+   "facility": "OFFICE OF ELECTIONS",
+   "address": "4800 Southpoint Pkwy, Fredericksburg, VA 22407-2658",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a78e9abb-2f94-4a39-b077-bdfa22a54622"
+  },
+  "stafford-county": {
+   "facility": "Office of the General Registrar",
+   "address": "124 Old Potomac Church Rd Ste 205, Stafford, VA 22554-7257",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=155f3422-03ae-4614-9ec4-f628be4afc74"
+  },
+  "staunton-city": {
+   "facility": "Staunton City General Registrar's Office",
+   "address": "116 W Beverley St Fl 1, Staunton, VA 24401-4283",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9e8667b-2702-468b-a06a-8f654f6bf867"
+  },
+  "suffolk-city": {
+   "facility": "Suffolk City General Registrar's Office",
+   "address": "440 Market St, Suffolk, VA 23434-5238",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b63ccbeb-c5e3-4b55-a8ac-6d37f518b928"
+  },
+  "surry-county": {
+   "facility": "Voter Registration",
+   "address": "168 Commerce Dr, Dendron, VA 23839-2216",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=76127c48-4cdd-4d3e-ba4e-be83b3ec0287"
+  },
+  "sussex-county": {
+   "facility": "Voter Registration Office",
+   "address": "15080 Courthouse Rd, Stony Creek, VA 23882-3707",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=362f5060-7f64-4080-9323-92736658ca6c"
+  },
+  "tazewell-county": {
+   "facility": "Tazewell County",
+   "address": "2848 Riverside Dr, North Tazewell, VA 24630-5005",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:00"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:00"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:00"
+    ],
+    "Friday": [
+     "08:00",
+     "16:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=28c4fa98-0c44-4785-bd8b-90cd7666ce36"
+  },
+  "virginia-beach-city": {
+   "facility": "City of Virginia Beach",
+   "address": "500 Studio Dr, Virginia Beach, VA 23452-1175",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a11277ff-10fa-4d4e-85c4-b86dfb2b2c23"
+  },
+  "warren-county": {
+   "facility": "General Registrar's Office",
+   "address": "465 W 15th St Ste 800, Front Royal, VA 22630-2864",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6b1bf8d5-9937-4280-aba4-696e7b21f2d0"
+  },
+  "washington-county": {
+   "facility": "Washington County Department of Elections",
+   "address": "1 Government Center Way Ste A, Abingdon, VA 24210-8484",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9b0be0d-d473-4123-9d76-e1714f50f1c6"
+  },
+  "waynesboro-city": {
+   "facility": "Waynesboro Voter Registration",
+   "address": "501 W Broad St, Waynesboro, VA 22980-4519",
+   "hours": {
+    "Monday": [
+     "09:00",
+     "17:00"
+    ],
+    "Tuesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Wednesday": [
+     "09:00",
+     "17:00"
+    ],
+    "Thursday": [
+     "09:00",
+     "17:00"
+    ],
+    "Friday": [
+     "09:00",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6c3e9cc9-b7c8-4991-a54a-c1929bf50dfb"
+  },
+  "westmoreland-county": {
+   "facility": "Westmoreland County Voter Registration Office",
+   "address": "105 Court SQ, Montross, VA 22520",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=93f951ef-80ac-40bd-9304-c000e5a49651"
+  },
+  "williamsburg-city": {
+   "facility": "City of Williamsburg",
+   "address": "401 Lafayette St, Williamsburg, VA 23185-3617",
+   "hours": {
+    "Monday": [
+     "08:00",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:00",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:00",
+     "16:30"
+    ],
+    "Friday": [
+     "08:00",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0f762342-da37-4d03-99d7-820c61e0e242"
+  },
+  "winchester-city": {
+   "facility": "Office of Elections, City of Winchester",
+   "address": "107 N East Ln, Winchester, VA 22601-5047",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6a6af5ed-2e2d-4a33-9248-01869c1c7dea"
+  },
+  "wise-county": {
+   "facility": "Wise County General Registrar's Office",
+   "address": "5607 Patriot DR, Wise, VA 24293",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=9108d4cb-a23f-43ea-9643-7a36f9ddad05"
+  },
+  "wythe-county": {
+   "facility": "Wythe County Registrar's Office",
+   "address": "440 W Franklin St Ste A, Wytheville, VA 24382-2524",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "16:30"
+    ],
+    "Tuesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Wednesday": [
+     "08:30",
+     "16:30"
+    ],
+    "Thursday": [
+     "08:30",
+     "16:30"
+    ],
+    "Friday": [
+     "08:30",
+     "16:30"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eca40e2d-d3be-4d17-9383-da183f325cc4"
+  },
+  "york-county": {
+   "facility": "York County",
+   "address": "5322 George Washington Mem Hwy, Yorktown, VA 23692-2761",
+   "hours": {
+    "Monday": [
+     "08:30",
+     "17:00"
+    ],
+    "Tuesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Wednesday": [
+     "08:30",
+     "17:00"
+    ],
+    "Thursday": [
+     "08:30",
+     "17:00"
+    ],
+    "Friday": [
+     "08:30",
+     "17:00"
+    ]
+   },
+   "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=25989058-e1e5-42bc-ad1c-e93bd907edf8"
+  }
+ }
+}
