@@ -244,5 +244,12 @@
     "message": "Updated precinct counts for 132 localities from Daily Absentee List records.",
     "through": "2026-10-18",
     "url": null
+  },
+  {
+    "at": "2026-10-20T13:14:23.768399+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-10-19",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
   }
 ]
