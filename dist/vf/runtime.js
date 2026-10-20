@@ -105,8 +105,8 @@
 .vfc-btn input::placeholder{color:#6B7380;font-weight:600}.vfc-btn:focus-within{box-shadow:0 0 0 3px #C9D2EC}
 .vfc-car{position:absolute;right:16px;top:50%;width:9px;height:9px;cursor:pointer;color:#121417;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
 .vfc.open .vfc-car{transform:translateY(-25%) rotate(-135deg)}
-.vfc-list{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:240px;z-index:90;background:#FFFFFF;border:2px solid #121417;border-radius:16px;max-height:340px;overflow-y:auto;box-shadow:0 22px 40px -24px rgba(20,32,43,.6);padding:4px;scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
-.vfc-list::-webkit-scrollbar{width:10px}.vfc-list::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:3px solid #FFFFFF}.vfc-list::-webkit-scrollbar-track{background:transparent}
+.vfc-list{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:240px;z-index:90;background:#FFFFFF;border:2px solid #121417;border-radius:16px;max-height:340px;overflow-y:auto;box-shadow:0 22px 40px -24px rgba(20,32,43,.6);padding:4px}
+.vfc-list::-webkit-scrollbar{width:10px}.vfc-list::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:3px solid #FFFFFF}.vfc-list::-webkit-scrollbar-track{background:transparent}.vfc-list::-webkit-scrollbar-button{display:none;width:0;height:0}@supports not selector(::-webkit-scrollbar){.vfc-list{scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}}
 .vfc-opt{display:flex;align-items:baseline;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font:600 15px 'Hanken Grotesk',sans-serif;color:#121417}.vfc-opt>span{flex:1;min-width:0}
 .vfc-opt small{font-size:12.5px;font-weight:500;color:#4A5260;text-align:right}.vfc-opt.hi{background:#EEF1F8}.vfc-opt.on{font-weight:800;background:#F1F2F5}.vfc-opt.on.hi{background:#E6E8EC}.vfc-opt.on::after{content:"✓";font-weight:800;color:#121417}.vfc-t2{font-style:normal;font-weight:500;color:#4A5260}.vfc-opt.rec{padding:6px 12px;font-weight:500;font-size:14px;color:#2A2F38}.vfc-opt.rec small{font-style:italic}.vfc-opt.rec+.vfc-opt:not(.rec){margin-top:5px;box-shadow:0 -1px 0 #ECEEF2}
 .vfc-none{padding:12px;color:#4A5260;font:500 14px 'Hanken Grotesk',sans-serif}.vfc-big .vfc-btn{min-height:52px;font-size:17px}`;
@@ -310,12 +310,15 @@
   };
   const spy = () => {
     spy.r = 0; trackBand();
-    const links = Array.from(document.querySelectorAll('.vf-navlink[data-sec]')); if (!links.length) return;
+    const all = Array.from(document.querySelectorAll('.vf-navlink[data-sec]')); if (!all.length) return;
+    // Menu entries for boxes this page doesn't have (a locality without site data, say) step aside.
+    all.forEach((a) => a.classList.toggle('vf-nosec', !a.dataset.sec.split(' ').some((id) => document.getElementById(id))));
+    const links = all.filter((a) => a.getClientRects().length); if (!links.length) return;
     const band = document.querySelector('.vf-band'), line = (band ? band.getBoundingClientRect().bottom : 60) + 40;
     let cur = links[0], best = -Infinity;
     links.forEach((a) => a.dataset.sec.split(' ').forEach((id) => { const el = document.getElementById(id); if (!el) return;
       const top = el.getBoundingClientRect().top; if (top <= line && top > best) { best = top; cur = a; } }));
-    links.forEach((a) => { const on = a === cur; if ((a.getAttribute('aria-current') === 'true') !== on) a.setAttribute('aria-current', on ? 'true' : 'false'); });
+    all.forEach((a) => { const on = a === cur; if ((a.getAttribute('aria-current') === 'true') !== on) a.setAttribute('aria-current', on ? 'true' : 'false'); });
   };
   const spySoon = () => { if (!spy.r) spy.r = requestAnimationFrame(spy); };
   window.addEventListener('scroll', spySoon, { passive: true });
@@ -424,6 +427,15 @@
       const d = e / (e + m) - base, a = Math.abs(d), k = a < 0.03 ? 0 : a < 0.08 ? 1 : a < 0.15 ? 2 : 3;
       return VF.LEAN[3 + (d < 0 ? -k : k)];
     },
+    /* Map shading: one continuous ramp between a light and a dark color, so every value gets its
+       own shade (no bins). t runs 0..1 from the lowest value shown to the highest. Lowercase hex
+       stays out of the theme rewrite; dark mode has its own ends. */
+    RAMP: DARK ? { g: [[44, 66, 58], [120, 222, 186]], p: [[60, 54, 84], [196, 172, 245]] } : { g: [[227, 244, 236], [0, 85, 60]], p: [[239, 233, 252], [74, 38, 150]] },
+    ramp(t, kind) {
+      const [a, b] = VF.RAMP[kind === 'p' ? 'p' : 'g'], q = Math.max(0, Math.min(1, isFinite(t) ? t : 0));
+      return '#' + a.map((x, k) => Math.round(x + (b[k] - x) * q).toString(16).padStart(2, '0')).join('');
+    },
+    rampCss(kind) { return 'linear-gradient(90deg, ' + VF.ramp(0, kind) + ', ' + VF.ramp(1, kind) + ')'; },
     leanBins() {
       return [['≥15 pts more mail', 0], ['8–15', 1], ['3–8', 2], ['near avg', 3], ['3–8', 4], ['8–15', 5], ['≥15 pts more in person', 6]].map(([l, i]) => ({ c: VF.LEAN[i], l }));
     },

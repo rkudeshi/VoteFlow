@@ -131,7 +131,7 @@ class Locality extends DCLogic {
     const undeliv = fx && fx.extras && fx.extras.undeliverable != null ? ' ' + f(fx.extras.undeliverable) + ' mail ballots were undeliverable.' : '';
     const vb = { rows: vrows, note: hasPBflow ? 'By mail vs. drop box and mail ballots sent come from Fairfax County’s own report through ' + dmd(fx.through) + '.' + undeliv : '' };
     const fcView = this.state.flowView || 'chart';
-    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar chart']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
+    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar charts']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
     const fcPB = hasPBflow ? fx.post + fx.box : 1;
@@ -420,7 +420,8 @@ class Locality extends DCLogic {
       const nm = (k) => SITE_NAMES[k] || k.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
       const sum = (a) => a.reduce((t, v) => t + (v || 0), 0);
       const cumOf = (a) => { let c = 0, seen = false, end = -1; a.forEach((v, i) => { if (v != null) end = i; }); return a.map((v, i) => { if (v != null) { c += v; seen = true; } return seen && i <= end ? c : null; }); };
-      const W = 1000, H = 300, L = 56, R = 18, T = 14, B = 34;
+      // Phones get a chart twice as tall (and type to match), since the 1000-wide drawing shrinks to fit.
+      const W = 1000, H = narrow ? 640 : 300, L = narrow ? 92 : 56, R = 18, T = 14, B = narrow ? 56 : 34, FS = narrow ? 24 : 12;
       const chart = (series, from, to, hiKey, shadeClosed) => {
         let top = 1; series.forEach((x) => x.vals.forEach((v, i) => { if (i >= from && i <= to && v != null) top = Math.max(top, v); }));
         const units = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000];
@@ -430,12 +431,12 @@ class Locality extends DCLogic {
         const path = (vals) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = vals[i]; if (v == null) continue; d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
         const lastI = Math.max(-1, ...series.map((x) => { let k = -1; x.vals.forEach((v, i) => { if (v != null) k = i; }); return k; }));
         const closed = []; if (shadeClosed) for (let i = from; i <= Math.min(to, lastI); i++) if (series.every((x) => x.vals[i] == null)) closed.push({ x: (X(i) - (W - L - R) / (to - from + 1) / 2).toFixed(1), w: ((W - L - R) / (to - from + 1)).toFixed(1) });
-        const ticks = []; for (let i = from; i <= to; i++) { const k = 46 - i; if (k % 7 === 0 || i === from) ticks.push({ x: X(i).toFixed(1), l: k === 0 ? 'Election Day' : k + ' days' }); }
+        const ticks = []; for (let i = from; i <= to; i++) { const k = 46 - i; if (k % 7 === 0 || (i === from && (!narrow || k % 7 > 3))) ticks.push({ x: X(i).toFixed(1), l: k === 0 ? (narrow ? 'E-Day' : 'Election Day') : k + (narrow ? 'd' : ' days') }); }
         const hiI = this.state[hiKey];
         const hits = []; for (let i = from; i <= to; i++) hits.push({ x: (X(i) - (W - L - R) / (to - from + 1) / 2).toFixed(1), w: ((W - L - R) / (to - from + 1)).toFixed(1), enter: () => this.setState({ [hiKey]: i }) });
         return { closed, lines: series.map((x) => ({ d: path(x.vals), c: x.c, w: x.w })), yt: [0, 1, 2, 3, 4].map((j) => ({ y: (H - B - j * (H - B - T) / 4).toFixed(1), ty: (H - B - j * (H - B - T) / 4 + 4).toFixed(1), l: short(top * j / 4) })),
           xt: ticks, hits, hasHi: hiI != null && hiI >= from && hiI <= to, hiX: hiI != null ? X(Math.min(to, Math.max(from, hiI))).toFixed(1) : 0,
-          dots: hiI != null ? series.filter((x) => x.vals[hiI] != null).map((x) => ({ y: Y(x.vals[hiI]).toFixed(1), c: x.c })) : [], vb: '0 0 ' + W + ' ' + H, base: H - B, leave: () => this.setState({ [hiKey]: null }) };
+          dots: hiI != null ? series.filter((x) => x.vals[hiI] != null).map((x) => ({ y: Y(x.vals[hiI]).toFixed(1), c: x.c })) : [], vb: '0 0 ' + W + ' ' + H, base: H - B, plotH: H - B - T, L, yl: L - 8, xy: H - 8, fs: FS, leave: () => this.setState({ [hiKey]: null }) };
       };
       const dayLabel = (eDateStr, i) => { const d = parse(VF.addDays(eDateStr, i - 46)); return DOW[d.getDay()] + ' ' + MON[d.getMonth()] + ' ' + d.getDate(); };
       const bsView = this.state.bsView || 'daily', bsView2 = this.state.bsView2 || 'cum';
@@ -531,7 +532,8 @@ class Locality extends DCLogic {
     const siteAllToggle = () => this.setState({ siteAll: !siteAll });
 
     // ---- site rhythm: every site, every early-voting day
-    const rhM = this.state.rhM || 'daily', rhFit = !!this.state.rhFit, rhSwap = !!this.state.rhSwap;
+    // Fairfax reads best with sites as rows; elsewhere (few sites) days as rows is the default.
+    const rhM = this.state.rhM || 'daily', rhFit = !!this.state.rhFit, rhSwap = this.state.rhSwap == null ? D.id !== 'fairfax-county' : !!this.state.rhSwap;
     const schedDates = Object.keys(D.sched).sort();
     const lastData = heatDates.length ? heatDates[heatDates.length - 1] : '';
     const allDates = []; if (schedDates.length) { const d0 = parse(schedDates[0]), d1 = parse(schedDates[schedDates.length - 1]); for (let d = new Date(d0); d <= d1; d.setDate(d.getDate() + 1)) allDates.push(iso(d)); }
@@ -582,21 +584,23 @@ class Locality extends DCLogic {
     const pdefs = [['all', 'All early votes', (h) => h[0] + h[1], GRN, '#D3D7DE'], ['e', 'In person', (h) => h[0], GRN, '#D3D7DE'], ['m', 'By mail', (h) => h[1], PUR, '#D3D7DE']];
     const pSel0 = this.state.pSel || 'all';
     const pBase = (() => { const e7 = P.reduce((x, p) => x + p.h[pIdx][0], 0), m7 = P.reduce((x, p) => x + p.h[pIdx][1], 0); return e7 + m7 ? e7 / (e7 + m7) : 0.5; })();
-    const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', total: Math.round(pBase * 100) + '% in person overall', bins: VF.leanBins(),
+    const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', total: Math.round(pBase * 100) + '% in person overall', bins: VF.leanBins(), ramp: { on: false },
       paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : VF.leanColor(p.h[pIdx][0], p.h[pIdx][1], pBase), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }), pin: () => this.setState({ pPinned: p.c, pHover: p.c }) }; }) };
     const pmaps = pSel0 === 'lean' ? [leanMap] : pdefs.filter(([id]) => id === pSel0).map(([id, title, get, pal, border]) => {
       const mv = (p, j) => pMeasure === 'p' ? (p.r ? get(p.h[j]) / p.r * 100 : 0) : get(p.h[j]);
-      const vs = P.map((p) => mv(p, lastIdx)).sort((x, y) => x - y);
-      const qs = [1, 2, 3, 4, 5, 6].map((q) => vs[Math.floor(q / 7 * (vs.length - 1))]); // 7 steps
-      const bin = (v) => { let i = 0; while (i < 6 && v > qs[i]) i++; return i; };
+      // One continuous shade per value, from the lowest to the highest precinct on the latest date.
+      const vs = P.map((p) => mv(p, lastIdx)), lo = Math.min(...vs), hi = Math.max(...vs);
+      const kind = id === 'm' ? 'p' : 'g', shade = (v) => VF.ramp(hi > lo ? (v - lo) / (hi - lo) : 0, kind);
       const fq = (v) => pMeasure === 'p' ? v.toFixed(1) + '%' : short(v);
       const sum = P.reduce((x, p) => x + get(p.h[pIdx]), 0), regSum = P.reduce((x, p) => x + p.r, 0);
       return { id, title, border, total: pMeasure === 'p' ? (sum / regSum * 100).toFixed(1) + '%' : f(sum),
-        bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 6 ? '>' + fq(qs[5]) : fq(qs[i]) })),
-        paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : pal[bin(mv(p, pIdx))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }), pin: () => this.setState({ pPinned: p.c, pHover: p.c }) }; }) };
+        bins: [], ramp: { on: true, css: VF.rampCss(kind), lo: fq(lo), mid: fq((lo + hi) / 2), hi: fq(hi) },
+        paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : shade(mv(p, pIdx)), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }), pin: () => this.setState({ pPinned: p.c, pHover: p.c }) }; }) };
     });
-    const precInfo = (p) => Object.assign(pieOf({ de: p.h[pIdx][0], dm: p.h[pIdx][1] }), { kicker: 'Precinct ' + p.c, title: p.n, sub: (p.r ? (p.h[pIdx][0] + p.h[pIdx][1]) / p.r * 100 : 0).toFixed(1) + '% turnout as of ' + dmd(D.pdates[pIdx]), hasList: false, list: [],
-      rows: [{ k: 'Registered', v: f(p.r) }, { k: 'In person', v: fz(p.h[pIdx][0]) + ' · ' + (p.r ? (p.h[pIdx][0] / p.r * 100).toFixed(1) : 0) + '%' }, { k: 'By mail', v: fz(p.h[pIdx][1]) + ' · ' + (p.r ? (p.h[pIdx][1] / p.r * 100).toFixed(1) : 0) + '%' }, { k: 'Total', v: fz(p.h[pIdx][0] + p.h[pIdx][1]) }] });
+    // Turnout, ballots and registered voters lead the precinct readouts; the in-person/mail split follows.
+    const bigOf = (reg, e, m) => ({ hasBig: true, big: [{ k: 'Turnout', v: (reg ? (e + m) / reg * 100 : 0).toFixed(1) + '%', fs: '26px', bg: '#FFD23F' }, { k: 'Voted', v: fz(e + m), fs: '20px', bg: 'transparent' }, { k: 'Registered', v: f(reg), fs: '20px', bg: 'transparent' }] });
+    const precInfo = (p) => Object.assign(pieOf({ de: p.h[pIdx][0], dm: p.h[pIdx][1] }), bigOf(p.r, p.h[pIdx][0], p.h[pIdx][1]), { kicker: 'Precinct ' + p.c, title: p.n, sub: 'As of ' + dmd(D.pdates[pIdx]), hasList: false, list: [],
+      rows: [{ k: 'In person', v: fz(p.h[pIdx][0]) + ' · ' + (p.r ? (p.h[pIdx][0] / p.r * 100).toFixed(1) : 0) + '%' }, { k: 'By mail', v: fz(p.h[pIdx][1]) + ' · ' + (p.r ? (p.h[pIdx][1] / p.r * 100).toFixed(1) : 0) + '%' }] });
     const ph = P.find((p) => p.c === pHover);
     const pSel = this.state.pSel || 'all';
     const pLay = 'solo';
@@ -624,8 +628,8 @@ class Locality extends DCLogic {
       },
       ctrls: [opt('Measure', 'pMeasure', pMeasure, [['p', '% of registered'], ['v', 'Ballots']])],
       note: P.length + ' precincts',
-      hov: ph ? precInfo(ph) : { kicker: 'Hover a precinct', title: D.name, sub: (P.reduce((x, p) => x + p.h[pIdx][0] + p.h[pIdx][1], 0) / P.reduce((x, p) => x + p.r, 0) * 100).toFixed(1) + '% turnout as of ' + dmd(D.pdates[pIdx]),
-        rows: [{ k: 'Precincts', v: String(P.length) }, { k: 'In person', v: f(P.reduce((x, p) => x + p.h[pIdx][0], 0)) }, { k: 'By mail', v: f(P.reduce((x, p) => x + p.h[pIdx][1], 0)) }] }
+      hov: ph ? precInfo(ph) : Object.assign(bigOf(P.reduce((x, p) => x + p.r, 0), P.reduce((x, p) => x + p.h[pIdx][0], 0), P.reduce((x, p) => x + p.h[pIdx][1], 0)), { kicker: 'Hover a precinct', title: D.name, sub: P.length + ' precincts · as of ' + dmd(D.pdates[pIdx]),
+        rows: [{ k: 'In person', v: f(P.reduce((x, p) => x + p.h[pIdx][0], 0)) }, { k: 'By mail', v: f(P.reduce((x, p) => x + p.h[pIdx][1], 0)) }] })
     };
 
     const tp = this.state.tip;

@@ -101,7 +101,7 @@ class Home extends DCLogic {
     ] };
 
     const fcView = this.state.flowView || 'chart';
-    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar chart']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
+    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar charts']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
     const fcBig = !!this.state.fcBig;
@@ -231,19 +231,19 @@ class Home extends DCLogic {
     const mapSel = this.state.mapSel || 'all';
     const sBase = total ? last.e / total : 0.5;
     const hovId = this.state.hover || this.state.pinned; // hover previews; a click pins
-    const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', aria: 'In person vs. mail by locality', total: Math.round(sBase * 100) + '% in person statewide', bins: VF.leanBins(),
+    const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', aria: 'In person vs. mail by locality', total: Math.round(sBase * 100) + '% in person statewide', bins: VF.leanBins(), ramp: { on: false },
       paths: D.locs.map((o) => { const h = hovId === o.id; return { d: o.d, fill: h ? '#FFD23F' : VF.leanColor(o.e, o.m, sBase), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
         delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }), pin: () => this.setState({ pinned: o.id, hover: o.id }) }; }) };
     const maps = mapSel === 'lean' ? [leanMap] : mdefs.filter(([id]) => id === mapSel).map(([id, title, get, pal, border]) => {
       const mv = (o) => mm === 'p' ? get(o) / o.r * 100 : get(o);
-      const vs = D.locs.map(mv).sort((a, b) => a - b);
-      const qs = [1, 2, 3, 4, 5, 6].map((q) => vs[Math.floor(q / 7 * (vs.length - 1))]); // 7 steps
-      const bin = (v) => { let i = 0; while (i < 6 && v > qs[i]) i++; return i; };
+      // One continuous shade per value, from the lowest locality to the highest.
+      const vs = D.locs.map(mv), lo = Math.min(...vs), hi = Math.max(...vs);
+      const shade = (v) => VF.ramp(hi > lo ? (v - lo) / (hi - lo) : 0, 'g');
       const fq = (v) => mm === 'p' ? v.toFixed(1) + '%' : short(v);
       const sum = D.locs.reduce((a, o) => a + get(o), 0);
       return { id, title, border, aria: title + ' by locality', total: mm === 'p' ? (sum / D.reg * 100).toFixed(1) + '% statewide' : f(sum) + ' statewide',
-        bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 6 ? '>' + fq(qs[5]) : fq(qs[i]) })),
-        paths: D.locs.map((o) => { const h = hovId === o.id; return { d: o.d, fill: h ? '#FFD23F' : pal[bin(mv(o))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
+        bins: [], ramp: { on: true, css: VF.rampCss('g'), lo: fq(lo), mid: fq((lo + hi) / 2), hi: fq(hi) },
+        paths: D.locs.map((o) => { const h = hovId === o.id; return { d: o.d, fill: h ? '#FFD23F' : shade(mv(o)), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
           delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }), pin: () => this.setState({ pinned: o.id, hover: o.id }) }; }) };
     });
     const mapOpts = [['p', '% of registered'], ['v', 'Ballots']].map(([k, label]) => Object.assign({ label, pick: () => this.setState({ mapMeasure: k }) }, pill(mm, k)));
@@ -288,7 +288,7 @@ class Home extends DCLogic {
     if (nextSat) ticker0.splice(3, 0, { name: 'Satellites opening ' + dmd(nextSat), val: String(D.satOpen[nextSat].n), dot: '#FFD23F' });
     ticker0.push({ name: 'Mail ballots outstanding', val: f(last.o), dot: '#7C4DDB' });
 
-    const pqs = D.locs.map((o) => o.p).sort((a, b) => a - b), pq = [0.25, 0.5, 0.75].map((x) => pqs[Math.floor(x * (pqs.length - 1))]);
+    const pqLo = Math.min(...D.locs.map((o) => o.p)), pqHi = Math.max(...D.locs.map((o) => o.p));
     // "Find your county or city": the full list opens on click; typing filters it
     // Section headlines that state the finding.
     const dl = VF.dayLines(D.rows.map((r) => ({ d: r.d, v: r.de + r.dm })), live);
@@ -314,7 +314,7 @@ class Home extends DCLogic {
         pickE: (v) => { if (v !== EID) location.href = VF.stateUrl(v); },
         pickL: (v) => { v = VF.unRecent(v); if (v) location.href = linkOf(v); } },
       band: { asOf: dmd(D.asOf) },
-      mini: D.locs.map((o) => { const q = o.p, mh = this.state.miniHover === o.id; return { d: o.d, move: (ev) => this.setState({ miniHover: o.id, tip: this.tipAt(ev, 'mini', o.id) }), go: () => { location.href = linkOf(o.id); }, stroke: mh ? '#121417' : '#E6E8EC', fill: mh ? '#FFD23F' : q < pq[0] ? '#B3E6D3' : q < pq[1] ? '#5CC9A3' : q < pq[2] ? '#00A37A' : '#006B50', delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),
+      mini: D.locs.map((o) => { const q = o.p, mh = this.state.miniHover === o.id; return { d: o.d, move: (ev) => this.setState({ miniHover: o.id, tip: this.tipAt(ev, 'mini', o.id) }), go: () => { location.href = linkOf(o.id); }, stroke: mh ? '#121417' : '#E6E8EC', fill: mh ? '#FFD23F' : VF.ramp(pqHi > pqLo ? (q - pqLo) / (pqHi - pqLo) : 0, 'g'), delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),
       fc, fcOpts,
       loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, vb, ctrls, years, ch, cal, sel, calOpts, calRamp: VF.calLegend,
       maps, mapOpts, mapSel, mapPick, mapNotLean: mapSel !== 'lean',
