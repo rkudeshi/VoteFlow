@@ -16,7 +16,7 @@ class Home extends DCLogic {
       const s = performance.now();
       const step = (n) => { const t = Math.min(1, (n - s) / 1800); this.setState({ t }); if (t < 1) this.raf = requestAnimationFrame(step); };
       this.raf = requestAnimationFrame(step);
-    }).catch(() => { location.replace('/'); });
+    }).catch(() => { location.replace('/va'); });
   }
   componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
   tipAt(ev, kind, key) {

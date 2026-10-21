@@ -463,14 +463,14 @@
     site: { live: '2026', elections: [], localities: [] },
     slugOf: (eid) => (VF.site.elections.find((x) => x.id === eid) || {}).slug,
     eidOf: (s) => (VF.site.elections.find((x) => x.slug === s) || {}).id,
-    stateUrl: (eid) => eid === VF.site.live || !VF.slugOf(eid) ? '/' : '/va/statewide/' + VF.slugOf(eid),
+    stateUrl: (eid) => eid === VF.site.live || !VF.slugOf(eid) ? '/va' : '/va/statewide/' + VF.slugOf(eid),
     locUrl: (lid, eid) => '/va/' + lid + '/' + (VF.slugOf(eid) || VF.slugOf(VF.site.live)),
     placeUrl: (lid) => '/va/' + lid,
-    /* Routes: /, /status, /about, /va, /va/statewide[/<date>], /va/<locality>[/<date>]; anything else is not found. */
+    /* Routes: / (state picker), /status, /about, /va, /va/statewide[/<date>], /va/<locality>[/<date>]; anything else is not found. */
     route(pathname) {
       const parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
       const live = VF.site.live, none = { page: 'notfound', props: {} };
-      if (!parts.length) return { page: 'home', props: { eid: live } };
+      if (!parts.length) return { page: 'states', props: {} };
       if (parts.length === 1 && (parts[0] === 'status' || parts[0] === 'about')) return { page: parts[0], props: {} };
       if (parts[0] !== 'va' || parts.length > 3) return none;
       if (parts.length === 1) return { page: 'home', props: { eid: live } };
