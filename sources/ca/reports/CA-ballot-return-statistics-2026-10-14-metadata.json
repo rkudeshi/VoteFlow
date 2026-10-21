@@ -1,0 +1,61 @@
+{
+  "report_dates_match": true,
+  "xlsx_as_of_value": "2026-10-14T23:59:00",
+  "county_count": 58,
+  "files": [
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-14.pdf",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.pdf",
+      "report_as_of": "2026-10-14",
+      "retrieval_response_time_utc": "Fri, 16 Oct 2026 02:12:42 GMT",
+      "validated_at_utc": "2026-10-16T02:13:24.936191+00:00",
+      "headers": {
+        "date": "Fri, 16 Oct 2026 02:12:42 GMT",
+        "content-type": "application/pdf",
+        "content-length": "237369",
+        "server": "AmazonS3",
+        "last-modified": "Thu, 15 Oct 2026 15:57:35 GMT",
+        "x-amz-server-side-encryption": "AES256",
+        "x-amz-meta-cb-modifiedtime": "Thu, 15 Oct 2026 15:56:46 GMT",
+        "x-amz-version-id": "DwW5_b3EvQPG8wpYMJX_Ucx1LyTq.3kC",
+        "accept-ranges": "bytes",
+        "etag": "\"feaece463bf1e52bfabbac9d8c1e883f\"",
+        "x-cache": "RefreshHit from cloudfront",
+        "via": "1.1 50b77bfd933af3601603f63e4db267ee.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "DFW56-P4",
+        "x-amz-cf-id": "XU1ZQL6ACkeO17xNMzHg_rdyYMBeVYE-xZ2Kc1d3GKlrbIly8TUwpg=="
+      },
+      "last_modified_pacific": "2026-10-15T08:57:35-07:00",
+      "internal_metadata": "Title:           November 3, 2026, General ElectionVoteCal Vote-By-Mail (VBM) Ballot Statistics as of:Wednesday, October 14, 2026\nSubject:         November 3, 2026, General ElectionVoteCal Vote-By-Mail (VBM) Ballot Statistics as of:Wednesday, October 14, 2026\nKeywords:        November 3, 2026, General ElectionVoteCal Vote-By-Mail (VBM) Ballot Statistics as of:Wednesday, October 14, 2026\nCreator:         Microsoft\u00ae Excel\u00ae for Microsoft 365\nProducer:        Microsoft\u00ae Excel\u00ae for Microsoft 365\nCreationDate:    Thu Oct 15 00:23:17 2026 PDT\nModDate:         Thu Oct 15 08:56:46 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       237369 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "sha256": "4cb5222b1e44682687b0e1855125c36fcb81daca23a75d1b7fb85f5f84d0a996",
+      "size_bytes": 237369
+    },
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-14.xlsx",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-14-2026.xlsx",
+      "report_as_of": "2026-10-14",
+      "retrieval_response_time_utc": "Fri, 16 Oct 2026 02:12:54 GMT",
+      "validated_at_utc": "2026-10-16T02:13:24.937436+00:00",
+      "headers": {
+        "date": "Fri, 16 Oct 2026 02:12:54 GMT",
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "content-length": "44524",
+        "accept-ranges": "bytes",
+        "server": "AmazonS3",
+        "last-modified": "Thu, 15 Oct 2026 17:08:39 GMT",
+        "x-amz-meta-cb-modifiedtime": "Thu, 15 Oct 2026 17:00:25 GMT",
+        "x-amz-version-id": "48ZAqFtcFI0981YdelJHeJjAA3bZc3N.",
+        "x-amz-server-side-encryption": "AES256",
+        "etag": "\"89de80ac747c223bf88a10c77d42614e\"",
+        "x-cache": "RefreshHit from cloudfront",
+        "via": "1.1 a9368f7b67df0d1f561c4fba83f9d61e.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "DFW56-P4",
+        "x-amz-cf-id": "OOyb6RGnRB5VJR0mLjkDuyTu-PRT_8NmAn2A2cQVUd0uS41OaWObbw=="
+      },
+      "last_modified_pacific": "2026-10-15T10:08:39-07:00",
+      "internal_metadata": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dc:creator>Burgess, Sam</dc:creator><cp:lastModifiedBy>Johnson, Ryan</cp:lastModifiedBy><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-15T07:22:53Z</dcterms:created><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-15T17:00:25Z</dcterms:modified></cp:coreProperties>",
+      "sha256": "b247eaf91c0720d5ebe95a88339b006b274fac8ffb1ac20b66f2dd062ca66977",
+      "size_bytes": 44524
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+California VoteCal archive handoff
+
+Coverage: October 11-19, 2026 inclusive. Nine PDFs, nine XLSX files, nine dated metadata JSON records. No reports before October 11 are included. These are archived snapshots, not a claim that October 19 remains the newest report at the time this package is used.
+
+CLAUDE-INSTRUCTIONS.txt is the task prompt to give Claude. The reports/ folder holds the archived files. manifest.json records the actual packaged file hashes, the source hashes from the historical metadata, and any mismatch.
+
+Integrity exception: The archived October 12 PDF is 452,946 bytes, while its historical download metadata records 191,722 bytes and a different SHA-256. Its PDF title and internal dates still identify October 12. The reason for the binary change has not been established. It is included as the available archived copy, not asserted to be byte-identical to the original download. The historical metadata has not been altered to conceal the discrepancy. All nine XLSX files match their recorded source hashes; use them for structured import. All other archived PDFs match their recorded hashes.
+
+The metadata schema evolved. October 11's JSON is a top-level array of file records; later JSON files use a top-level object containing files. Retrieval time keys and timestamp formatting also vary. Treat raw historical metadata as evidence and normalize separately; do not overwrite it. HTTP response Date was used as retrieval-time evidence in several early records. Future runs should also record actual local retrieval start/end timestamps.
+
+The current ChatGPT daily archive task has not been disabled by this handoff. Once the Claude job is working, the user can decide whether to keep both or stop the original task.

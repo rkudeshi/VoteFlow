@@ -1,0 +1,58 @@
+{
+  "report_dates_match": true,
+  "xlsx_as_of_value": "2026-10-12T23:59:00",
+  "files": [
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-12.pdf",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.pdf",
+      "report_as_of": "2026-10-12",
+      "retrieved_utc": "Wed, 14 Oct 2026 02:09:30 GMT",
+      "headers": {
+        "date": "Wed, 14 Oct 2026 02:09:30 GMT",
+        "content-type": "application/pdf",
+        "content-length": "191722",
+        "server": "AmazonS3",
+        "last-modified": "Tue, 13 Oct 2026 17:34:48 GMT",
+        "etag": "\"78e551db02918b98420831bec221b7e9\"",
+        "x-amz-server-side-encryption": "AES256",
+        "x-amz-meta-cb-modifiedtime": "Tue, 13 Oct 2026 17:26:28 GMT",
+        "x-amz-version-id": "XtMYE1kzKWfJfKwqT.y63Mc.0dnHIFfh",
+        "accept-ranges": "bytes",
+        "x-cache": "Miss from cloudfront",
+        "via": "1.1 e3a402c7b046c2ff456c30009b54d8b6.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "LAX54-P10",
+        "x-amz-cf-id": "KuH0EGOu0kkeA5Py78T-RcMpdQIas6fVCIdV2Ta9Mbgd5-adxA8pTg=="
+      },
+      "last_modified_pacific": "2026-10-13T10:34:48-07:00",
+      "internal_metadata": "Title:           VoteCal Vote-By-Mail (VBM) Ballot Statistics as of: 10/12/26\nSubject:         VoteCal Vote-By-Mail (VBM) Ballot Statistics as of: 10/12/26\nKeywords:        VoteCal Vote-By-Mail (VBM) Ballot Statistics as of: 10/12/26\nCreator:         Microsoft\u00ae Excel\u00ae for Microsoft 365\nProducer:        Microsoft\u00ae Excel\u00ae for Microsoft 365\nCreationDate:    Tue Oct 13 00:23:35 2026 PDT\nModDate:         Tue Oct 13 10:26:29 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            AcroForm\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       191722 bytes\nOptimized:       yes\nPDF version:     1.7\n",
+      "sha256": "b4f0497f2afd17e3fb8b23774ddf35180acc8d0e0c723e8a92e0edafbc7bfc21",
+      "size_bytes": 191722
+    },
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-12.xlsx",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.xlsx",
+      "report_as_of": "2026-10-12",
+      "retrieved_utc": "Wed, 14 Oct 2026 02:09:35 GMT",
+      "headers": {
+        "date": "Wed, 14 Oct 2026 02:09:35 GMT",
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "content-length": "43947",
+        "accept-ranges": "bytes",
+        "server": "AmazonS3",
+        "last-modified": "Tue, 13 Oct 2026 17:27:01 GMT",
+        "x-amz-meta-cb-modifiedtime": "Tue, 13 Oct 2026 16:07:46 GMT",
+        "x-amz-version-id": "gO5dqDobSF0WgvLHdrXVzI8kOInv6Ayc",
+        "x-amz-server-side-encryption": "AES256",
+        "etag": "\"8d644952a718f4dfc93c7a4bd3251cd8\"",
+        "x-cache": "RefreshHit from cloudfront",
+        "via": "1.1 da39941b0ef978a640d51f8a4fdcd5ca.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "LAX54-P10",
+        "x-amz-cf-id": "LXauOcB9LFHgCuH-tQmhXp1EeYuam00TMId5O4C7sxtqx8OETAqu-A=="
+      },
+      "last_modified_pacific": "2026-10-13T10:27:01-07:00",
+      "internal_metadata": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dc:creator>Burgess, Sam</dc:creator><cp:lastModifiedBy>Burgess, Sam</cp:lastModifiedBy><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-13T07:23:12Z</dcterms:created><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-13T07:23:23Z</dcterms:modified></cp:coreProperties>",
+      "sha256": "25b7090d0566a2e1848902cbedaf3b560cda5b53aa55d716e6d6270e4f92b24a",
+      "size_bytes": 43947
+    }
+  ]
+}

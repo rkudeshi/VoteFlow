@@ -25,6 +25,13 @@ for base,routes in ((root,paths),(root/'old'/'v2',old)):
  for route in routes:
   directory=base/route;directory.mkdir(parents=True,exist_ok=True)
   (directory/'index.html').write_bytes(shell)
+# California (not linked from the Virginia pages yet): /ca, /ca/<county>, and the same in capitals.
+ca=root/'ca'/'index.html'
+if ca.exists():
+ shell=ca.read_bytes();ids=[c['id'] for c in json.loads((root/'ca'/'data.json').read_text())['counties']]
+ for route in ['CA']+[f'{s}/{c}' for s in ('ca','CA') for c in ids]:
+  directory=root/route;directory.mkdir(parents=True,exist_ok=True)
+  (directory/'index.html').write_bytes(shell)
 # Unknown paths (old /2026/... links included) get the current site, which shows a not-found page.
 (root/'404.html').write_bytes((root/'index.html').read_bytes())
 print('Generated',len(paths)+len(old),'clean routes')

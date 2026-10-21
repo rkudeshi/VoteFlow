@@ -1,0 +1,227 @@
+{
+  "coverage_start": "2026-10-11",
+  "coverage_end": "2026-10-19",
+  "report_dates": 9,
+  "archived_file_count": 27,
+  "files": [
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-11.pdf",
+      "report_as_of": "2026-10-11",
+      "bytes": 242288,
+      "package_sha256": "b9e4eca29ce351d4c7ed9bc02338ece6c534628b1ebe5fff5e319e1ba5a81e99",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "b9e4eca29ce351d4c7ed9bc02338ece6c534628b1ebe5fff5e319e1ba5a81e99",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-11.xlsx",
+      "report_as_of": "2026-10-11",
+      "bytes": 36399,
+      "package_sha256": "9cd527d5bdb9f45a378c9adb17731fbbe44ce383ca1409321767bd81979ce909",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "9cd527d5bdb9f45a378c9adb17731fbbe44ce383ca1409321767bd81979ce909",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-11-metadata.json",
+      "report_as_of": "2026-10-11",
+      "bytes": 3864,
+      "package_sha256": "2a2b7dfe3bba5382804d4aa7dc69c0b182e85810ee9602d13b2dda8377a62a00"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-12.pdf",
+      "report_as_of": "2026-10-12",
+      "bytes": 452946,
+      "package_sha256": "e9d9034c0167c6966b0c0c0c5687b1fd00779c55a3a63f4c584ddd898e799fc5",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "b4f0497f2afd17e3fb8b23774ddf35180acc8d0e0c723e8a92e0edafbc7bfc21",
+      "matches_recorded_source_hash": false
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-12.xlsx",
+      "report_as_of": "2026-10-12",
+      "bytes": 43947,
+      "package_sha256": "25b7090d0566a2e1848902cbedaf3b560cda5b53aa55d716e6d6270e4f92b24a",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "25b7090d0566a2e1848902cbedaf3b560cda5b53aa55d716e6d6270e4f92b24a",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-12-metadata.json",
+      "report_as_of": "2026-10-12",
+      "bytes": 4066,
+      "package_sha256": "9546e448a513090827b16e33adbc75437800cef4d25d07acec29317f79e053a9"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-13.pdf",
+      "report_as_of": "2026-10-13",
+      "bytes": 216159,
+      "package_sha256": "b4262577e43d810466fd179069f8fa2b0c41af86f2b8850c89f87a63f38e2753",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "b4262577e43d810466fd179069f8fa2b0c41af86f2b8850c89f87a63f38e2753",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-13.xlsx",
+      "report_as_of": "2026-10-13",
+      "bytes": 44523,
+      "package_sha256": "395b2e42e5ce7927faf2928d7b492a4b633cb72012bc8d8fd5ad4e10b251c5c5",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "395b2e42e5ce7927faf2928d7b492a4b633cb72012bc8d8fd5ad4e10b251c5c5",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-13-metadata.json",
+      "report_as_of": "2026-10-13",
+      "bytes": 3964,
+      "package_sha256": "fd22d0d6de4c988c9798b2deb86b88c360b9355186ff7e0031db4478183801f2"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-14.pdf",
+      "report_as_of": "2026-10-14",
+      "bytes": 237369,
+      "package_sha256": "4cb5222b1e44682687b0e1855125c36fcb81daca23a75d1b7fb85f5f84d0a996",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "4cb5222b1e44682687b0e1855125c36fcb81daca23a75d1b7fb85f5f84d0a996",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-14.xlsx",
+      "report_as_of": "2026-10-14",
+      "bytes": 44524,
+      "package_sha256": "b247eaf91c0720d5ebe95a88339b006b274fac8ffb1ac20b66f2dd062ca66977",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "b247eaf91c0720d5ebe95a88339b006b274fac8ffb1ac20b66f2dd062ca66977",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-14-metadata.json",
+      "report_as_of": "2026-10-14",
+      "bytes": 4407,
+      "package_sha256": "16b9e52a976cf3eb5252a165dd8cfbd0a2212c3e7f0aea7bedd1079623c9d33c"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-15.pdf",
+      "report_as_of": "2026-10-15",
+      "bytes": 236745,
+      "package_sha256": "eed74b0e48303b23b3b6e766d15fa13db03a61e8752e924bc14d2dd92bd8ea97",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "eed74b0e48303b23b3b6e766d15fa13db03a61e8752e924bc14d2dd92bd8ea97",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-15.xlsx",
+      "report_as_of": "2026-10-15",
+      "bytes": 44715,
+      "package_sha256": "b3ece4d9ddf3dd4e6b489f76e116fd72cd2ce8b069e0d8c6ea0e6a519cd78ccd",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "b3ece4d9ddf3dd4e6b489f76e116fd72cd2ce8b069e0d8c6ea0e6a519cd78ccd",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-15-metadata.json",
+      "report_as_of": "2026-10-15",
+      "bytes": 4383,
+      "package_sha256": "f5635ab111c2631e49e666cfd6d80c8ee1cb11c18fcacaccdbfbe7de69075f65"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-16.pdf",
+      "report_as_of": "2026-10-16",
+      "bytes": 223158,
+      "package_sha256": "742072df36162d22f9e9e7e8e2339f9dc9e3db22dcbd9bdf0dd29714ede3d896",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "742072df36162d22f9e9e7e8e2339f9dc9e3db22dcbd9bdf0dd29714ede3d896",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-16.xlsx",
+      "report_as_of": "2026-10-16",
+      "bytes": 44747,
+      "package_sha256": "61d4f1cd0d8b1b4aed99972879c895ed83086aeeaefddc254313c1d4fa2be98f",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "61d4f1cd0d8b1b4aed99972879c895ed83086aeeaefddc254313c1d4fa2be98f",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-16-metadata.json",
+      "report_as_of": "2026-10-16",
+      "bytes": 4411,
+      "package_sha256": "919a8d66296d2977b96856da0224bea06aa5c87619fdc12a4fbd4a758ca2699d"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-17.pdf",
+      "report_as_of": "2026-10-17",
+      "bytes": 242814,
+      "package_sha256": "b77969fb38acdf4cd352d0cc62d4ce1974b9a1ac6af22b581030a79c947933d0",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "b77969fb38acdf4cd352d0cc62d4ce1974b9a1ac6af22b581030a79c947933d0",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-17.xlsx",
+      "report_as_of": "2026-10-17",
+      "bytes": 44767,
+      "package_sha256": "c718b42c7ac43fcb145817da89e486454a4c8e50488f414695ba3ffb40860b2c",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "c718b42c7ac43fcb145817da89e486454a4c8e50488f414695ba3ffb40860b2c",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-17-metadata.json",
+      "report_as_of": "2026-10-17",
+      "bytes": 6142,
+      "package_sha256": "066d883d89c6bb157390e4f6725d2b979be0c9ebaaf06672827890a1fafa8791"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-18.pdf",
+      "report_as_of": "2026-10-18",
+      "bytes": 237313,
+      "package_sha256": "98e6a0b387193c4c20cad1913899d1d014a5f495230b534f2d04d9a76cff1f09",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "98e6a0b387193c4c20cad1913899d1d014a5f495230b534f2d04d9a76cff1f09",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-18.xlsx",
+      "report_as_of": "2026-10-18",
+      "bytes": 44658,
+      "package_sha256": "4143518137781593d48c3516632a2a7a5b7829de53e149cc6caa8d7f46ad576a",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "4143518137781593d48c3516632a2a7a5b7829de53e149cc6caa8d7f46ad576a",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-18-metadata.json",
+      "report_as_of": "2026-10-18",
+      "bytes": 6205,
+      "package_sha256": "dbaff3ef3d0fb7b40e94c9a07b2fcf7fb1b34f88a4c3959535d9f6c618c3048e"
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-19.pdf",
+      "report_as_of": "2026-10-19",
+      "bytes": 226273,
+      "package_sha256": "799c6ad1def69dc2e31a880960b63f75780c49d51962ed684f2905ca4872e0a9",
+      "validation": "PDF parsed and report date found in extracted text",
+      "recorded_source_sha256": "799c6ad1def69dc2e31a880960b63f75780c49d51962ed684f2905ca4872e0a9",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-19.xlsx",
+      "report_as_of": "2026-10-19",
+      "bytes": 44824,
+      "package_sha256": "b3e1c5c80c442dc6cc230c284f5c3229fe475f63c577bdb3aeb0d149719762e2",
+      "validation": "XLSX ZIP integrity and workbook XML verified",
+      "recorded_source_sha256": "b3e1c5c80c442dc6cc230c284f5c3229fe475f63c577bdb3aeb0d149719762e2",
+      "matches_recorded_source_hash": true
+    },
+    {
+      "path": "reports/CA-ballot-return-statistics-2026-10-19-metadata.json",
+      "report_as_of": "2026-10-19",
+      "bytes": 6256,
+      "package_sha256": "30392875637369dc90628f7210c53ba6bb3a4852c72a41479fddc2b867452030"
+    }
+  ],
+  "integrity_exceptions": [
+    "reports/CA-ballot-return-statistics-2026-10-12.pdf"
+  ]
+}

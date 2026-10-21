@@ -1,0 +1,61 @@
+{
+  "report_dates_match": true,
+  "xlsx_as_of_value": "2026-10-13T23:59:00",
+  "county_count": 58,
+  "files": [
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-13.pdf",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.pdf",
+      "report_as_of": "2026-10-13",
+      "retrieval_response_time_utc": "Thu, 15 Oct 2026 02:37:48 GMT",
+      "validated_at_utc": "2026-10-15T02:38:25.186865+00:00",
+      "headers": {
+        "date": "Thu, 15 Oct 2026 02:37:48 GMT",
+        "content-type": "application/pdf",
+        "content-length": "216159",
+        "server": "AmazonS3",
+        "last-modified": "Wed, 14 Oct 2026 16:58:03 GMT",
+        "x-amz-server-side-encryption": "AES256",
+        "x-amz-meta-cb-modifiedtime": "Wed, 14 Oct 2026 16:20:00 GMT",
+        "x-amz-version-id": "XpvS5tt52FX8saIyWF.xQSAj9DXpLieY",
+        "accept-ranges": "bytes",
+        "etag": "\"6e4f48c0a0dbf5d55b7da8df1920bdea\"",
+        "x-cache": "RefreshHit from cloudfront",
+        "via": "1.1 2367818c3018d590fe1ee871cb127fbc.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "ORD58-P16",
+        "x-amz-cf-id": "jblgC50ExLqaC-FUi_IsosBOswA1E7urxgmBOCQkxmK1LKbkVPSSQw=="
+      },
+      "last_modified_pacific": "2026-10-14T09:58:03-07:00",
+      "internal_metadata": "Creator:         Microsoft\u00ae Excel\u00ae for Microsoft 365\nProducer:        Microsoft\u00ae Excel\u00ae for Microsoft 365\nCreationDate:    Wed Oct 14 00:23:58 2026 PDT\nModDate:         Wed Oct 14 00:23:58 2026 PDT\nCustom Metadata: no\nMetadata Stream: yes\nTagged:          yes\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           2\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       216159 bytes\nOptimized:       no\nPDF version:     1.7\n",
+      "sha256": "b4262577e43d810466fd179069f8fa2b0c41af86f2b8850c89f87a63f38e2753",
+      "size_bytes": 216159
+    },
+    {
+      "filename": "CA-ballot-return-statistics-2026-10-13.xlsx",
+      "source_url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.xlsx",
+      "report_as_of": "2026-10-13",
+      "retrieval_response_time_utc": "Thu, 15 Oct 2026 02:37:51 GMT",
+      "validated_at_utc": "2026-10-15T02:38:25.187697+00:00",
+      "headers": {
+        "date": "Thu, 15 Oct 2026 02:37:51 GMT",
+        "content-type": "application/octet-stream",
+        "content-length": "44523",
+        "server": "AmazonS3",
+        "last-modified": "Wed, 14 Oct 2026 16:59:33 GMT",
+        "x-amz-server-side-encryption": "AES256",
+        "x-amz-meta-cb-modifiedtime": "Wed, 14 Oct 2026 16:59:31 GMT",
+        "x-amz-version-id": "N9Dg_Ml4KwAvENeWcM7OHV1SEz9bkq4Q",
+        "accept-ranges": "bytes",
+        "etag": "\"ecbb63762e6fda97a4e572281046fab7\"",
+        "x-cache": "RefreshHit from cloudfront",
+        "via": "1.1 6873f16a6d0b76dd734d6001dd636e86.cloudfront.net (CloudFront)",
+        "x-amz-cf-pop": "ORD58-P16",
+        "x-amz-cf-id": "kk7rYcmjkf55S05d_jqIJROinBUMHK9efS-8toqmZ6NMNR5PPz4osA=="
+      },
+      "last_modified_pacific": "2026-10-14T09:59:33-07:00",
+      "internal_metadata": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<cp:coreProperties xmlns:cp=\"http://schemas.openxmlformats.org/package/2006/metadata/core-properties\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:dcterms=\"http://purl.org/dc/terms/\" xmlns:dcmitype=\"http://purl.org/dc/dcmitype/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><dc:creator>Burgess, Sam</dc:creator><cp:lastModifiedBy>Johnson, Ryan</cp:lastModifiedBy><dcterms:created xsi:type=\"dcterms:W3CDTF\">2026-10-14T07:23:35Z</dcterms:created><dcterms:modified xsi:type=\"dcterms:W3CDTF\">2026-10-14T16:59:31Z</dcterms:modified></cp:coreProperties>",
+      "sha256": "395b2e42e5ce7927faf2928d7b492a4b633cb72012bc8d8fd5ad4e10b251c5c5",
+      "size_bytes": 44523
+    }
+  ]
+}

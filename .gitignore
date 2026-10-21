@@ -11,6 +11,8 @@ novavote-site.tar.gz
 /dist/about/
 /dist/old/v2/about/
 /dist/404.html
+/dist/ca/*/
+/dist/CA/
 /dist/old/v2/20*/
 /dist/old/v2/status/
 # Page data bundles built by build_voteflow.py
