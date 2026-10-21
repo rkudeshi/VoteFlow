@@ -7,7 +7,7 @@
 class CaPage extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { data: null, map: null, now: Date.now(), view: 'add', sel: null, mapM: 'rate', hover: null, sortKey: 'issued', sortDir: -1, all: false, q: '', rhythmAll: false, narrow: window.innerWidth < 600 };
+    this.state = { data: null, map: null, now: Date.now(), view: 'add', sel: null, mapM: 'rate', hover: null, sortKey: 'reg', sortDir: -1, miniTip: null, all: false, q: '', rhythmAll: false, narrow: window.innerWidth < 600 };
   }
   componentDidMount() {
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
@@ -84,6 +84,7 @@ class CaPage extends DCLogic {
     const flow = {
       iss: f(iss), ret: f(ret), retP: pct(ret, iss), notRet: f(notRet), notRetP: pct(notRet, iss),
       acc: f(acc), accP: pct(acc, ret), pend: f(pending), pendP: pct(pending, ret),
+      reg: D.reg ? f(county ? county.reg : D.reg) : '', regLabel: D.regLabel || '',
       retW: Math.max(2, ret / iss * 100).toFixed(1), notRetW: Math.max(2, notRet / iss * 100).toFixed(1), accW: Math.max(2, acc / Math.max(ret, 1) * 100).toFixed(1), pendW: Math.max(2, pending / Math.max(ret, 1) * 100).toFixed(1)
     };
 
@@ -109,7 +110,7 @@ class CaPage extends DCLogic {
     const ticks = []; for (let v = bot; v <= top + 1e-9; v += step) ticks.push({ y: y(v).toFixed(1), ty: (y(v) + 4).toFixed(1), l: short(v) });
     const lastIdx = days.indexOf(last[0]);
     const sel = S.sel && adds.find((x) => x.d === S.sel && x.has) ? S.sel : last[0];
-    const bars = [], xl = [];
+    const bars = [], xl = [], pts = [];
     adds.forEach((a, k) => {
       const x = padL + k * cw;
       if (S.narrow ? k % 3 === 0 : parse(a.d).getDay() === 1 || k === 0) xl.push({ x: (x + cw / 2).toFixed(1), l: md(a.d) });
@@ -119,7 +120,8 @@ class CaPage extends DCLogic {
         const v0 = p.v > 0 ? up : dn, v1 = v0 + p.v; if (p.v > 0) up = v1; else dn = v1;
         const ya = y(Math.max(v0, v1)), yb = y(Math.min(v0, v1));
         return { x: (x + cw * 0.14).toFixed(1), y: ya.toFixed(1), w: (cw * 0.72).toFixed(1), h: Math.max(0.5, yb - ya).toFixed(1), c: p.c };
-      }) : [{ x: (x + cw * 0.14).toFixed(1), y: y(a.run).toFixed(1), w: (cw * 0.72).toFixed(1), h: Math.max(0.5, y(0) - y(a.run)).toFixed(1), c: '#41557F' }];
+      }) : [];
+      if (view === 'run') pts.push({ x: (x + cw / 2).toFixed(1), y: y(a.run).toFixed(1), on: a.d === sel });
       bars.push({ rects, on: a.d === sel, hx: x.toFixed(1), hw: cw.toFixed(1), op: a.d === sel || !S.sel ? 1 : 0.55, pick: () => this.setState({ sel: a.d }), gap: a.gap > 1, gx: (x + cw / 2).toFixed(1), gy: (y(view === 'add' ? Math.max(0, a.tot) : a.run) - 6).toFixed(1) });
     });
     const sa = adds.find((x) => x.d === sel);
@@ -136,9 +138,11 @@ class CaPage extends DCLogic {
       view: [['add', 'Added per report'], ['run', 'Running total']].map(([v, l]) => ({ label: l, ...pill(view, v), pick: () => this.setState({ view: v }) })),
       ticks, bars, xl, zero: y(0).toFixed(1), W, H, padL, vb: '0 0 1000 ' + H, fs: S.narrow ? 30 : 12, ax: padL - 8, bottom: H - padB, ly: H - 10, plotH: H - padT - padB, narrow: S.narrow, todayX: lastIdx >= 0 && !S.narrow ? (padL + (lastIdx + 1) * cw).toFixed(1) : null, edX: (padL + (days.length - 1) * cw).toFixed(1), edW: cw.toFixed(1),
       futX: lastIdx >= 0 ? (padL + (lastIdx + 1) * cw).toFixed(1) : W, futW: lastIdx >= 0 ? (W - 8 - padL - (lastIdx + 1) * cw).toFixed(1) : 0,
-      legend: METH.filter((m) => have.some((a) => a.parts.find((p) => p.k === m.k).v)).map((m) => ({ c: m.c, l: m.label })),
+      legend: view === 'run' ? [] : METH.filter((m) => have.some((a) => a.parts.find((p) => p.k === m.k).v)).map((m) => ({ c: m.c, l: m.label })),
+      note: view === 'run' ? 'The line is the running total of returned ballots in each report.' : 'Each bar is the change from one report to the next, so it shows when counties logged ballots, which can trail when voters returned them.',
       firstNote: 'The first saved report (through ' + md(first) + ') already held ' + f(rows[0][I.ret]) + ' returned ballots, so daily changes start the day after.',
-      sel: selPanel, hasSel: !!selPanel
+      sel: selPanel, hasSel: !!selPanel, isLine: view === 'run', line: pts.map((p) => p.x + ',' + p.y).join(' '),
+      area: pts.length ? 'M' + pts[0].x + ',' + y(0).toFixed(1) + ' L' + pts.map((p) => p.x + ',' + p.y).join(' L') + ' L' + pts[pts.length - 1].x + ',' + y(0).toFixed(1) + ' Z' : '', dots: pts
     };
     const take = {
       byday: big ? 'Biggest report so far: ' + dmd(big.d).replace(/^(\w+) /, (m, d) => DOWL[DOW.indexOf(d)] + ', ') + ', with ' + sg(big.tot) + ' ballots' : '',
@@ -147,7 +151,7 @@ class CaPage extends DCLogic {
 
     // ----- Reporting rhythm (statewide page): each county's adds per report, shaded within the county
     const rd = D.total.slice(1).map((r) => r[0]).slice(-10);
-    const rhythmRows = D.counties.slice().sort((a, b) => b.rows[b.rows.length - 1][I.issued] - a.rows[a.rows.length - 1][I.issued]).map((c) => {
+    const rhythmRows = D.counties.slice().sort((a, b) => (b.reg || 0) - (a.reg || 0)).map((c) => {
       const cells = rd.map((d) => { const i = c.rows.findIndex((r) => r[0] === d); return i > 0 ? c.rows[i][I.ret] - c.rows[i - 1][I.ret] : null; });
       const mx = Math.max(1, ...cells.filter((v) => v != null));
       const totR = c.rows[c.rows.length - 1][I.ret];
@@ -182,24 +186,24 @@ class CaPage extends DCLogic {
     const shapes = M.shapes.map((s, k) => {
       const o = vals.find((x) => x.c.id === s.id);
       const t = hi > lo ? (tr(o.v) - lo) / (hi - lo) : 0.5;
-      return { d: s.d, fill: VF.ramp(t, meas.kind), stroke: s.id === hovId ? '#121417' : '#FFFFFF', sw: s.id === hovId ? 4 : 1.2, delay: (k * 8) + 'ms',
+      return { d: s.d, fill: VF.ramp(t, meas.kind), stroke: '#FFFFFF', sw: 1.2, delay: (k * 8) + 'ms',
         move: () => { if (S.hover !== s.id) this.setState({ hover: s.id }); }, go: () => { location.href = '/ca/' + s.id; } };
     });
-    // Draw the outlined county last so its border sits on top.
-    shapes.sort((a, b) => (a.sw > 2) - (b.sw > 2));
+    // The paths never reorder (reordering made Preact repaint every county); the outline is its own path on top.
+    const hlShape = hovId && M.shapes.find((s) => s.id === hovId);
     const hc = hovId && D.counties.find((c) => c.id === hovId);
     const sideOf = (c) => {
       const r = c ? c.rows[c.rows.length - 1] : T, p = c ? c.rows[c.rows.length - 2] : D.total[D.total.length - 2];
       const rank = c ? D.counties.slice().sort((a, b) => MEAS.rate.v(b) - MEAS.rate.v(a)).findIndex((x) => x.id === c.id) + 1 : null;
       return { kicker: c ? c.type + ' county' : 'Statewide', title: c ? c.name : 'California', sub: (pct(r[I.ret], r[I.issued])) + '% returned' + (rank ? ' · #' + rank + ' of 58' : ''),
-        rows: [['Ballots issued', f(r[I.issued])], ['Returned', f(r[I.ret])], ['Latest report', p ? sg(r[I.ret] - p[I.ret]) : '—'], ['Drop box', pct(r[ix('dropbox')], r[I.ret], 0) + '%'], ['Mail', pct(r[ix('mail')], r[I.ret], 0) + '%'], ['Accepted', pct(r[I.acc], r[I.ret]) + '%']].map(([k, v]) => ({ k, v })),
+        rows: [['Registered voters', f(c ? c.reg : D.reg)], ['Ballots issued', f(r[I.issued])], ['Returned', f(r[I.ret])], ['Latest report', p ? sg(r[I.ret] - p[I.ret]) : '—'], ['Drop box', pct(r[ix('dropbox')], r[I.ret], 0) + '%'], ['Mail', pct(r[ix('mail')], r[I.ret], 0) + '%'], ['Accepted', pct(r[I.acc], r[I.ret]) + '%']].map(([k, v]) => ({ k, v })),
         href: c ? '/ca/' + c.id : '', hasLink: !!c && c.id !== this.props.cid, hint: c ? '' : 'Hover or tap a county on the map to see its numbers here.' };
     };
     const map = {
       opts: Object.entries(MEAS).map(([k, m]) => ({ label: m.label, ...pill(S.mapM, k), pick: () => this.setState({ mapM: k }) })),
       shapes, vb: '0 0 ' + M.w + ' ' + M.h, ramp: VF.rampCss(meas.kind),
       lo: meas.fmt(meas.log ? Math.pow(10, lo) : lo), hi: meas.fmt(meas.log ? Math.pow(10, hi) : hi),
-      leave: () => this.setState({ hover: null }), side: sideOf(hc)
+      leave: () => this.setState({ hover: null }), side: sideOf(hc), hl: hlShape ? hlShape.d : '', hasHl: !!hlShape
     };
     const topRate = vals.slice().sort((a, b) => MEAS.rate.v(b.c) - MEAS.rate.v(a.c));
     const byType = {}; D.counties.forEach((c) => { const r = c.rows[c.rows.length - 1]; const o = byType[c.type] || (byType[c.type] = { i: 0, r: 0, n: 0 }); o.i += r[I.issued]; o.r += r[I.ret]; o.n++; });
@@ -209,10 +213,10 @@ class CaPage extends DCLogic {
     // ----- County table
     const sumRow = (c) => {
       const r = c.rows[c.rows.length - 1], n = c.rows.length, wa = c.rows.find((x) => x[0] === addDays(r[0], -7));
-      return { c, issued: r[I.issued], ret: r[I.ret], rate: r[I.ret] / r[I.issued], latest: n > 1 ? r[I.ret] - c.rows[n - 2][I.ret] : null, week: wa ? r[I.ret] - wa[I.ret] : null,
+      return { c, reg: c.reg, issued: r[I.issued], ret: r[I.ret], rate: r[I.ret] / r[I.issued], latest: n > 1 ? r[I.ret] - c.rows[n - 2][I.ret] : null, week: wa ? r[I.ret] - wa[I.ret] : null,
         drop: r[ix('dropbox')] / Math.max(1, r[I.ret]), mail: r[ix('mail')] / Math.max(1, r[I.ret]), pend: r[I.ret] - r[I.acc], accr: r[I.acc] / Math.max(1, r[I.ret]) };
     };
-    const COLS = [['name', 'County', 'left'], ['issued', 'Issued', 'right'], ['rate', 'Returned', 'right'], ['latest', 'Latest report', 'right'], ['week', 'Past week', 'right'], ['drop', 'Drop box', 'right'], ['mail', 'Mail', 'right'], ['accr', 'Accepted', 'right'], ['pend', 'Not yet accepted', 'right']];
+    const COLS = [['name', 'County', 'left'], ['reg', 'Registered', 'right'], ['issued', 'Ballots issued', 'right'], ['rate', 'Returned', 'right'], ['week', 'Past week', 'right'], ['drop', 'Drop box', 'right'], ['mail', 'Mail', 'right'], ['accr', 'Accepted', 'right'], ['pend', 'Not yet accepted', 'right']];
     let list = D.counties.map(sumRow);
     const q = S.q.trim().toLowerCase();
     if (q) list = list.filter((o) => o.c.name.toLowerCase().includes(q));
@@ -222,11 +226,11 @@ class CaPage extends DCLogic {
     const shown = S.all || q ? list : list.slice(0, 15);
     const table = {
       cols: COLS.map(([k, l, al]) => ({ label: l, align: al, arrow: sk === k ? (dir < 0 ? '↓' : '↑') : '', pick: () => this.setState({ sortKey: k, sortDir: sk === k ? -dir : k === 'name' ? 1 : -1 }) })),
-      rows: shown.map((o) => ({ href: '/ca/' + o.c.id, name: o.c.name, type: o.c.type, issued: f(o.issued), p: (o.rate * 100).toFixed(1), v: f(o.ret), w: (o.rate / maxRate * 100).toFixed(1),
-        latest: sg(o.latest), week: sg(o.week), drop: (o.drop * 100).toFixed(0) + '%', mail: (o.mail * 100).toFixed(0) + '%', accr: (o.accr * 100).toFixed(1) + '%', pend: f(o.pend), on: county && o.c.id === county.id ? '#FFF6D1' : 'transparent' })),
-      allLabel: S.all ? 'Show fewer' : 'Show all 58', toggle: () => this.setState({ all: !S.all }), onSearch: (ev) => this.setState({ q: ev.target.value }),
+      rows: shown.map((o) => ({ href: '/ca/' + o.c.id, name: o.c.name, type: o.c.type, reg: f(o.reg), issued: f(o.issued), p: (o.rate * 100).toFixed(1), v: f(o.ret), w: (o.rate / maxRate * 100).toFixed(1),
+        week: sg(o.week), drop: (o.drop * 100).toFixed(0) + '%', mail: (o.mail * 100).toFixed(0) + '%', accr: (o.accr * 100).toFixed(1) + '%', pend: f(o.pend), on: county && o.c.id === county.id ? '#FFF6D1' : 'transparent' })),
+      allLabel: S.all ? 'Show fewer' : 'Show all 58', toggle: () => this.setState({ all: !S.all }), regLabel: D.regLabel || 'report of registration', onSearch: (ev) => this.setState({ q: ev.target.value }),
       count: q ? list.length + ' of 58 counties' : 'Showing ' + shown.length + ' of 58',
-      quick: [['issued', 'Size'], ['rate', 'Return rate'], ['latest', 'Latest'], ['name', 'A–Z']].map(([k, l]) => ({ label: l, ...pill(sk, k), pick: () => this.setState({ sortKey: k, sortDir: k === 'name' ? 1 : -1 }) }))
+      quick: [['name', 'A–Z'], ['reg', 'Size'], ['rate', 'Return rate']].map(([k, l]) => ({ label: l, ...pill(sk, k), pick: () => this.setState({ sortKey: k, sortDir: k === 'name' ? 1 : -1 }) }))
     };
 
     // ----- Every report (county page and statewide)
@@ -242,16 +246,25 @@ class CaPage extends DCLogic {
     // ----- Header bits
     const items = D.counties.slice().sort((a, b) => a.name.localeCompare(b.name)).map((c) => ({ value: c.id, text: c.name, sub: c.type }));
     const best = (fn) => D.counties.reduce((a, b) => (fn(b) > fn(a) ? b : a), D.counties[0]);
-    const jumps = [['#1 in size', best((c) => c.rows[c.rows.length - 1][I.issued]), null], ['#1 return rate', best(MEAS.rate.v), (c) => MEAS.rate.v(c).toFixed(1) + '%'], ['#1 by drop box', best(MEAS.dropbox.v), (c) => MEAS.dropbox.v(c).toFixed(0) + '%']]
+    const jumps = [['#1 in size', best((c) => c.reg || 0), null], ['#1 return rate', best(MEAS.rate.v), (c) => MEAS.rate.v(c).toFixed(1) + '%']]
       .map(([k, c, v]) => ({ k, name: c.short, v: v ? v(c) : '', href: '/ca/' + c.id }));
-    const miniShapes = M.shapes.map((s, k) => ({ d: s.d, fill: county ? (s.id === county.id ? '#FFD23F' : '#D3D7DE') : VF.ramp((MEAS.rate.v(D.counties.find((c) => c.id === s.id)) - MEAS.rate.v(topRate[57].c)) / (MEAS.rate.v(topRate[0].c) - MEAS.rate.v(topRate[57].c)), 'g'),
-      stroke: '#E6E8EC', delay: (k * 10) + 'ms', go: () => { location.href = '/ca/' + s.id; } }));
-    const rank = county ? D.counties.slice().sort((a, b) => b.rows[b.rows.length - 1][I.issued] - a.rows[a.rows.length - 1][I.issued]).findIndex((c) => c.id === county.id) + 1 : 0;
+    // Top-right map: hover shows the county and its return rate; click opens it.
+    const mt = S.miniTip;
+    const miniShapes = M.shapes.map((s, k) => {
+      const c = D.counties.find((x) => x.id === s.id), hot = mt && mt.id === s.id;
+      return { d: s.d, fill: hot || (county && s.id === county.id) ? '#ffd23f' : county ? '#C9CDD4' : VF.ramp((MEAS.rate.v(c) - MEAS.rate.v(topRate[57].c)) / (MEAS.rate.v(topRate[0].c) - MEAS.rate.v(topRate[57].c)), 'g'),
+        stroke: hot ? '#121417' : '#FFFFFF', delay: (k * 10) + 'ms', go: () => { location.href = '/ca/' + s.id; },
+        move: (ev) => this.setState({ miniTip: { id: s.id, x: ev.clientX, y: ev.clientY } }) };
+    });
+    const tc = mt && D.counties.find((x) => x.id === mt.id);
+    const miniTip = tc ? { on: true, name: tc.name, sub: MEAS.rate.v(tc).toFixed(1) + '% returned · ' + f(tc.rows[tc.rows.length - 1][I.ret]) + ' ballots',
+      x: Math.min(mt.x + 16, window.innerWidth - 250) + 'px', y: (mt.y + 18) + 'px' } : { on: false };
+    const rank = county ? D.counties.slice().sort((a, b) => (b.reg || 0) - (a.reg || 0)).findIndex((c) => c.id === county.id) + 1 : 0;
 
     return {
       ...base, loading: false, ready: true, title: county ? county.name : 'California',
-      subline: county ? county.type + ' county · #' + rank + ' of 58 by ballots issued' : '',
-      find: { items, pick: (v) => { location.href = '/ca/' + v; } }, jumps, mini: { shapes: miniShapes, vb: map.vb, w: S.narrow ? 120 : county ? 170 : 210 },
+      subline: county ? county.type + ' county · #' + rank + ' of 58 by registered voters' : '', miniTip, miniLeave: () => this.setState({ miniTip: null }),
+      find: { items, pick: (v) => { location.href = '/ca/' + v; } }, jumps, mini: { shapes: miniShapes, vb: map.vb, w: S.narrow ? 130 : county ? 190 : 240 },
       hero, flow, chart, take, rhythm, map, table, reports, where,
       upd: 'Each report covers through 11:59 PM Pacific the day before it posts. Latest: through ' + dmd(D.asOf) + (posted(D, D.asOf) ? ', posted ' + posted(D, D.asOf) + ' PT' : '') + '.',
       notes: county ? '' : 'California mails every active registered voter a ballot. Issued counts each voter once. Returned counts ballots voters sent back, by how they returned them; accepted is the subset the county has checked and accepted. Ballots cast in person at vote centers and polling places are not in these counts.',
@@ -268,3 +281,17 @@ function posted(D, d) {
   return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dd.getDay()] + ' ' + (h % 12 || 12) + ':' + m[5] + ' ' + (h < 12 ? 'AM' : 'PM');
 }
 VF.page('ca', CaPage);
+
+/* /ca/about: California's About page; only the "data through" line is live. */
+class CaAbout extends DCLogic {
+  constructor(props) { super(props); this.state = { asOf: null }; }
+  componentDidMount() {
+    document.title = 'About California · VoteFlow';
+    fetch('/ca/data.json').then((r) => r.json()).then((d) => this.setState({ asOf: d.asOf })).catch(() => {});
+  }
+  renderVals() {
+    const a = this.state.asOf, d = a && new Date(+a.slice(0, 4), +a.slice(5, 7) - 1, +a.slice(8, 10));
+    return { band: {}, miniTip: { on: false }, through: d ? d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : '…' };
+  }
+}
+VF.page('ca-about', CaAbout);

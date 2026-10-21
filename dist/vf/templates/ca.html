@@ -168,6 +168,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
 @media (max-width: 900px){.vf-head{padding:10px 12px 0 !important}}
 @media (max-width: 700px){.vf-titlerow{padding-top:12px !important}}
 @media (min-width: 1000px){.vf-jumps{flex-wrap:nowrap !important;white-space:nowrap}}
+@media (max-width: 760px){.vf-tree .vf-conn{display:none !important}.vf-tree>div{display:flex !important;flex-direction:column;gap:12px;width:auto !important;margin-bottom:12px}.vf-tree .vf-treenote{padding:0 !important}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -226,9 +227,9 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
           <sc-for list="{{jumps}}" as="j" hint-placeholder-count="3"><a class="fx-pill" href="{{j.href}}" style="display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 13px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #D3D7DE; color: #4A5260; text-decoration: none"><span>{{j.k}}</span><b style="color: #121417">{{j.name}}</b><sc-if value="{{j.v}}"><span style="font-family: 'DM Mono', monospace; font-size: 12.5px">{{j.v}}</span></sc-if></a></sc-for>
         </nav>
       </div>
-      <svg class="vf-mini" viewBox="{{mini.vb}}" width="{{mini.w}}" role="img" aria-label="California counties" style="max-width: 100%">
+      <svg class="vf-mini" viewBox="{{mini.vb}}" width="{{mini.w}}" role="img" aria-label="California counties" style="max-width: 100%" onMouseLeave="{{miniLeave}}">
         <sc-for list="{{mini.shapes}}" as="p" hint-placeholder-count="0">
-          <path class="fx-sweep" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="3" onClick="{{p.go}}" style="animation-delay: {{p.delay}}; cursor: pointer"></path>
+          <path class="fx-sweep" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="2.5" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.go}}" style="animation-delay: {{p.delay}}; cursor: pointer"></path>
         </sc-for>
       </svg>
     </div>
@@ -280,33 +281,53 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
 
     <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where {{where}}'s mail ballots stand</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 22px">
-        <div class="fx-fcbox" style="border: 2px solid #41557F; background: #F6F8FD; border-radius: 16px; padding: 16px 18px">
+      <div class="vf-tree" style="margin-top: 22px">
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px">
+          <div style="grid-column: 2 / span 2">
+        <div class="fx-fcbox" style="border: 2px solid #41557F; background: #F6F8FD; border-radius: 16px; padding: 14px 18px">
           <b style="font-size: 14px; color: #41557F">Mail ballots issued</b>
-          <div style="font-family: 'Unbounded', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.iss}}</div>
-          <div style="height: 6px; border-radius: 999px; background: #41557F; margin-top: 10px"></div>
-          <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">Every voter sent a ballot, counted once</div>
+          <div style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.iss}}</div>
+          <div style="height: 6px; border-radius: 999px; background: #E6E8EC; margin-top: 10px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: 100%; background: #41557F"></div></div>
+          <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">Every registered voter is sent one<sc-if value="{{flow.reg}}"> · {{flow.reg}} registered voters</sc-if></div>
         </div>
-        <div class="fx-fcbox" style="border: 2px solid #7C4DDB; background: #F7F4FE; border-radius: 16px; padding: 16px 18px">
+          </div>
+        </div>
+        <svg class="vf-conn" width="100%" height="30" aria-hidden="true" style="display: block; overflow: visible"><line x1="50%" x2="50%" y1="0" y2="15" stroke="#7A8291" stroke-width="2"></line><line x1="25%" x2="75%" y1="15" y2="15" stroke="#7A8291" stroke-width="2"></line><line x1="25%" x2="25%" y1="15" y2="30" stroke="#7A8291" stroke-width="2"></line><line x1="75%" x2="75%" y1="15" y2="30" stroke="#7A8291" stroke-width="2"></line></svg>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px">
+          <div style="grid-column: 1 / span 2">
+        <div class="fx-fcbox" style="border: 2px solid #7C4DDB; background: #F7F4FE; border-radius: 16px; padding: 14px 18px">
           <b style="font-size: 14px; color: #5B2FB8">Returned</b>
-          <div style="font-family: 'Unbounded', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.ret}}</div>
+          <div style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.ret}}</div>
           <div style="height: 6px; border-radius: 999px; background: #E6E8EC; margin-top: 10px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.retW}}%; background: #7C4DDB"></div></div>
           <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">{{flow.retP}}% of ballots issued</div>
         </div>
-        <div class="fx-fcbox" style="border: 2px solid #00A37A; background: #F1FAF6; border-radius: 16px; padding: 16px 18px">
+          </div>
+          <div style="grid-column: 3 / span 2">
+        <div class="fx-fcbox" style="border: 2px solid #B7BCC6; background: #F8F9FB; border-radius: 16px; padding: 14px 18px">
+          <b style="font-size: 14px; color: #4A5260">Not yet returned</b>
+          <div style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.notRet}}</div>
+          <div style="height: 6px; border-radius: 999px; background: #E6E8EC; margin-top: 10px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.notRetW}}%; background: #8A93A3"></div></div>
+          <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">{{flow.notRetP}}% of ballots issued · voters can still return them or vote in person</div>
+        </div>
+          </div>
+        </div>
+        <div class="vf-half" style="width: 50%"><svg class="vf-conn" width="100%" height="30" aria-hidden="true" style="display: block; overflow: visible"><line x1="50%" x2="50%" y1="0" y2="15" stroke="#7A8291" stroke-width="2"></line><line x1="25%" x2="75%" y1="15" y2="15" stroke="#7A8291" stroke-width="2"></line><line x1="25%" x2="25%" y1="15" y2="30" stroke="#7A8291" stroke-width="2"></line><line x1="75%" x2="75%" y1="15" y2="30" stroke="#7A8291" stroke-width="2"></line></svg></div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px">
+        <div class="fx-fcbox" style="border: 2px solid #00A37A; background: #F1FAF6; border-radius: 16px; padding: 14px 18px">
           <b style="font-size: 14px; color: #00694F">Accepted</b>
-          <div style="font-family: 'Unbounded', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.acc}}</div>
+          <div style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.acc}}</div>
           <div style="height: 6px; border-radius: 999px; background: #E6E8EC; margin-top: 10px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.accW}}%; background: #00A37A"></div></div>
           <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">{{flow.accP}}% of returned ballots</div>
         </div>
-        <div class="fx-fcbox" style="border: 2px solid #F5A524; background: #FFFBEF; border-radius: 16px; padding: 16px 18px">
+        <div class="fx-fcbox" style="border: 2px solid #F5A524; background: #FFFBEF; border-radius: 16px; padding: 14px 18px">
           <b style="font-size: 14px; color: #C98A0B">Returned, not yet accepted</b>
-          <div style="font-family: 'Unbounded', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.pend}}</div>
+          <div style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px">{{flow.pend}}</div>
           <div style="height: 6px; border-radius: 999px; background: #E6E8EC; margin-top: 10px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.pendW}}%; background: #F5A524"></div></div>
           <div style="font-size: 13.5px; color: #4A5260; margin-top: 8px">{{flow.pendP}}% of returned · still being checked, or challenged</div>
         </div>
+          <p class="vf-treenote" style="grid-column: 3 / span 2; align-self: center; margin: 0; padding: 0 8px; font-size: 14px; color: #4A5260">These are mail ballots only. Ballots cast in person at vote centers or polling places aren't in the state's daily report.</p>
+        </div>
       </div>
-      <p style="margin: 16px 0 0; font-size: 14px; color: #4A5260">{{flow.notRet}} ballots ({{flow.notRetP}}% of those issued) haven't come back yet. Voters can still return them or vote in person instead.</p>
     </section>
 
     <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
@@ -340,6 +361,11 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
                 <sc-if value="{{b.on}}" hint-placeholder-val="{{ false }}"><rect x="{{b.hx}}" y="16" width="{{b.hw}}" height="{{chart.plotH}}" fill="none" stroke="#121417" stroke-width="1.5" stroke-dasharray="4 4" rx="4"></rect></sc-if>
               </g>
             </sc-for>
+            <sc-if value="{{chart.isLine}}" hint-placeholder-val="{{ false }}">
+              <path d="{{chart.area}}" fill="#41557F" fill-opacity=".12" stroke="none" style="pointer-events: none"></path>
+              <polyline points="{{chart.line}}" fill="none" stroke="#41557F" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" style="pointer-events: none"></polyline>
+              <sc-for list="{{chart.dots}}" as="p" hint-placeholder-count="0"><circle cx="{{p.x}}" cy="{{p.y}}" r="5" fill="#FFFFFF" stroke="#41557F" stroke-width="3" style="pointer-events: none"></circle></sc-for>
+            </sc-if>
             <sc-if value="{{chart.todayX}}" hint-placeholder-val="{{ false }}">
               <line x1="{{chart.todayX}}" x2="{{chart.todayX}}" y1="10" y2="{{chart.bottom}}" stroke="#F0592A" stroke-width="1.5" stroke-dasharray="3 4"></line>
               <text x="{{chart.todayX}}" y="10" dx="6" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .06em" fill="#F0592A">LATEST REPORT</text>
@@ -353,7 +379,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
           <div style="display: flex; gap: 8px 18px; flex-wrap: wrap; margin-top: 10px; font-size: 13px; font-weight: 600; color: #2A2F38">
             <sc-for list="{{chart.legend}}" as="l" hint-placeholder-count="3"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; border-radius: 3px; background: {{l.c}}"></span>{{l.l}}</span></sc-for>
           </div>
-          <p style="margin: 12px 0 0; font-size: 13.5px; color: #4A5260">Each bar is the change from one report to the next, so it shows when counties logged ballots, which can trail when voters returned them. {{chart.firstNote}}</p>
+          <p style="margin: 12px 0 0; font-size: 13.5px; color: #4A5260">{{chart.note}} {{chart.firstNote}}</p>
         </div>
         <sc-if value="{{chart.hasSel}}" hint-placeholder-val="{{ false }}">
         <aside style="flex: 1 1 250px; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 2px">
@@ -438,6 +464,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
             <sc-for list="{{map.shapes}}" as="p" hint-placeholder-count="0">
               <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.go}}" style="animation-delay: {{p.delay}}"></path>
             </sc-for>
+            <sc-if value="{{map.hasHl}}" hint-placeholder-val="{{ false }}"><path d="{{map.hl}}" fill="none" stroke="#121417" stroke-width="4" stroke-linejoin="round" style="pointer-events: none"></path></sc-if>
           </svg>
           <div style="width: 100%; max-width: 560px; margin-top: 10px">
             <div style="height: 10px; border-radius: 999px; background: {{map.ramp}}; box-shadow: inset 0 0 0 1px rgba(18,20,23,.1)"></div>
@@ -475,20 +502,20 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
       </div>
       <div style="overflow-x: auto">
         <div style="min-width: 1080px">
-          <div style="display: grid; grid-template-columns: 1.5fr 1fr 1.25fr 1fr 1fr 0.8fr 0.7fr 0.85fr 1fr; gap: 12px; padding: 10px 36px; border-top: 2px solid #121417; border-bottom: 2px solid #121417; background: #F5F6F8">
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.25fr 1fr 0.8fr 0.7fr 0.85fr 1fr; gap: 12px; padding: 10px 36px; border-top: 2px solid #121417; border-bottom: 2px solid #121417; background: #F5F6F8">
             <sc-for list="{{table.cols}}" as="c" hint-placeholder-count="9">
               <button class="fx-th" onClick="{{c.pick}}" style="min-height: 40px; padding: 0; border: 0; background: transparent; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; color: #121417; cursor: pointer; text-align: {{c.align}}">{{c.label}} {{c.arrow}}</button>
             </sc-for>
           </div>
           <sc-for list="{{table.rows}}" as="r" hint-placeholder-count="15">
-            <a class="fx-row" href="{{r.href}}" style="display: grid; grid-template-columns: 1.5fr 1fr 1.25fr 1fr 1fr 0.8fr 0.7fr 0.85fr 1fr; gap: 12px; align-items: center; padding: 10px 36px; border-bottom: 1.5px solid #ECEEF2; text-decoration: none; color: #121417; background: {{r.on}}">
+            <a class="fx-row" href="{{r.href}}" style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.25fr 1fr 0.8fr 0.7fr 0.85fr 1fr; gap: 12px; align-items: center; padding: 10px 36px; border-bottom: 1.5px solid #ECEEF2; text-decoration: none; color: #121417; background: {{r.on}}">
               <span style="display: flex; flex-direction: column; line-height: 1.2"><b style="font-size: 16px">{{r.name}}</b><span style="font-size: 12px; color: #4A5260">{{r.type}}</span></span>
+              <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.reg}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.issued}}</span>
               <span style="display: flex; flex-direction: column; gap: 5px">
                 <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.p}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.v}}</span></span>
                 <span style="height: 4px; background: #ECEEF2; border-radius: 999px; overflow: hidden; display: flex; justify-content: flex-end"><span class="fx-meter" style="display: block; height: 100%; width: {{r.w}}%; background: #7C4DDB; border-radius: 999px; transform-origin: right"></span></span>
               </span>
-              <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.latest}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.week}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.drop}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.mail}}</span>
@@ -500,7 +527,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
       </div>
       <div style="padding: 18px 36px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
         <button class="fx-pill" onClick="{{table.toggle}}" style="min-height: 46px; padding: 0 20px; border: 2px solid #121417; border-radius: 999px; background: #121417; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{table.allLabel}}</button>
-        <span style="font-size: 14px; color: #4A5260">{{table.count}} · Returned is a share of mail ballots issued. Drop box and mail are shares of ballots returned. Latest report and past week are changes in returned ballots.</span>
+        <span style="font-size: 14px; color: #4A5260">{{table.count}} · Returned is a share of mail ballots issued. Drop box and mail are shares of ballots returned. Past week is the change in returned ballots. Registered voters come from the state's {{table.regLabel}}.</span>
         <sc-if value="{{notes}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; color: #4A5260; max-width: 900px">{{notes}}</span></sc-if>
       </div>
     </section>
@@ -508,8 +535,10 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
   </main>
   </sc-if>
 
+  <sc-if value="{{miniTip.on}}" hint-placeholder-val="{{ false }}"><div class="fx-tip" style="position: fixed; left: {{miniTip.x}}; top: {{miniTip.y}}; z-index: 95; pointer-events: none; background: #FFFFFF; border: 2px solid #121417; border-radius: 12px; padding: 8px 12px; box-shadow: 0 14px 28px -18px rgba(20,32,43,.6)"><b style="display: block; font-size: 15px">{{miniTip.name}}</b><span style="font-size: 13px; color: #4A5260">{{miniTip.sub}}</span></div></sc-if>
+
   <footer style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 56px; display: flex; justify-content: space-between; align-items: center; gap: 20px 64px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
     <span style="flex: 0 1 460px; min-width: 0; text-wrap: balance; line-height: 1.5">Have a question, see something that looks wrong, or want a feature that would help you? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="font-weight: 700; color: #121417">Send me an email</a>.</span>
-    <span style="flex: 0 1 auto; display: inline-flex; align-items: center; gap: 4px 10px; flex-wrap: wrap"><a href="/about" style="font-weight: 700; color: #121417">About this site</a><span aria-hidden="true" style="color: #B7BCC6">|</span><a href="#settings" style="font-weight: 700; color: #121417">Settings</a><span aria-hidden="true" style="color: #B7BCC6">|</span><span>Made by Ravi Udeshi</span><span style="display: inline-flex; gap: 2px"><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow" aria-label="Email" title="Email" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M4 7l8 6 8-6"></path></svg></a><a href="https://www.linkedin.com/in/raviudeshi" aria-label="LinkedIn" title="LinkedIn" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"></path></svg></a><a href="https://x.com/rkudeshi" aria-label="X" title="X" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"></path></svg></a><a href="https://www.threads.net/@rkudeshi" aria-label="Threads" title="Threads" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16.5 11.2c-.3-2.4-1.9-3.7-4.3-3.7-2.6 0-4.2 1.8-4.2 4.5 0 2.8 1.7 4.5 4.2 4.5 2.2 0 3.6-1.2 3.6-3 0-2.1-2.2-2.9-4.6-2.6-1.6.2-2.6 1-2.6 2.1"></path><path d="M19.5 7.5C18 4.6 15.4 3 12.1 3 6.8 3 3.5 6.6 3.5 12s3.3 9 8.6 9c3.7 0 6.6-1.8 7.6-4.8"></path></svg></a><a href="https://bsky.app/profile/rkudeshi.bsky.social" aria-label="Bluesky" title="Bluesky" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.3 4.4C8.6 6.1 11 9.6 12 11.6c1-2 3.4-5.5 5.7-7.2 1.6-1.2 4.3-2.2 4.3.9 0 .6-.4 5.2-.6 5.9-.7 2.6-3.3 3.2-5.6 2.8 4 .7 5 2.9 2.8 5.2-4.2 4.3-6-1.1-6.5-2.5l-.1-.3-.1.3c-.5 1.4-2.3 6.8-6.5 2.5-2.2-2.3-1.2-4.5 2.8-5.2-2.3.4-4.9-.2-5.6-2.8C2.4 10.5 2 5.9 2 5.3c0-3.1 2.7-2.1 4.3-.9z"></path></svg></a></span></span>
+    <span style="flex: 0 1 auto; display: inline-flex; align-items: center; gap: 4px 10px; flex-wrap: wrap"><a href="/ca/about" style="font-weight: 700; color: #121417">About this site</a><span aria-hidden="true" style="color: #B7BCC6">|</span><a href="#settings" style="font-weight: 700; color: #121417">Settings</a><span aria-hidden="true" style="color: #B7BCC6">|</span><span>Made by Ravi Udeshi</span><span style="display: inline-flex; gap: 2px"><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow" aria-label="Email" title="Email" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M4 7l8 6 8-6"></path></svg></a><a href="https://www.linkedin.com/in/raviudeshi" aria-label="LinkedIn" title="LinkedIn" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"></path></svg></a><a href="https://x.com/rkudeshi" aria-label="X" title="X" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"></path></svg></a><a href="https://www.threads.net/@rkudeshi" aria-label="Threads" title="Threads" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16.5 11.2c-.3-2.4-1.9-3.7-4.3-3.7-2.6 0-4.2 1.8-4.2 4.5 0 2.8 1.7 4.5 4.2 4.5 2.2 0 3.6-1.2 3.6-3 0-2.1-2.2-2.9-4.6-2.6-1.6.2-2.6 1-2.6 2.1"></path><path d="M19.5 7.5C18 4.6 15.4 3 12.1 3 6.8 3 3.5 6.6 3.5 12s3.3 9 8.6 9c3.7 0 6.6-1.8 7.6-4.8"></path></svg></a><a href="https://bsky.app/profile/rkudeshi.bsky.social" aria-label="Bluesky" title="Bluesky" style="display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #4A5260"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.3 4.4C8.6 6.1 11 9.6 12 11.6c1-2 3.4-5.5 5.7-7.2 1.6-1.2 4.3-2.2 4.3.9 0 .6-.4 5.2-.6 5.9-.7 2.6-3.3 3.2-5.6 2.8 4 .7 5 2.9 2.8 5.2-4.2 4.3-6-1.1-6.5-2.5l-.1-.3-.1.3c-.5 1.4-2.3 6.8-6.5 2.5-2.2-2.3-1.2-4.5 2.8-5.2-2.3.4-4.9-.2-5.6-2.8C2.4 10.5 2 5.9 2 5.3c0-3.1 2.7-2.1 4.3-.9z"></path></svg></a></span></span>
   </footer>
 </div>

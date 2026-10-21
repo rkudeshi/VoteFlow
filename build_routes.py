@@ -29,7 +29,7 @@ for base,routes in ((root,paths),(root/'old'/'v2',old)):
 ca=root/'ca'/'index.html'
 if ca.exists():
  shell=ca.read_bytes();ids=[c['id'] for c in json.loads((root/'ca'/'data.json').read_text())['counties']]
- for route in ['CA']+[f'{s}/{c}' for s in ('ca','CA') for c in ids]:
+ for route in ['CA']+[f'{s}/{c}' for s in ('ca','CA') for c in ids+['about']]:
   directory=root/route;directory.mkdir(parents=True,exist_ok=True)
   (directory/'index.html').write_bytes(shell)
 # Unknown paths (old /2026/... links included) get the current site, which shows a not-found page.

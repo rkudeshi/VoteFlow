@@ -10,6 +10,8 @@ times so far: about 9 to 10:35 AM Pacific).
   PDF there differs from its recorded hash, see HANDOFF-NOTES.txt). Same-date revisions are kept
   as `-retrieved-<UTC stamp>` copies; the newest one feeds the site.
 - `observations.jsonl` logs every check (URLs, HTTP headers, Last-Modified, hashes, result).
+- `registration/` holds the state's county Report of Registration (60-day now; refresh_ca.py
+  picks up the 15-day report once it posts, and ca_data.py prefers it). Used for county size.
 - `unprocessed/` will hold the Unprocessed Ballots reports once the state starts posting them
   (after Election Day). They are archived but not parsed yet.
 

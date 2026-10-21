@@ -218,6 +218,19 @@ def main():
                     meta = REPORTS / f'CA-ballot-return-statistics-{asof}-retrieved-{stamp}-metadata.json'
                 files = [dict(r, filename=r.get('saved'), timestamps_pacific={'last-modified': r.get('lastModifiedPacific')}) for r in obs['files'] if r.get('asOf') == asof and r.get('validation') == 'ok']
                 meta.write_text(json.dumps({'source_page': LANDING, 'report_as_of': asof, 'report_dates_match': obs['pairMatches'], 'files': files}, indent=2))
+        # County registration: pick up the 15-day Report of Registration once the state posts it.
+        ror = ca_data.REGISTRATION / '15day-gen-2026-county.xlsx'
+        if not ror.exists():
+            code, hdr, data, final = get('https://elections.cdn.sos.ca.gov/ror/15day-gen-2026/county.xlsx', tries=1)
+            if code == 200 and data.startswith(b'PK'):
+                if not dry:
+                    ror.write_bytes(data)
+                    try:
+                        ca_data.registration()
+                    except Exception as e:  # keep the file for review, fall back to the 60-day report
+                        ror.rename(ror.with_suffix('.xlsx.invalid'))
+                        obs['registrationError'] = str(e)
+                new.append(('registration', '15-day', False))
         # Unprocessed ballots report: archive whatever the state links, unparsed for now.
         for url in found['unprocessed']:
             if not re.search(r'\.(pdf|xlsx?|csv)(\?|$)', url, re.I):

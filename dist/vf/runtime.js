@@ -374,6 +374,48 @@
     if (m === 11 && d === 11) return 'Veterans Day';
     return '';
   };
+  /* State switcher: hovering (or tapping, on touch screens) the yellow state box in the brand bar
+     opens a small menu to jump between states. It lives on <body>, outside the Preact tree, so page
+     re-renders never clobber it. */
+  {
+    const STATES = [['va', 'Virginia', '/va'], ['ca', 'California', '/ca']];
+    const css = '.vf-sw{position:fixed;z-index:120;min-width:210px;background:#FFFFFF;border:2px solid #121417;border-radius:16px;padding:6px;box-shadow:0 22px 40px -24px rgba(20,32,43,.6);font:600 15px "Hanken Grotesk",sans-serif;display:none}'
+      + '.vf-sw.on{display:block;animation:fxTipIn .15s ease both}.vf-sw a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;color:#121417;text-decoration:none}'
+      + '.vf-sw a:hover,.vf-sw a:focus-visible{background:#F1F2F5}.vf-sw a[aria-current=true]{font-weight:800}.vf-sw a[aria-current=true]::after{content:"✓";margin-left:auto}'
+      + '.vf-sw i{width:28px;height:28px;border-radius:7px;background:#ffd23f;color:#12141a;display:grid;place-items:center;font:800 11px Unbounded,sans-serif;font-style:normal}'
+      + '.vf-sw small{display:block;padding:4px 10px 2px;font:500 11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:#4A5260}.vf-sw hr{border:0;border-top:1px solid #ECEEF2;margin:4px 6px}'
+      + '.vf-logomark{cursor:pointer}';
+    const st = document.createElement('style'); st.textContent = tc(css); document.head.appendChild(st);
+    let menu = null, hideT = 0;
+    const cur = () => { const p = location.pathname.toLowerCase(); return p === '/' ? '' : p.startsWith('/ca') ? 'ca' : 'va'; };
+    const build = () => {
+      menu = document.createElement('nav'); menu.className = 'vf-sw'; menu.setAttribute('aria-label', 'Pick a state');
+      menu.innerHTML = '<small>Pick a state</small>' + STATES.map(([k, n, h]) => '<a href="' + h + '" aria-current="' + (cur() === k) + '"><i>' + k.toUpperCase() + '</i>' + n + '</a>').join('')
+        + '<hr><a href="/" aria-current="' + (cur() === '') + '"><i>✓</i>All states</a>';
+      menu.querySelector('a[href="/"] i').innerHTML = '<svg width="14" height="14" viewBox="0 0 32 32"><path d="M8 10l8 13 8-13" fill="none" stroke="#12141a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      menu.addEventListener('mouseenter', () => clearTimeout(hideT));
+      menu.addEventListener('mouseleave', () => hide());
+      document.body.appendChild(menu);
+    };
+    const show = (mark) => {
+      if (!menu) build();
+      clearTimeout(hideT);
+      const r = mark.getBoundingClientRect();
+      menu.style.left = Math.max(8, r.left) + 'px'; menu.style.top = (r.bottom + 8) + 'px';
+      menu.classList.add('on');
+    };
+    const hide = (now) => { clearTimeout(hideT); hideT = setTimeout(() => menu && menu.classList.remove('on'), now ? 0 : 220); };
+    const markOf = (t) => t && t.closest && t.closest('.vf-logomark');
+    document.addEventListener('mouseover', (ev) => { const m = markOf(ev.target); if (m && matchMedia('(hover: hover)').matches) show(m); });
+    document.addEventListener('mouseout', (ev) => { if (markOf(ev.target) && !markOf(ev.relatedTarget)) hide(); });
+    document.addEventListener('click', (ev) => {
+      const m = markOf(ev.target);
+      if (m) { ev.preventDefault(); ev.stopPropagation(); if (menu && menu.classList.contains('on')) hide(true); else show(m); return; }
+      if (menu && !menu.contains(ev.target)) hide(true);
+    }, true);
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && menu) hide(true); });
+    window.addEventListener('scroll', () => { if (menu && menu.classList.contains('on')) hide(true); }, { passive: true });
+  }
   window.VF = {
     /* Pace chips read "▲ 12% vs. …": ratio of this election to another at the same point. */
     vsText: (r) => r >= 1.95 && r <= 2.05 ? '▲ 2×' : r >= 1.5 ? '▲ ' + r.toFixed(1) + '×' : r >= 1.005 ? '▲ ' + Math.round((r - 1) * 100) + '%' : r <= 0.995 ? '▼ ' + Math.round((1 - r) * 100) + '%' : '= even',

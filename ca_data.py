@@ -195,6 +195,33 @@ def published_at(day):
     return None
 
 
+REGISTRATION = ROOT / 'sources' / 'ca' / 'registration'
+# The state's Report of Registration: 60 days out, then 15 days out (preferred once it exists).
+ROR = [('15day-gen-2026', '15-day report of registration (as of Oct 19, 2026)'), ('60day-gen-2026', '60-day report of registration (as of Sep 4, 2026)')]
+
+
+def registration():
+    """→ ({county name: registered voters}, statewide total, label) from the newest saved county report."""
+    for key, label in ROR:
+        p = REGISTRATION / f'{key}-county.xlsx'
+        if not p.exists():
+            continue
+        rows, _ = read_sheet(p)
+        hi = next(i for i, r in enumerate(rows) if r and fold(r[0]) == 'county')
+        col = next(i for i, h in enumerate(rows[hi]) if fold(h) == 'total registered')
+        reg, total = {}, None
+        for r in rows[hi + 1:]:
+            name = str(r[0] or '').strip()
+            if name in COUNTIES:
+                reg[name] = int(r[col])
+            elif name.lower() == 'state total':
+                total = int(r[col])
+        if sorted(reg) != sorted(COUNTIES) or total != sum(reg.values()):
+            raise ValueError(f'{p.name}: registration rows incomplete or not adding up')
+        return reg, total, label
+    return {}, None, None
+
+
 def build():
     reports = saved_reports()
     if not reports:
@@ -206,9 +233,10 @@ def build():
             raise ValueError(f'{p.name}: workbook says {r["asOf"]}, file name says {day}')
         parsed.append(r)
     cols = NUMS
+    REG, reg_total, reg_label = registration()
     counties = []
     for name in COUNTIES:
-        counties.append({'id': slug(name), 'name': name + ' County' if name != 'San Francisco' else 'San Francisco',
+        counties.append({'reg': REG.get(name), 'id': slug(name), 'name': name + ' County' if name != 'San Francisco' else 'San Francisco',
                          'short': name, 'type': parsed[-1]['counties'][name]['type'],
                          'rows': [[r['asOf']] + [r['counties'][name][f] for f in cols] for r in parsed]})
     flags = [{'d': r['asOf'], 'note': n} for r in parsed for n in r['notes']]
@@ -222,7 +250,7 @@ def build():
         'cols': cols, 'methods': METHODS,
         'reports': [{'d': d, 'published': published_at(d)} for d in reports],
         'total': [[r['asOf']] + [r['total'][f] for f in cols] for r in parsed],
-        'counties': counties, 'corrections': flags,
+        'counties': counties, 'corrections': flags, 'reg': reg_total, 'regLabel': reg_label,
         'built': dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
     }
     return data
