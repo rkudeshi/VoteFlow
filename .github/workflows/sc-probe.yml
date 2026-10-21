@@ -1,0 +1,16 @@
+name: Santa Clara probe
+on:
+  push:
+    branches: [claude/project-thread-w1649h]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sudo apt-get install -y -qq poppler-utils >/dev/null 2>&1 || true
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36"
+          B=https://files.santaclaracounty.gov/exjcpb1296/2026-10/e148-vbm-web-stats-nov-03-2026-general-election
+          for u in "$B-10.06.26.pdf?VersionId=PkmZBiaKC9lDEVjK13pndE60f1JjsKYt" "$B-10.06.26.pdf" "$B-10.20.26.pdf" "$B-10.21.26.pdf" https://vote.santaclaracounty.gov/ https://www.santaclaracounty.gov/; do
+            code=$(curl -sS -A "$UA" -D hdr.txt -o out.bin -w "%{http_code} %{content_type} %{size_download}" "$u"); echo "== $code $u"; grep -iE "last-modified|etag|x-amz-version" hdr.txt; head -c 5 out.bin; echo
+            if head -c 4 out.bin | grep -q '%PDF'; then pdftotext -layout out.bin - | head -120; fi
+          done
