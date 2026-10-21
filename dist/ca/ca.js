@@ -85,6 +85,9 @@ class CaPage extends DCLogic {
       iss: f(iss), ret: f(ret), retP: pct(ret, iss), notRet: f(notRet), notRetP: pct(notRet, iss),
       acc: f(acc), accP: pct(acc, ret), pend: f(pending), pendP: pct(pending, ret),
       reg: D.reg ? f(county ? county.reg : D.reg) : '', regLabel: D.regLabel || '',
+      // The state counts every voter ever sent a ballot, including ones who later moved or went inactive.
+      issNote: (() => { const r = county ? county.reg : D.reg; if (!r) return 'Every registered voter is sent one';
+        return 'Every registered voter is sent one. ' + f(r) + ' registered as of Sep 4' + (iss > r ? '; ballots issued also count voters who moved or went inactive after one was sent' : ''); })(),
       retW: Math.max(2, ret / iss * 100).toFixed(1), notRetW: Math.max(2, notRet / iss * 100).toFixed(1), accW: Math.max(2, acc / Math.max(ret, 1) * 100).toFixed(1), pendW: Math.max(2, pending / Math.max(ret, 1) * 100).toFixed(1)
     };
 
