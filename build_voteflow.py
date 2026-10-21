@@ -589,6 +589,13 @@ def main():
         ranks[eid] = {lid: {'rankP': n + 1} for n, (lid, _) in enumerate(by_p)}
         for n, (lid, _) in enumerate(by_r):
             ranks[eid][lid]['rankR'] = n + 1
+        # Mail rank only where the election splits mail out of the total.
+        last_row = (lambda lid, h: next((x for x in reversed(DAL26.get(lid, h['history'])) if x['date'] <= shared), {})) if eid == LIVE else (lambda lid, h: h['history'][-1])
+        rows_m = [(lid, h) for lid, h in rows_e if last_row(lid, h).get('mail') is not None]
+        if len(rows_m) == len(rows_e):
+            by_m = sorted(rows_m, key=lambda x: -last_row(*x)['mail'] / x[1]['registered'])
+            for n, (lid, _) in enumerate(by_m):
+                ranks[eid][lid]['rankM'] = n + 1
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
         lid = l['id']

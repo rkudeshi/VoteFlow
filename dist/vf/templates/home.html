@@ -167,7 +167,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
 @media (max-width: 1099px){body.vf-scrolled .vf-head>nav{left:0;right:0;top:calc(var(--vf-bandnow,42px) - 1px);border-radius:0 !important;background:#12141a !important;padding:2px 12px 6px !important;max-width:none !important}body.vf-scrolled .vf-bandtxt{opacity:1}}
 @media (max-width: 900px){.vf-head{padding:10px 12px 0 !important}}
 @media (max-width: 700px){.vf-titlerow{padding-top:12px !important}}
-.vf-jump:hover{border-color:#3A3F48 !important;color:#121417 !important}.vf-jump:focus-visible{outline:2px solid #7C4DDB;outline-offset:2px}
+.vf-jump:hover{background:#C9CDD5 !important;color:#121417 !important}.vf-jump:focus-visible{outline:2px solid #7C4DDB;outline-offset:2px}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -217,9 +217,9 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
           <div style="flex: 2 1 260px; min-width: 0"><vf-combo items="{{find.items}}" value="" onpick="{{find.pick}}" placeholder="Find your county or city…" label="Find your county or city" search="true" icon="search" big="true"></vf-combo></div>
           <div style="flex: 1 1 210px; min-width: 0"><vf-combo items="{{hdr.elections}}" value="{{hdr.eid}}" onpick="{{hdr.pickE}}" label="Election" big="true"></vf-combo></div>
         </div>
-        <nav class="vf-jumps" aria-label="Jump to a locality" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; color: #4A5260">
+        <nav class="vf-jumps" aria-label="Jump to a locality" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; font-size: 14px; color: #4A5260">
           <span style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em">Jump to</span>
-          <sc-for list="{{jumps}}" as="j" hint-placeholder-count="4"><a class="fx-pill vf-jump" href="{{j.href}}" style="display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 13px; border: 1.5px solid #D5D8DE; border-radius: 999px; background: #FFFFFF; color: #4A5260; text-decoration: none; white-space: nowrap"><span>{{j.k}}</span><b style="color: #121417">{{j.name}}</b><sc-if value="{{j.v}}" hint-placeholder-val="{{ true }}"><span>{{j.v}}</span></sc-if></a></sc-for>
+          <sc-for list="{{jumps}}" as="j" hint-placeholder-count="4"><a class="fx-pill vf-jump" href="{{j.href}}" style="display: inline-flex; align-items: baseline; gap: 5px; padding: 4px 10px; border: 1px solid transparent; border-radius: 999px; background: #D9DCE2; color: #4A5260; font-size: 13px; text-decoration: none; white-space: nowrap"><span>{{j.k}}</span><b style="color: #121417">{{j.name}}</b><sc-if value="{{j.v}}" hint-placeholder-val="{{ true }}"><span>{{j.v}}</span></sc-if></a></sc-for>
         </nav>
       </div>
       <svg class="vf-mini" viewBox="0 0 1000 440" width="300" role="img" aria-label="Virginia, localities shaded by turnout so far" style="max-width: 100%" onMouseLeave="{{miniLeave}}">

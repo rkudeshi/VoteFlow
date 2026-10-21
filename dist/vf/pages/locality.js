@@ -69,7 +69,7 @@ class Locality extends DCLogic {
     const cmpId = eid !== '2025' ? '2025' : '2024';
     const COLORS = { va: '#41557F' }; EL.forEach((x) => { COLORS[x.id] = VF.elColor(x.id, eid, cmpId); });
     if (this.recorded !== D.id) { this.recorded = D.id; VF.addRecent(D.id); }
-    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: cur.rankP || D.rankP, rankR: cur.rankR || D.rankR };
+    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: cur.rankP || D.rankP, rankR: cur.rankR || D.rankR, rankM: cur.rankM || '' };
     const eDate = parse(cur.date);
     // Timelines end at the legal mail deadline; a past election also shows later days that added ballots.
     let curLast = -1; if (cur.series) { const S = cur.series; for (let i = 1; i < 53; i++) if ((S.e[i] || 0) > (S.e[i - 1] || 0) || (S.m[i] || 0) > (S.m[i - 1] || 0)) curLast = i; }
