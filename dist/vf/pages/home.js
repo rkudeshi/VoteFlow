@@ -304,7 +304,7 @@ class Home extends DCLogic {
     const best = (fn) => D.locs.reduce((a, b) => (fn(b) > fn(a) ? b : a), D.locs[0]);
     const pctOf = (o, k) => o[k] / o.r * 100;
     const jumps = [['#1 in size', best((o) => o.r), null], ['#1 in person', best((o) => pctOf(o, 'e')), (o) => pctOf(o, 'e')], ['#1 by mail', best((o) => pctOf(o, 'm')), (o) => pctOf(o, 'm')]]
-      .map(([k, o, v], i) => ({ k, name: o.n, v: v ? ' (' + v(o).toFixed(1) + '%)' : '', href: linkOf(o.id), sep: i > 0 }));
+      .map(([k, o, v], i) => ({ k, name: o.n, v: v ? v(o).toFixed(1) + '%' : '', href: linkOf(o.id), sep: i > 0 }));
     const find = { items: VF.recentItems(allLocs).concat(allLocs), pick: (v) => { location.href = linkOf(VF.unRecent(v)); } };
     return {
       eid: EID, label: D.label, box, find, bd, take, jumps,
