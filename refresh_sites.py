@@ -3,6 +3,8 @@ Loudoun's EV_<site> fields are DAILY counts, per the dashboard's 'Early Voters
 Today' labels. EV_Total is cumulative and must not be summed with daily fields.
 A missing day is not a zero. Repeated checks replace the same dated snapshot.
 DAL remains the countywide aggregate source.
+The feed can move Date_Updated to a new day before its EV fields change; a
+snapshot whose sites and EV_Total repeat an earlier day's is stale and skipped.
 """
 import argparse,json,urllib.request,hashlib
 from pathlib import Path
@@ -24,6 +26,8 @@ def main():
   assert all(isinstance(v,(int,float)) and v>=0 and v==int(v) for v in sites.values())
   assert sum(sites.values())<=a['EV_Total']
   return day,a,sites
+ def stale(snapshot_day,snapshot,site_values):
+  return any(d<snapshot_day and r['sites']==site_values and r['countyCumulative']==snapshot['EV_Total'] for d,r in days.items())
  day,a,sites=observation(raw)
  basepath=ROOT/'dist/region.json';base=json.loads(basepath.read_text())
  o=base.setdefault('siteReports',{}).setdefault('loudoun-county',{}).setdefault('2026',{'source':SOURCE,'feed':URL,'siteKeys':list(FIELDS),'history':[],'coverageStart':day,'coverage':'partial'})
@@ -35,9 +39,15 @@ def main():
  dest=ROOT/'sources/site-snapshots/loudoun';dest.mkdir(parents=True,exist_ok=True)
  for path in sorted(dest.glob('*.json')):
   archived.append(path.read_text())
- for text in archived+[raw]:
+ # Same-day snapshots can share Date_Updated while EV_Total catches up, so the
+ # larger cumulative wins regardless of file-name order.
+ key=lambda t:(lambda x:(x['Date_Updated'],x['EV_Total']))(json.loads(t)['features'][0]['attributes'])
+ for text in sorted(archived+[raw],key=key):
   snapshot_day,snapshot,site_values=observation(text)
+  if stale(snapshot_day,snapshot,site_values):continue
   days[snapshot_day]={'date':snapshot_day,'sites':site_values,'early':sum(site_values.values()),'countyCumulative':snapshot['EV_Total'],'reportedAt':dt(snapshot['Date_Updated']).isoformat()}
+ if days.get(day,{}).get('reportedAt')!=dt(a['Date_Updated']).isoformat():
+  print(json.dumps({'source':'Loudoun dashboard','changed':False,'stale':True,'activityDate':day,'countyCumulative':a['EV_Total']}));return
  o['history']=[days[d] for d in sorted(days)];o['coverageStart']=min(days)
  # EV_Total matches DAL's cumulative early in-person count; its mail fields use
  # different definitions, so only early voting is used before DAL arrives.
