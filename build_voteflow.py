@@ -527,6 +527,11 @@ def main():
                 x['n'] += 1; x['locs'][NAMES[lid]['name']] = x['locs'].get(NAMES[lid]['name'], 0) + 1
 
     # ---- statewide bundles, one per election
+    # Rankings compare every locality on the latest day of DAL data they all share, so a county
+    # report that runs a day ahead doesn't jump the order. The locality page's rank chips use the same.
+    shared = min(DAL26.get(l['id'], l['history'])[-1]['date'] for l in e26['localities'])
+    def row_shared(l):
+        return next((h for h in reversed(DAL26.get(l['id'], l['history'])) if h['date'] <= shared), {})
     for eid in ORDER:
         meta = election_meta(eid)
         E = date(meta['date'])
@@ -549,6 +554,9 @@ def main():
             locs.append({'id': lid, 'n': nm['name'], 'rg': nm['region'], 'r': l['registered'], 'ac': l.get('active'),
                          'v': v, 'e': h.get('early') or 0, 'm': h.get('mail') or 0, 'o': h.get('outstanding'),
                          'p': round(v / l['registered'] * 100, 2), 'c': c, 'sat': n, 'next': nxt, 'd': va_paths.get(lid, '')})
+            if live:
+                hs = row_shared(l)
+                locs[-1]['rk'] = [hs.get('early') or 0, hs.get('mail') or 0]
         rows = rows_by[eid]
         reg, active = regs[eid]
         bundle = {'eid': eid, 'label': meta['label'], 'type': meta['type'], 'date': meta['date'], 'live': live,
@@ -563,9 +571,8 @@ def main():
     # locality's newer county numbers (e.g. the Fairfax PDF a day ahead of DAL) can't
     # vault it past localities that haven't reported that day yet.
     # They also use DAL for every locality, not a county source on some days and DAL on others.
-    shared = min(DAL26.get(l['id'], l['history'])[-1]['date'] for l in e26['localities'])
     def tot_shared(l):
-        return next((tot(h) for h in reversed(DAL26.get(l['id'], l['history'])) if h['date'] <= shared), 0)
+        return tot(row_shared(l)) if row_shared(l) else 0
     by_total = sorted(e26['localities'], key=lambda x: -tot_shared(x))
     by_pct = sorted(e26['localities'], key=lambda x: -tot_shared(x) / x['registered'])
     by_reg = sorted(e26['localities'], key=lambda x: -x['registered'])
