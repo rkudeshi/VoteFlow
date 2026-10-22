@@ -328,5 +328,19 @@
     "message": "Updated precinct counts for 129 localities from Daily Absentee List records.",
     "through": "2026-10-21",
     "url": null
+  },
+  {
+    "at": "2026-10-22T17:46:04.097451+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-10-21",
+    "url": null
+  },
+  {
+    "at": "2026-10-22T17:46:17.738228+00:00",
+    "source": "Daily Absentee List",
+    "message": "Updated precinct counts for 3 localities from Daily Absentee List records.",
+    "through": "2026-10-21",
+    "url": null
   }
 ]
