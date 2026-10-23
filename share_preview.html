@@ -1,76 +1,70 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&family=Hanken+Grotesk:wght@400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&family=Hanken+Grotesk:wght@400..800&display=swap" rel="stylesheet">
 <style>
-html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#121417;color:#fff;font-family:'Hanken Grotesk',sans-serif}
-#left{position:absolute;left:64px;top:62px;width:540px}
-.brand{display:flex;align-items:center;gap:16px}
-.brand svg{width:58px;height:58px}
-.brand b{font:700 46px 'Unbounded',sans-serif;letter-spacing:-.03em}
-h1{margin:54px 0 0;font:700 39px/1.12 'Unbounded',sans-serif;letter-spacing:-.035em}
-h1 span{background:linear-gradient(transparent 62%,#FFD23F 62%,#FFD23F 92%,transparent 92%);color:#fff;padding:0 .04em;white-space:nowrap}
-p.sub{margin:22px 0 0;font:500 22px/1.35 'Hanken Grotesk';color:#C9CDD4}
-.chips{position:absolute;left:64px;bottom:58px;display:flex;gap:10px}
-.chip{font:600 18px 'Hanken Grotesk';padding:9px 18px;border-radius:999px;background:#2A2D33;color:#9AA1AD}
-.chip.on{background:#FFD23F;color:#121417}
-#url{position:absolute;right:56px;bottom:62px;font:500 17px 'DM Mono',monospace;color:#7D8592}
-#maps{position:absolute;left:580px;top:36px;width:590px;height:484px}
-#maps svg{position:absolute;inset:0;width:100%;height:100%}
-#maps path{stroke:#121417;stroke-width:1.2;stroke-linejoin:round}
-#bar{position:absolute;left:640px;right:56px;top:540px;height:4px;border-radius:2px;background:#2A2D33}
-#bar i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#FFD23F}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#FFD23F;color:#121417;font-family:'Hanken Grotesk',sans-serif}
+.abs{position:absolute}
+#brand{left:64px;top:56px;display:flex;align-items:center;gap:20px}
+#brand svg{width:96px;height:96px}
+#brand b{font:800 74px 'Unbounded',sans-serif;letter-spacing:-.04em}
+#bars{left:64px;top:190px;width:500px;height:230px;display:flex;align-items:flex-end;gap:16px}
+#bars i{flex:1;background:#121417;border-radius:10px 10px 4px 4px;transform-origin:bottom;height:100%}
+#tag{left:64px;top:450px;font:800 50px/1.08 'Unbounded',sans-serif;letter-spacing:-.035em}
+#stage{left:640px;top:0;width:560px;height:630px}
+.ballot{position:absolute;left:180px;top:0;width:200px;height:250px;background:#fff;border:7px solid #121417;border-radius:14px;box-sizing:border-box}
+.ballot .row{position:absolute;left:24px;right:24px;height:34px;display:flex;align-items:center;gap:16px}
+.ballot .box{width:30px;height:30px;border:6px solid #121417;border-radius:6px;box-sizing:border-box;position:relative}
+.ballot .line{flex:1;height:10px;border-radius:5px;background:#121417;opacity:.25}
+.ballot .check{position:absolute;left:-4px;top:-14px;width:44px;height:44px}
+#boxwrap{left:60px;top:330px;width:440px;height:300px;transform-origin:50% 100%}
+#box{position:absolute;inset:0;background:#121417;border-radius:22px 22px 0 0}
+#slot{position:absolute;left:100px;right:100px;top:26px;height:16px;border-radius:8px;background:#FFD23F;opacity:.35}
+#boxlabel{position:absolute;left:0;right:0;top:92px;text-align:center;font:800 64px 'Unbounded',sans-serif;color:#FFD23F;letter-spacing:-.03em}
+.plus{position:absolute;font:800 64px 'Unbounded',sans-serif;color:#121417}
 </style></head><body>
-<div id="left">
-  <div class="brand"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#FFD23F"/><path d="M8 10l8 13 8-13" fill="none" stroke="#121417" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>VoteFlow</b></div>
-  <h1>Who has voted so far,<br><span>place by place</span></h1>
-  <p class="sub">Early voting and mail ballot turnout,<br>updated every day.</p>
-</div>
-<div class="chips"><span class="chip" id="c-va">Virginia</span><span class="chip" id="c-ca">California</span></div>
-<div id="maps"></div>
-<div id="bar"><i></i></div>
-<div id="url">voteflow.raviudeshi.com</div>
+<div id="brand" class="abs"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#121417"/><path d="M8 10l8 13 8-13" fill="none" stroke="#FFD23F" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>VoteFlow</b></div>
+<div id="bars" class="abs"></div>
+<div id="tag" class="abs">Early voting,<br>every day</div>
+<div id="stage" class="abs"><div id="ballots"></div><div id="boxwrap" class="abs"><div id="box"><div id="slot"></div><div id="boxlabel">VOTE</div></div></div><div id="pluses"></div></div>
 <script>
-const DATA = /*DATA*/null;
-const DUR = 10, NS = 'http://www.w3.org/2000/svg';
-const A = [44, 66, 58], B = [120, 222, 186];
-const color = (q) => 'rgb(' + A.map((a, k) => Math.round(a + (B[k] - a) * q)).join(',') + ')';
+const DUR = 6, N = 6, STEP = DUR / N, FALL = 0.5;
+const H = [0.28, 0.38, 0.47, 0.6, 0.72, 0.86, 1];
 const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
-const maps = {};
-for (const key of ['va', 'ca']) {
-  const m = DATA[key], svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 ' + m.w + ' ' + m.h);
-  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-  const max = Math.max(...m.shapes.map((s) => s.s[s.s.length - 1]));
-  const paths = m.shapes.map((s) => {
-    const p = document.createElementNS(NS, 'path'); p.setAttribute('d', s.d); svg.appendChild(p);
-    // stroke widths are in viewBox units; keep them about 1px on screen
-    p.style.strokeWidth = (key === 'va' ? 1.6 : 2.2);
-    return { p, s: s.s.map((v) => v / max) };
-  });
-  document.getElementById('maps').appendChild(svg);
-  maps[key] = { svg, paths, n: m.n };
+const back = (x) => { x = Math.max(0, Math.min(1, x)); const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const bars = H.map(() => document.getElementById('bars').appendChild(document.createElement('i')));
+const check = '<svg class="check" viewBox="0 0 44 44"><path d="M8 22l10 10 20-24" fill="none" stroke="#121417" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ballots = [], pluses = [];
+for (let i = 0; i < 2; i++) {
+  const b = document.createElement('div'); b.className = 'ballot';
+  b.innerHTML = [0, 1, 2].map((r) => '<div class="row" style="top:' + (36 + r * 62) + 'px"><span class="box">' + (r === 1 ? check : '') + '</span><span class="line"></span></div>').join('');
+  document.getElementById('ballots').appendChild(b); ballots.push(b);
+  const p = document.createElement('div'); p.className = 'plus'; p.textContent = '+1';
+  document.getElementById('pluses').appendChild(p); pluses.push(p);
 }
-function fill(key, f) { // f: 0..1 through the reporting days
-  const m = maps[key], x = f * (m.n - 1), i = Math.floor(x), r = x - i;
-  for (const { p, s } of m.paths) {
-    const a = s[Math.min(i, m.n - 1)], b = s[Math.min(i + 1, m.n - 1)];
-    p.style.fill = color(f <= 0 ? 0 : a + (b - a) * r);
-  }
-}
-// 0-0.5 VA appears, 0.5-3.7 VA fills, hold, 4.7-5.3 swap to CA, 5.3-8.3 CA fills, hold, 9.3-10 back to empty VA
 window.setT = (t) => {
   t = ((t % DUR) + DUR) % DUR;
-  const va = ease((t - 0.5) / 3.2), ca = ease((t - 5.3) / 3.0);
-  const toCa = ease((t - 4.7) / 0.6), back = ease((t - 9.3) / 0.7);
-  const vaOp = t < 5.3 ? 1 - toCa : back, caOp = t < 9.3 ? toCa : 1 - back;
-  fill('va', t < 9.3 ? va : 0); fill('ca', ca);
-  maps.va.svg.style.opacity = vaOp; maps.ca.svg.style.opacity = caOp;
-  maps.va.svg.style.transform = 'translateY(' + (1 - vaOp) * 14 + 'px)';
-  maps.ca.svg.style.transform = 'translateY(' + (1 - caOp) * 14 + 'px)';
-  document.getElementById('c-va').className = 'chip' + (vaOp >= caOp ? ' on' : '');
-  document.getElementById('c-ca').className = 'chip' + (caOp > vaOp ? ' on' : '');
-  const prog = t < 5 ? va : t < 9.3 ? ca : 1 - back;
-  document.querySelector('#bar i').style.width = (prog * 100) + '%';
+  // bars climb in one after another, hold, then sink just before the loop restarts
+  bars.forEach((b, i) => {
+    const up = back((t - 0.15 - i * 0.22) / 0.55), down = ease((t - 5.35) / 0.5);
+    b.style.transform = 'scaleY(' + Math.max(0, H[i] * up * (1 - down)) + ')';
+  });
+  // a ballot drops into the box every STEP seconds; two overlap at most
+  let squash = 0;
+  for (let k = 0; k < 2; k++) {
+    const n = Math.floor(t / STEP) - k, local = t - n * STEP; // seconds since this ballot started
+    const b = ballots[k], p = pluses[k];
+    const f = Math.min(1, local / FALL), y = -280 + 690 * f * f; // accelerate down, top of box at y=330
+    const tilt = (n % 2 ? 1 : -1) * 9 * (1 - f);
+    b.style.transform = 'translateY(' + y + 'px) rotate(' + tilt + 'deg)';
+    b.style.visibility = local < FALL + 0.05 ? 'visible' : 'hidden';
+    const hit = local - FALL * 0.72; // when the ballot meets the slot
+    if (hit > 0 && hit < 0.35) squash = Math.max(squash, Math.sin(hit / 0.35 * Math.PI) * (1 - hit / 0.35));
+    const q = (local - FALL * 0.72) / 0.75;
+    p.style.opacity = q > 0 && q < 1 ? (q < 0.15 ? q / 0.15 : 1 - ease((q - 0.5) / 0.5)) : 0;
+    p.style.left = (n % 2 ? 380 : 40) + 'px';
+    p.style.top = (250 - 90 * ease(q)) + 'px';
+  }
+  document.getElementById('boxwrap').style.transform = 'scale(' + (1 + 0.05 * squash) + ',' + (1 - 0.08 * squash) + ')';
 };
 setT(0);
 </script></body></html>
