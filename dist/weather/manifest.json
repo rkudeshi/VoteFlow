@@ -3,47 +3,57 @@
   "timezone": "America/New_York",
   "provider": "Open-Meteo historical weather API",
   "endpoint": "https://archive-api.open-meteo.com/v1/archive",
-  "generatedAt": "2026-10-16T10:54:21.570202+00:00",
+  "generatedAt": "2026-10-23T10:47:54.509224+00:00",
   "locations": [
     {
-      "id": "amelia-county",
-      "latitude": 37.34513,
-      "longitude": -77.94484
+      "id": "accomack-county",
+      "latitude": 37.7378,
+      "longitude": -75.6445
     },
     {
-      "id": "appomattox-county",
-      "latitude": 37.37705,
-      "longitude": -78.80814
-    },
-    {
-      "id": "alexandria-city",
-      "latitude": 38.81506,
-      "longitude": -77.09082
+      "id": "albemarle-county",
+      "latitude": 38.00034,
+      "longitude": -78.52413
     },
     {
       "id": "alleghany-county",
       "latitude": 37.7785,
-      "longitude": -79.95122
+      "longitude": -79.95118
     },
     {
-      "id": "accomack-county",
-      "latitude": 37.7382,
-      "longitude": -75.70145
-    },
-    {
-      "id": "arlington-county",
-      "latitude": 38.88089,
-      "longitude": -77.10227
-    },
-    {
-      "id": "bath-county",
-      "latitude": 38.05531,
-      "longitude": -79.74641
+      "id": "amelia-county",
+      "latitude": 37.34511,
+      "longitude": -77.94482
     },
     {
       "id": "amherst-county",
-      "latitude": 37.59998,
+      "latitude": 37.59999,
       "longitude": -79.15229
+    },
+    {
+      "id": "appomattox-county",
+      "latitude": 37.3772,
+      "longitude": -78.80806
+    },
+    {
+      "id": "arlington-county",
+      "latitude": 38.88086,
+      "longitude": -77.10199
+    },
+    {
+      "id": "augusta-county",
+      "latitude": 38.17962,
+      "longitude": -79.14135
+    },
+    {
+      "id": "bath-county",
+      "latitude": 38.05544,
+      "longitude": -79.7465
+    },
+    {
+      "id": "bedford-county",
+      "latitude": 37.31209,
+      "longitude": -79.52192
     },
     {
       "id": "bland-county",
@@ -51,64 +61,44 @@
       "longitude": -81.15845
     },
     {
-      "id": "albemarle-county",
-      "latitude": 38.00032,
-      "longitude": -78.52413
-    },
-    {
-      "id": "bristol-city",
-      "latitude": 36.63624,
-      "longitude": -82.17289
-    },
-    {
       "id": "botetourt-county",
       "latitude": 37.55516,
       "longitude": -79.78641
     },
     {
-      "id": "buena-vista-city",
-      "latitude": 37.72892,
-      "longitude": -79.35376
-    },
-    {
-      "id": "augusta-county",
-      "latitude": 38.17963,
-      "longitude": -79.14136
-    },
-    {
-      "id": "buckingham-county",
-      "latitude": 37.56325,
-      "longitude": -78.53654
-    },
-    {
-      "id": "charles-city-county",
-      "latitude": 37.35677,
-      "longitude": -77.07158
+      "id": "brunswick-county",
+      "latitude": 36.78435,
+      "longitude": -77.85103
     },
     {
       "id": "buchanan-county",
       "latitude": 37.28813,
-      "longitude": -82.02713
+      "longitude": -82.02308
     },
     {
-      "id": "brunswick-county",
-      "latitude": 36.78399,
-      "longitude": -77.85106
-    },
-    {
-      "id": "caroline-county",
-      "latitude": 38.01498,
-      "longitude": -77.35617
-    },
-    {
-      "id": "charlottesville-city",
-      "latitude": 38.04011,
-      "longitude": -78.48507
+      "id": "buckingham-county",
+      "latitude": 37.56328,
+      "longitude": -78.53645
     },
     {
       "id": "campbell-county",
       "latitude": 37.22798,
-      "longitude": -79.13348
+      "longitude": -79.13353
+    },
+    {
+      "id": "caroline-county",
+      "latitude": 38.01446,
+      "longitude": -77.35616
+    },
+    {
+      "id": "carroll-county",
+      "latitude": 36.74483,
+      "longitude": -80.7481
+    },
+    {
+      "id": "charles-city-county",
+      "latitude": 37.36244,
+      "longitude": -77.07163
     },
     {
       "id": "charlotte-county",
@@ -116,34 +106,24 @@
       "longitude": -78.67412
     },
     {
-      "id": "carroll-county",
-      "latitude": 36.74481,
-      "longitude": -80.74806
-    },
-    {
-      "id": "colonial-heights-city",
-      "latitude": 37.26586,
-      "longitude": -77.3969
-    },
-    {
-      "id": "covington-city",
-      "latitude": 37.78091,
-      "longitude": -79.98751
-    },
-    {
-      "id": "bedford-county",
-      "latitude": 37.31205,
-      "longitude": -79.52192
+      "id": "chesterfield-county",
+      "latitude": 37.39056,
+      "longitude": -77.56122
     },
     {
       "id": "clarke-county",
-      "latitude": 39.12199,
-      "longitude": -77.98994
+      "latitude": 39.12203,
+      "longitude": -77.99
     },
     {
       "id": "craig-county",
-      "latitude": 37.48834,
+      "latitude": 37.48833,
       "longitude": -80.22093
+    },
+    {
+      "id": "culpeper-county",
+      "latitude": 38.5037,
+      "longitude": -77.92526
     },
     {
       "id": "cumberland-county",
@@ -151,48 +131,33 @@
       "longitude": -78.26863
     },
     {
-      "id": "danville-city",
-      "latitude": 36.59231,
-      "longitude": -79.41095
-    },
-    {
-      "id": "emporia-city",
-      "latitude": 36.69624,
-      "longitude": -77.53571
-    },
-    {
-      "id": "essex-county",
-      "latitude": 37.94533,
-      "longitude": -76.91914
-    },
-    {
-      "id": "culpeper-county",
-      "latitude": 38.50371,
-      "longitude": -77.92527
+      "id": "dickenson-county",
+      "latitude": 37.131,
+      "longitude": -82.34494
     },
     {
       "id": "dinwiddie-county",
-      "latitude": 37.07237,
-      "longitude": -77.64709
+      "latitude": 37.07242,
+      "longitude": -77.64749
     },
     {
-      "id": "falls-church-city",
-      "latitude": 38.88613,
-      "longitude": -77.17228
+      "id": "essex-county",
+      "latitude": 37.94532,
+      "longitude": -76.9253
     },
     {
-      "id": "fairfax-city",
-      "latitude": 38.85227,
-      "longitude": -77.3018
+      "id": "fairfax-county",
+      "latitude": 38.83773,
+      "longitude": -77.28867
     },
     {
-      "id": "franklin-city",
-      "latitude": 36.67791,
-      "longitude": -76.93955
+      "id": "fauquier-county",
+      "latitude": 38.71164,
+      "longitude": -77.8313
     },
     {
       "id": "floyd-county",
-      "latitude": 36.91604,
+      "latitude": 36.91596,
       "longitude": -80.3692
     },
     {
@@ -201,8 +166,383 @@
       "longitude": -78.27691
     },
     {
+      "id": "franklin-county",
+      "latitude": 37.00688,
+      "longitude": -79.91388
+    },
+    {
+      "id": "frederick-county",
+      "latitude": 39.237,
+      "longitude": -78.28869
+    },
+    {
+      "id": "giles-county",
+      "latitude": 37.31458,
+      "longitude": -80.72272
+    },
+    {
+      "id": "gloucester-county",
+      "latitude": 37.42328,
+      "longitude": -76.53243
+    },
+    {
+      "id": "goochland-county",
+      "latitude": 37.73455,
+      "longitude": -77.88788
+    },
+    {
+      "id": "grayson-county",
+      "latitude": 36.68279,
+      "longitude": -81.25774
+    },
+    {
+      "id": "greene-county",
+      "latitude": 38.32984,
+      "longitude": -78.47583
+    },
+    {
+      "id": "greensville-county",
+      "latitude": 36.72154,
+      "longitude": -77.53197
+    },
+    {
+      "id": "halifax-county",
+      "latitude": 36.8015,
+      "longitude": -78.88384
+    },
+    {
+      "id": "hanover-county",
+      "latitude": 37.77313,
+      "longitude": -77.45263
+    },
+    {
+      "id": "henrico-county",
+      "latitude": 37.53119,
+      "longitude": -77.41636
+    },
+    {
+      "id": "henry-county",
+      "latitude": 36.69907,
+      "longitude": -79.8679
+    },
+    {
+      "id": "highland-county",
+      "latitude": 38.38597,
+      "longitude": -79.55916
+    },
+    {
+      "id": "isle-of-wight-county",
+      "latitude": 36.89306,
+      "longitude": -76.7079
+    },
+    {
+      "id": "james-city-county",
+      "latitude": 37.31796,
+      "longitude": -76.74692
+    },
+    {
+      "id": "king-and-queen-county",
+      "latitude": 37.70174,
+      "longitude": -76.9163
+    },
+    {
+      "id": "king-george-county",
+      "latitude": 38.27084,
+      "longitude": -77.17422
+    },
+    {
+      "id": "king-william-county",
+      "latitude": 37.71393,
+      "longitude": -77.06135
+    },
+    {
+      "id": "lancaster-county",
+      "latitude": 37.72511,
+      "longitude": -76.45761
+    },
+    {
+      "id": "lee-county",
+      "latitude": 36.74326,
+      "longitude": -83.22349
+    },
+    {
+      "id": "loudoun-county",
+      "latitude": 39.08539,
+      "longitude": -77.64524
+    },
+    {
+      "id": "louisa-county",
+      "latitude": 37.94159,
+      "longitude": -77.99712
+    },
+    {
+      "id": "lunenburg-county",
+      "latitude": 36.94815,
+      "longitude": -78.24833
+    },
+    {
+      "id": "madison-county",
+      "latitude": 38.4287,
+      "longitude": -78.26776
+    },
+    {
+      "id": "mathews-county",
+      "latitude": 37.42302,
+      "longitude": -76.34979
+    },
+    {
+      "id": "mecklenburg-county",
+      "latitude": 36.7161,
+      "longitude": -78.38384
+    },
+    {
+      "id": "middlesex-county",
+      "latitude": 37.64038,
+      "longitude": -76.52458
+    },
+    {
+      "id": "montgomery-county",
+      "latitude": 37.17516,
+      "longitude": -80.39674
+    },
+    {
+      "id": "nelson-county",
+      "latitude": 37.79151,
+      "longitude": -78.90646
+    },
+    {
+      "id": "new-kent-county",
+      "latitude": 37.50227,
+      "longitude": -76.99149
+    },
+    {
+      "id": "northampton-county",
+      "latitude": 37.32093,
+      "longitude": -75.84338
+    },
+    {
+      "id": "northumberland-county",
+      "latitude": 37.85594,
+      "longitude": -76.43564
+    },
+    {
+      "id": "nottoway-county",
+      "latitude": 37.13948,
+      "longitude": -78.01764
+    },
+    {
+      "id": "orange-county",
+      "latitude": 38.25533,
+      "longitude": -78.03601
+    },
+    {
+      "id": "page-county",
+      "latitude": 38.62218,
+      "longitude": -78.48806
+    },
+    {
+      "id": "patrick-county",
+      "latitude": 36.70733,
+      "longitude": -80.3336
+    },
+    {
+      "id": "pittsylvania-county",
+      "latitude": 36.8391,
+      "longitude": -79.40355
+    },
+    {
+      "id": "powhatan-county",
+      "latitude": 37.55325,
+      "longitude": -77.89372
+    },
+    {
+      "id": "prince-edward-county",
+      "latitude": 37.2381,
+      "longitude": -78.46185
+    },
+    {
+      "id": "prince-george-county",
+      "latitude": 37.157,
+      "longitude": -77.18582
+    },
+    {
+      "id": "prince-william-county",
+      "latitude": 38.72193,
+      "longitude": -77.46991
+    },
+    {
+      "id": "pulaski-county",
+      "latitude": 37.06194,
+      "longitude": -80.7229
+    },
+    {
+      "id": "rappahannock-county",
+      "latitude": 38.69314,
+      "longitude": -78.13677
+    },
+    {
+      "id": "richmond-county",
+      "latitude": 37.96034,
+      "longitude": -76.72362
+    },
+    {
+      "id": "roanoke-county",
+      "latitude": 37.26578,
+      "longitude": -80.0509
+    },
+    {
+      "id": "rockbridge-county",
+      "latitude": 37.80943,
+      "longitude": -79.41636
+    },
+    {
+      "id": "rockingham-county",
+      "latitude": 38.52837,
+      "longitude": -78.85502
+    },
+    {
+      "id": "russell-county",
+      "latitude": 36.92576,
+      "longitude": -82.09359
+    },
+    {
+      "id": "scott-county",
+      "latitude": 36.73953,
+      "longitude": -82.63963
+    },
+    {
+      "id": "shenandoah-county",
+      "latitude": 38.85379,
+      "longitude": -78.58485
+    },
+    {
+      "id": "smyth-county",
+      "latitude": 36.82624,
+      "longitude": -81.54954
+    },
+    {
+      "id": "southampton-county",
+      "latitude": 36.77001,
+      "longitude": -77.15843
+    },
+    {
+      "id": "spotsylvania-county",
+      "latitude": 38.1844,
+      "longitude": -77.65868
+    },
+    {
+      "id": "stafford-county",
+      "latitude": 38.4175,
+      "longitude": -77.46116
+    },
+    {
+      "id": "surry-county",
+      "latitude": 37.09648,
+      "longitude": -76.90987
+    },
+    {
+      "id": "sussex-county",
+      "latitude": 36.90963,
+      "longitude": -77.28629
+    },
+    {
+      "id": "tazewell-county",
+      "latitude": 37.13531,
+      "longitude": -81.56343
+    },
+    {
+      "id": "warren-county",
+      "latitude": 38.89684,
+      "longitude": -78.19951
+    },
+    {
+      "id": "washington-county",
+      "latitude": 36.76163,
+      "longitude": -81.96873
+    },
+    {
+      "id": "westmoreland-county",
+      "latitude": 38.12149,
+      "longitude": -76.79302
+    },
+    {
+      "id": "wise-county",
+      "latitude": 37.00089,
+      "longitude": -82.58862
+    },
+    {
+      "id": "wythe-county",
+      "latitude": 36.91549,
+      "longitude": -81.05994
+    },
+    {
+      "id": "york-county",
+      "latitude": 37.23596,
+      "longitude": -76.57107
+    },
+    {
+      "id": "alexandria-city",
+      "latitude": 38.81513,
+      "longitude": -77.09086
+    },
+    {
+      "id": "bristol-city",
+      "latitude": 36.63613,
+      "longitude": -82.17122
+    },
+    {
+      "id": "buena-vista-city",
+      "latitude": 37.72892,
+      "longitude": -79.35376
+    },
+    {
+      "id": "charlottesville-city",
+      "latitude": 38.04012,
+      "longitude": -78.48499
+    },
+    {
+      "id": "chesapeake-city",
+      "latitude": 36.70851,
+      "longitude": -76.27852
+    },
+    {
+      "id": "colonial-heights-city",
+      "latitude": 37.26588,
+      "longitude": -77.39694
+    },
+    {
+      "id": "covington-city",
+      "latitude": 37.7809,
+      "longitude": -79.98748
+    },
+    {
+      "id": "danville-city",
+      "latitude": 36.59253,
+      "longitude": -79.41092
+    },
+    {
+      "id": "emporia-city",
+      "latitude": 36.69626,
+      "longitude": -77.53571
+    },
+    {
+      "id": "fairfax-city",
+      "latitude": 38.8522,
+      "longitude": -77.30177
+    },
+    {
+      "id": "falls-church-city",
+      "latitude": 38.88617,
+      "longitude": -77.17233
+    },
+    {
+      "id": "franklin-city",
+      "latitude": 36.67791,
+      "longitude": -76.93955
+    },
+    {
       "id": "fredericksburg-city",
-      "latitude": 38.29825,
+      "latitude": 38.2983,
       "longitude": -77.48991
     },
     {
@@ -211,169 +551,39 @@
       "longitude": -80.91365
     },
     {
-      "id": "dickenson-county",
-      "latitude": 37.13108,
-      "longitude": -82.34489
-    },
-    {
-      "id": "chesapeake-city",
-      "latitude": 36.70832,
-      "longitude": -76.2782
-    },
-    {
-      "id": "giles-county",
-      "latitude": 37.31459,
-      "longitude": -80.72262
-    },
-    {
-      "id": "fauquier-county",
-      "latitude": 38.71164,
-      "longitude": -77.8313
-    },
-    {
-      "id": "gloucester-county",
-      "latitude": 37.41824,
-      "longitude": -76.5084
-    },
-    {
-      "id": "greene-county",
-      "latitude": 38.32984,
-      "longitude": -78.47557
-    },
-    {
-      "id": "greensville-county",
-      "latitude": 36.7216,
-      "longitude": -77.53194
-    },
-    {
-      "id": "goochland-county",
-      "latitude": 37.73455,
-      "longitude": -77.88781
-    },
-    {
-      "id": "frederick-county",
-      "latitude": 39.23695,
-      "longitude": -78.28864
-    },
-    {
-      "id": "franklin-county",
-      "latitude": 37.00688,
-      "longitude": -79.91388
-    },
-    {
-      "id": "chesterfield-county",
-      "latitude": 37.38963,
-      "longitude": -77.56238
+      "id": "hampton-city",
+      "latitude": 37.04743,
+      "longitude": -76.36133
     },
     {
       "id": "harrisonburg-city",
-      "latitude": 38.43965,
+      "latitude": 38.43964,
       "longitude": -78.8711
     },
     {
-      "id": "grayson-county",
-      "latitude": 36.6828,
-      "longitude": -81.25772
-    },
-    {
-      "id": "highland-county",
-      "latitude": 38.38597,
-      "longitude": -79.55916
-    },
-    {
-      "id": "hampton-city",
-      "latitude": 37.05094,
-      "longitude": -76.36093
-    },
-    {
       "id": "hopewell-city",
-      "latitude": 37.28755,
-      "longitude": -77.29503
-    },
-    {
-      "id": "halifax-county",
-      "latitude": 36.80152,
-      "longitude": -78.88393
-    },
-    {
-      "id": "king-and-queen-county",
-      "latitude": 37.70174,
-      "longitude": -76.91615
-    },
-    {
-      "id": "king-george-county",
-      "latitude": 38.27108,
-      "longitude": -77.17256
-    },
-    {
-      "id": "hanover-county",
-      "latitude": 37.77313,
-      "longitude": -77.45291
-    },
-    {
-      "id": "king-william-county",
-      "latitude": 37.71387,
-      "longitude": -77.06135
-    },
-    {
-      "id": "lancaster-county",
-      "latitude": 37.72254,
-      "longitude": -76.45736
-    },
-    {
-      "id": "henry-county",
-      "latitude": 36.69905,
-      "longitude": -79.8679
+      "latitude": 37.28765,
+      "longitude": -77.29504
     },
     {
       "id": "lexington-city",
-      "latitude": 37.78,
-      "longitude": -79.43826
-    },
-    {
-      "id": "isle-of-wight-county",
-      "latitude": 36.89894,
-      "longitude": -76.68779
-    },
-    {
-      "id": "lee-county",
-      "latitude": 36.74334,
-      "longitude": -83.2235
-    },
-    {
-      "id": "james-city-county",
-      "latitude": 37.31365,
-      "longitude": -76.74654
-    },
-    {
-      "id": "lunenburg-county",
-      "latitude": 36.94813,
-      "longitude": -78.24837
-    },
-    {
-      "id": "manassas-city",
-      "latitude": 38.74364,
-      "longitude": -77.48711
+      "latitude": 37.77998,
+      "longitude": -79.43845
     },
     {
       "id": "lynchburg-city",
-      "latitude": 37.40101,
-      "longitude": -79.17795
+      "latitude": 37.40091,
+      "longitude": -79.17779
+    },
+    {
+      "id": "manassas-city",
+      "latitude": 38.74363,
+      "longitude": -77.48721
     },
     {
       "id": "manassas-park-city",
-      "latitude": 38.76901,
-      "longitude": -77.44926
-    },
-    {
-      "id": "mathews-county",
-      "latitude": 37.41029,
-      "longitude": -76.2941
-    },
-    {
-      "id": "louisa-county",
-      "latitude": 37.94159,
-      "longitude": -77.99703
+      "latitude": 38.76902,
+      "longitude": -77.44911
     },
     {
       "id": "martinsville-city",
@@ -381,294 +591,84 @@
       "longitude": -79.86517
     },
     {
-      "id": "madison-county",
-      "latitude": 38.42868,
-      "longitude": -78.26777
-    },
-    {
-      "id": "nelson-county",
-      "latitude": 37.79151,
-      "longitude": -78.90646
-    },
-    {
-      "id": "middlesex-county",
-      "latitude": 37.64126,
-      "longitude": -76.52457
-    },
-    {
-      "id": "new-kent-county",
-      "latitude": 37.50228,
-      "longitude": -76.99153
-    },
-    {
-      "id": "henrico-county",
-      "latitude": 37.53187,
-      "longitude": -77.416
-    },
-    {
-      "id": "northampton-county",
-      "latitude": 37.27399,
-      "longitude": -75.86914
-    },
-    {
-      "id": "mecklenburg-county",
-      "latitude": 36.71608,
-      "longitude": -78.38374
-    },
-    {
-      "id": "norton-city",
-      "latitude": 36.92997,
-      "longitude": -82.62605
-    },
-    {
-      "id": "northumberland-county",
-      "latitude": 37.85238,
-      "longitude": -76.40512
-    },
-    {
-      "id": "montgomery-county",
-      "latitude": 37.17516,
-      "longitude": -80.39681
-    },
-    {
-      "id": "nottoway-county",
-      "latitude": 37.13945,
-      "longitude": -78.01764
-    },
-    {
       "id": "newport-news-city",
-      "latitude": 37.0904,
-      "longitude": -76.50725
-    },
-    {
-      "id": "petersburg-city",
-      "latitude": 37.2051,
-      "longitude": -77.39234
-    },
-    {
-      "id": "page-county",
-      "latitude": 38.62216,
-      "longitude": -78.48812
-    },
-    {
-      "id": "orange-county",
-      "latitude": 38.2555,
-      "longitude": -78.03591
+      "latitude": 37.09144,
+      "longitude": -76.50667
     },
     {
       "id": "norfolk-city",
-      "latitude": 36.8953,
-      "longitude": -76.26095
+      "latitude": 36.89488,
+      "longitude": -76.25327
     },
     {
-      "id": "fairfax-county",
-      "latitude": 38.83077,
-      "longitude": -77.28917
+      "id": "norton-city",
+      "latitude": 36.92989,
+      "longitude": -82.62636
+    },
+    {
+      "id": "petersburg-city",
+      "latitude": 37.20497,
+      "longitude": -77.39218
     },
     {
       "id": "poquoson-city",
-      "latitude": 37.13352,
-      "longitude": -76.35304
+      "latitude": 37.133,
+      "longitude": -76.35462
     },
     {
-      "id": "patrick-county",
-      "latitude": 36.70733,
-      "longitude": -80.33361
-    },
-    {
-      "id": "prince-george-county",
-      "latitude": 37.15676,
-      "longitude": -77.18617
-    },
-    {
-      "id": "powhatan-county",
-      "latitude": 37.55327,
-      "longitude": -77.89302
-    },
-    {
-      "id": "prince-edward-county",
-      "latitude": 37.23809,
-      "longitude": -78.46189
+      "id": "portsmouth-city",
+      "latitude": 36.85525,
+      "longitude": -76.35516
     },
     {
       "id": "radford-city",
       "latitude": 37.12029,
-      "longitude": -80.55219
-    },
-    {
-      "id": "portsmouth-city",
-      "latitude": 36.842,
-      "longitude": -76.35592
-    },
-    {
-      "id": "rappahannock-county",
-      "latitude": 38.69315,
-      "longitude": -78.13677
-    },
-    {
-      "id": "pulaski-county",
-      "latitude": 37.06194,
-      "longitude": -80.72289
-    },
-    {
-      "id": "richmond-county",
-      "latitude": 37.95142,
-      "longitude": -76.72292
-    },
-    {
-      "id": "loudoun-county",
-      "latitude": 39.08539,
-      "longitude": -77.64527
-    },
-    {
-      "id": "pittsylvania-county",
-      "latitude": 36.83912,
-      "longitude": -79.40356
-    },
-    {
-      "id": "roanoke-city",
-      "latitude": 37.27478,
-      "longitude": -79.95799
-    },
-    {
-      "id": "rockbridge-county",
-      "latitude": 37.80945,
-      "longitude": -79.41636
-    },
-    {
-      "id": "salem-city",
-      "latitude": 37.28804,
-      "longitude": -80.06694
-    },
-    {
-      "id": "russell-county",
-      "latitude": 36.92576,
-      "longitude": -82.09359
-    },
-    {
-      "id": "roanoke-county",
-      "latitude": 37.26579,
-      "longitude": -80.05087
-    },
-    {
-      "id": "shenandoah-county",
-      "latitude": 38.85379,
-      "longitude": -78.58502
-    },
-    {
-      "id": "rockingham-county",
-      "latitude": 38.52835,
-      "longitude": -78.85504
-    },
-    {
-      "id": "smyth-county",
-      "latitude": 36.82648,
-      "longitude": -81.54915
+      "longitude": -80.55217
     },
     {
       "id": "richmond-city",
-      "latitude": 37.52468,
-      "longitude": -77.49335
+      "latitude": 37.52472,
+      "longitude": -77.49334
     },
     {
-      "id": "southampton-county",
-      "latitude": 36.77002,
-      "longitude": -77.15638
+      "id": "roanoke-city",
+      "latitude": 37.2747,
+      "longitude": -79.95806
+    },
+    {
+      "id": "salem-city",
+      "latitude": 37.28825,
+      "longitude": -80.06694
     },
     {
       "id": "staunton-city",
       "latitude": 38.1601,
-      "longitude": -79.06266
-    },
-    {
-      "id": "scott-county",
-      "latitude": 36.73954,
-      "longitude": -82.63959
-    },
-    {
-      "id": "surry-county",
-      "latitude": 37.09648,
-      "longitude": -76.89887
-    },
-    {
-      "id": "sussex-county",
-      "latitude": 36.90477,
-      "longitude": -77.28629
-    },
-    {
-      "id": "prince-william-county",
-      "latitude": 38.72179,
-      "longitude": -77.46808
-    },
-    {
-      "id": "warren-county",
-      "latitude": 38.89682,
-      "longitude": -78.19951
+      "longitude": -79.06252
     },
     {
       "id": "suffolk-city",
-      "latitude": 36.74628,
-      "longitude": -76.66525
+      "latitude": 36.73641,
+      "longitude": -76.66754
     },
     {
-      "id": "spotsylvania-county",
-      "latitude": 38.18517,
-      "longitude": -77.65745
-    },
-    {
-      "id": "tazewell-county",
-      "latitude": 37.13552,
-      "longitude": -81.56349
+      "id": "virginia-beach-city",
+      "latitude": 36.74128,
+      "longitude": -76.04785
     },
     {
       "id": "waynesboro-city",
-      "latitude": 38.06561,
+      "latitude": 38.0656,
       "longitude": -78.90331
     },
     {
       "id": "williamsburg-city",
-      "latitude": 37.2788,
-      "longitude": -76.70373
+      "latitude": 37.27867,
+      "longitude": -76.70361
     },
     {
       "id": "winchester-city",
-      "latitude": 39.16794,
-      "longitude": -78.16862
-    },
-    {
-      "id": "stafford-county",
-      "latitude": 38.41742,
-      "longitude": -77.46116
-    },
-    {
-      "id": "westmoreland-county",
-      "latitude": 38.12181,
-      "longitude": -76.79044
-    },
-    {
-      "id": "washington-county",
-      "latitude": 36.76161,
-      "longitude": -81.96873
-    },
-    {
-      "id": "wythe-county",
-      "latitude": 36.91549,
-      "longitude": -81.05994
-    },
-    {
-      "id": "wise-county",
-      "latitude": 37.00093,
-      "longitude": -82.58856
-    },
-    {
-      "id": "york-county",
-      "latitude": 37.23604,
-      "longitude": -76.4455
-    },
-    {
-      "id": "virginia-beach-city",
-      "latitude": 36.74188,
-      "longitude": -76.04705
+      "latitude": 39.16791,
+      "longitude": -78.16861
     }
   ],
   "coverage": {
@@ -681,51 +681,9 @@
     },
     "2026": {
       "start": "2026-09-09",
-      "end": "2026-10-15",
+      "end": "2026-10-22",
       "localities": 133,
-      "records": 4921,
-      "missing": []
-    },
-    "2023": {
-      "start": "2023-09-13",
-      "end": "2023-11-13",
-      "localities": 133,
-      "records": 8246,
-      "missing": []
-    },
-    "2024": {
-      "start": "2024-08-28",
-      "end": "2024-11-11",
-      "localities": 133,
-      "records": 10108,
-      "missing": []
-    },
-    "2026-special": {
-      "start": "2026-03-04",
-      "end": "2026-04-27",
-      "localities": 133,
-      "records": 7315,
-      "missing": []
-    },
-    "2020": {
-      "start": "2020-09-18",
-      "end": "2020-11-08",
-      "localities": 133,
-      "records": 6916,
-      "missing": []
-    },
-    "2021": {
-      "start": "2021-09-17",
-      "end": "2021-11-07",
-      "localities": 133,
-      "records": 6916,
-      "missing": []
-    },
-    "2022": {
-      "start": "2022-09-23",
-      "end": "2022-11-14",
-      "localities": 133,
-      "records": 7049,
+      "records": 5852,
       "missing": []
     }
   }
