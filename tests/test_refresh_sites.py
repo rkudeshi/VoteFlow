@@ -20,13 +20,22 @@ class LoudounStaleFeedTest(unittest.TestCase):
         (self.tmp / 'dist').mkdir()
         shutil.copy(ROOT / 'dist/region.json', self.tmp / 'dist/region.json')
         shutil.copytree(ROOT / 'sources/site-snapshots/loudoun', self.tmp / 'sources/site-snapshots/loudoun')
+        # Roll the copy back to the evening of Oct 22, before that day's real counts arrived.
+        for path in (self.tmp / 'sources/site-snapshots/loudoun').glob('*.json'):
+            if path.name[:10] > '2026-10-21':
+                path.unlink()
+        region = json.loads((self.tmp / 'dist/region.json').read_text())
+        report = region['siteReports']['loudoun-county']['2026']
+        report['history'] = [r for r in report['history'] if r['date'] <= '2026-10-21']
+        (self.tmp / 'dist/region.json').write_text(json.dumps(region, separators=(',', ':')))
 
     def tearDown(self):
         shutil.rmtree(self.tmp)
 
     def run_feed(self, feed):
         out = io.StringIO()
-        with mock.patch.object(refresh_sites, 'ROOT', self.tmp), mock.patch.object(sys, 'argv', ['refresh_sites.py', '--file', str(feed)]), redirect_stdout(out):
+        with mock.patch.object(refresh_sites, 'ROOT', self.tmp), mock.patch.object(sys, 'argv', ['refresh_sites.py', '--file', str(feed)]), \
+                mock.patch('status_log.record'), redirect_stdout(out):
             refresh_sites.main()
         return json.loads(out.getvalue().strip().splitlines()[-1])
 
