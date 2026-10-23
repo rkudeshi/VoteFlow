@@ -1,4 +1,4 @@
-// Render .share-preview/frame.html (from build_share_preview.py) into the link-preview
+// Render share_preview.html frame by frame into the link-preview
 // video and still: dist/share/preview.mp4 (og:video) and dist/share/preview.png (og:image).
 const fs = require('fs');
 const path = require('path');
@@ -7,14 +7,14 @@ let chromium;
 try { ({ chromium } = require('playwright')); } catch (e) {
   ({ chromium } = require(path.join(execFileSync('npm', ['root', '-g']).toString().trim(), 'playwright')));
 }
-const FPS = 30, DUR = 10, STILL = 4.2;
+const FPS = 30, DUR = 6, STILL = 2.3;
 const work = path.join(__dirname, '.share-preview'), frames = path.join(work, 'frames');
 const out = path.join(__dirname, 'dist', 'share');
 (async () => {
   fs.rmSync(frames, { recursive: true, force: true }); fs.mkdirSync(frames, { recursive: true }); fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
-  await page.goto('file://' + path.join(work, 'frame.html'));
+  await page.goto('file://' + path.join(__dirname, 'share_preview.html'));
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(500);
   for (let i = 0; i < FPS * DUR; i++) {
