@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&family=Hanken+Grotesk:wght@400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#121417;color:#fff;font-family:'Hanken Grotesk',sans-serif}
+#left{position:absolute;left:64px;top:62px;width:540px}
+.brand{display:flex;align-items:center;gap:16px}
+.brand svg{width:58px;height:58px}
+.brand b{font:700 46px 'Unbounded',sans-serif;letter-spacing:-.03em}
+h1{margin:54px 0 0;font:700 39px/1.12 'Unbounded',sans-serif;letter-spacing:-.035em}
+h1 span{background:linear-gradient(transparent 62%,#FFD23F 62%,#FFD23F 92%,transparent 92%);color:#fff;padding:0 .04em;white-space:nowrap}
+p.sub{margin:22px 0 0;font:500 22px/1.35 'Hanken Grotesk';color:#C9CDD4}
+.chips{position:absolute;left:64px;bottom:58px;display:flex;gap:10px}
+.chip{font:600 18px 'Hanken Grotesk';padding:9px 18px;border-radius:999px;background:#2A2D33;color:#9AA1AD}
+.chip.on{background:#FFD23F;color:#121417}
+#url{position:absolute;right:56px;bottom:62px;font:500 17px 'DM Mono',monospace;color:#7D8592}
+#maps{position:absolute;left:580px;top:36px;width:590px;height:484px}
+#maps svg{position:absolute;inset:0;width:100%;height:100%}
+#maps path{stroke:#121417;stroke-width:1.2;stroke-linejoin:round}
+#bar{position:absolute;left:640px;right:56px;top:540px;height:4px;border-radius:2px;background:#2A2D33}
+#bar i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#FFD23F}
+</style></head><body>
+<div id="left">
+  <div class="brand"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#FFD23F"/><path d="M8 10l8 13 8-13" fill="none" stroke="#121417" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>VoteFlow</b></div>
+  <h1>Who has voted so far,<br><span>place by place</span></h1>
+  <p class="sub">Early voting and mail ballot turnout,<br>updated every day.</p>
+</div>
+<div class="chips"><span class="chip" id="c-va">Virginia</span><span class="chip" id="c-ca">California</span></div>
+<div id="maps"></div>
+<div id="bar"><i></i></div>
+<div id="url">voteflow.raviudeshi.com</div>
+<script>
+const DATA = /*DATA*/null;
+const DUR = 10, NS = 'http://www.w3.org/2000/svg';
+const A = [44, 66, 58], B = [120, 222, 186];
+const color = (q) => 'rgb(' + A.map((a, k) => Math.round(a + (B[k] - a) * q)).join(',') + ')';
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const maps = {};
+for (const key of ['va', 'ca']) {
+  const m = DATA[key], svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 ' + m.w + ' ' + m.h);
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  const max = Math.max(...m.shapes.map((s) => s.s[s.s.length - 1]));
+  const paths = m.shapes.map((s) => {
+    const p = document.createElementNS(NS, 'path'); p.setAttribute('d', s.d); svg.appendChild(p);
+    // stroke widths are in viewBox units; keep them about 1px on screen
+    p.style.strokeWidth = (key === 'va' ? 1.6 : 2.2);
+    return { p, s: s.s.map((v) => v / max) };
+  });
+  document.getElementById('maps').appendChild(svg);
+  maps[key] = { svg, paths, n: m.n };
+}
+function fill(key, f) { // f: 0..1 through the reporting days
+  const m = maps[key], x = f * (m.n - 1), i = Math.floor(x), r = x - i;
+  for (const { p, s } of m.paths) {
+    const a = s[Math.min(i, m.n - 1)], b = s[Math.min(i + 1, m.n - 1)];
+    p.style.fill = color(f <= 0 ? 0 : a + (b - a) * r);
+  }
+}
+// 0-0.5 VA appears, 0.5-3.7 VA fills, hold, 4.7-5.3 swap to CA, 5.3-8.3 CA fills, hold, 9.3-10 back to empty VA
+window.setT = (t) => {
+  t = ((t % DUR) + DUR) % DUR;
+  const va = ease((t - 0.5) / 3.2), ca = ease((t - 5.3) / 3.0);
+  const toCa = ease((t - 4.7) / 0.6), back = ease((t - 9.3) / 0.7);
+  const vaOp = t < 5.3 ? 1 - toCa : back, caOp = t < 9.3 ? toCa : 1 - back;
+  fill('va', t < 9.3 ? va : 0); fill('ca', ca);
+  maps.va.svg.style.opacity = vaOp; maps.ca.svg.style.opacity = caOp;
+  maps.va.svg.style.transform = 'translateY(' + (1 - vaOp) * 14 + 'px)';
+  maps.ca.svg.style.transform = 'translateY(' + (1 - caOp) * 14 + 'px)';
+  document.getElementById('c-va').className = 'chip' + (vaOp >= caOp ? ' on' : '');
+  document.getElementById('c-ca').className = 'chip' + (caOp > vaOp ? ' on' : '');
+  const prog = t < 5 ? va : t < 9.3 ? ca : 1 - back;
+  document.querySelector('#bar i').style.width = (prog * 100) + '%';
+};
+setT(0);
+</script></body></html>

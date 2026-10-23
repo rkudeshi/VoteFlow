@@ -21,3 +21,4 @@ novavote-site.tar.gz
 
 # Private exact source provenance; never deploy or commit
 /.private/
+.share-preview/
