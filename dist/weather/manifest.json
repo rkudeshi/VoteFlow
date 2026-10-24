@@ -3,7 +3,7 @@
   "timezone": "America/New_York",
   "provider": "Open-Meteo historical weather API",
   "endpoint": "https://archive-api.open-meteo.com/v1/archive",
-  "generatedAt": "2026-10-23T13:14:05.914175+00:00",
+  "generatedAt": "2026-10-24T10:46:41.006772+00:00",
   "locations": [
     {
       "id": "accomack-county",
@@ -681,16 +681,9 @@
     },
     "2026": {
       "start": "2026-09-09",
-      "end": "2026-10-22",
+      "end": "2026-10-23",
       "localities": 133,
-      "records": 5852,
-      "missing": []
-    },
-    "2023": {
-      "start": "2023-09-13",
-      "end": "2023-11-13",
-      "localities": 133,
-      "records": 8246,
+      "records": 5985,
       "missing": []
     }
   }
