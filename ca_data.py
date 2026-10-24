@@ -115,7 +115,8 @@ def parse_report(path):
             break
     if not as_of:
         raise ValueError(f'{path.name}: no report date in the first rows')
-    hi = next((i for i, r in enumerate(rows) if r and fold(r[0]) == 'county'), None)
+    # COUNTY used to head column A; from the Oct 23 report it sits in column B after a blank column.
+    hi = next((i for i, r in enumerate(rows) if any(fold(c) == 'county' for c in r)), None)
     if hi is None:
         raise ValueError(f'{path.name}: no COUNTY header row')
     cols = {}
@@ -127,7 +128,8 @@ def parse_report(path):
         raise ValueError(f'{path.name}: missing columns {missing}')
     counties, total = {}, None
     for r in rows[hi + 1:]:
-        name = str(r[0]).strip() if r and r[0] is not None else ''
+        cc = cols['county']
+        name = str(r[cc]).strip() if len(r) > cc and r[cc] is not None else ''
         if not name or len(r) <= cols['issued'] or not isinstance(r[cols['issued']], float):
             continue
         rec = {}
