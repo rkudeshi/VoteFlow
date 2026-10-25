@@ -144,10 +144,12 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
         s += '.'
         extra.append((0.4, s))
 
-    # 5. Turnout rank among Virginia's localities, when it moved.
-    if rank_now and rank_week_ago and abs(rank_now - rank_week_ago) >= 5:
-        up = rank_now < rank_week_ago
-        extra.append((abs(rank_now - rank_week_ago) / 40, f"In turnout, {name} moved {'up' if up else 'down'} from {ordinal(rank_week_ago)} to {ordinal(rank_now)} of Virginia's 133 localities this week."))
+    # 5. Turnout rank among Virginia's localities, only when it climbed into the top 50: a
+    # drop, or a move further down the list, reads as a knock on the county.
+    if rank_now and rank_week_ago and rank_now <= 50 and rank_week_ago - rank_now >= 5:
+        s = f"{name} climbed from {ordinal(rank_week_ago)} to {ordinal(rank_now)} in turnout among Virginia's 133 localities this week"
+        s += ', moving into the top 50.' if rank_week_ago > 50 else '.'
+        extra.append(((rank_week_ago - rank_now) / 40, s))
 
     # Keep the note short: the pace, the strongest of the rest, and what is ahead, in at most
     # four sentences and about 520 characters.
