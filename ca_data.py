@@ -31,6 +31,11 @@ FIELDS = {'county': 'county', 'county type': 'type', 'total voters issued vbm ba
           'drop off location': 'dropoff', 'vote center drop off': 'votecenter', 'mail': 'mail', 'fax': 'fax', 'other': 'other',
           'total returned vbm ballots': 'returned', 'total accepted vbm ballots': 'accepted'}
 NUMS = ['issued', 'dropbox', 'dropoff', 'votecenter', 'mail', 'fax', 'other', 'returned', 'accepted']
+# In-person columns, first published in the Oct 23 report; None in earlier reports. Cast in person is the sum of
+# regular, provisional (non-CVR), conditional (CVR) and "instant" CVR ballots; accepted in person is a subset.
+INPERSON = {'regularballots': 'ipreg', 'provisionalballotsnoncvr': 'ipprov', 'conditionalcvr': 'ipcvr',
+            'conditionalinstantcvr': 'ipicvr', 'totalcastinpersonballots': 'inperson', 'totalacceptedinpersonballots': 'ipacc'}
+IPNUMS = ['ipreg', 'ipprov', 'ipcvr', 'ipicvr', 'inperson', 'ipacc']
 METHODS = ['dropbox', 'dropoff', 'votecenter', 'mail', 'fax', 'other']
 TYPES = {'vca county': 'Vote center', 'polling place': 'Polling place', 'all mail': 'All mail'}
 COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa', 'Contra Costa', 'Del Norte', 'El Dorado', 'Fresno', 'Glenn',
@@ -123,6 +128,9 @@ def parse_report(path):
     for i, h in enumerate(rows[hi]):
         if fold(h) in FIELDS:
             cols[FIELDS[fold(h)]] = i
+        elif re.sub(r'[^a-z]', '', fold(h)) in INPERSON:
+            cols[INPERSON[re.sub(r'[^a-z]', '', fold(h))]] = i
+    has_ip = all(f in cols for f in IPNUMS)
     missing = [f for f in ['county', 'type'] + NUMS if f not in cols]
     if missing:
         raise ValueError(f'{path.name}: missing columns {missing}')
@@ -133,9 +141,11 @@ def parse_report(path):
         if not name or len(r) <= cols['issued'] or not isinstance(r[cols['issued']], float):
             continue
         rec = {}
-        for f in NUMS:
+        for f in NUMS + (IPNUMS if has_ip else []):
             v = r[cols[f]] if cols[f] < len(r) else None
             rec[f] = None if v is None or v == '' else int(round(float(v)))
+        for f in ([] if has_ip else IPNUMS):
+            rec[f] = None
         if name.lower() == 'total':
             total = rec
             continue
@@ -149,7 +159,7 @@ def parse_report(path):
         raise ValueError(f'{path.name}: expected 58 counties, missing {sorted(set(COUNTIES) - set(counties))}')
     if total is None:
         raise ValueError(f'{path.name}: no Total row')
-    for f in NUMS:
+    for f in NUMS + (IPNUMS if has_ip else []):
         s = sum(c[f] or 0 for c in counties.values())
         if total[f] is not None and s != total[f]:
             raise ValueError(f'{path.name}: county {f} adds to {s:,}, Total row says {total[f]:,}')
@@ -158,6 +168,8 @@ def parse_report(path):
         parts = [c[m] for m in METHODS]
         if None not in parts and c['returned'] is not None and sum(parts) != c['returned']:
             raise ValueError(f'{path.name}: {name} return methods add to {sum(parts):,}, not {c["returned"]:,}')
+        if has_ip and None not in [c[f] for f in IPNUMS] and c['ipreg'] + c['ipprov'] + c['ipcvr'] + c['ipicvr'] != c['inperson']:
+            raise ValueError(f'{path.name}: {name} in-person ballot types add to {c["ipreg"] + c["ipprov"] + c["ipcvr"] + c["ipicvr"]:,}, not {c["inperson"]:,}')
         # Seen in the state's own files (Mendocino, Oct 11): kept as published, listed as a note.
         if None not in (c['accepted'], c['returned']) and c['accepted'] > c['returned']:
             notes.append(f'{name}: accepted ({c["accepted"]:,}) exceeds returned ({c["returned"]:,})')
@@ -234,7 +246,7 @@ def build():
         if r['asOf'] != day:
             raise ValueError(f'{p.name}: workbook says {r["asOf"]}, file name says {day}')
         parsed.append(r)
-    cols = NUMS
+    cols = NUMS + IPNUMS
     REG, reg_total, reg_label = registration()
     counties = []
     for name in COUNTIES:

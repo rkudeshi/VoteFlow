@@ -27,10 +27,11 @@ class States extends DCLogic {
       const b = { href: '/ca', name: 'California', code: 'CA', places: '58 counties', ready: !!(ca && caMap), wait: !(ca && caMap), cta: 'Open California →', vb: '0 0 1000 1154', shapes: [] };
       if (ca && caMap) {
         const T = ca.total[ca.total.length - 1], ix = (k) => ca.cols.indexOf(k) + 1, ret = T[ix('returned')], iss = T[ix('issued')];
+        const ip = ix('inperson') ? T[ix('inperson')] || 0 : 0, cast = ret + ip, reg = ca.reg || iss;
         const rate = {}; ca.counties.forEach((c) => { const r = c.rows[c.rows.length - 1]; rate[c.id] = r[ix('returned')] / r[ix('issued')]; });
         const q = spread(Object.values(rate));
-        Object.assign(b, { vb: '0 0 ' + caMap.w + ' ' + caMap.h, kicker: 'Mail ballots returned · through ' + dmd(ca.asOf), big: f(ret), bigL: 'mail ballots returned', pct: (ret / iss * 100).toFixed(1) + '%', pctL: 'of ballots sent',
-          note: f(iss) + ' mail ballots sent to voters', shapes: caMap.shapes.map((s) => ({ d: s.d, fill: VF.ramp(q(rate[s.id]), 'g') })) });
+        Object.assign(b, { vb: '0 0 ' + caMap.w + ' ' + caMap.h, kicker: 'Ballots cast · through ' + dmd(ca.asOf), big: f(cast), bigL: 'ballots cast', pct: (cast / reg * 100).toFixed(1) + '%', pctL: 'turnout so far',
+          note: f(ret) + ' by mail · ' + f(ip) + ' in person', shapes: caMap.shapes.map((s) => ({ d: s.d, fill: VF.ramp(q(rate[s.id]), 'g') })) });
       }
       boxes.push(b);
     }

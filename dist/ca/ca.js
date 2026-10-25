@@ -47,7 +47,9 @@ class CaPage extends DCLogic {
     if (!D || !M) return base;
 
     const C = D.cols, ix = (k) => C.indexOf(k) + 1;
-    const I = { issued: ix('issued'), ret: ix('returned'), acc: ix('accepted') };
+    const I = { issued: ix('issued'), ret: ix('returned'), acc: ix('accepted'), ip: ix('inperson'), ipreg: ix('ipreg') };
+    // In-person counts start with the Oct 23 report; earlier rows carry null.
+    const ipOf = (row) => row[I.ip] || 0;
     const METH = [
       { k: 'mail', label: 'Mail', c: '#7C4DDB', ks: ['mail'] },
       { k: 'dropbox', label: 'Drop box', c: '#2F6FD6', ks: ['dropbox'] },
@@ -64,18 +66,21 @@ class CaPage extends DCLogic {
     const stRate = T[I.ret] / T[I.issued];
 
     // ----- Hero
-    const ret = last[I.ret], iss = last[I.issued], acc = last[I.acc];
+    const ret = last[I.ret], iss = last[I.issued], acc = last[I.acc], ip = ipOf(last), cast = ret + ip;
+    const regN = (county ? county.reg : D.reg) || iss;
     const weekAgo = rows.find((r) => r[0] === addDays(last[0], -7));
     const segs = METH.map((m) => ({ ...m, v: mv(last, m) })).filter((m) => m.v > 0 || m.k === 'mail' || m.k === 'dropbox');
-    const heroSegs = segs.map((m) => ({ c: m.c, w: (m.v / ret * 100).toFixed(2), label: m.label, v: f(m.v), p: pct(m.v, ret) }));
+    const heroSegs = [{ c: '#12A38A', w: (ip / cast * 100).toFixed(2), label: 'In person', v: f(ip), p: pct(ip, cast) }]
+      .concat(segs.map((m) => ({ c: m.c, w: (m.v / cast * 100).toFixed(2), label: { mail: 'Mailed back', votecenter: 'Vote center drop-off' }[m.k] || m.label, v: f(m.v), p: pct(m.v, cast) })));
     const chips = [];
-    if (prev) chips.push({ b: sg(ret - prev[I.ret]), t: 'in the latest report (' + md(last[0]) + ')' });
-    if (weekAgo) chips.push({ b: sg(ret - weekAgo[I.ret]), t: 'over the past week' });
+    if (prev) chips.push({ b: sg(ret - prev[I.ret]), t: 'mail ballots in the latest report (' + md(last[0]) + ')' });
+    if (prev && prev[I.ip] != null) chips.push({ b: sg(ip - prev[I.ip]), t: 'in person in the latest report' });
+    if (weekAgo) chips.push({ b: sg(ret - weekAgo[I.ret]), t: 'mail ballots over the past week' });
     if (county) { const d = (ret / iss - stRate) * 100; chips.push({ b: (d >= 0 ? '▲ ' : '▼ ') + Math.abs(d).toFixed(1) + ' pts', t: (d >= 0 ? 'above' : 'below') + ' the statewide rate' }); }
     chips.push({ b: pct(acc, ret) + '%', t: 'of returned ballots accepted so far' });
     const hero = {
-      kicker: 'Mail ballots returned · ' + (county ? county.short : 'Statewide') + ' · through ' + dmd(last[0]).toUpperCase(),
-      pct: pct(ret, iss), votes: f(ret), iss: f(iss), segs: heroSegs, chips,
+      kicker: 'Ballots cast · ' + (county ? county.short : 'Statewide') + ' · through ' + dmd(last[0]).toUpperCase(),
+      pct: pct(cast, regN), votes: f(cast), iss: f(iss), reg: f(regN), ret: f(ret), ip: f(ip), segs: heroSegs, chips,
       fs: S.narrow ? 'clamp(36px, 11vw, 56px)' : 'clamp(44px, 4.6vw, 66px)'
     };
 
@@ -85,6 +90,11 @@ class CaPage extends DCLogic {
     const flow = {
       bigCls: fcBig ? 'fx-big' : '', tapHint: fcBig ? 'Tap to go back to the flow chart' : 'Tap the chart for big numbers',
       tap: () => { if (window.innerWidth <= 760) this.setState({ fcBig: !fcBig }); }, issW: 100,
+      cast: f(cast), castP: pct(cast, regN), castW: Math.min(100, cast / regN * 100).toFixed(1),
+      ip: f(ip), ipP: pct(ip, cast), ipW: Math.max(2, ip / Math.max(cast, 1) * 100).toFixed(1),
+      ipreg: f(last[I.ipreg] || 0), ipregP: pct(last[I.ipreg] || 0, ip), ipregW: Math.max(2, (last[I.ipreg] || 0) / Math.max(ip, 1) * 100).toFixed(1),
+      ipoth: f(ip - (last[I.ipreg] || 0)), ipothP: pct(ip - (last[I.ipreg] || 0), ip), ipothW: Math.max(2, (ip - (last[I.ipreg] || 0)) / Math.max(ip, 1) * 100).toFixed(1),
+      note: 'In-person counts first appeared in the state\'s Oct 23 report. They include early voting at vote centers and county offices; mail ballots dropped off at a vote center count as mail.',
       iss: f(iss), ret: f(ret), retP: pct(ret, iss), notRet: f(notRet), notRetP: pct(notRet, iss),
       acc: f(acc), accP: pct(acc, ret), pend: f(pending), pendP: pct(pending, ret),
       reg: D.reg ? f(county ? county.reg : D.reg) : '', regLabel: D.regLabel || '',
