@@ -14,7 +14,10 @@ closed days, not observations. Cumulative early and mail ballots by precinct
 also go into dist/precinct-data/2026-arlington-county.json for the activity
 date (the state's precinct files stopped updating after September 23). The calendar visual has shown a doubled total
 for a day (5,780 for October 17 while the site table and Snapshot page agree on
-2,890); the site table is used.
+2,890); the site table is used. The site table's total can also run a few
+votes off the Snapshot page (23,004 vs 23,002 on Oct 25, when the precinct
+table agreed with the Snapshot); a gap up to SITE_TABLE_SLACK is recorded and
+the Snapshot total stays the cumulative figure.
 """
 import json
 import sys
@@ -31,6 +34,15 @@ SOURCE = "https://vote.arlingtonva.gov/Elections/Results-Data"
 SITES = {"EV1 - Courthouse": "courthouse", "EV2 - Langston Brown": "langston_brown", "EV3 - Walter Reed": "walter_reed"}
 UNUSED = {"EV4 - Long Bridge"}  # template row, not a 2026 location
 OFFSET = timedelta(weeks=104)
+SITE_TABLE_SLACK = 10
+
+
+def site_table_gap(days, table_total, early):
+    """Votes by which the daily site table exceeds the Snapshot total; fails past SITE_TABLE_SLACK."""
+    assert sum(d["early"] for d in days) == table_total, "Daily site counts do not add up to the site table total"
+    gap = table_total - early
+    assert abs(gap) <= SITE_TABLE_SLACK, f"Site table total {table_total} is {gap:+} from the Snapshot total {early}"
+    return gap
 
 
 def decode(result):
@@ -115,7 +127,7 @@ def main():
         days.append({"date": when, "early": total, "sites": sites})
 
     early = int(totals["Early Voting"])
-    assert sum(d["early"] for d in days) == int(rows["Total"]["Total"]) == early, "Daily site counts do not add up to the Snapshot total"
+    gap = site_table_gap(days, int(rows["Total"]["Total"]), early)
     snapshot = {
         "election": "2026",
         "locality": "arlington-county",
@@ -128,6 +140,8 @@ def main():
         "capture": latest["dataFile"],
         "sitesDaily": days,
     }
+    if gap:
+        snapshot["siteTableGap"] = gap
     # The Snapshot totals match DAL's cumulative early and mail counts.
     provisional("arlington-county", snapshot["activityThrough"], {"early": early, "mail": snapshot["mail"]}, "Arlington County dashboard", capture["retrievedAt"])
     precincts_changed = update_precincts(decode(q["precincts"]), snapshot["activityThrough"], early, snapshot["mail"])
