@@ -81,7 +81,10 @@ class CaPage extends DCLogic {
 
     // ----- Flow (where ballots stand)
     const notRet = iss - ret, pending = Math.max(0, ret - acc);
+    const fcBig = !!S.fcBig;
     const flow = {
+      bigCls: fcBig ? 'fx-big' : '', tapHint: fcBig ? 'Tap to go back to the flow chart' : 'Tap the chart for big numbers',
+      tap: () => { if (window.innerWidth <= 760) this.setState({ fcBig: !fcBig }); }, issW: 100,
       iss: f(iss), ret: f(ret), retP: pct(ret, iss), notRet: f(notRet), notRetP: pct(notRet, iss),
       acc: f(acc), accP: pct(acc, ret), pend: f(pending), pendP: pct(pending, ret),
       reg: D.reg ? f(county ? county.reg : D.reg) : '', regLabel: D.regLabel || '',
