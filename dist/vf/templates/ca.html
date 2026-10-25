@@ -251,10 +251,21 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters: {{hero.ret}} by mail and {{hero.ip}} in person.</p>
       <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
-        <sc-for list="{{hero.segs}}" as="s" hint-placeholder-count="3"><div class="fx-meter" title="{{s.label}} · {{s.v}} · {{s.p}}%" style="width: {{s.w}}%; background: {{s.c}}"></div></sc-for>
+        <div class="fx-meter vf-seg1" style="width: {{hero.mW}}%; background: #7C4DDB"></div>
+        <div class="fx-meter vf-seg2" style="width: {{hero.ipW}}%; min-width: 22px; background: #12A38A; animation-delay: .25s"></div>
       </div>
-      <div style="display: flex; gap: 8px 20px; flex-wrap: wrap; margin-top: 14px; font-size: 15px; font-weight: 600">
-        <sc-for list="{{hero.segs}}" as="s" hint-placeholder-count="3"><span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: {{s.c}}; border-radius: 3px"></span>{{s.label}} · {{s.v}} · {{s.p}}%</span></sc-for>
+      <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 16px; font-weight: 600">
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.ret}} · {{hero.mW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #12A38A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
+      </div>
+      <div style="margin-top: 28px; font-size: 14px; font-weight: 700; color: #4A5260">How mail ballots came back</div>
+      <div class="vf-dbar" style="display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: #F1F2F5; margin-top: 8px">
+        <sc-for list="{{hero.segs}}" as="s" hint-placeholder-count="3">
+          <div class="vf-d" title="{{s.label}} · {{s.v}} · {{s.p}}%" style="flex: {{s.w}} 1 0; min-width: 18px; background: {{s.c}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px">{{s.inside}}</div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 6px 20px; flex-wrap: wrap; margin-top: 10px; font-size: 14px; color: #4A5260">
+        <sc-for list="{{hero.segs}}" as="s" hint-placeholder-count="3"><span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 10px; height: 10px; background: {{s.c}}; border-radius: 3px; flex-shrink: 0"></span><span><span style="color: #121417; font-weight: 600">{{s.label}}</span> {{s.v}} · {{s.p}}%</span></span></sc-for>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{hero.chips}}" as="pc" hint-placeholder-count="3">
@@ -297,22 +308,22 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
               <path d="M224.167,30 L229.167,37 L234.167,30" vector-effect="non-scaling-stroke"></path><path d="M765.833,30 L770.833,37 L775.833,30" vector-effect="non-scaling-stroke"></path>
             </g>
           </svg>
-          <div class="fx-fcbox fx-pa ca-sm" style="grid-column: 3 / 10; grid-row: 3; background: #F3FBF9; border: 2.5px solid #2BB39A; border-radius: 14px; padding: 12px 16px; animation-delay: .45s">
+          <div class="fx-fcbox fx-pa ca-sm" style="grid-column: 16 / 23; grid-row: 3; background: #F3FBF9; border: 2.5px solid #2BB39A; border-radius: 14px; padding: 12px 16px; animation-delay: .55s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#12A38A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c0-4.2 3.4-6.5 7.5-6.5s7.5 2.3 7.5 6.5"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">In person</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.ip}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipW}}%; background: #12A38A; border-radius: 999px; animation-delay: .45s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipW}}%; background: #12A38A; border-radius: 999px; animation-delay: .55s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.ipP}}%</b> of ballots cast · at vote centers and county offices</div>
           </div>
-          <div class="fx-fcbox fx-pa ca-sm" style="grid-column: 16 / 23; grid-row: 3; background: #F6F2FE; border: 2.5px solid #7C4DDB; border-radius: 14px; padding: 12px 16px; animation-delay: .55s">
+          <div class="fx-fcbox fx-pa ca-sm" style="grid-column: 3 / 10; grid-row: 3; background: #F6F2FE; border: 2.5px solid #7C4DDB; border-radius: 14px; padding: 12px 16px; animation-delay: .45s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7C4DDB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">By mail</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.ret}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #E4D9FA; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.retW}}%; background: #7C4DDB; border-radius: 999px; animation-delay: .55s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #E4D9FA; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.retW}}%; background: #7C4DDB; border-radius: 999px; animation-delay: .45s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.retP}}%</b> of {{flow.iss}} mail ballots sent · {{flow.notRet}} not yet returned</div>
           </div>
           <svg class="fx-conn fx-fade" viewBox="0 0 1000 40" preserveAspectRatio="none" width="100%" height="38" aria-hidden="true" style="grid-column: 1 / -1; grid-row: 4; display: block; overflow: visible; animation-delay: .75s">
@@ -323,40 +334,40 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
               <path d="M640.833,30 L645.833,37 L650.833,30" vector-effect="non-scaling-stroke"></path><path d="M890.833,30 L895.833,37 L900.833,30" vector-effect="non-scaling-stroke"></path>
             </g>
           </svg>
-          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 1 / 6; grid-row: 5; background: #F3FBF9; border: 2.5px solid #2BB39A; border-radius: 14px; padding: 12px 16px; animation-delay: .9s">
+          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 14 / 19; grid-row: 5; background: #F3FBF9; border: 2.5px solid #2BB39A; border-radius: 14px; padding: 12px 16px; animation-delay: 1.1s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#12A38A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6"></path><path d="M9 12h6"></path><path d="M9 16h3"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">Regular ballots</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.ipreg}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipregW}}%; background: #12A38A; border-radius: 999px; animation-delay: .9s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipregW}}%; background: #12A38A; border-radius: 999px; animation-delay: 1.1s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.ipregP}}%</b> of in-person ballots</div>
           </div>
-          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 7 / 12; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1s">
+          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 20 / 25; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1.2s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C98A0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6"></path><path d="M12 12v4"></path><circle cx="12" cy="17.6" r=".3"></circle></svg>
-              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">Provisional or same-day registration</b>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">Provisional or conditional registration</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.ipoth}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #FBEBC8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipothW}}%; background: #F5A524; border-radius: 999px; animation-delay: 1s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #FBEBC8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.ipothW}}%; background: #F5A524; border-radius: 999px; animation-delay: 1.2s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.ipothP}}%</b> of in-person ballots · checked before they count</div>
           </div>
-          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 14 / 19; grid-row: 5; background: #F1FAF6; border: 2.5px solid #00A37A; border-radius: 14px; padding: 12px 16px; animation-delay: 1.1s">
+          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 1 / 6; grid-row: 5; background: #F1FAF6; border: 2.5px solid #00A37A; border-radius: 14px; padding: 12px 16px; animation-delay: .9s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00694F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.8 2.8L16.5 9.5"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">Accepted</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.acc}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.accW}}%; background: #00A37A; border-radius: 999px; animation-delay: 1.1s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.accW}}%; background: #00A37A; border-radius: 999px; animation-delay: .9s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.accP}}%</b> of returned mail ballots</div>
           </div>
-          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 20 / 25; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1.2s">
+          <div class="fx-fcbox fx-pa ca-sm ca-xs" style="grid-column: 7 / 12; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C98A0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5.2l3.4 2"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">Not yet accepted</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{flow.pend}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #FBEBC8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.pendW}}%; background: #F5A524; border-radius: 999px; animation-delay: 1.2s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #FBEBC8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{flow.pendW}}%; background: #F5A524; border-radius: 999px; animation-delay: 1s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{flow.pendP}}%</b> of returned mail ballots · still being checked, or challenged</div>
           </div>
         </div>

@@ -70,8 +70,8 @@ class CaPage extends DCLogic {
     const regN = (county ? county.reg : D.reg) || iss;
     const weekAgo = rows.find((r) => r[0] === addDays(last[0], -7));
     const segs = METH.map((m) => ({ ...m, v: mv(last, m) })).filter((m) => m.v > 0 || m.k === 'mail' || m.k === 'dropbox');
-    const heroSegs = [{ c: '#12A38A', w: (ip / cast * 100).toFixed(2), label: 'In person', v: f(ip), p: pct(ip, cast) }]
-      .concat(segs.map((m) => ({ c: m.c, w: (m.v / cast * 100).toFixed(2), label: { mail: 'Mailed back', votecenter: 'Vote center drop-off' }[m.k] || m.label, v: f(m.v), p: pct(m.v, cast) })));
+    const heroSegs = segs.map((m) => ({ c: m.c, w: (m.v / ret * 100).toFixed(2), label: { mail: 'Mailed back', votecenter: 'Vote center drop-off' }[m.k] || m.label,
+      v: f(m.v), p: pct(m.v, ret), inside: m.v / ret >= 0.08 ? pct(m.v, ret, 0) + '%' : '' }));
     const chips = [];
     if (prev) chips.push({ b: sg(ret - prev[I.ret]), t: 'mail ballots in the latest report (' + md(last[0]) + ')' });
     if (prev && prev[I.ip] != null) chips.push({ b: sg(ip - prev[I.ip]), t: 'in person in the latest report' });
@@ -80,7 +80,7 @@ class CaPage extends DCLogic {
     chips.push({ b: pct(acc, ret) + '%', t: 'of returned ballots accepted so far' });
     const hero = {
       kicker: 'Ballots cast · ' + (county ? county.short : 'Statewide') + ' · through ' + dmd(last[0]).toUpperCase(),
-      pct: pct(cast, regN), votes: f(cast), iss: f(iss), reg: f(regN), ret: f(ret), ip: f(ip), segs: heroSegs, chips,
+      pct: pct(cast, regN), votes: f(cast), mW: pct(ret, cast), ipW: pct(ip, cast), iss: f(iss), reg: f(regN), ret: f(ret), ip: f(ip), segs: heroSegs, chips,
       fs: S.narrow ? 'clamp(36px, 11vw, 56px)' : 'clamp(44px, 4.6vw, 66px)'
     };
 
