@@ -37,7 +37,7 @@ INPERSON = {'regularballots': 'ipreg', 'provisionalballotsnoncvr': 'ipprov', 'co
             'conditionalinstantcvr': 'ipicvr', 'totalcastinpersonballots': 'inperson', 'totalacceptedinpersonballots': 'ipacc'}
 IPNUMS = ['ipreg', 'ipprov', 'ipcvr', 'ipicvr', 'inperson', 'ipacc']
 METHODS = ['dropbox', 'dropoff', 'votecenter', 'mail', 'fax', 'other']
-TYPES = {'vca county': 'Vote center', 'polling place': 'Polling place', 'all mail': 'All mail'}
+TYPES = {'vca county': "Voter's Choice Act", 'polling place': 'Polling place', 'all mail': 'All mail'}
 COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa', 'Contra Costa', 'Del Norte', 'El Dorado', 'Fresno', 'Glenn',
             'Humboldt', 'Imperial', 'Inyo', 'Kern', 'Kings', 'Lake', 'Lassen', 'Los Angeles', 'Madera', 'Marin', 'Mariposa', 'Mendocino',
             'Merced', 'Modoc', 'Mono', 'Monterey', 'Napa', 'Nevada', 'Orange', 'Placer', 'Plumas', 'Riverside', 'Sacramento', 'San Benito',

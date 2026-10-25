@@ -73,9 +73,9 @@ class CaPage extends DCLogic {
     const heroSegs = segs.map((m) => ({ c: m.c, w: (m.v / ret * 100).toFixed(2), label: { mail: 'Mailed back', votecenter: 'Vote center drop-off' }[m.k] || m.label,
       v: f(m.v), p: pct(m.v, ret), inside: m.v / ret >= 0.08 ? pct(m.v, ret, 0) + '%' : '' }));
     const chips = [];
-    if (prev) chips.push({ b: sg(ret - prev[I.ret]), t: 'mail ballots in the latest report (' + md(last[0]) + ')' });
+    if (prev) chips.push({ b: sg(ret - prev[I.ret]), t: 'vote-by-mail ballots in the latest report (' + md(last[0]) + ')' });
     if (prev && prev[I.ip] != null) chips.push({ b: sg(ip - prev[I.ip]), t: 'in person in the latest report' });
-    if (weekAgo) chips.push({ b: sg(ret - weekAgo[I.ret]), t: 'mail ballots over the past week' });
+    if (weekAgo) chips.push({ b: sg(ret - weekAgo[I.ret]), t: 'vote-by-mail ballots over the past week' });
     if (county) { const d = (ret / iss - stRate) * 100; chips.push({ b: (d >= 0 ? '▲ ' : '▼ ') + Math.abs(d).toFixed(1) + ' pts', t: (d >= 0 ? 'above' : 'below') + ' the statewide rate' }); }
     chips.push({ b: pct(acc, ret) + '%', t: 'of returned ballots accepted so far' });
     const hero = {
@@ -94,7 +94,10 @@ class CaPage extends DCLogic {
       ip: f(ip), ipP: pct(ip, cast), ipW: Math.max(2, ip / Math.max(cast, 1) * 100).toFixed(1),
       ipreg: f(last[I.ipreg] || 0), ipregP: pct(last[I.ipreg] || 0, ip), ipregW: Math.max(2, (last[I.ipreg] || 0) / Math.max(ip, 1) * 100).toFixed(1),
       ipoth: f(ip - (last[I.ipreg] || 0)), ipothP: pct(ip - (last[I.ipreg] || 0), ip), ipothW: Math.max(2, (ip - (last[I.ipreg] || 0)) / Math.max(ip, 1) * 100).toFixed(1),
-      note: 'In-person counts first appeared in the state\'s Oct 23 report. They include early voting at vote centers and county offices; mail ballots dropped off at a vote center count as mail.',
+      note: 'In-person counts start with the state\'s Oct 23 report and include voting at vote centers, polling places and county election offices. Vote-by-mail ballots dropped off at a vote center count as vote by mail. Returned ballots leave out ones sent back undeliverable, for deceased voters, or canceled by the county.',
+      // Instant CVRs are verified on the spot and count right away; provisional and CVR provisional ballots are checked first.
+      ipothNote: (() => { const pv = last[ix('ipprov')] || 0, cv = last[ix('ipcvr')] || 0, iv = last[ix('ipicvr')] || 0;
+        return f(pv) + ' provisional · ' + f(cv + iv) + ' conditional voter registration (' + f(iv) + ' instant, counted on the spot)'; })(),
       iss: f(iss), ret: f(ret), retP: pct(ret, iss), notRet: f(notRet), notRetP: pct(notRet, iss),
       acc: f(acc), accP: pct(acc, ret), pend: f(pending), pendP: pct(pending, ret),
       reg: D.reg ? f(county ? county.reg : D.reg) : '', regLabel: D.regLabel || '',
