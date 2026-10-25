@@ -22,9 +22,11 @@ for year in data['elections']:
   if year=='2026':old.append(f'{year}/{loc["id"]}/scenarios')
 for base,routes in ((root,paths),(root/'old'/'v2',old)):
  shell=(base/'index.html').read_bytes()
+ # The homepage is the state picker; Virginia pages keep a Virginia title for link previews before the app sets its own.
+ va=shell.replace('<title>VoteFlow · Early voting by state</title>'.encode(),'<title>VoteFlow · Virginia early voting</title>'.encode())
  for route in routes:
   directory=base/route;directory.mkdir(parents=True,exist_ok=True)
-  (directory/'index.html').write_bytes(shell)
+  (directory/'index.html').write_bytes(va if route.startswith('va') else shell)
 # California (not linked from the Virginia pages yet): /ca, /ca/<county>, and the same in capitals.
 ca=root/'ca'/'index.html'
 if ca.exists():
