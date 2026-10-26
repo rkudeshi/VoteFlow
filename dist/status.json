@@ -419,5 +419,19 @@
     "message": "Loaded county totals, mail-return details and voting-site counts.",
     "through": "2026-10-24",
     "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
+  },
+  {
+    "at": "2026-10-26T10:46:40.331601+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-10-25",
+    "url": null
+  },
+  {
+    "at": "2026-10-26T10:46:52.303821+00:00",
+    "source": "Daily Absentee List",
+    "message": "Updated precinct counts for 25 localities from Daily Absentee List records.",
+    "through": "2026-10-25",
+    "url": null
   }
 ]
