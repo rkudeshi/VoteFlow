@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&family=Hanken+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#FFD23F;color:#121417;font-family:'Hanken Grotesk',sans-serif}
+.abs{position:absolute}
+#brand{left:60px;top:52px;display:flex;align-items:center;gap:14px}
+#brand svg{width:54px;height:54px}
+#brand b{font:800 40px 'Unbounded',sans-serif;letter-spacing:-.04em}
+#name{left:60px;top:170px;width:540px}
+#name div{font:800 80px/1.02 'Unbounded',sans-serif;letter-spacing:-.045em;white-space:nowrap}
+#name span{display:inline-block;margin-top:10px;font:800 46px 'Unbounded',sans-serif;letter-spacing:-.03em;background:#121417;color:#FFD23F;padding:4px 18px 8px;border-radius:12px}
+#sub{left:60px;bottom:58px;font:700 30px/1.25 'Hanken Grotesk';max-width:540px}
+#panel{left:640px;top:40px;width:520px;height:550px;border-radius:30px;overflow:hidden;background:#FFF3C4}
+#panel svg{width:100%;height:100%;display:block}
+#panel path{vector-effect:non-scaling-stroke;stroke-linejoin:round}
+#state path{fill:#121417;stroke:#FFD23F;stroke-width:1.2}
+#hl{stroke:#121417;stroke-width:2.5}
+#pre path{fill:#FFD23F;stroke:#121417;stroke-width:1.1;transform-box:fill-box;transform-origin:center}
+</style></head><body>
+<div id="brand" class="abs"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#121417"/><path d="M8 10l8 13 8-13" fill="none" stroke="#FFD23F" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>VoteFlow</b></div>
+<div id="name" class="abs"><div id="n1"></div><span id="n2"></span></div>
+<div id="sub" class="abs"></div>
+<div id="panel" class="abs"><svg id="svg" preserveAspectRatio="xMidYMid meet"><g id="state"></g><path id="hl"/><g id="pre"></g></svg></div>
+<script>
+const DUR = 5, NS = 'http://www.w3.org/2000/svg';
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+const back = (x) => { x = Math.max(0, Math.min(1, x)); const c = 2.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const mix = (a, b, q) => '#' + [0, 2, 4].map((i) => Math.round(parseInt(a.substr(i + 1, 2), 16) * (1 - q) + parseInt(b.substr(i + 1, 2), 16) * q).toString(16).padStart(2, '0')).join('');
+const $ = (id) => document.getElementById(id);
+let S, from, to, pre = [], loadedState;
+const PW = 520, PH = 550;
+window.setPlace = (state, place) => {
+  if (loadedState !== state.label) {
+    $('state').innerHTML = state.shapes.map((s) => '<path d="' + s.d + '"/>').join('');
+    loadedState = state.label;
+  }
+  S = state;
+  // whole state, letterboxed to the panel's shape
+  const fit = (x0, y0, w, h, pad) => {
+    w *= 1 + pad; h *= 1 + pad;
+    const r = PW / PH, cx = x0 + w / (2 * (1 + pad)), cy = y0 + h / (2 * (1 + pad));
+    if (w / h > r) h = w / r; else w = h * r;
+    return [cx - w / 2, cy - h / 2, w, h];
+  };
+  from = fit(0, 0, state.w, state.h, 0.06);
+  const b = place.box;
+  to = fit(b[0], b[1], Math.max(b[2] - b[0], 1), Math.max(b[3] - b[1], 1), 0.22);
+  $('hl').setAttribute('d', state.shapes.find((s) => s.id === place.id).d);
+  $('pre').innerHTML = place.precincts.map((d) => '<path d="' + d + '"/>').join('');
+  // precincts pop in as a sweep from the top left
+  pre = [...$('pre').children].map((p) => { const bb = p.getBBox(); return { p, k: bb.x + bb.y + (bb.width + bb.height) / 2 }; });
+  const ks = pre.map((x) => x.k), lo = Math.min(...ks), hi = Math.max(...ks);
+  pre.forEach((x) => { x.k = hi > lo ? (x.k - lo) / (hi - lo) : 0; });
+  const name = place.name.replace(/ And /g, ' and ').replace(/ Of /g, ' of ');
+  const m = name.match(/^(.*) (County|City)$/);
+  $('n1').textContent = m ? m[1] : name;
+  $('n2').textContent = m ? m[2] : '';
+  $('n2').style.display = m ? '' : 'none';
+  $('sub').textContent = state.label + ' early voting and mail ballots, updated daily';
+  const el = $('n1'); el.style.fontSize = '80px';
+  const w = el.scrollWidth; if (w > 540) el.style.fontSize = Math.floor(80 * 540 / w) + 'px';
+  setT(0);
+};
+window.setT = (t) => {
+  t = ((t % DUR) + DUR) % DUR;
+  const zin = ease((t - 0.7) / 1.1), zout = ease((t - 4.0) / 0.8), z = zin * (1 - zout);
+  // zoom geometrically so it feels even, not rushed at the end
+  const w = from[2] * Math.pow(to[2] / from[2], z), h = from[3] * Math.pow(to[3] / from[3], z);
+  const cz = from[2] === to[2] ? z : (from[2] - w) / (from[2] - to[2]);
+  const cx = from[0] + from[2] / 2 + (to[0] + to[2] / 2 - from[0] - from[2] / 2) * cz;
+  const cy = from[1] + from[3] / 2 + (to[1] + to[3] / 2 - from[1] - from[3] / 2) * cz;
+  $('svg').setAttribute('viewBox', [cx - w / 2, cy - h / 2, w, h].join(' '));
+  // the place flashes white, stays lit while zoomed, and goes dark again before the loop restarts
+  const flash = Math.max(0, Math.sin(Math.min(1, Math.max(0, (t - 0.1) / 0.5)) * Math.PI));
+  const lit = Math.max(ease((t - 0.35) / 0.35) * (1 - ease((t - 4.5) / 0.4)), flash);
+  $('hl').style.fill = mix('#121417', '#FFFFFF', lit);
+  $('hl').style.transform = '';
+  const gone = ease((t - 3.85) / 0.3);
+  pre.forEach(({ p, k }) => {
+    const q = back((t - 1.75 - k * 0.8) / 0.35);
+    p.style.transform = 'scale(' + Math.max(0, q) + ')';
+    p.style.opacity = t < 1.75 + k * 0.8 ? 0 : 1 - gone;
+  });
+};
+</script></body></html>
