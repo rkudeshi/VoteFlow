@@ -1,7 +1,7 @@
 import json
 import unittest
 from pathlib import Path
-from refresh_arlington import activity_date, decode, site_table_gap
+from refresh_arlington import activity_date, decode, site_table_gap, total_row_mismatches
 
 CAPTURE = Path(__file__).resolve().parent.parent / 'sources/dashboard-archive/arlington-county/2026-10-18/1731-powerbi-data.json'
 
@@ -27,6 +27,15 @@ class ArlingtonDashboardTests(unittest.TestCase):
             site_table_gap(days, 23004, 22900)
         with self.assertRaises(AssertionError):
             site_table_gap([{'early': 23000}], 23004, 23002)
+
+    def test_total_row_votes_on_a_siteless_day_use_the_site_sum(self):
+        # Oct 27 capture: the Total row put 49 on 9/21/2024 with no site, but its grand total matched the sites.
+        capture = json.loads((CAPTURE.parent.parent / '2026-10-27/0931-powerbi-data.json').read_text())
+        rows = {r['Site']: r for r in decode(capture['queries']['daily'])}
+        self.assertEqual(total_row_mismatches(rows, capture['dateColumns']), {'9/21/2024': 49})
+        rows['Total']['Total'] += 49
+        with self.assertRaises(AssertionError):
+            total_row_mismatches(rows, capture['dateColumns'])
 
 if __name__ == '__main__':
     unittest.main()
