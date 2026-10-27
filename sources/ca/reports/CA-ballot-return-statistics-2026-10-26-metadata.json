@@ -1,0 +1,63 @@
+{
+  "source_page": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026",
+  "report_as_of": "2026-10-26",
+  "report_dates_match": true,
+  "files": [
+    {
+      "format": "xlsx",
+      "url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.xlsx",
+      "resolved": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics.xlsx",
+      "status": 200,
+      "start": "2026-10-27T17:13:15+00:00",
+      "end": "2026-10-27T17:13:15+00:00",
+      "headers": {
+        "date": "Tue, 27 Oct 2026 17:01:23 GMT",
+        "last-modified": "Tue, 27 Oct 2026 16:52:20 GMT",
+        "etag": "\"474eb2d7b106c83ac74bae3326e63740\"",
+        "content-type": "application/octet-stream",
+        "content-length": "49049",
+        "x-amz-meta-cb-modifiedtime": "Tue, 27 Oct 2026 16:42:45 GMT",
+        "x-amz-version-id": "cDaKb2nZvnUFfAFnTuuwckORqweo1csh",
+        "x-cache": "Hit from cloudfront"
+      },
+      "lastModifiedPacific": "2026-10-27T09:52:20-07:00",
+      "bytes": 49049,
+      "sha256": "aa24383be5cc2241bb532a065d12cb0922896d1e7c562e470d8f0c9f5e96f42d",
+      "asOf": "2026-10-26",
+      "validation": "ok",
+      "saved": "CA-ballot-return-statistics-2026-10-26.xlsx",
+      "filename": "CA-ballot-return-statistics-2026-10-26.xlsx",
+      "timestamps_pacific": {
+        "last-modified": "2026-10-27T09:52:20-07:00"
+      }
+    },
+    {
+      "format": "pdf",
+      "url": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-26-26.pdf",
+      "resolved": "https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-26-26.pdf",
+      "status": 200,
+      "start": "2026-10-27T17:13:15+00:00",
+      "end": "2026-10-27T17:13:15+00:00",
+      "headers": {
+        "date": "Tue, 27 Oct 2026 17:06:13 GMT",
+        "last-modified": "Tue, 27 Oct 2026 16:19:28 GMT",
+        "etag": "\"998bc1b25f7b8522151bc6a64b6e135a\"",
+        "content-type": "application/pdf",
+        "content-length": "208116",
+        "x-amz-meta-cb-modifiedtime": "Tue, 27 Oct 2026 16:17:33 GMT",
+        "x-amz-version-id": "Z0PfetH4hvhdx.gKlM4ppN5UIAzUAnKZ",
+        "x-cache": "Hit from cloudfront"
+      },
+      "lastModifiedPacific": "2026-10-27T09:19:28-07:00",
+      "bytes": 208116,
+      "sha256": "e6e606528a902ed5430fde058f0d4132c7dc9aeca41b7245c679b78af05feacc",
+      "asOf": "2026-10-26",
+      "validation": "ok",
+      "saved": "CA-ballot-return-statistics-2026-10-26.pdf",
+      "filename": "CA-ballot-return-statistics-2026-10-26.pdf",
+      "timestamps_pacific": {
+        "last-modified": "2026-10-27T09:19:28-07:00"
+      }
+    }
+  ]
+}
