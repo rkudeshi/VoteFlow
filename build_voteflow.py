@@ -121,6 +121,36 @@ def fairfax_report():
     return {'through': through, 'summary': summary, 'tables': tables} if tables else None
 
 
+def county_report(lid):
+    """Prince William's daily sheet as county-report tables (same shape as fairfax_report)."""
+    o = county_official(lid, LIVE)
+    sr = D.get('siteReports', {}).get(lid, {}).get(LIVE)
+    if not o.get('history') or not sr:
+        return None
+    names = SITE_REPORT_NAMES[lid]
+    keys = sr['siteKeys']
+    def table(tid, title, cols, rows):
+        rows = [r for r in rows if any(v for v in r[1:])]
+        total = [sum(r[k + 1] or 0 for r in rows) for k in range(len(cols))]
+        return {'id': tid, 'title': title, 'cols': cols, 'rows': rows, 'total': total} if rows else None
+    site_cols = ['Total'] + [names[k][1] for k in keys]
+    early = table('early', 'Early in-person voting by site', site_cols,
+                  [[x['date'], x['early']] + [x['sites'].get(k) or 0 for k in keys] for x in sr['history']])
+    box = table('dropbox_sites', 'Drop box ballots by site', site_cols,
+                [[x['date'], sum(v or 0 for v in x.get('dropbox', {}).values())] + [(x.get('dropbox') or {}).get(k) or 0 for k in keys] for x in sr['history']])
+    hist = o['history']
+    ret = table('mail', 'Mail ballots returned', ['Total', 'By mail or email', 'Drop box'],
+                [[h['date'], h['postal'] + h['dropbox'], h['postal'], h['dropbox']] for h in hist])
+    sent = table('mailed', 'Ballots mailed or emailed', ['Total'], [[h['date'], h['sent']] for h in hist])
+    c = hist[-1]['cumulative']
+    back = c['postal'] + c['dropbox']
+    pct = lambda a, b: f'{round(a / b * 100)}%' if b else '—'
+    summary = [['Total ballots cast', f"{c['early'] + back:,}"], ['Mail ballots returned', f'{back:,}'], ['Share of mail ballots returned', pct(back, c['sent'])],
+               ['Returned by mail or email', pct(c['postal'], back)], ['Returned by drop box', pct(c['dropbox'], back)],
+               ['Mail ballots undeliverable', f"{(o.get('extras') or {}).get('undeliverable') or 0:,}"]]
+    return {'through': o['activityThrough'], 'summary': summary, 'tables': [t for t in (early, box, ret, sent) if t]}
+
+
 def monotonic(hist):
     """Display-only: running totals never go down. A missing day or a dip (a bad report, or a
     later downward correction) carries the previous high; the saved data is untouched."""
@@ -178,8 +208,20 @@ SITE_REPORT_NAMES = {
                        'dulles_south': ('Dulles South Recreation Center', 'Dulles South'), 'purcellville': ('Carver Senior Center', 'Carver Center'),
                        'ashburn': ('Ashburn Recreation and Community Center', 'Ashburn')},
     'alexandria-city': {'alexandria_office': ("Registrar's office", 'Main office'), 'beatley': ('Charles E. Beatley Jr Central Library', 'Beatley Library')},
+    'prince-william-county': {'office': ("Registrar's office", 'Main office'), 'dmv': ('DMV Woodbridge', 'DMV Woodbridge'), 'haymarket': ('Haymarket Gainesville Library', 'Haymarket'),
+                              'brentsville': ('Brentsville Courthouse', 'Brentsville'), 'dumfries': ('Dumfries Community Center', 'Dumfries'), 'ferlazzo': ('AJ Ferlazzo Building', 'Ferlazzo')},
 }
-SITE_REPORT_SOURCES = {'arlington-county': 'Arlington County’s dashboard', 'loudoun-county': 'Loudoun County’s dashboard', 'alexandria-city': 'the City of Alexandria’s dashboard'}
+SITE_REPORT_SOURCES = {'arlington-county': 'Arlington County’s dashboard', 'loudoun-county': 'Loudoun County’s dashboard', 'alexandria-city': 'the City of Alexandria’s dashboard',
+                       'prince-william-county': 'Prince William County’s daily report'}
+# Localities whose own daily report splits mail returns into post and drop box (and counts ballots
+# mailed). Fairfax's lives under D['official']; the others under D['countyReports'][locality].
+COUNTY_LABEL = {'fairfax-county': 'Fairfax County', 'prince-william-county': 'Prince William County'}
+
+
+def county_official(lid, year):
+    if lid == 'fairfax-county':
+        return D.get('official', {}).get(year, {})
+    return D.get('countyReports', {}).get(lid, {}).get(year, {})
 
 # Map positions for sites the geocoded site list does not cover yet (approximate; flagged in the UI).
 APPROX_SITES = {'richmond-city': {"Registrar's office": (37.5935, -77.4741), 'Richmond City Hall': (37.5407, -77.4336),
@@ -642,6 +684,7 @@ def main():
                              'rules': [x + ' (regular office hours)' for x in hrs] + (['Extended and weekend early-voting hours: check with the registrar'] if hrs else []),
                              'placeholder': True, 'url': NAMES[lid].get('officeSource')})
         sites.sort(key=lambda s0: s0['satellite'])  # the office leads
+        county_days = {x['date']: x for x in county_official(lid, LIVE).get('history', [])} if lid != 'fairfax-county' else {}
         rows, prev = [], None
         for h in l['history']:
             if h['date'] < '2026-09-18':
@@ -658,6 +701,9 @@ def main():
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
                 r['post'] = x.get('postal'); r['box'] = x.get('dropbox')
+            elif h['date'] in county_days:
+                x = county_days[h['date']]
+                r['post'] = x['postal']; r['box'] = x['dropbox']
             # Backup totals from the same Daily Absentee List records need no same-night footnote.
             if h.get('source') and h['source'] != 'Daily Absentee List':
                 r['prov'] = h['source']
@@ -730,15 +776,27 @@ def main():
                               'atT': at_days_before(lh['history'], date(meta['date']), tdb),
                               'final': eid != LIVE, 'series': series(lh['history'], meta['date'], lh['registered']), **ranks.get(eid, {}).get(lid, {})})
         fx_mail = None
-        if lid == 'fairfax-county':
+        if lid in COUNTY_LABEL:
             fx_mail = {}
             for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026-special', '2026']:
-                hh = D.get('official', {}).get(y, {}).get('history')
+                o = county_official(lid, y)
+                hh = o.get('history')
                 if hh:
                     c = hh[-1].get('cumulative') or {}
                     fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early'),
-                                  'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(D['official'][y].get('extras')),
+                                  'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(o.get('extras')),
                                   'sites': fx_site_days(hh, election_meta(y)['date'])}
+            # Drop box ballots per site per day, where the county reports them.
+            sr = D.get('siteReports', {}).get(lid, {}).get(LIVE)
+            if LIVE in fx_mail and sr and any(x.get('dropbox') for x in sr['history']):
+                E = date(election_meta(LIVE)['date'])
+                boxes = {}
+                for x in sr['history']:
+                    i = 46 - (E - date(x['date'])).days
+                    for k, v in (x.get('dropbox') or {}).items():
+                        if v is not None and x['sites'].get(k) and 0 <= i < 53:  # a site's box counts only on days it was open
+                            boxes.setdefault(k, [None] * 53)[i] = v
+                fx_mail[LIVE]['boxSites'] = {k: v for k, v in boxes.items() if any(v)}
         n, nxt = sat_summary(lid, today)
         sat_dates = [date(x['firstOpen']) for x in D.get('satellites', {}).get(LIVE, {}).get(lid, {}).get('sites', []) if x['satellite']]
         ref25 = next((x['series'] for x in elections if x['id'] == '2025'), None)
@@ -752,7 +810,7 @@ def main():
              'inactive': l.get('inactive'), 'rankV': by_total.index(l_dal) + 1, 'rankP': by_pct.index(l_dal) + 1, 'rankR': by_reg.index(l_dal) + 1,
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
-             'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}
+             'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else county_report(lid) if lid in COUNTY_LABEL else None, 'countyLabel': COUNTY_LABEL.get(lid), 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     # URL map for the router: /va/<locality>/<election>, /va/statewide/<election>.
     # Year-month (2026-11) in URLs; the full date only when two elections share a month.

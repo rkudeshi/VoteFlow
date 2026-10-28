@@ -22,12 +22,15 @@
     const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: ser.e[i] - pe, dm: ser.m[i] - pmm, e: ser.e[i], m: ser.m[i] }; });
     // Prefer the source's own daily counts where it publishes them.
     if (o.rowDaily) o.rowDaily.forEach((r) => { const i = VF.idxOf(o.date, r.d); if (act[i] && r.de != null) { act[i].de = r.de; act[i].dm = r.dm; } });
-    // Fairfax publishes how mail ballots came back (post vs. drop box); split each day's mail
+    // Fairfax and Prince William publish how mail ballots came back (post vs. drop box); split each day's mail
     // returns by that day's county shares so the bars still add up to the totals shown elsewhere.
     const fx = o.fx && o.fx.p ? o.fx : null;
     if (fx) act.forEach((r, i) => { if (!r || fx.p[i] == null) return;
       const dP = Math.max(0, fx.p[i] - (i && fx.p[i - 1] != null ? fx.p[i - 1] : 0)), dB = Math.max(0, fx.b[i] - (i && fx.b[i - 1] != null ? fx.b[i - 1] : 0));
-      const share = dP + dB > 0 ? dB / (dP + dB) : fx.p[i] + fx.b[i] > 0 ? fx.b[i] / (fx.p[i] + fx.b[i]) : 0;
+      // Where the bars are the state's daily counts (o.fxRunShare), the county's processing days don't
+      // line up with them, so its running share is used instead of that day's share.
+      const run = fx.p[i] + fx.b[i] > 0 ? fx.b[i] / (fx.p[i] + fx.b[i]) : 0;
+      const share = o.fxRunShare ? run : dP + dB > 0 ? dB / (dP + dB) : run;
       r.dmB = Math.round(Math.max(0, r.dm) * share); r.dmP = Math.max(0, r.dm) - r.dmB; });
     const split = !!fx && act.some((r) => r && r.dmB != null);
     const hasSched = Object.keys(o.sched || {}).length > 0;
@@ -143,7 +146,7 @@
       legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: split ? 'Returned by mail' : 'By mail', bg: '#7C4DDB', border: '0' }].concat(split && bdM !== 'early' ? [{ l: 'Drop box', bg: '#C4AEF6', border: '0' }] : []).concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
       note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates cover every day a site is open, including every day from ' + dmd(iso(dayDate(LAW0))) + ' through ' + dmd(iso(dayDate(43))) + ', when state law keeps every locality open' + (hasSched || o.gate === 'none' ? '' : ' (other days assumed: the registrar’s office on weekdays)') + '. Where past elections were mostly closed, as on most weekends, the in-person estimate is this year’s ballots per site-hour on the nearest weekdays, about 30% higher on weekends, times that day’s site-hours. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
     };
-    if (split && bdM !== 'early') bd.note += ' Mail returns are split into returned by mail and drop box using Fairfax County’s own daily report.';
+    if (split && bdM !== 'early') bd.note += ' Mail returns are split into returned by mail and drop box using ' + (o.county || 'the county') + '’s own daily report.';
     const barInfo = (i) => {
       const dd = dayDate(i), r = act[i], p = plan[i], k5 = iso(dd), sc = live && o.sched ? o.sched[k5] : null;
       const eL = i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46);

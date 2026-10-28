@@ -129,7 +129,7 @@ class Locality extends DCLogic {
       vrows.push({ title: 'Mail ballots requested', total: f(req), unit: 'requested', segs: [vseg('Returned', ret, req, ...cP), vseg(live ? 'Not returned yet' : 'Never returned', out, req, ...cGR)] });
     }
     const undeliv = fx && fx.extras && fx.extras.undeliverable != null ? ' ' + f(fx.extras.undeliverable) + ' mail ballots were undeliverable.' : '';
-    const vb = { rows: vrows, note: hasPBflow ? 'By mail vs. drop box and mail ballots sent come from Fairfax County’s own report through ' + dmd(fx.through) + '.' + undeliv : '' };
+    const vb = { rows: vrows, note: hasPBflow ? 'By mail vs. drop box and mail ballots sent come from ' + (D.countyLabel || 'the county') + '’s own report through ' + dmd(fx.through) + '.' + undeliv : '' };
     const fcView = this.state.flowView || 'chart';
     const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar charts']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
@@ -338,7 +338,7 @@ class Locality extends DCLogic {
         deBg: shade ? GSH[lvlOf(r.de, maxDe)] : 'transparent', dmBg: shade ? PSH[lvlOf(r.dm, maxDm)] : 'transparent', dayBg: shade ? TSH[lvlOf(r.de + r.dm, maxDT)] : 'transparent' };
     });
     const narrowT = this.state.narrow;
-    // Fairfax: every table from the county's absentee/early voting daily report
+    // Fairfax and Prince William: every table from the county's own daily report
     const FR = live && D.fxReport, dnTab = FR ? (this.state.dnTab || 'sum') : 'sum';
     const frSel = FR ? (this.state.dnTable && FR.tables.find((x) => x.id === this.state.dnTable) ? this.state.dnTable : FR.tables[0].id) : '';
     const frT = FR ? FR.tables.find((x) => x.id === frSel) : null;
@@ -359,7 +359,7 @@ class Locality extends DCLogic {
       if (fxr.on && frT) {  // the county report table currently shown
         const out = [['date'].concat(frKeep.map((k) => frT.cols[k])).map(q).join(',')].concat(frT.rows.map((r) => [r[0]].concat(frKeep.map((k) => r[k + 1] || 0)).map(q).join(',')));
         const url2 = URL.createObjectURL(new Blob([out.join('\n') + '\n'], { type: 'text/csv' }));
-        const a2 = document.createElement('a'); a2.href = url2; a2.download = 'fairfax-county-report-' + frT.id + '.csv'; document.body.appendChild(a2); a2.click(); a2.remove(); setTimeout(() => URL.revokeObjectURL(url2), 1000);
+        const a2 = document.createElement('a'); a2.href = url2; a2.download = D.id + '-report-' + frT.id + '.csv'; document.body.appendChild(a2); a2.click(); a2.remove(); setTimeout(() => URL.revokeObjectURL(url2), 1000);
         return;
       }
       const lines = [head.join(',')].concat(drows.map((r) => { const sc = live ? D.sched[r.d] : null, w = r.w;
@@ -376,7 +376,7 @@ class Locality extends DCLogic {
     // ---- ballots by day (+ planning)
     const { bd, barInfo } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
       refs: EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id)), sched: live ? D.sched : null, gate: 'sched', officeKnown: !!D.officeKnown,
-      rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, fx: D.fxMail && D.fxMail[cur.id] ? D.fxMail[cur.id].ser : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
+      rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, fx: D.fxMail && D.fxMail[cur.id] ? D.fxMail[cur.id].ser : null, county: D.countyLabel, fxRunShare: D.id !== 'fairfax-county', st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
     // Same day, last time: each day of this election next to the same day before Election Day in
     // a past election (Nov 2025 by default), with that day's change and the running comparison.
@@ -413,7 +413,8 @@ class Locality extends DCLogic {
       sd.rows.forEach((r) => { r.bgA = SDS[sdLvl(r.nA)]; r.bgB = SDS[sdLvl(r.nB)]; });
       sd.note = (sdM === 'early' ? 'In-person ballots only. ' : sdM === 'mail' ? 'Mail ballots only; offices process mail on their own schedules, so daily counts swing. ' : 'In-person and mail ballots together. ') + 'Days line up by how many days remain before Election Day, so weekdays match. Every day from the first day of votes to the latest is listed, weekends and holidays included; a dash means no ballots that day. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
-    // Fairfax: in-person ballots by site — this election site by site, and one site across years.
+    // Fairfax and Prince William: ballots by site — this election site by site (in person, or drop box
+    // where the county counts each site's box), and one site across years when there are past elections.
     const bs = { on: false };
     const FXS = D.fxMail ? Object.keys(D.fxMail).filter((y) => D.fxMail[y].sites && Object.keys(D.fxMail[y].sites).length) : [];
     if (FXS.length && D.fxMail[cur.id] && D.fxMail[cur.id].sites && Object.keys(D.fxMail[cur.id].sites).length) {
@@ -446,17 +447,18 @@ class Locality extends DCLogic {
       const viewOpts = (key, curV, opts) => opts.map(([v, label]) => Object.assign({ label, pick: () => this.setState({ [key]: v }) }, pill(curV, v)));
       // 1) This election, site by site: the five busiest sites in color, the rest in light gray.
       const SC = ['#121417', '#00A37A', '#7C4DDB', '#D9792B', '#2F6FD6'];
-      const now = D.fxMail[cur.id].sites, keys = Object.keys(now).sort((a, b) => sum(now[b]) - sum(now[a]));
+      const boxes = D.fxMail[cur.id].boxSites, bsKind = boxes && this.state.bsKind === 'box' ? 'box' : 'early';
+      const now = bsKind === 'box' ? boxes : D.fxMail[cur.id].sites, keys = Object.keys(now).sort((a, b) => sum(now[b]) - sum(now[a]));
       let first = 52, last = 0; keys.forEach((k) => now[k].forEach((v, i) => { if (v != null) { first = Math.min(first, i); last = Math.max(last, i); } }));
       const to1 = live ? 46 : Math.max(last, first + 1);
-      const v1 = bsView === 'hour' && !hasHrs ? 'daily' : bsView;
+      const v1 = bsView === 'hour' && (!hasHrs || bsKind === 'box') ? 'daily' : bsView;
       const perHour = (k) => now[k].map((v, i) => v != null && hrs[k] && hrs[k][i] ? Math.round(v / hrs[k][i]) : null);
       const s1 = keys.map((k, j) => ({ k, name: nm(k), c: j < 5 ? SC[j] : '#C9CDD4', w: j === 0 ? 3.5 : 2.5, raw: now[k], vals: v1 === 'cum' ? cumOf(now[k]) : v1 === 'hour' ? perHour(k) : now[k] }));
       const ch1 = chart(s1.slice().reverse(), first, to1, 'bsHi1', true);
       const h1 = this.state.bsHi1;
       // 2) One site across elections (Government Center by default).
       const allKeys = Array.from(new Set(FXS.flatMap((y) => Object.keys(D.fxMail[y].sites)))).sort((a, b) => (a === 'government_center' ? -1 : b === 'government_center' ? 1 : nm(a).localeCompare(nm(b))));
-      const site = allKeys.includes(this.state.bsSite) ? this.state.bsSite : 'government_center';
+      const site = allKeys.includes(this.state.bsSite) ? this.state.bsSite : allKeys.includes('government_center') ? 'government_center' : allKeys[0];
       const yrs = FXS.filter((y) => D.fxMail[y].sites[site]).sort().reverse();
       const yLabel = (y) => (EL.find((x) => x.id === y) || {}).label || y;
       const s2 = yrs.map((y) => ({ y, name: yLabel(y), c: VF.elColor(y, cur.id, cmpId), w: y === cur.id ? 4 : y === cmpId ? 3 : 2, raw: D.fxMail[y].sites[site], vals: bsView2 === 'cum' ? cumOf(D.fxMail[y].sites[site]) : D.fxMail[y].sites[site] }));
@@ -465,7 +467,9 @@ class Locality extends DCLogic {
       const h2 = this.state.bsHi2;
       const fmtv = (v) => v == null ? '—' : f(v);
       Object.assign(bs, {
-        on: true, viewOpts: viewOpts('bsView', v1, [['daily', 'Per day']].concat(hasHrs ? [['hour', 'Per hour']] : [], [['cum', 'Running total']])), viewOpts2: viewOpts('bsView2', bsView2, [['daily', 'Per day'], ['cum', 'Running total']]), ch1, ch2,
+        on: true, multi: yrs.length > 1 || FXS.length > 1, kindOpts: boxes ? viewOpts('bsKind', bsKind, [['early', 'In person'], ['box', 'Drop box']]) : [], hasKind: !!boxes,
+        h1: bsKind === 'box' ? 'Drop box ballots, site by site' : 'This election, site by site', aria1: bsKind === 'box' ? 'Drop box ballots per site by day' : 'In-person ballots per site by day',
+        viewOpts: viewOpts('bsView', v1, [['daily', 'Per day']].concat(hasHrs && bsKind !== 'box' ? [['hour', 'Per hour']] : [], [['cum', 'Running total']])), viewOpts2: viewOpts('bsView2', bsView2, [['daily', 'Per day'], ['cum', 'Running total']]), ch1, ch2,
         legend1: s1.map((x) => ({ name: x.name, c: x.c, total: f(sum(x.raw)) })),
         legend2: s2.map((x) => ({ name: x.name.replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), c: x.c, total: f(sum(x.raw)) })),
         read1: h1 != null && s1.some((x) => x.raw[h1] != null) ? dayLabel(cur.date, h1) + ' · ' + s1.filter((x) => x.raw[h1] != null).slice(0, 6).map((x) => x.name + ' ' + fmtv(x.vals[h1]) + (v1 === 'hour' ? '/hr' : '')).join(' · ') : h1 != null ? dayLabel(cur.date, h1) + ' · no ballots reported' : 'Hover the chart to read each site for a day.',
@@ -474,7 +478,7 @@ class Locality extends DCLogic {
         take: (() => { const a = s2.find((x) => x.y === cur.id), b = s2.find((x) => x.y === cmpId); if (!live || !a || !b) return '';
           let li = -1; a.raw.forEach((v, i) => { if (v != null) li = i; }); const ta = sum(a.raw.slice(0, li + 1)), tb = sum(b.raw.slice(0, li + 1));
           return tb ? nm(site) + ' is ' + (ta >= tb ? Math.round((ta / tb - 1) * 100) + '% ahead of ' : Math.round((1 - ta / tb) * 100) + '% behind ') + b.name + ' at this point' : ''; })(),
-        through: 'From Fairfax County’s daily reports' + (live ? ', through ' + dmd(D.fxMail[cur.id].through) : '') + '. Lines run across days the sites were closed (shaded).' + (hasHrs ? ' Per hour divides each day’s ballots by the hours that site was scheduled to be open.' : '')
+        through: 'From ' + (D.countyLabel || 'the county') + '’s daily reports' + (live ? ', through ' + dmd(D.fxMail[cur.id].through) : '') + '. Lines run across days the sites were closed (shaded).' + (hasHrs && bsKind !== 'box' ? ' Per hour divides each day’s ballots by the hours that site was scheduled to be open.' : '') + (bsKind === 'box' ? ' Drop box counts are mail ballots left in the drop box at each early-voting site that day.' : '')
       });
     }
     // Section headlines that state the finding.

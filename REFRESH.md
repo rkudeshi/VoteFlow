@@ -139,11 +139,20 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    Then run `python refresh_dashboard_snapshots.py`. Dashboard snapshots keep
    activity dates separate from report and retrieval dates; a corrected
    snapshot replaces the affected site/day observation.
-5. When Prince William satellite sites are open, check its official site-level
-   feed or dashboard. `python refresh_pwc.py` currently captures countywide Wix
-   figures and therefore should not run as the aggregate source. Retain its raw
-   snapshots and prior verified observations, but let DAL supply current
-   countywide totals.
+5. Prince William: run `python refresh_pwc_sheet.py` (hourly while early voting
+   runs). It reads the county's public daily sheet (in-person voters and drop box
+   ballots per site per day; mail sent, returned by mail/email/drop box and
+   undeliverable per processing day), saves changed CSVs to `sources/pwc-sheet/`
+   and exits early when nothing changed. Staff type each day in during the
+   evening: a half-filled last day is held until every site that voted the day
+   before has a count (or a later day starts), and blank drop box cells stay
+   unknown. It writes site counts to `siteReports`, the county's own series to
+   `countyReports` (the Fairfax report shape: post vs. drop box, ballots sent,
+   site charts and the County report tab), and the in-person running total to
+   `provisional` for days DAL doesn't have yet, only when the sheet agrees with
+   DAL within 50 ballots on DAL's latest day. Mail totals run a little above
+   DAL's (different definition), so mail stays DAL's. `python refresh_pwc.py`
+   (countywide Wix figures) should not run as the aggregate source.
 6. Arlington's public Power BI workbook currently reuses 2024 internal field
    names with a 2026 visible calendar. The verified September18 counts are saved
    in siteReports. Do not rerun import_arlington_sites.py as a live updater: it is

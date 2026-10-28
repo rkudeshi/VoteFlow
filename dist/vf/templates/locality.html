@@ -797,16 +797,21 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
     <section id="bysite" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div>
       <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Turnout by early voting site</h2>
-      <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">In-person ballots at each early-voting location, from the county's daily reports.</p>
+      <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Ballots cast at each early-voting location, from the county's daily reports.</p>
 
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin: 26px 0 10px">
-        <h3 style="margin: 0; font-size: 19px; font-weight: 800">This election, site by site</h3>
+        <h3 style="margin: 0; font-size: 19px; font-weight: 800">{{bs.h1}}</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+        <sc-if value="{{bs.hasKind}}" hint-placeholder-val="{{ false }}"><div role="group" aria-label="Ballots" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+            <sc-for list="{{bs.kindOpts}}" as="o" hint-placeholder-count="2"><button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button></sc-for>
+          </div></sc-if>
         <div role="group" aria-label="View" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{bs.viewOpts}}" as="o" hint-placeholder-count="2"><button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button></sc-for>
           </div>
+        </div>
       </div>
         <div style="position: relative" onMouseLeave="{{bs.ch1.leave}}">
-          <svg viewBox="{{bs.ch1.vb}}" width="100%" style="display: block; overflow: visible" role="img" aria-label="In-person ballots per site by day">
+          <svg viewBox="{{bs.ch1.vb}}" width="100%" style="display: block; overflow: visible" role="img" aria-label="{{bs.aria1}}">
             <sc-for list="{{bs.ch1.yt}}" as="t" hint-placeholder-count="5"><g><line x1="{{bs.ch1.L}}" x2="982" y1="{{t.y}}" y2="{{t.y}}" stroke="#ECEEF2" stroke-width="1"></line><text x="{{bs.ch1.yl}}" y="{{t.ty}}" text-anchor="end" font-family="DM Mono, monospace" font-size="{{bs.ch1.fs}}" fill="#4A5260">{{t.l}}</text></g></sc-for>
             <sc-for list="{{bs.ch1.xt}}" as="t" hint-placeholder-count="6"><text x="{{t.x}}" y="{{bs.ch1.xy}}" text-anchor="middle" font-family="DM Mono, monospace" font-size="{{bs.ch1.fs}}" fill="#4A5260">{{t.l}}</text></sc-for>
             <sc-for list="{{bs.ch1.closed}}" as="cz" hint-placeholder-count="4"><rect x="{{cz.x}}" y="14" width="{{cz.w}}" height="{{bs.ch1.plotH}}" fill="#F3F4F6"></rect></sc-for>
@@ -821,6 +826,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
         </div>
       <p style="margin: 8px 0 0; font-size: 14px; color: #2A2F38; min-height: 20px">{{bs.read1}}</p>
 
+      <sc-if value="{{bs.multi}}" hint-placeholder-val="{{ true }}">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin: 40px 0 10px; padding-top: 28px; border-top: 2px solid #ECEEF2">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <h3 style="margin: 0; font-size: 19px; font-weight: 800">One site across elections</h3>
@@ -847,6 +853,7 @@ body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
           <sc-for list="{{bs.legend2}}" as="lg" hint-placeholder-count="3"><span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 18px; height: 4px; border-radius: 2px; background: {{lg.c}}"></span><b>{{lg.name}}</b><span style="color: #4A5260">{{lg.total}}</span></span></sc-for>
         </div>
       <p style="margin: 8px 0 0; font-size: 14px; color: #2A2F38; min-height: 20px">{{bs.read2}}</p>
+      </sc-if>
       <p style="margin: 14px 0 0; font-size: 13.5px; color: #4A5260">{{bs.through}}</p>
     </section>
     </sc-if>
