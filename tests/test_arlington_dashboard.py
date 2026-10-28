@@ -1,7 +1,7 @@
 import json
 import unittest
 from pathlib import Path
-from refresh_arlington import activity_date, decode, site_table_gap, total_row_mismatches
+from refresh_arlington import activity_date, decode, site_table_gap, snapshot_lags, total_row_mismatches
 
 CAPTURE = Path(__file__).resolve().parent.parent / 'sources/dashboard-archive/arlington-county/2026-10-18/1731-powerbi-data.json'
 
@@ -36,6 +36,14 @@ class ArlingtonDashboardTests(unittest.TestCase):
         rows['Total']['Total'] += 49
         with self.assertRaises(AssertionError):
             total_row_mismatches(rows, capture['dateColumns'])
+
+    def test_site_table_one_day_ahead_of_snapshot(self):
+        # Oct 28 capture: site table 26,340 with 857 for Oct 27, Snapshot still 25,483.
+        days = [{'early': 25483}, {'early': 857}]
+        self.assertTrue(snapshot_lags(days, 26340, 25483))
+        self.assertFalse(snapshot_lags(days, 26340, 26340))
+        self.assertFalse(snapshot_lags(days, 26340, 25400))
+        self.assertFalse(snapshot_lags([{'early': 857}], 857, 0))
 
 if __name__ == '__main__':
     unittest.main()

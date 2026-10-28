@@ -20,7 +20,11 @@ table agreed with the Snapshot); a gap up to SITE_TABLE_SLACK is recorded and
 the Snapshot total stays the cumulative figure. The Total row has also shown
 votes on a day no site has (49 on Saturday September 19 in the Oct 27 capture)
 while its own grand total still matched the sites; such a day uses the site sum
-and is recorded under totalRowMismatch.
+and is recorded under totalRowMismatch. The site table can also post a day
+before the Snapshot and precinct pages catch up (Oct 28: 857 for Oct 27 while
+the Snapshot still read 25,483); when the gap is exactly the newest day, the
+site counts load and the cumulative and precinct figures stay on the day before
+(snapshotThrough).
 """
 import json
 import sys
@@ -52,6 +56,11 @@ def total_row_mismatches(rows, columns):
         sites_total = sum(int(rows[name]["Total"] or 0) for name in SITES if name in rows)
         assert int(rows["Total"]["Total"]) == sites_total, ("Daily site counts do not add up to the Total row", mismatched)
     return mismatched
+
+
+def snapshot_lags(days, table_total, early):
+    """True when the site table is exactly one posted day ahead of the Snapshot total."""
+    return len(days) > 1 and table_total - early == days[-1]["early"]
 
 
 def site_table_gap(days, table_total, early):
@@ -144,7 +153,13 @@ def main():
         days.append({"date": when, "early": total, "sites": sites})
 
     early = int(totals["Early Voting"])
-    gap = site_table_gap(days, int(rows["Total"]["Total"]), early)
+    table_total = int(rows["Total"]["Total"])
+    snapshot_through = days[-1]["date"]
+    if snapshot_lags(days, table_total, early):
+        snapshot_through = days[-2]["date"]
+        gap = site_table_gap(days[:-1], table_total - days[-1]["early"], early)
+    else:
+        gap = site_table_gap(days, table_total, early)
     snapshot = {
         "election": "2026",
         "locality": "arlington-county",
@@ -159,11 +174,13 @@ def main():
     }
     if gap:
         snapshot["siteTableGap"] = gap
+    if snapshot_through != snapshot["activityThrough"]:
+        snapshot["snapshotThrough"] = snapshot_through
     if mismatched:
         snapshot["totalRowMismatch"] = {activity_date(c): v for c, v in mismatched.items()}
     # The Snapshot totals match DAL's cumulative early and mail counts.
-    provisional("arlington-county", snapshot["activityThrough"], {"early": early, "mail": snapshot["mail"]}, "Arlington County dashboard", capture["retrievedAt"])
-    precincts_changed = update_precincts(decode(q["precincts"]), snapshot["activityThrough"], early, snapshot["mail"])
+    provisional("arlington-county", snapshot_through, {"early": early, "mail": snapshot["mail"]}, "Arlington County dashboard", capture["retrievedAt"])
+    precincts_changed = update_precincts(decode(q["precincts"]), snapshot_through, early, snapshot["mail"])
     path = OUT / f"{refreshed}-arlington.json"
     text = json.dumps(snapshot, indent=2) + "\n"
     changed = not path.exists() or path.read_text() != text
