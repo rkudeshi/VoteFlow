@@ -165,7 +165,7 @@ def unchanged(texts):
     """True when both tabs match the newest saved copies."""
     for tab, text in texts.items():
         saved = sorted(RAW.glob(f"*-{tab}-*.csv"))
-        if not saved or saved[-1].read_text() != text:
+        if not saved or saved[-1].read_bytes() != text.encode():
             return False
     return True
 
@@ -175,8 +175,8 @@ def save_raw(texts, stamp):
     RAW.mkdir(parents=True, exist_ok=True)
     for tab, text in texts.items():
         saved = sorted(RAW.glob(f"*-{tab}-*.csv"))
-        if not saved or saved[-1].read_text() != text:
-            (RAW / f"{stamp}-{tab}-{hashlib.sha256(text.encode()).hexdigest()[:12]}.csv").write_text(text)
+        if not saved or saved[-1].read_bytes() != text.encode():
+            (RAW / f"{stamp}-{tab}-{hashlib.sha256(text.encode()).hexdigest()[:12]}.csv").write_bytes(text.encode())
 
 
 def main(force=False):
@@ -220,7 +220,8 @@ def main(force=False):
     gap = run[dal_day] - dal_last["early"] if dal_day in run else None
     if gap is not None and abs(gap) <= DAL_SLACK:
         for d, early in run.items():
-            if d > dal_day:
+            same = data.get("provisional", {}).get(LID, {}).get(d, {})
+            if d > dal_day and not (same.get("early") == early and same.get("source") == LABEL):
                 provisional(LID, d, {"early": early}, LABEL, reported, data)
     elif gap is not None:
         print(f"Prince William sheet runs {gap:+} from DAL on {dal_day}; same-night totals skipped", file=sys.stderr)
