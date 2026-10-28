@@ -1,9 +1,9 @@
 {
-  "fingerprint": "1793104963573",
-  "capturedAt": "2026-10-27T13:32:09.978Z",
+  "fingerprint": "1793191855435",
+  "capturedAt": "2026-10-28T13:19:30.681Z",
   "files": [
-    "sources/dashboard-archive/alexandria-city/2026-10-27/0932-tableau-workbook.json",
-    "sources/dashboard-archive/alexandria-city/2026-10-27/0932-Overview.png",
-    "sources/dashboard-archive/alexandria-city/2026-10-27/0932-EarlyVotingbyLocation.png"
+    "sources/dashboard-archive/alexandria-city/2026-10-28/0919-tableau-workbook.json",
+    "sources/dashboard-archive/alexandria-city/2026-10-28/0919-Overview.png",
+    "sources/dashboard-archive/alexandria-city/2026-10-28/0919-EarlyVotingbyLocation.png"
   ]
 }
