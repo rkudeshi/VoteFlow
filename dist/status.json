@@ -482,5 +482,12 @@
     "message": "Updated precinct counts for 2 localities from Daily Absentee List records.",
     "through": "2026-10-27",
     "url": null
+  },
+  {
+    "at": "2026-10-28T12:34:11.794740+00:00",
+    "source": "Locality dashboards",
+    "message": "Updated Prince William County site, drop box and mail counts.",
+    "through": "2026-10-27",
+    "url": null
   }
 ]
