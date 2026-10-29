@@ -531,5 +531,12 @@
     "message": "Updated precinct counts for 4 localities from Daily Absentee List records.",
     "through": "2026-10-28",
     "url": null
+  },
+  {
+    "at": "2026-10-29T14:45:03.084050+00:00",
+    "source": "Daily Absentee List",
+    "message": "Updated precinct counts for 128 localities from Daily Absentee List records.",
+    "through": "2026-10-28",
+    "url": null
   }
 ]
