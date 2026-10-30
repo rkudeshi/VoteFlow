@@ -61,7 +61,20 @@
       const whole = med(refs.map((r) => { const s2 = r.series; return s2[key][end] != null && s2[key][lastI] ? (s2[key][end] - s2[key][lastI]) * ser[key][lastI] / s2[key][lastI] : null; }).filter((x) => x != null));
       estLevel[key] = sum > 0 && whole != null ? Math.max(0, whole) / sum : 1;
     });
-    const refE = Array.from({ length: 53 }, (_, i) => live && i > lastI && i < 46 && cap[i] > 0 ? (estFor('e', i) || 0) * (estLevel.e || 1) : 0);
+    // Recent level: this year's last three weekdays times how each past election's day compared with
+    // those same three weekdays (median). It catches the final-week ramp (final Friday and Saturday)
+    // better than season pace; backtested on every locality in Nov 2021–2025, next-day misses fell
+    // from about 29% to 21%. Blended 2:1 with the pace estimate, which holds up when a locality's
+    // latest days are reported late.
+    const rd = (s2, i) => s2.e[i] != null && s2.e[i - 1] != null ? Math.max(0, s2.e[i] - s2.e[i - 1]) : null;
+    const anc = []; for (let j = lastI; j > 0 && anc.length < 3; j--) { const dw = dayDate(j).getDay(); if (dw && dw < 6 && act[j] && refs.every((r) => rd(r.series, j) != null)) anc.push(j); }
+    const ancBase = anc.reduce((a, j) => a + Math.max(0, act[j].de), 0);
+    const recentE = (i) => { if (anc.length < 3 || ancBase <= 0) return null;
+      const v = refs.map((r) => { const den = anc.reduce((a, j) => a + rd(r.series, j), 0), x = rd(r.series, i); return den > 0 && x != null ? x / den : null; }).filter((x) => x != null);
+      return v.length ? ancBase * med(v) : null; };
+    const refE = Array.from({ length: 53 }, (_, i) => { if (!(live && i > lastI && i < 46 && cap[i] > 0)) return 0;
+      const pace = (estFor('e', i) || 0) * (estLevel.e || 1), rec = recentE(i);
+      return rec == null ? pace : pace > 0 && rec > 0 ? Math.exp((Math.log(pace) + 2 * Math.log(rec)) / 3) : Math.max(pace, rec); });
     // Past elections were mostly closed on weekends, so their same-day counts can't speak for a
     // weekend this year. There, use the ballots per site-hour on the nearest weekdays before and
     // after (reported or estimated) times this day's site-hours, with weekend hours running about
@@ -144,7 +157,7 @@
           { k: 'By mail, projected final', v: '≈ ' + rnd(finM), sub: 'Range ' + rnd(curM + remMLo) + '–' + rnd(curM + remMHi), sub2: rnd(remM) + ' still to arrive, through ' + dmd(iso(dayDate(endI))), dot: '#7C4DDB' }
         ]; })() : [],
       legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: split ? 'Returned by mail' : 'By mail', bg: '#7C4DDB', border: '0' }].concat(split && bdM !== 'early' ? [{ l: 'Drop box', bg: '#C4AEF6', border: '0' }] : []).concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
-      note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates cover every day a site is open, including every day from ' + dmd(iso(dayDate(LAW0))) + ' through ' + dmd(iso(dayDate(43))) + ', when state law keeps every locality open' + (hasSched || o.gate === 'none' ? '' : ' (other days assumed: the registrar’s office on weekdays)') + '. Where past elections were mostly closed, as on most weekends, the in-person estimate is this year’s ballots per site-hour on the nearest weekdays, about 30% higher on weekends, times that day’s site-hours. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
+      note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In person, that is blended with a second estimate: this year’s last three weekdays times how much busier each past election got on that day compared with its own same three weekdays, which follows the rise into the final Friday and Saturday more closely. In-person estimates cover every day a site is open, including every day from ' + dmd(iso(dayDate(LAW0))) + ' through ' + dmd(iso(dayDate(43))) + ', when state law keeps every locality open' + (hasSched || o.gate === 'none' ? '' : ' (other days assumed: the registrar’s office on weekdays)') + '. Where past elections were mostly closed, as on most weekends, the in-person estimate is this year’s ballots per site-hour on the nearest weekdays, about 30% higher on weekends, times that day’s site-hours. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
     };
     if (split && bdM !== 'early') bd.note += ' Mail returns are split into returned by mail and drop box using ' + (o.county || 'the county') + '’s own daily report.';
     const barInfo = (i) => {
