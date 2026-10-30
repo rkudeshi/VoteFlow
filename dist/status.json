@@ -573,5 +573,12 @@
     "message": "Updated Prince William County site, drop box and mail counts.",
     "through": "2026-10-29",
     "url": null
+  },
+  {
+    "at": "2026-10-30T13:03:53.187581+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-10-29",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
   }
 ]
