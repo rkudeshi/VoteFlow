@@ -1,9 +1,9 @@
 {
-  "fingerprint": "b1dc2ec8225322ab",
-  "capturedAt": "2026-10-30T13:16:32.641Z",
+  "fingerprint": "b6d2c45ce9aac104",
+  "capturedAt": "2026-10-30T21:33:19.353Z",
   "files": [
-    "sources/dashboard-archive/loudoun-county/2026-10-30/0916-arcgis-feed.json",
-    "sources/dashboard-archive/loudoun-county/2026-10-30/0916-dashboard.jpg"
+    "sources/dashboard-archive/loudoun-county/2026-10-30/1733-arcgis-feed.json",
+    "sources/dashboard-archive/loudoun-county/2026-10-30/1733-dashboard.jpg"
   ],
-  "dataFile": "sources/dashboard-archive/loudoun-county/2026-10-30/0916-arcgis-feed.json"
+  "dataFile": "sources/dashboard-archive/loudoun-county/2026-10-30/1733-arcgis-feed.json"
 }
