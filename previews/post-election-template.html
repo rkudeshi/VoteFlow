@@ -1,0 +1,610 @@
+<title>Fairfax After the Election</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: VoteFlow's grey ground with white section cards; one county, one election, every precinct. */
+:root{
+  --bg:#E6E8EC; --card:#FFFFFF; --ink:#121417; --ink2:#3A3F48; --muted:#5F6775; --line:#D3D7DE; --soft:#F1F2F5;
+  --bar:#121417; --bar-ink:#FFFFFF; --badge:#FFD23F;
+  --ed:#2F5FD0; --ev:#00A37A; --mail:#7C4DDB; --pe:#B9A3EE; --prov:#C27C00;
+  --ramp-lo:#EEF0F4; --turn:#121A3A; --pos:#1F6FB2; --neg:#C2571A; --mid:#E3E5EA;
+  --display:'Unbounded',ui-sans-serif,system-ui,sans-serif;
+  --body:'Hanken Grotesk',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'DM Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1014; --card:#171A21; --ink:#ECEEF2; --ink2:#C3C8D2; --muted:#9097A4; --line:#2A2F38; --soft:#1F232C;
+  --bar:#05060A; --bar-ink:#ECEEF2; --badge:#FFD23F;
+  --ed:#5A82E6; --ev:#13AE83; --mail:#9370EA; --pe:#5D4A96; --prov:#BA7F12;
+  --ramp-lo:#20242D; --turn:#AFC0FF; --pos:#5AA2E0; --neg:#E07A3C; --mid:#2C313B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1014; --card:#171A21; --ink:#ECEEF2; --ink2:#C3C8D2; --muted:#9097A4; --line:#2A2F38; --soft:#1F232C;
+  --bar:#05060A; --bar-ink:#ECEEF2; --badge:#FFD23F;
+  --ed:#5A82E6; --ev:#13AE83; --mail:#9370EA; --pe:#5D4A96; --prov:#BA7F12;
+  --ramp-lo:#20242D; --turn:#AFC0FF; --pos:#5AA2E0; --neg:#E07A3C; --mid:#2C313B; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.topbar{background:var(--bar);color:var(--bar-ink)}
+.topbar .wrap{display:flex;align-items:center;gap:10px;padding-block:10px;flex-wrap:wrap}
+.badge{background:var(--badge);color:#121417;font-family:var(--display);font-weight:700;font-size:12px;padding:3px 6px;border-radius:6px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px}
+.preview-chip{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:2px 10px;opacity:.8}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,4.2vw,40px);line-height:1.1;margin:6px 0 0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(18px,2.4vw,22px);line-height:1.2;margin:0;text-wrap:balance}
+.head{display:grid;gap:14px;padding-block:22px 16px}
+.tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px;width:max-content;max-width:100%}
+.tab{font:600 15px var(--body);padding:9px 18px;border-radius:10px;color:var(--ink2);text-decoration:none;border:0;background:none}
+.tab[aria-current="page"]{background:var(--bar);color:var(--bar-ink)}
+.tab:hover{color:var(--ink)}.tab[aria-current="page"]:hover{color:var(--bar-ink)}
+.controls{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+.ctl{display:grid;gap:6px}
+.seg{display:flex;flex-wrap:wrap;gap:2px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{font:600 13.5px var(--body);color:var(--ink2);background:none;border:0;border-radius:9px;padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.seg button:hover{color:var(--ink)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,path:focus-visible{outline:2px solid var(--ed);outline-offset:2px}
+select{font:600 13.5px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border-radius:20px;padding:22px;min-width:0}
+.card > .ch{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 18px;align-items:flex-end;margin-bottom:14px}
+.lede{color:var(--ink2);margin:6px 0 0;max-width:68ch}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{background:var(--card);border-radius:18px;padding:16px 18px;display:grid;gap:4px;align-content:start}
+.tile .v{font-family:var(--display);font-weight:700;font-size:clamp(22px,3vw,30px);line-height:1.1}
+.tile .s{color:var(--muted);font-size:13.5px}
+.delta{font-family:var(--mono);font-size:12.5px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px;align-items:start}
+.donutwrap{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;align-items:center}
+.legend-t{width:100%;border-collapse:collapse;font-size:14px}
+.legend-t td,.legend-t th{padding:7px 4px;border-bottom:1px solid var(--line);text-align:right}
+.legend-t th{font:500 11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.legend-t td:first-child,.legend-t th:first-child{text-align:left}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+.sub td:first-child{padding-left:22px;color:var(--muted)}
+.mono{font-family:var(--mono)}
+.nw{white-space:nowrap}
+.muted{color:var(--muted)}
+.mixrow{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px;align-items:center;font-size:13.5px;padding:4px 0;border-radius:8px}
+.mixrow.sel{font-weight:700}
+.mixbar{display:flex;height:22px;gap:2px}
+.mixbar span{height:100%;display:block}
+.mixbar span:first-child{border-radius:4px 0 0 4px}.mixbar span:last-child{border-radius:0 4px 4px 0}
+.keys{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2)}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr);gap:20px;align-items:start}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.prec{stroke:var(--card);stroke-width:.8;cursor:pointer;transition:opacity .15s}
+.prec:hover,.prec.hl{stroke:var(--ink);stroke-width:2.2}
+.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--soft);border-radius:16px;padding:16px;display:grid;gap:10px;min-width:0}
+.panel h3{font-family:var(--display);font-weight:500;font-size:17px;margin:0;line-height:1.25}
+.panel .pp{font-size:13.5px;color:var(--ink2)}
+.ramp{height:10px;border-radius:5px}
+.ramplbl{display:flex;justify-content:space-between;font:12px var(--mono);color:var(--muted);margin-top:4px}
+.stand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.st{background:var(--soft);border:0;border-radius:14px;padding:14px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:grid;gap:3px;align-content:start}
+.st:hover{background:var(--line)}
+.st .k{font:500 11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.st .n{font-weight:700;font-size:15.5px;line-height:1.25}
+.st .v{font-family:var(--display);font-weight:700;font-size:20px}
+.st .d{font-size:12.5px;color:var(--muted)}
+.hbar{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,2fr) 64px;gap:10px;align-items:center;font-size:13.5px;padding:3px 0}
+.hbar .lbl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .track{height:14px;background:var(--soft);border-radius:4px;overflow:hidden}
+.hbar .fill{height:100%;border-radius:0 4px 4px 0}
+.hbar .num{text-align:right;font-family:var(--mono);font-size:12.5px}
+.tblwrap{overflow:auto;max-height:680px;border-radius:12px;border:1px solid var(--line)}
+table.pt{border-collapse:collapse;width:100%;min-width:980px;font-size:13.5px}
+.pt th,.pt td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.pt th{position:sticky;top:0;background:var(--soft);font:500 11.5px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none}
+.pt th:hover{color:var(--ink)}
+.pt th[aria-sort] {color:var(--ink)}
+.pt td:nth-child(-n+2),.pt th:nth-child(-n+2){text-align:left}
+.pt td:nth-child(2){white-space:normal;min-width:170px;max-width:240px;color:var(--ink2);font-size:12.5px}
+.pt tr.hl td{background:var(--soft)}
+.pt tbody tr{cursor:pointer}
+.mini{display:flex;height:10px;width:120px;gap:1px}
+.mini span{display:block;height:100%}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+input[type=search]{font:14px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:0;width:220px;max-width:100%}
+.btn{font:600 13.5px var(--body);color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}
+.btn:hover{background:var(--line)}
+.notes{color:var(--ink2);font-size:13.5px;max-width:80ch;display:grid;gap:6px}
+.notes p{margin:0}
+.pill{display:inline-block;font:500 11.5px var(--mono);letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 9px;background:var(--soft);color:var(--ink2)}
+.callout{font-size:14px;color:var(--ink2);margin:10px 0 0}
+.callout b{color:var(--ink)}
+@media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.stand{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.mapgrid{grid-template-columns:minmax(0,1fr)}.panel{position:static}}
+@media (max-width:560px){.card{padding:16px;border-radius:16px}.donutwrap{grid-template-columns:minmax(0,1fr)}.donutwrap svg{max-width:220px;margin:0 auto}.stand{grid-template-columns:minmax(0,1fr)}.hbar{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 54px}.tab{padding:8px 12px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="topbar"><div class="wrap"><span class="badge">VA</span><span class="brand">VoteFlow</span><span class="preview-chip">Preview</span></div></div>
+
+<div class="wrap">
+  <header class="head">
+    <div>
+      <div class="eyebrow" id="eyebrow">Fairfax County</div>
+      <h1 id="title">How Fairfax County voted</h1>
+    </div>
+    <nav class="tabs" aria-label="Page sections">
+      <a class="tab" id="tab-early" href="https://voteflow.raviudeshi.com/va/fairfax-county" target="_blank" rel="noopener">Early voting</a>
+      <span class="tab" aria-current="page">Post-election</span>
+    </nav>
+    <div class="controls">
+      <div class="ctl"><span class="eyebrow">Election</span><div class="seg" id="elections" role="group" aria-label="Election"></div></div>
+      <div class="ctl"><label class="eyebrow" for="cmp">Compare with</label><select id="cmp"></select></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="tiles" id="tiles" aria-label="Headline numbers"></section>
+
+    <section class="card" aria-labelledby="h-mix">
+      <div class="ch"><div><h2 id="h-mix">How people voted</h2><p class="lede" id="mix-lede"></p></div></div>
+      <div class="two">
+        <div class="donutwrap"><div id="donut"></div><div style="min-width:0"><table class="legend-t" id="legend"></table></div></div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">The same mix, every election</div>
+          <div id="mixes"></div>
+          <div class="keys" id="mixkeys" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-line">
+      <div class="ch">
+        <div><h2 id="h-line">The whole election in one line</h2><p class="lede" id="line-lede"></p></div>
+        <div class="seg" id="linemode" role="group" aria-label="Chart view">
+          <button type="button" data-v="abs" aria-pressed="true">Voters</button>
+          <button type="button" data-v="share" aria-pressed="false">Share of final, by election</button>
+        </div>
+      </div>
+      <div id="line"></div>
+      <div class="keys" id="linekeys" style="margin-top:8px"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-map">
+      <div class="ch">
+        <div><h2 id="h-map">Precinct map</h2><p class="lede">Hover or tap a precinct to see how its voters cast their ballots.</p></div>
+        <div class="tools">
+          <div class="seg" id="mapmode" role="group" aria-label="Shade the map by"></div>
+          <button type="button" class="btn" id="pptoggle" aria-pressed="false">Show polling places</button>
+        </div>
+      </div>
+      <div class="mapgrid">
+        <div style="min-width:0">
+          <div id="map"></div>
+          <div style="max-width:360px;margin-top:10px"><div class="ramp" id="ramp"></div><div class="ramplbl" id="ramplbl"></div></div>
+        </div>
+        <aside class="panel" id="panel" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-stand">
+      <div class="ch"><div><h2 id="h-stand">Standouts</h2><p class="lede">Precincts with at least 200 voters. Select one to find it on the map.</p></div></div>
+      <div class="stand" id="stand"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-scatter">
+      <div class="ch"><div><h2 id="h-scatter">Do high-turnout precincts vote early?</h2><p class="lede" id="scatter-lede"></p></div></div>
+      <div class="two">
+        <div id="scatter" style="min-width:0"></div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:6px">Voting-style triangle</div>
+          <div id="tri"></div>
+          <p class="callout" id="tri-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-load">
+      <div class="ch"><div><h2 id="h-load">Election Day load by polling place</h2><p class="lede" id="load-lede"></p></div></div>
+      <div class="two">
+        <div style="min-width:0"><div class="eyebrow" style="margin-bottom:8px">Busiest polling places</div><div id="busiest"></div></div>
+        <div style="min-width:0"><div class="eyebrow" style="margin-bottom:8px">How many Election Day voters each polling place had</div><div id="hist"></div><div class="eyebrow" style="margin:16px 0 8px">Quietest polling places</div><div id="quietest"></div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-prov">
+      <div class="ch"><div><h2 id="h-prov">Provisionals, curbside and late mail</h2><p class="lede" id="prov-lede"></p></div></div>
+      <div class="two">
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">Why voters cast a provisional ballot</div>
+          <div id="reasons"></div>
+          <div class="eyebrow" style="margin:18px 0 8px">Highest provisional rates</div>
+          <div id="provtop"></div>
+        </div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">Mail ballots counted after Election Day, by election</div>
+          <div id="late"></div>
+          <div class="eyebrow" style="margin:18px 0 8px">Highest share of mail counted late</div>
+          <div id="latetop"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-table">
+      <div class="ch">
+        <div><h2 id="h-table">Every precinct</h2><p class="lede">Sort by any column. Percentages are shares of the precinct's voters; turnout is voters over registered voters.</p></div>
+        <div class="tools">
+          <div class="seg" id="tblmode" role="group" aria-label="Show">
+            <button type="button" data-v="n" aria-pressed="true">Counts</button>
+            <button type="button" data-v="p" aria-pressed="false">Percentages</button>
+          </div>
+          <input type="search" id="q" placeholder="Find a precinct or polling place" aria-label="Find a precinct or polling place">
+          <button type="button" class="btn" id="copy">Copy as CSV</button>
+        </div>
+      </div>
+      <div class="tblwrap"><table class="pt" id="tbl"></table></div>
+      <p class="muted" id="copied" style="font-size:13px;margin:8px 0 0" hidden></p>
+    </section>
+
+    <section class="notes" aria-label="About these numbers">
+      <p><b>About these numbers.</b> Voters counts everyone credited with voting, including provisional voters whose ballots were not counted, so it runs slightly above ballots counted. Mail means mailed absentee ballots counted by election night; counted after Election Day means mail ballots that arrived by the deadline and were counted later. Hand-counted mail ballots are included with mail.</p>
+      <p>The early-voting line uses each day's absentee list, so its last pre-election point can differ slightly from the final count. Polling places are each election's Election Day locations; none are listed for November 2023. Precinct lines are today's, so a few older precincts may not line up exactly.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+const DATA=/*DATA*/null, GEO=/*GEO*/null;
+const M=[ // display order for vote types
+  {k:'ed',label:'Election Day',c:'--ed'},
+  {k:'ev',label:'Early in person',c:'--ev'},
+  {k:'mail',label:'Mail',c:'--mail'},
+  {k:'pe',label:'Mail counted after Election Day',short:'Counted after',c:'--pe',sub:true},
+  {k:'prov',label:'Provisional',c:'--prov'}];
+const E=Object.fromEntries(DATA.elections.map(e=>[e.id,e]));
+const ORDER=DATA.elections.map(e=>e.id).sort();          // chronological
+const NAME=DATA.name;
+let S={sel:'2025-11',cmp:'2024-11',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
+try{const h=location.hash.slice(1);if(E[h])S.sel=h}catch(e){}
+S.cmp=prevOf(S.sel);
+
+const $=id=>document.getElementById(id);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
+const pts=x=>(x>=0?'+':'−')+Math.abs(x*100).toFixed(1)+' pts';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const kfmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e4?Math.round(n/1e3)+'K':n>=1e3?(n/1e3).toFixed(1)+'K':String(Math.round(n));
+function prevOf(id){const i=ORDER.indexOf(id);return i>0?ORDER[i-1]:(ORDER[1]||'')}
+function short(e){return e.label.replace('November','Nov').replace(' special','')}
+function before(p){return p.ev+p.mail+p.pe}
+function share(p,k){return p.t?p[k]/p.t:0}
+function mailAll(p){return p.mail+p.pe}
+function byCode(e){return Object.fromEntries(e.precincts.map(p=>[p.code,p]))}
+function hex2rgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16))}
+function mix(a,b,t){const A=hex2rgb(a),B=hex2rgb(b);return 'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')'}
+function colorOf(k){return css(M.find(m=>m.k===k).c)}
+
+/* ---------- controls ---------- */
+function controls(){
+  $('elections').innerHTML=ORDER.slice().reverse().map(id=>`<button type="button" data-v="${id}" aria-pressed="${id===S.sel}">${esc(short(E[id]))}</button>`).join('');
+  $('cmp').innerHTML=`<option value="">No comparison</option>`+ORDER.slice().reverse().filter(id=>id!==S.sel).map(id=>`<option value="${id}" ${id===S.cmp?'selected':''}>${esc(E[id].label)}</option>`).join('');
+}
+$('elections').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.sel=b.dataset.v;S.cmp=prevOf(S.sel);S.hl=null;try{history.replaceState(null,'','#'+S.sel)}catch(x){}render()};
+$('cmp').onchange=e=>{S.cmp=e.target.value;render()};
+function segBind(id,key){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;S[key]=b.dataset.v;[...$(id).children].forEach(x=>x.setAttribute('aria-pressed',x===b));render()}}
+segBind('linemode','line');segBind('tblmode','tbl');
+$('pptoggle').onclick=()=>{S.pp=!S.pp;$('pptoggle').setAttribute('aria-pressed',S.pp);$('pptoggle').textContent=S.pp?'Hide polling places':'Show polling places';drawMap()};
+$('q').oninput=e=>{S.q=e.target.value.toLowerCase();drawTable()};
+
+/* ---------- tiles ---------- */
+function tiles(e,c){
+  const k=e.county, kc=c&&c.county;
+  const d=(a,b,isPct)=>b==null?'':`<span class="delta">${isPct?pts(a-b):((a-b)>=0?'+':'−')+fmt(Math.abs(a-b))} vs ${esc(short(c))}</span>`;
+  const t=[
+    ['Voters',fmt(k.t),`of ${fmt(k.r)} registered`,d(k.t,kc&&kc.t)],
+    ['Turnout',pct(k.t/k.r),'of registered voters',d(k.t/k.r,kc&&kc.t/kc.r,1)],
+    ['Voted before Election Day',pct(before(k)/k.t),`${fmt(before(k))} early in person or by mail`,d(before(k)/k.t,kc&&before(kc)/kc.t,1)],
+    ['Voted on Election Day',pct((k.ed+k.prov)/k.t),`${fmt(k.ed)} at the polls, ${fmt(k.prov)} provisional`,d((k.ed+k.prov)/k.t,kc&&(kc.ed+kc.prov)/kc.t,1)]];
+  $('tiles').innerHTML=t.map(x=>`<div class="tile"><span class="eyebrow">${x[0]}</span><span class="v">${x[1]}</span><span class="s">${x[2]}</span>${x[3]}</div>`).join('');
+}
+
+/* ---------- donut + mix ---------- */
+function arc(cx,cy,r0,r1,a0,a1){
+  const p=(r,a)=>[cx+r*Math.sin(a),cy-r*Math.cos(a)], large=a1-a0>Math.PI?1:0;
+  const [x0,y0]=p(r1,a0),[x1,y1]=p(r1,a1),[x2,y2]=p(r0,a1),[x3,y3]=p(r0,a0);
+  return `M${x0},${y0}A${r1},${r1} 0 ${large} 1 ${x1},${y1}L${x2},${y2}A${r0},${r0} 0 ${large} 0 ${x3},${y3}Z`;
+}
+function donutSVG(p,size,label){
+  const cx=size/2,r1=size/2-2,r0=r1*0.62,gap=size>120?0.012:0.02;let a=0,out='';
+  for(const m of M){const v=p[m.k]/p.t;if(v<=0)continue;const a1=a+v*2*Math.PI;out+=`<path d="${arc(cx,cx,r0,r1,a+gap/2,Math.max(a+gap/2+0.001,a1-gap/2))}" fill="${colorOf(m.k)}"><title>${m.label}: ${fmt(p[m.k])} (${pct(v)})</title></path>`;a=a1}
+  const mid=label?`<text x="${cx}" y="${cx-4}" text-anchor="middle" style="font-family:var(--display);font-size:${size/8.5}px;font-weight:700;fill:var(--ink)">${label[0]}</text><text x="${cx}" y="${cx+size/11}" text-anchor="middle" style="font-size:${size/16}px">${label[1]}</text>`:'';
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Vote types">${out}${mid}</svg>`;
+}
+function mixSection(e,c){
+  const k=e.county;
+  $('donut').innerHTML=donutSVG(k,180,[kfmt(k.t),'voters']);
+  const kc=c&&c.county;
+  $('legend').innerHTML=`<tr><th>Vote type</th><th>Voters</th><th>Share</th>${kc?`<th>vs ${esc(short(c))}</th>`:''}</tr>`+
+    M.map(m=>{const v=x=>m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.sub?'counted after Election Day':m.label}</td><td class="mono">${fmt(v(k))}</td><td class="mono">${pct(v(k)/k.t)}</td>${kc?`<td class="mono nw">${pts(v(k)/k.t-v(kc)/kc.t)}</td>`:''}</tr>`}).join('');
+  const top=M.slice().sort((a,b)=>k[b.k]-k[a.k])[0];
+  $('mix-lede').textContent=`${pct(k.ed/k.t,0)} of ${short(e)} voters voted in person on Election Day, ${pct(k.ev/k.t,0)} voted early in person and ${pct(mailAll(k)/k.t,0)} voted by mail. ${fmt(k.pe)} mail ballots, ${pct(k.pe/mailAll(k),0)} of all mail, were counted after Election Day.`;
+  $('mixes').innerHTML=ORDER.slice().reverse().map(id=>{const x=E[id].county;return `<div class="mixrow ${id===S.sel?'sel':''}"><span>${esc(short(E[id]))}</span><div class="mixbar" role="img" aria-label="${esc(E[id].label)} mix">${M.map(m=>`<span style="width:${x[m.k]/x.t*100}%;background:var(${m.c})" title="${m.label}: ${pct(x[m.k]/x.t)}"></span>`).join('')}</div></div>`}).join('');
+  $('mixkeys').innerHTML=M.map(m=>`<span><span class="sw" style="background:var(${m.c})"></span>${m.short||m.label}</span>`).join('');
+}
+
+/* ---------- cumulative line ---------- */
+const DAY=864e5;
+function lineSection(e){
+  const W=Math.max(340,Math.min(1100,$('line').clientWidth||1000)),narrow=W<600,H=narrow?280:330,L=narrow?42:56,R=narrow?92:128,T=16,B=34,iw=W-L-R,ih=H-T-B;
+  const ed=new Date(e.date+'T12:00'),k=e.county;
+  let svg='';
+  if(S.line==='abs'){
+    const pts0=e.early.map(([d,ev,ma])=>({x:new Date(d+'T12:00'),ev,ma}));
+    const start=pts0.length?pts0[0].x:new Date(ed-45*DAY), end=new Date(+ed+3*DAY);
+    const X=d=>L+(d-start)/(end-start)*iw, Y=v=>T+ih-v/k.t*ih;
+    const mailEd=Math.max(0,k.mail-(pts0.length?pts0[pts0.length-1].ma:0));
+    // stacked series: early, mail, election day (+ mail arriving that day), provisional, late mail
+    const seq=pts0.map(p=>[p.x,p.ev,p.ma,0,0,0]);
+    seq.push([ed,k.ev,k.mail,k.ed,k.prov,0]);seq.push([new Date(+ed+3*DAY),k.ev,k.mail,k.ed,k.prov,k.pe]);
+    const keys=['ev','mail','ed','prov','pe'];
+    let acc=seq.map(()=>0);
+    for(let j=0;j<5;j++){
+      const lo=acc.slice(),hi=seq.map((s,i)=>lo[i]+s[j+1]);acc=hi;
+      // step after the last pre-election day so the jump lands on Election Day
+      let top='',bot='';
+      seq.forEach((s,i)=>{const x=X(s[0]);if(i>0){top+=`L${x},${Y(hi[i-1])}`}top+=`${i?'L':'M'}${x},${Y(hi[i])}`});
+      for(let i=seq.length-1;i>=0;i--){const x=X(seq[i][0]);bot+=`L${x},${Y(lo[i])}`;if(i>0)bot+=`L${x},${Y(lo[i-1])}`}
+      svg+=`<path d="${top}${bot}Z" fill="${colorOf(keys[j])}" opacity="${keys[j]==='pe'?1:.92}"/>`;
+    }
+    let grid='';for(let g=0;g<=4;g++){const v=k.t*g/4;grid+=`<line x1="${L}" x2="${L+iw}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${kfmt(v)}</text>`}svg=grid+svg;
+    const months=[];for(let d=new Date(start);d<=end;d=new Date(+d+DAY)){if(d.getDate()===1||d.getDate()===15)months.push(new Date(d))}
+    months.filter((d,i)=>!narrow||d.getDate()===1).forEach(d=>svg+=`<text x="${X(d)}" y="${H-10}" text-anchor="middle">${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text>`);
+    svg+=`<line x1="${X(ed)}" x2="${X(ed)}" y1="${T}" y2="${T+ih}" stroke="var(--ink)" stroke-dasharray="3 3"/><text x="${X(ed)-6}" y="${T+10}" text-anchor="end" style="fill:var(--ink)">ELECTION DAY</text>`;
+    const lbl=(v0,v1,txt)=>{const y=Y((v0+v1)/2);return `<text x="${L+iw+8}" y="${y+4}" style="fill:var(--ink2)">${txt}</text>`};
+    let cum=0;const ends=[[k.ev,'Early in person'],[k.mail,'Mail'],[k.ed,'Election Day'],[k.prov,'Provisional'],[k.pe,'Counted after']];
+    ends.forEach(([v,t])=>{if(v/k.t>0.035)svg+=lbl(cum,cum+v,t);cum+=v});
+    const pre=pts0.length?pts0[pts0.length-1]:{ev:0,ma:0};
+    $('line-lede').textContent=`By the eve of Election Day, ${fmt(pre.ev+pre.ma)} voters had already voted, ${pct((pre.ev+pre.ma)/k.t,0)} of the final total. Election Day added ${fmt(k.ed+k.prov+mailEd)}, and ${fmt(k.pe)} more mail ballots were counted in the days after.`;
+    $('linekeys').innerHTML='';
+  } else {
+    const days=45, X=d=>L+(days-d)/(days+3)*iw*1.0, Y=v=>T+ih-v*ih;
+    for(let g=0;g<=4;g++){svg+=`<line x1="${L}" x2="${L+iw}" y1="${Y(g/4)}" y2="${Y(g/4)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(g/4)+4}" text-anchor="end">${g*25}%</text>`}
+    (narrow?[42,28,14]:[42,35,28,21,14,7]).forEach(d=>svg+=`<text x="${X(d)}" y="${H-10}" text-anchor="middle">${d} days</text>`);
+    svg+=`<line x1="${X(0)}" x2="${X(0)}" y1="${T}" y2="${T+ih}" stroke="var(--ink)" stroke-dasharray="3 3"/><text x="${X(0)-6}" y="${T+10}" text-anchor="end" style="fill:var(--ink)">ELECTION DAY</text>`;
+    const styles=['var(--ink)','var(--ed)','var(--ev)','var(--mail)'];
+    const ids=[S.sel,...ORDER.slice().reverse().filter(i=>i!==S.sel)];
+    let keys='';
+    ids.forEach((id,n)=>{const x=E[id],kk=x.county,edd=new Date(x.date+'T12:00');
+      const pp=x.early.map(([d,ev,ma])=>[(edd-new Date(d+'T12:00'))/DAY,(ev+ma)/kk.t]).filter(p=>p[0]<=days&&p[0]>=1);
+      pp.push([0,1-kk.pe/kk.t]);
+      const d=pp.map((p,i)=>`${i?'L':'M'}${X(p[0])},${Y(p[1])}`).join('');
+      const col=n===0?'var(--ink)':styles[n];
+      svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="${n===0?3:1.8}" ${n===0?'':'stroke-dasharray="5 4"'} stroke-linejoin="round"/>`;
+      const last=pp[pp.length-2]||pp[0];
+      svg+=`<circle cx="${X(last[0])}" cy="${Y(last[1])}" r="4" fill="${col}" stroke="var(--card)" stroke-width="2"/>`;
+      keys+=`<span><span class="sw" style="background:${col}"></span>${esc(x.label)}: ${pct(last[1],0)} in before Election Day</span>`;
+    });
+    $('linekeys').innerHTML=keys;
+    $('line-lede').textContent='Each line is the share of that election\'s final voters who had already voted, counted back from Election Day.';
+  }
+  $('line').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative voters">${svg}</svg>`;
+}
+
+/* ---------- map ---------- */
+const MODES=[
+  {k:'turnout',label:'Turnout',v:p=>p.r?p.t/p.r:null,c:'--turn'},
+  {k:'ed',label:'Election Day',v:p=>share(p,'ed'),c:'--ed'},
+  {k:'ev',label:'Early in person',v:p=>share(p,'ev'),c:'--ev'},
+  {k:'mail',label:'Mail',v:p=>p.t?mailAll(p)/p.t:null,c:'--mail'},
+  {k:'prov',label:'Provisional',v:p=>share(p,'prov'),c:'--prov'},
+  {k:'late',label:'Mail counted late',v:p=>mailAll(p)>=20?p.pe/mailAll(p):null,c:'--mail'},
+  {k:'chg',label:'Turnout change',v:null,c:null}];
+function modeVal(m,p,cmpMap){
+  if(m.k==='chg'){const q=cmpMap&&cmpMap[p.code];return q&&q.r&&p.r?p.t/p.r-q.t/q.r:null}
+  return m.v(p);
+}
+function drawMap(){
+  const e=E[S.sel],c=E[S.cmp],P=byCode(e),Q=c?byCode(c):null;
+  const m=MODES.find(x=>x.k===S.map)||MODES[0];
+  if(m.k==='chg'&&!Q){S.map='turnout';return drawMap()}
+  const vals=e.precincts.filter(p=>p.t>=50).map(p=>modeVal(m,p,Q)).filter(v=>v!=null).sort((a,b)=>a-b);
+  const q=f=>vals[Math.floor(f*(vals.length-1))]??0;
+  let lo=q(.02),hi=q(.98);
+  let colorFn,rampCss,lbl;
+  if(m.k==='chg'){const a=Math.max(Math.abs(lo),Math.abs(hi))||.01;lo=-a;hi=a;
+    colorFn=v=>v<0?mix(css('--mid'),css('--neg'),Math.min(1,-v/a)):mix(css('--mid'),css('--pos'),Math.min(1,v/a));
+    rampCss=`linear-gradient(90deg,${css('--neg')},${css('--mid')},${css('--pos')})`;lbl=[pts(-a).replace('−','−'),'no change',pts(a)];}
+  else{const col=css(m.c),base=css('--ramp-lo');
+    colorFn=v=>mix(base,col,Math.max(0,Math.min(1,(v-lo)/((hi-lo)||1)))*0.92+0.08);
+    rampCss=`linear-gradient(90deg,${mix(base,col,.08)},${col})`;lbl=[pct(lo,0),'',pct(hi,0)];}
+  $('ramp').style.background=rampCss;
+  $('ramplbl').innerHTML=lbl.map(x=>`<span>${x}</span>`).join('');
+  let paths='';
+  for(const [code,g] of Object.entries(GEO.p)){
+    const p=P[code],v=p?modeVal(m,p,Q):null;
+    const fill=v==null?css('--soft'):colorFn(v);
+    paths+=`<path class="prec${S.hl===code?' hl':''}" data-c="${code}" d="${g.d}" fill="${fill}" tabindex="-1"><title>${esc(g.n)}</title></path>`;
+  }
+  let dots='';
+  if(S.pp){const seen=new Set();for(const p of e.precincts){if(!p.ppXY||seen.has(p.ppAddr))continue;seen.add(p.ppAddr);dots+=`<circle cx="${p.ppXY[0]}" cy="${p.ppXY[1]}" r="4.5" fill="var(--ink)" stroke="var(--card)" stroke-width="1.5" pointer-events="none"/>`}}
+  // highlighted path on top
+  $('map').innerHTML=`<svg viewBox="0 0 ${GEO.w} ${GEO.h}" role="img" aria-label="${esc(NAME)} precinct map shaded by ${m.label.toLowerCase()}">${paths}${dots}</svg>`;
+  const svg=$('map').firstChild;
+  if(S.hl){const el=svg.querySelector(`[data-c="${S.hl}"]`);if(el)svg.insertBefore(el,svg.querySelector('circle'))}
+  svg.onpointerover=ev=>{const t=ev.target.closest('.prec');if(t)panel(t.dataset.c)};
+  svg.onpointerleave=()=>panel(S.hl);
+  svg.onclick=ev=>{const t=ev.target.closest('.prec');if(t)select(t.dataset.c,false)};
+  $('pptoggle').hidden=!e.precincts.some(p=>p.ppXY);
+}
+function mapModes(){
+  const c=E[S.cmp];
+  $('mapmode').innerHTML=MODES.filter(m=>m.k!=='chg'||c).map(m=>`<button type="button" data-v="${m.k}" aria-pressed="${m.k===S.map}">${m.k==='chg'&&c?'Turnout vs '+esc(short(c)):m.label}</button>`).join('');
+}
+$('mapmode').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.map=b.dataset.v;mapModes();drawMap()};
+function panel(code){
+  const e=E[S.sel],p=code?byCode(e)[code]:null,c=E[S.cmp],q=p&&c?byCode(c)[code]:null;
+  const x=p||e.county;
+  const rows=M.map(m=>{const v=m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.sub?'counted after Election Day':m.label}</td><td class="mono">${fmt(v)}</td><td class="mono">${x.t?pct(v/x.t):'–'}</td></tr>`}).join('');
+  $('panel').innerHTML=`
+    <div><div class="eyebrow">${p?'Precinct '+p.code:'Whole county'}</div><h3>${esc(p?p.n:NAME)}</h3>${p&&p.pp?`<div class="pp">Polling place: ${esc(p.pp)}<br><span class="muted">${esc(p.ppAddr)}</span></div>`:''}</div>
+    <div style="display:flex;gap:14px;align-items:center">${x.t?donutSVG(x,96):''}<div><div style="font-family:var(--display);font-weight:700;font-size:22px">${fmt(x.t)}</div><div class="muted" style="font-size:13px">voters · ${x.r?pct(x.t/x.r)+' turnout':''}</div>${q&&q.r?`<div class="delta">${pts(x.t/x.r-q.t/q.r)} vs ${esc(short(c))}</div>`:''}</div></div>
+    <table class="legend-t">${rows}</table>
+    ${p?'':'<div class="muted" style="font-size:13px">Hover or tap a precinct for its numbers.</div>'}`;
+}
+function select(code,scroll){
+  S.hl=S.hl===code?null:code;drawMap();panel(S.hl);drawTable();
+  if(scroll&&S.hl)$('h-map').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}
+
+/* ---------- standouts ---------- */
+function standouts(e,c){
+  const ps=e.precincts.filter(p=>p.t>=200),Q=c?byCode(c):null;
+  const pick=(f,dir)=>ps.reduce((a,b)=>(dir*(f(b)-f(a))>0?b:a));
+  const items=[
+    ['Highest turnout',pick(p=>p.t/p.r,1),p=>pct(p.t/p.r),p=>`${fmt(p.t)} of ${fmt(p.r)} registered`],
+    ['Lowest turnout',pick(p=>p.t/p.r,-1),p=>pct(p.t/p.r),p=>`${fmt(p.t)} of ${fmt(p.r)} registered`],
+    ['Most Election Day',pick(p=>share(p,'ed'),1),p=>pct(share(p,'ed')),p=>`${fmt(p.ed)} at the polls`],
+    ['Most voted early',pick(p=>before(p)/p.t,1),p=>pct(before(p)/p.t),p=>`in person or by mail before Election Day`],
+    ['Most by mail',pick(p=>mailAll(p)/p.t,1),p=>pct(mailAll(p)/p.t),p=>`${fmt(mailAll(p))} mail ballots`],
+    ['Highest provisional rate',pick(p=>share(p,'prov'),1),p=>pct(share(p,'prov')),p=>`${fmt(p.prov)} provisional voters`],
+    ['Most Election Day voters',pick(p=>p.ed,1),p=>fmt(p.ed),p=>p.pp?esc(p.pp):'at the polls'],
+  ];
+  if(Q){const ch=p=>{const q=Q[p.code];return q&&q.r?p.t/p.r-q.t/q.r:0};const best=pick(ch,1);items.push([(ch(best)>=0?'Biggest turnout rise vs ':'Smallest turnout drop vs ')+short(c),best,p=>pts(ch(p)),p=>`${pct(p.t/p.r)} turnout`])}
+  else items.push(['Fewest voters',pick(p=>p.t,-1),p=>fmt(p.t),p=>`of ${fmt(p.r)} registered`]);
+  $('stand').innerHTML=items.map(([k,p,v,d])=>`<button type="button" class="st" data-c="${p.code}"><span class="k">${esc(k)}</span><span class="n">${esc(p.n)}</span><span class="v">${v(p)}</span><span class="d">${d(p)}</span></button>`).join('');
+}
+$('stand').onclick=e=>{const b=e.target.closest('.st');if(b){S.hl=null;select(b.dataset.c,true)}};
+
+/* ---------- scatter + triangle ---------- */
+function scatter(e){
+  const W=560,H=420,L=52,R=14,T=12,B=40,iw=W-L-R,ih=H-T-B;
+  const ps=e.precincts.filter(p=>p.t>=50&&p.r);
+  const xs=ps.map(p=>p.t/p.r),ys=ps.map(p=>before(p)/p.t);
+  const x0=Math.floor(Math.min(...xs)*10)/10,x1=Math.ceil(Math.max(...xs)*10)/10,y0=Math.floor(Math.min(...ys)*10)/10,y1=Math.ceil(Math.max(...ys)*10)/10;
+  const X=v=>L+(v-x0)/(x1-x0)*iw,Y=v=>T+ih-(v-y0)/(y1-y0)*ih,maxT=Math.max(...ps.map(p=>p.t));
+  let s='';
+  for(let v=x0;v<=x1+1e-9;v+=.1){s+=`<line x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${T+ih}" stroke="var(--line)"/><text x="${X(v)}" y="${H-22}" text-anchor="middle">${Math.round(v*100)}%</text>`}
+  for(let v=y0;v<=y1+1e-9;v+=.1){s+=`<line x1="${L}" x2="${L+iw}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${Math.round(v*100)}%</text>`}
+  const k=e.county;
+  s+=`<line x1="${X(k.t/k.r)}" x2="${X(k.t/k.r)}" y1="${T}" y2="${T+ih}" stroke="var(--muted)" stroke-dasharray="4 4"/><line x1="${L}" x2="${L+iw}" y1="${Y(before(k)/k.t)}" y2="${Y(before(k)/k.t)}" stroke="var(--muted)" stroke-dasharray="4 4"/>`;
+  s+=`<text x="${L+iw/2}" y="${H-4}" text-anchor="middle" style="fill:var(--ink2)">Turnout →</text><text transform="translate(12 ${T+ih/2}) rotate(-90)" text-anchor="middle" style="fill:var(--ink2)">Voted before Election Day →</text>`;
+  s+=ps.map(p=>`<circle class="dot" data-c="${p.code}" cx="${X(p.t/p.r).toFixed(1)}" cy="${Y(before(p)/p.t).toFixed(1)}" r="${(2.5+5*Math.sqrt(p.t/maxT)).toFixed(1)}" fill="var(--ev)" fill-opacity="${S.hl===p.code?1:.55}" stroke="${S.hl===p.code?'var(--ink)':'var(--card)'}" stroke-width="${S.hl===p.code?2:1}" style="cursor:pointer"><title>${esc(p.n)}: ${pct(p.t/p.r)} turnout, ${pct(before(p)/p.t)} before Election Day</title></circle>`).join('');
+  $('scatter').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Turnout against share voting before Election Day">${s}</svg>`;
+  const r=corr(xs,ys);
+  $('scatter-lede').textContent=`Each dot is a precinct, sized by its voters; dashed lines mark the county. `+(Math.abs(r)<.2?'Turnout and voting early are only loosely related here.':r>0?`Precincts with higher turnout tended to vote early more (correlation ${r.toFixed(2)}).`:`Precincts with higher turnout tended to vote on Election Day more (correlation ${r.toFixed(2)}).`);
+  bindDots($('scatter'));
+}
+function corr(a,b){const n=a.length,ma=a.reduce((x,y)=>x+y)/n,mb=b.reduce((x,y)=>x+y)/n;let s=0,sa=0,sb=0;for(let i=0;i<n;i++){s+=(a[i]-ma)*(b[i]-mb);sa+=(a[i]-ma)**2;sb+=(b[i]-mb)**2}return s/Math.sqrt(sa*sb)}
+function bindDots(el){el.onclick=ev=>{const t=ev.target.closest('[data-c]');if(t)select(t.dataset.c,true)}}
+function triangle(e){
+  const W=460,H=420,pad=34,side=W-2*pad,h=side*Math.sqrt(3)/2,top=[W/2,pad],bl=[pad,pad+h],br=[W-pad,pad+h];
+  const at=(a,b,c)=>[a*top[0]+b*bl[0]+c*br[0],a*top[1]+b*bl[1]+c*br[1]];
+  let s=`<path d="M${top}L${bl}L${br}Z" fill="var(--soft)" stroke="var(--line)"/>`;
+  for(let g=.2;g<.99;g+=.2){
+    const l=(p,q)=>`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="var(--line)"/>`;
+    s+=l(at(g,1-g,0),at(g,0,1-g))+l(at(1-g,g,0),at(0,g,1-g))+l(at(1-g,0,g),at(0,1-g,g));
+  }
+  s+=`<text x="${top[0]}" y="${top[1]-10}" text-anchor="middle" style="fill:var(--ed);font-weight:500">ELECTION DAY</text><text x="${bl[0]}" y="${bl[1]+22}" text-anchor="start" style="fill:var(--ev);font-weight:500">EARLY IN PERSON</text><text x="${br[0]}" y="${br[1]+22}" text-anchor="end" style="fill:var(--mail);font-weight:500">MAIL</text>`;
+  const ps=e.precincts.filter(p=>p.t>=50);
+  s+=ps.map(p=>{const n=p.ed+p.ev+mailAll(p),a=p.ed/n,b=p.ev/n,c=mailAll(p)/n,[x,y]=at(a,b,c);
+    const dom=a>=b&&a>=c?'--ed':b>=c?'--ev':'--mail';
+    return `<circle data-c="${p.code}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${S.hl===p.code?5.5:3.4}" fill="var(${dom})" fill-opacity="${S.hl===p.code?1:.6}" stroke="${S.hl===p.code?'var(--ink)':'none'}" stroke-width="2" style="cursor:pointer"><title>${esc(p.n)}: ${pct(a,0)} Election Day, ${pct(b,0)} early, ${pct(c,0)} mail</title></circle>`}).join('');
+  $('tri').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Precincts placed by their Election Day, early and mail shares">${s}</svg>`;
+  const cnt={ed:0,ev:0,mail:0};ps.forEach(p=>{const v={ed:p.ed,ev:p.ev,mail:mailAll(p)};cnt[Object.keys(v).sort((a,b)=>v[b]-v[a])[0]]++});
+  $('tri-note').innerHTML=`Each dot is a precinct; the closer to a corner, the more its voters used that method. <b>${cnt.ed}</b> precincts voted mostly on Election Day, <b>${cnt.ev}</b> mostly early in person and <b>${cnt.mail}</b> mostly by mail. Provisionals are left out here.`;
+  bindDots($('tri'));
+}
+
+/* ---------- election day load ---------- */
+function hbars(rows,max,color){return rows.map(r=>`<div class="hbar" title="${esc(r.title||'')}"><span class="lbl">${esc(r.l)}</span><span class="track"><span class="fill" style="display:block;width:${Math.max(1,r.v/max*100)}%;background:var(${color})"></span></span><span class="num">${r.f||fmt(r.v)}</span></div>`).join('')}
+function load(e){
+  const g={};
+  e.precincts.forEach(p=>{const key=p.ppAddr||('#'+p.code);(g[key]=g[key]||{name:p.pp||('Precinct '+p.n),addr:p.ppAddr||'',ed:0,prov:0,precincts:[]});g[key].ed+=p.ed;g[key].prov+=p.prov;g[key].precincts.push(p.n)});
+  const places=Object.values(g).sort((a,b)=>b.ed-a.ed);
+  const has=e.precincts.some(p=>p.pp);
+  const med=places[Math.floor(places.length/2)].ed,max=places[0].ed;
+  $('load-lede').textContent=has?`${places.length} polling places served ${fmt(e.county.ed)} Election Day voters, a median of ${fmt(med)} each. The busiest handled ${fmt(max)}, ${(max/med).toFixed(1)} times the median. Shared polling places count every precinct they serve.`:`Polling places aren't listed for ${e.label}, so this shows Election Day voters by precinct. The median precinct had ${fmt(med)}.`;
+  $('busiest').innerHTML=hbars(places.slice(0,15).map(x=>({l:x.name,v:x.ed,title:x.addr+(x.precincts.length>1?' · precincts: '+x.precincts.join(', '):'')})),max,'--ed');
+  $('quietest').innerHTML=hbars(places.slice(-5).reverse().map(x=>({l:x.name,v:x.ed,title:x.addr})),max,'--ed');
+  // histogram
+  const W=520,H=180,L=36,B=28,T=8,iw=W-L-8,ih=H-T-B,bin=Math.max(100,Math.ceil(max/14/100)*100),n=Math.ceil((max+1)/bin);
+  const counts=Array(n).fill(0);places.forEach(x=>counts[Math.min(n-1,Math.floor(x.ed/bin))]++);
+  const cm=Math.max(...counts),bw=iw/n;
+  let s='';for(let i=0;i<=2;i++){const v=Math.round(cm*i/2);s+=`<line x1="${L}" x2="${L+iw}" y1="${T+ih-v/cm*ih}" y2="${T+ih-v/cm*ih}" stroke="var(--line)"/><text x="${L-6}" y="${T+ih-v/cm*ih+4}" text-anchor="end">${v}</text>`}
+  counts.forEach((c,i)=>{const hh=c/cm*ih;s+=`<path d="M${L+i*bw+1},${T+ih}V${T+ih-hh+3}Q${L+i*bw+1},${T+ih-hh} ${L+i*bw+4},${T+ih-hh}H${L+(i+1)*bw-4}Q${L+(i+1)*bw-1},${T+ih-hh} ${L+(i+1)*bw-1},${T+ih-hh+3}V${T+ih}Z" fill="var(--ed)"><title>${fmt(i*bin)}–${fmt((i+1)*bin-1)} voters: ${c} ${has?'polling places':'precincts'}</title></path>`;if(i%2===0)s+=`<text x="${L+i*bw}" y="${H-8}">${kfmt(i*bin)}</text>`});
+  $('hist').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Distribution of Election Day voters per polling place">${s}</svg>`;
+}
+
+/* ---------- provisionals + late mail ---------- */
+function prov(e){
+  const st=e.stats,k=e.county;
+  const parts=[['Registered on Election Day',st.sdrDay],['Registered during early voting',st.sdrEarly],['Other reasons',st.provOther],['No ID',st.noId]].filter(x=>x[1]!=null);
+  const tot=parts.reduce((a,b)=>a+b[1],0)||1;
+  $('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct((st.sdrDay+st.sdrEarly)/tot,0)} of provisional voters were registering the same day. <b>${fmt(st.curbside||0)}</b> voters used curbside voting.</p>`;
+  const ps=e.precincts.filter(p=>p.t>=200).sort((a,b)=>share(b,'prov')-share(a,'prov')).slice(0,8);
+  $('provtop').innerHTML=hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov');
+  $('prov-lede').textContent=`${fmt(k.prov)} voters cast provisional ballots, ${pct(k.prov/k.t)} of all voters. ${fmt(k.pe)} mail ballots arrived by the deadline and were counted after Election Day.`;
+  const rows=ORDER.slice().reverse().map(id=>{const x=E[id].county;return {l:E[id].label,v:x.pe/mailAll(x),f:pct(x.pe/mailAll(x),0),title:fmt(x.pe)+' ballots'}});
+  $('late').innerHTML=hbars(rows,Math.max(...rows.map(r=>r.v)),'--mail');
+  const lp=e.precincts.filter(p=>mailAll(p)>=50).sort((a,b)=>b.pe/mailAll(b)-a.pe/mailAll(a)).slice(0,8);
+  $('latetop').innerHTML=hbars(lp.map(p=>({l:p.n,v:p.pe/mailAll(p),f:pct(p.pe/mailAll(p),0),title:fmt(p.pe)+' of '+fmt(mailAll(p))})),lp[0].pe/mailAll(lp[0]),'--mail');
+}
+
+/* ---------- table ---------- */
+const COLS=[
+  {k:'code',l:'Precinct',v:p=>p.code+' '+p.n,s:p=>p.code},
+  {k:'pp',l:'Polling place',v:p=>p.pp||'',s:p=>p.pp||''},
+  {k:'r',l:'Registered',v:p=>p.r,n:1},
+  {k:'t',l:'Voters',v:p=>p.t,n:1},
+  {k:'turn',l:'Turnout',v:p=>p.r?p.t/p.r:0,pc:1},
+  {k:'ed',l:'Election Day',v:p=>p.ed,m:1},
+  {k:'ev',l:'Early in person',v:p=>p.ev,m:1},
+  {k:'mailall',l:'Mail',v:p=>mailAll(p),m:1},
+  {k:'pe',l:'Mail after ED',v:p=>p.pe,m:1},
+  {k:'prov',l:'Provisional',v:p=>p.prov,m:1},
+  {k:'chg',l:'Turnout change',v:null,pc:1,cmp:1},
+  {k:'mix',l:'Mix',v:null}];
+function cellVal(col,p,Q){
+  if(col.k==='chg'){const q=Q&&Q[p.code];return q&&q.r&&p.r?p.t/p.r-q.t/q.r:null}
+  if(col.m&&S.tbl==='p')return p.t?col.v(p)/p.t:0;
+  return col.v(p);
+}
+function drawTable(){
+  const e=E[S.sel],c=E[S.cmp],Q=c?byCode(c):null;
+  const cols=COLS.filter(x=>!x.cmp||Q).filter(x=>x.k!=='pp'||e.precincts.some(p=>p.pp));
+  let ps=e.precincts.filter(p=>!S.q||(p.code+' '+p.n+' '+(p.pp||'')).toLowerCase().includes(S.q));
+  const sc=cols.find(x=>x.k===S.sort)||cols[3];
+  ps=ps.slice().sort((a,b)=>{const va=sc.s?sc.s(a):cellVal(sc,a,Q),vb=sc.s?sc.s(b):cellVal(sc,b,Q);return (va==null?-1e9:va)>(vb==null?-1e9:vb)?S.dir:(va<vb?-S.dir:0)});
+  const fmtCell=(col,v)=>v==null?'–':col.k==='chg'?pts(v):col.pc||(col.m&&S.tbl==='p')?pct(v):col.n||col.m?fmt(v):esc(v);
+  const head=`<thead><tr>${cols.map(x=>`<th scope="col" data-k="${x.k}" ${x.k===S.sort?`aria-sort="${S.dir<0?'descending':'ascending'}"`:''}>${x.k==='chg'?'vs '+esc(short(c)):x.l}${x.k===S.sort?(S.dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr></thead>`;
+  const k=e.county;
+  const total=`<tr style="font-weight:700"><td>County</td>${cols.slice(1).map(x=>x.k==='pp'?'<td></td>':x.k==='mix'?`<td>${mini(k)}</td>`:x.k==='chg'?`<td class="mono">${Q?pts(k.t/k.r-c.county.t/c.county.r):''}</td>`:`<td class="mono">${fmtCell(x,cellVal(x,k,null))}</td>`).join('')}</tr>`;
+  const body=ps.map(p=>`<tr data-c="${p.code}" class="${S.hl===p.code?'hl':''}">${cols.map(x=>x.k==='mix'?`<td>${mini(p)}</td>`:x.k==='code'?`<td><span class="mono muted">${p.code}</span> ${esc(p.n)}</td>`:x.k==='pp'?`<td>${esc(p.pp||'')}</td>`:`<td class="mono">${fmtCell(x,cellVal(x,p,Q))}</td>`).join('')}</tr>`).join('');
+  $('tbl').innerHTML=head+`<tbody>${total}${body}</tbody>`;
+}
+function mini(p){return `<span class="mini">${M.map(m=>`<span style="width:${p.t?p[m.k]/p.t*100:0}%;background:var(${m.c})"></span>`).join('')}</span>`}
+$('tbl').onclick=ev=>{
+  const th=ev.target.closest('th');if(th){const k=th.dataset.k;if(k==='mix')return;S.dir=S.sort===k?-S.dir:(k==='code'||k==='pp'?1:-1);S.sort=k;drawTable();return}
+  const tr=ev.target.closest('tr[data-c]');if(tr)select(tr.dataset.c,true);
+};
+$('copy').onclick=async()=>{
+  const e=E[S.sel];const head=['Precinct code','Precinct','Polling place','Registered','Voters','Election Day','Early in person','Mail by election night','Mail after Election Day','Provisional'];
+  const q=v=>/[",]/.test(v)?'"'+String(v).replace(/"/g,'""')+'"':v;
+  const csv=[head.join(',')].concat(e.precincts.map(p=>[p.code,p.n,p.pp||'',p.r,p.t,p.ed,p.ev,p.mail,p.pe,p.prov].map(q).join(','))).join('\n');
+  const msg=$('copied');
+  try{await navigator.clipboard.writeText(csv);msg.textContent=`Copied ${e.precincts.length} precincts for ${e.label}. Paste into a spreadsheet.`}
+  catch(x){msg.textContent='Copy was blocked here. Select the table and copy it instead.'}
+  msg.hidden=false;
+};
+
+/* ---------- render ---------- */
+function render(){
+  const e=E[S.sel],c=E[S.cmp]||null;
+  if(S.map==='chg'&&!c)S.map='turnout';
+  $('eyebrow').textContent=`${NAME} · ${e.label}`;
+  $('title').textContent=`How ${NAME} voted`;
+  $('tab-early').href=`https://voteflow.raviudeshi.com/va/fairfax-county/${e.id}`;
+  controls();tiles(e,c);mixSection(e,c);lineSection(e);mapModes();drawMap();panel(S.hl);standouts(e,c);scatter(e);triangle(e);load(e);prov(e);drawTable();
+}
+render();
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>lineSection(E[S.sel]),150)});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
