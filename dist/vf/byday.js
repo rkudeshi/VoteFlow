@@ -73,7 +73,10 @@
       const v = refs.map((r) => { const den = anc.reduce((a, j) => a + rd(r.series, j), 0), x = rd(r.series, i); return den > 0 && x != null ? x / den : null; }).filter((x) => x != null);
       return v.length ? ancBase * med(v) : null; };
     const refE = Array.from({ length: 53 }, (_, i) => { if (!(live && i > lastI && i < 46 && cap[i] > 0)) return 0;
-      const pace = (estFor('e', i) || 0) * (estLevel.e || 1), rec = recentE(i);
+      // A big change in open site-hours from those weekdays (satellites opening for the final days)
+      // isn't in past elections' ratios, so there the pace estimate stands alone.
+      const capA = anc.reduce((a, j) => a + cap[j], 0) / Math.max(1, anc.length), cr = capA > 0 ? cap[i] / capA : 1;
+      const pace = (estFor('e', i) || 0) * (estLevel.e || 1), rec = cr < 0.67 || cr > 1.5 ? null : recentE(i);
       return rec == null ? pace : pace > 0 && rec > 0 ? Math.exp((Math.log(pace) + 2 * Math.log(rec)) / 3) : Math.max(pace, rec); });
     // Past elections were mostly closed on weekends, so their same-day counts can't speak for a
     // weekend this year. There, use the ballots per site-hour on the nearest weekdays before and
