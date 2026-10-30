@@ -594,5 +594,12 @@
     "message": "Updated Prince William County site, drop box and mail counts.",
     "through": "2026-10-29",
     "url": null
+  },
+  {
+    "at": "2026-10-30T21:21:05.970240+00:00",
+    "source": "Locality dashboards",
+    "message": "Updated Prince William County site, drop box and mail counts.",
+    "through": "2026-10-30",
+    "url": null
   }
 ]
