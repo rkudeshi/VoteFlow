@@ -5,6 +5,9 @@ A missing day is not a zero. Repeated checks replace the same dated snapshot.
 DAL remains the countywide aggregate source.
 The feed can move Date_Updated to a new day before its EV fields change; a
 snapshot whose sites and EV_Total repeat an earlier day's is stale and skipped.
+It can also post the next day's counts before Date_Updated moves (Oct 30, 5:33
+p.m.: Oct 30's sites under an Oct 29 date, with EV_Total exactly Oct 29's
+cumulative plus the new sites); such a snapshot is skipped until the date moves.
 """
 import argparse,json,urllib.request,hashlib
 from pathlib import Path
@@ -28,6 +31,9 @@ def main():
   return day,a,sites
  def stale(snapshot_day,snapshot,site_values):
   return any(d<snapshot_day and r['sites']==site_values and r['countyCumulative']==snapshot['EV_Total'] for d,r in days.items())
+ def ahead(snapshot_day,snapshot,site_values):
+  r=days.get(snapshot_day)
+  return bool(r) and r['sites']!=site_values and sum(site_values.values())>0 and snapshot['EV_Total']-r['countyCumulative']==sum(site_values.values())
  day,a,sites=observation(raw)
  basepath=ROOT/'dist/region.json';base=json.loads(basepath.read_text())
  o=base.setdefault('siteReports',{}).setdefault('loudoun-county',{}).setdefault('2026',{'source':SOURCE,'feed':URL,'siteKeys':list(FIELDS),'history':[],'coverageStart':day,'coverage':'partial'})
@@ -44,9 +50,9 @@ def main():
  key=lambda t:(lambda x:(x['Date_Updated'],x['EV_Total']))(json.loads(t)['features'][0]['attributes'])
  for text in sorted(archived+[raw],key=key):
   snapshot_day,snapshot,site_values=observation(text)
-  if stale(snapshot_day,snapshot,site_values):continue
+  if stale(snapshot_day,snapshot,site_values) or ahead(snapshot_day,snapshot,site_values):continue
   days[snapshot_day]={'date':snapshot_day,'sites':site_values,'early':sum(site_values.values()),'countyCumulative':snapshot['EV_Total'],'reportedAt':dt(snapshot['Date_Updated']).isoformat()}
- if days.get(day,{}).get('reportedAt')!=dt(a['Date_Updated']).isoformat():
+ if ahead(day,a,sites) or days.get(day,{}).get('reportedAt')!=dt(a['Date_Updated']).isoformat():
   print(json.dumps({'source':'Loudoun dashboard','changed':False,'stale':True,'activityDate':day,'countyCumulative':a['EV_Total']}));return
  o['history']=[days[d] for d in sorted(days)];o['coverageStart']=min(days)
  # EV_Total matches DAL's cumulative early in-person count; its mail fields use
