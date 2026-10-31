@@ -259,6 +259,7 @@ const ORDER=DATA.elections.map(e=>e.id).sort();          // chronological
 const NAME=DATA.name;
 let S={sel:E['2025-11']?'2025-11':ORDER[ORDER.length-1],cmp:'',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
 try{const h=location.hash.slice(1);if(E[h])S.sel=h}catch(e){}
+if(window.VF_START&&E[window.VF_START])S.sel=window.VF_START;
 S.cmp=prevOf(S.sel);
 
 const $=id=>document.getElementById(id);
@@ -284,7 +285,7 @@ function controls(){
   $('elections').innerHTML=ORDER.slice().reverse().map(id=>`<button type="button" data-v="${id}" aria-pressed="${id===S.sel}">${esc(short(E[id]))}</button>`).join('');
   $('cmp').innerHTML=`<option value="">No comparison</option>`+ORDER.slice().reverse().filter(id=>id!==S.sel).map(id=>`<option value="${id}" ${id===S.cmp?'selected':''}>${esc(E[id].label)}</option>`).join('');
 }
-$('elections').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.sel=b.dataset.v;S.cmp=prevOf(S.sel);S.hl=null;try{history.replaceState(null,'','#'+S.sel)}catch(x){}render()};
+$('elections').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.sel=b.dataset.v;S.cmp=prevOf(S.sel);S.hl=null;try{window.VF_NAV?window.VF_NAV(S.sel):history.replaceState(null,'','#'+S.sel)}catch(x){}render()};
 $('cmp').onchange=e=>{S.cmp=e.target.value;render()};
 function segBind(id,key){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;S[key]=b.dataset.v;[...$(id).children].forEach(x=>x.setAttribute('aria-pressed',x===b));render()}}
 segBind('linemode','line');segBind('tblmode','tbl');
@@ -600,7 +601,8 @@ function render(){
   if(S.map==='chg'&&!c)S.map='turnout';
   $('eyebrow').textContent=`${NAME} · ${e.label}`;
   $('title').textContent=`How ${NAME} voted`;
-  $('tab-early').href=`https://voteflow.raviudeshi.com/va/${DATA.locality}/${e.id}`;
+  $('tab-early').href=`${window.VF_NAV?'':'https://voteflow.raviudeshi.com'}/va/${DATA.locality}/${e.id}`;
+  if(window.VF_NAV)document.title=`${NAME} · ${e.label} full election · VoteFlow`;
   controls();tiles(e,c);mixSection(e,c);lineSection(e);mapModes();drawMap();panel(S.hl);standouts(e,c);scatter(e);triangle(e);load(e);prov(e);drawTable();
 }
 render();

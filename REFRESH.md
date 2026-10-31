@@ -261,3 +261,13 @@ Do not run ELECT schedule checks as part of daily turnout updates. Schedule and
 optional site-feed failures must not block otherwise valid DAL/Fairfax publication.
 Report technical issues directly to the user. The public delay banner and its
 status flag have been removed; do not recreate them or publish error-only commits.
+
+## Full election pages (completed elections)
+
+Each completed election from Nov 2023 on has a Full election tab at `/va/<locality>/<YYYY-MM>/full`: turnout by precinct and vote method (Election Day, early in person, mail, provisional), Election Day polling places, provisional reasons and curbside counts, all from the state's official post-election files. Mail counted after Election Day is folded into mail on the page. To add an election once the state posts certified results (about four weeks after Election Day):
+
+1. Add a row to `ELECTIONS` in `post_election.py` (state results id from `enr.elections.virginia.gov/results/public/api/jurisdictions/Virginia`, the region.json key, label and the Election Day polling place file name).
+2. `python3 post_election.py` downloads into `sources/state-results/<id>/` and writes `dist/post-election/<slug>.json` for every locality.
+3. `python3 build_full_election.py` rebuilds `dist/vf/full.{css,js}`, `dist/full.html`, the per-locality maps in `dist/post-election/geo/` and `dist/vf/full-elections.js` (which turns on the tab on locality pages). `build_routes.py` copies the page to each route at deploy.
+
+The page is authored in `previews/full-election-template.html`; `python3 build_full_election.py --preview <slug> OUT.html` makes a self-contained copy for review.

@@ -27,6 +27,14 @@ for base,routes in ((root,paths),(root/'old'/'v2',old)):
  for route in routes:
   directory=base/route;directory.mkdir(parents=True,exist_ok=True)
   (directory/'index.html').write_bytes(va if route.startswith('va') else shell)
+# Full election pages for completed elections: /va/<locality>/<YYYY-MM>/full (see build_full_election.py).
+full=root/'full.html';index=root/'post-election'/'index.json'
+if full.exists() and index.exists():
+ shell_full=full.read_bytes()
+ for loc,eids in json.loads(index.read_text()).items():
+  for eid in eids:
+   directory=root/'va'/loc/eid/'full';directory.mkdir(parents=True,exist_ok=True)
+   (directory/'index.html').write_bytes(shell_full)
 # California (not linked from the Virginia pages yet): /ca, /ca/<county>, and the same in capitals.
 ca=root/'ca'/'index.html'
 if ca.exists():

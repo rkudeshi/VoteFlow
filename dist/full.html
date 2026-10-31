@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#121417"><title>Full election · VoteFlow</title><meta name="description" content="Turnout by precinct and vote method for completed Virginia elections."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FFD23F'/%3E%3Cpath d='M8 10l8 13 8-13' fill='none' stroke='%23121417' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/vf/full.css"><script defer src="/vf/full.js"></script><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "801c393a5d5342b88b8c85eccdc829c4"}'></script><!-- End Cloudflare Web Analytics --></head>
+<body><div class="topbar"><div class="wrap"><a href="/va" style="display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none"><span class="badge">VA</span><span class="brand">VoteFlow</span></a></div></div>
+
+<div class="wrap">
+  <header class="head">
+    <div>
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="title"></h1>
+    </div>
+    <nav class="tabs" aria-label="Page sections">
+      <a class="tab" id="tab-early" href="/va">Early voting</a>
+      <span class="tab" aria-current="page">Full election</span>
+    </nav>
+    <div class="controls">
+      <div class="ctl"><span class="eyebrow">Election</span><div class="seg" id="elections" role="group" aria-label="Election"></div></div>
+      <div class="ctl"><label class="eyebrow" for="cmp">Compare with</label><select id="cmp"></select></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="tiles" id="tiles" aria-label="Headline numbers"></section>
+
+    <section class="card" aria-labelledby="h-mix">
+      <div class="ch"><div><h2 id="h-mix">How people voted</h2><p class="lede" id="mix-lede"></p></div></div>
+      <div class="two">
+        <div class="donutwrap"><div id="donut"></div><div style="min-width:0"><table class="legend-t" id="legend"></table></div></div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">The same mix, every election</div>
+          <div id="mixes"></div>
+          <div class="keys" id="mixkeys" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-line">
+      <div class="ch">
+        <div><h2 id="h-line">The whole election in one line</h2><p class="lede" id="line-lede"></p></div>
+        <div class="seg" id="linemode" role="group" aria-label="Chart view">
+          <button type="button" data-v="abs" aria-pressed="true">Voters</button>
+          <button type="button" data-v="share" aria-pressed="false">Share of final, by election</button>
+        </div>
+      </div>
+      <div id="line"></div>
+      <div class="keys" id="linekeys" style="margin-top:8px"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-map">
+      <div class="ch">
+        <div><h2 id="h-map">Precinct map</h2><p class="lede">Hover or tap a precinct to see how its voters cast their ballots.</p></div>
+        <div class="tools">
+          <div class="seg" id="mapmode" role="group" aria-label="Shade the map by"></div>
+          <button type="button" class="btn" id="pptoggle" aria-pressed="false">Show polling places</button>
+        </div>
+      </div>
+      <div class="mapgrid">
+        <div style="min-width:0">
+          <div id="map"></div>
+          <div style="max-width:360px;margin-top:10px"><div class="ramp" id="ramp"></div><div class="ramplbl" id="ramplbl"></div></div>
+        </div>
+        <aside class="panel" id="panel" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-stand">
+      <div class="ch"><div><h2 id="h-stand">Standouts</h2><p class="lede" id="stand-lede"></p></div></div>
+      <div class="stand" id="stand"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-scatter">
+      <div class="ch"><div><h2 id="h-scatter">Do high-turnout precincts vote early?</h2><p class="lede" id="scatter-lede"></p></div></div>
+      <div class="two">
+        <div id="scatter" style="min-width:0"></div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:6px">Voting-style triangle</div>
+          <div id="tri"></div>
+          <p class="callout" id="tri-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-load">
+      <div class="ch"><div><h2 id="h-load">Election Day load by polling place</h2><p class="lede" id="load-lede"></p></div></div>
+      <div class="two">
+        <div style="min-width:0"><div class="eyebrow" style="margin-bottom:8px">Busiest polling places</div><div id="busiest"></div></div>
+        <div style="min-width:0"><div class="eyebrow" style="margin-bottom:8px">How many Election Day voters each polling place had</div><div id="hist"></div><div class="eyebrow" style="margin:16px 0 8px">Quietest polling places</div><div id="quietest"></div></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-prov">
+      <div class="ch"><div><h2 id="h-prov">Provisionals and curbside voting</h2><p class="lede" id="prov-lede"></p></div></div>
+      <div class="two">
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">Why voters cast a provisional ballot</div>
+          <div id="reasons"></div>
+        </div>
+        <div style="min-width:0">
+          <div class="eyebrow" style="margin-bottom:8px">Highest provisional rates</div>
+          <div id="provtop"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-table">
+      <div class="ch">
+        <div><h2 id="h-table">Every precinct</h2><p class="lede">Sort by any column. Percentages are shares of the precinct's voters; turnout is voters over registered voters.</p></div>
+        <div class="tools">
+          <div class="seg" id="tblmode" role="group" aria-label="Show">
+            <button type="button" data-v="n" aria-pressed="true">Counts</button>
+            <button type="button" data-v="p" aria-pressed="false">Percentages</button>
+          </div>
+          <input type="search" id="q" placeholder="Find a precinct or polling place" aria-label="Find a precinct or polling place">
+          <button type="button" class="btn" id="copy">Copy as CSV</button>
+        </div>
+      </div>
+      <div class="tblwrap"><table class="pt" id="tbl"></table></div>
+      <p class="muted" id="copied" style="font-size:13px;margin:8px 0 0" hidden></p>
+    </section>
+
+    <section class="notes" aria-label="About these numbers">
+      <p><b>About these numbers.</b> Voters counts everyone credited with voting, including provisional voters whose ballots were not counted, so it runs slightly above ballots counted. Mail includes every mailed absentee ballot, including hand-counted ones and those that arrived by the deadline after Election Day <span id="late-note"></span>.</p>
+      <p>The early-voting line uses each day's absentee list, so its last pre-election point can differ slightly from the final count. Polling places are each election's Election Day locations; none are listed for November 2023. Precinct lines are today's, so a few older precincts may not line up exactly.</p>
+    </section>
+  </div>
+</div>
+</body></html>

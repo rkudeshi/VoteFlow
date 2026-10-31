@@ -671,6 +671,7 @@ class Locality extends DCLogic {
           .map((r) => ({ date: dmd(r.d), nw: (r.nw > 0 ? '+' : '') + f(r.nw), run: f(r.pv) }));
         return { n: f(n), word: n === 1 ? 'provisional ballot' : 'provisional ballots', asOf: last ? dmd(last.d) : '', rows, has: rows.length > 0 }; })(),
       showSites: live && D.sites.length > 0, siteMany: D.sites.length > 1, showPrecincts: live && D.precincts.some((p) => p.r),
+      fullTab: (() => { const m = VF.slugOf(eid), has = m && (window.VF_FULL || {})[D.id] && window.VF_FULL[D.id].includes(m); return { on: !!has, href: has ? VF.locUrl(D.id, eid) + '/full' : '' }; })(),
       fxr, loading: false, ready: true, backHref: VF.stateUrl(eid), L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
       ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: VF.calLegend, sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)
