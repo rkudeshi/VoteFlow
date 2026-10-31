@@ -601,5 +601,19 @@
     "message": "Updated Prince William County site, drop box and mail counts.",
     "through": "2026-10-30",
     "url": null
+  },
+  {
+    "at": "2026-10-31T10:46:16.874518+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-10-30",
+    "url": null
+  },
+  {
+    "at": "2026-10-31T10:46:38.120768+00:00",
+    "source": "Daily Absentee List",
+    "message": "Updated precinct counts for 3 localities from Daily Absentee List records.",
+    "through": "2026-10-30",
+    "url": null
   }
 ]
