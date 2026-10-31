@@ -569,8 +569,9 @@ def main():
                 x['n'] += 1; x['locs'][NAMES[lid]['name']] = x['locs'].get(NAMES[lid]['name'], 0) + 1
 
     # ---- statewide bundles, one per election
-    # Rankings compare every locality on the latest day of DAL data they all share, so a county
-    # report that runs a day ahead doesn't jump the order. The locality page's rank chips use the same.
+    # Rank chips (locality pages and the homepage's #1 links) rank on the same numbers the
+    # homepage table shows, so sorting the table always gives the same order (Ravi, 2026-10-31).
+    table_locs = {}
     shared = min(DAL26.get(l['id'], l['history'])[-1]['date'] for l in e26['localities'])
     def row_shared(l):
         return next((h for h in reversed(DAL26.get(l['id'], l['history'])) if h['date'] <= shared), {})
@@ -596,9 +597,10 @@ def main():
             locs.append({'id': lid, 'n': nm['name'], 'rg': nm['region'], 'r': l['registered'], 'ac': l.get('active'),
                          'v': v, 'e': h.get('early') or 0, 'm': h.get('mail') or 0, 'o': h.get('outstanding'),
                          'p': round(v / l['registered'] * 100, 2), 'c': c, 'sat': n, 'next': nxt, 'd': va_paths.get(lid, '')})
-            if live:
-                hs = row_shared(l)
-                locs[-1]['rk'] = [hs.get('early') or 0, hs.get('mail') or 0]
+            locs[-1]['split'] = h.get('mail') is not None
+        table_locs[eid] = [dict(o) for o in locs]
+        for o in locs:
+            o.pop('split')
         rows = rows_by[eid]
         reg, active = regs[eid]
         bundle = {'eid': eid, 'label': meta['label'], 'type': meta['type'], 'date': meta['date'], 'live': live,
@@ -613,11 +615,6 @@ def main():
     # locality's newer county numbers (e.g. the Fairfax PDF a day ahead of DAL) can't
     # vault it past localities that haven't reported that day yet.
     # They also use DAL for every locality, not a county source on some days and DAL on others.
-    def tot_shared(l):
-        return tot(row_shared(l)) if row_shared(l) else 0
-    by_total = sorted(e26['localities'], key=lambda x: -tot_shared(x))
-    by_pct = sorted(e26['localities'], key=lambda x: -tot_shared(x) / x['registered'])
-    by_reg = sorted(e26['localities'], key=lambda x: -x['registered'])
     official = {x['date']: x for x in D.get('official', {}).get(LIVE, {}).get('history', [])}
     # Turnout rank now and a week earlier, for the trend notes.
     s26 = {l['id']: series(DAL26.get(l['id'], l['history']), election_meta(LIVE)['date'], l['registered']) for l in e26['localities']}
@@ -626,25 +623,18 @@ def main():
         vals = sorted(((((x['e'][i] or 0) + (x['m'][i] or 0)) / x['r'] if x and x['e'][i] is not None else 0, lid) for lid, x in s26.items()), reverse=True)
         return {lid: n + 1 for n, (_, lid) in enumerate(vals)}
     rank_now, rank_wk = rank_at(li26), rank_at(li26 - 7)
-    # Turnout and size rank for every election, so the locality page's rank chips follow the
-    # election being viewed.
+    # Turnout, size and mail rank for every election, so the locality page's rank chips follow the
+    # election being viewed. Same keys and order as the homepage table's sort: turnout on its
+    # rounded % (column 'p'), mail on mail / registered ('By mail' column), ties in table order.
     ranks = {}
     for eid in ORDER:
-        rows_e = [(lid, loc_hist(eid, lid)) for lid in NAMES]
-        rows_e = [(lid, h) for lid, h in rows_e if h and h.get('history') and h.get('registered')]
-        last_tot = (lambda h: tot_shared(h)) if eid == LIVE else (lambda h: tot(h['history'][-1]))
-        by_p = sorted(rows_e, key=lambda x: -last_tot(x[1]) / x[1]['registered'])
-        by_r = sorted(rows_e, key=lambda x: -x[1]['registered'])
-        ranks[eid] = {lid: {'rankP': n + 1} for n, (lid, _) in enumerate(by_p)}
-        for n, (lid, _) in enumerate(by_r):
-            ranks[eid][lid]['rankR'] = n + 1
-        # Mail rank only where the election splits mail out of the total.
-        last_row = (lambda lid, h: next((x for x in reversed(DAL26.get(lid, h['history'])) if x['date'] <= shared), {})) if eid == LIVE else (lambda lid, h: h['history'][-1])
-        rows_m = [(lid, h) for lid, h in rows_e if last_row(lid, h).get('mail') is not None]
-        if len(rows_m) == len(rows_e):
-            by_m = sorted(rows_m, key=lambda x: -last_row(*x)['mail'] / x[1]['registered'])
-            for n, (lid, _) in enumerate(by_m):
-                ranks[eid][lid]['rankM'] = n + 1
+        tl = table_locs[eid]
+        ranks[eid] = {}
+        for key, fn in (('rankP', lambda o: o['p']), ('rankR', lambda o: o['r']), ('rankV', lambda o: o['v']), ('rankM', lambda o: o['m'] / o['r'])):
+            if key == 'rankM' and not all(o['split'] for o in tl):
+                continue  # mail rank only where the election splits mail out of the total
+            for n, o in enumerate(sorted(tl, key=lambda o: -fn(o))):
+                ranks[eid].setdefault(o['id'], {})[key] = n + 1
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
         lid = l['id']
@@ -807,7 +797,7 @@ def main():
         notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(h_cmp[-1]['date']) if h_cmp else today,
                             sat_dates, rank_now.get(lid), rank_wk.get(lid)) if cur26 else ''
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
-             'inactive': l.get('inactive'), 'rankV': by_total.index(l_dal) + 1, 'rankP': by_pct.index(l_dal) + 1, 'rankR': by_reg.index(l_dal) + 1,
+             'inactive': l.get('inactive'), **{k: ranks[LIVE][lid][k] for k in ('rankV', 'rankP', 'rankR')},
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else county_report(lid) if lid in COUNTY_LABEL else None, 'countyLabel': COUNTY_LABEL.get(lid), 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage'), **site_meta}
