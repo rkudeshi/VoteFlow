@@ -1,4 +1,4 @@
-<title>Fairfax After the Election</title>
+<title>__TITLE__</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -126,12 +126,12 @@ input[type=search]{font:14px var(--body);color:var(--ink);background:var(--card)
 <div class="wrap">
   <header class="head">
     <div>
-      <div class="eyebrow" id="eyebrow">Fairfax County</div>
-      <h1 id="title">How Fairfax County voted</h1>
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="title"></h1>
     </div>
     <nav class="tabs" aria-label="Page sections">
-      <a class="tab" id="tab-early" href="https://voteflow.raviudeshi.com/va/fairfax-county" target="_blank" rel="noopener">Early voting</a>
-      <span class="tab" aria-current="page">Post-election</span>
+      <a class="tab" id="tab-early" href="#" target="_blank" rel="noopener">Early voting</a>
+      <span class="tab" aria-current="page">Full election</span>
     </nav>
     <div class="controls">
       <div class="ctl"><span class="eyebrow">Election</span><div class="seg" id="elections" role="group" aria-label="Election"></div></div>
@@ -184,7 +184,7 @@ input[type=search]{font:14px var(--body);color:var(--ink);background:var(--card)
     </section>
 
     <section class="card" aria-labelledby="h-stand">
-      <div class="ch"><div><h2 id="h-stand">Standouts</h2><p class="lede">Precincts with at least 200 voters. Select one to find it on the map.</p></div></div>
+      <div class="ch"><div><h2 id="h-stand">Standouts</h2><p class="lede" id="stand-lede"></p></div></div>
       <div class="stand" id="stand"></div>
     </section>
 
@@ -209,19 +209,15 @@ input[type=search]{font:14px var(--body);color:var(--ink);background:var(--card)
     </section>
 
     <section class="card" aria-labelledby="h-prov">
-      <div class="ch"><div><h2 id="h-prov">Provisionals, curbside and late mail</h2><p class="lede" id="prov-lede"></p></div></div>
+      <div class="ch"><div><h2 id="h-prov">Provisionals and curbside voting</h2><p class="lede" id="prov-lede"></p></div></div>
       <div class="two">
         <div style="min-width:0">
           <div class="eyebrow" style="margin-bottom:8px">Why voters cast a provisional ballot</div>
           <div id="reasons"></div>
-          <div class="eyebrow" style="margin:18px 0 8px">Highest provisional rates</div>
-          <div id="provtop"></div>
         </div>
         <div style="min-width:0">
-          <div class="eyebrow" style="margin-bottom:8px">Mail ballots counted after Election Day, by election</div>
-          <div id="late"></div>
-          <div class="eyebrow" style="margin:18px 0 8px">Highest share of mail counted late</div>
-          <div id="latetop"></div>
+          <div class="eyebrow" style="margin-bottom:8px">Highest provisional rates</div>
+          <div id="provtop"></div>
         </div>
       </div>
     </section>
@@ -243,7 +239,7 @@ input[type=search]{font:14px var(--body);color:var(--ink);background:var(--card)
     </section>
 
     <section class="notes" aria-label="About these numbers">
-      <p><b>About these numbers.</b> Voters counts everyone credited with voting, including provisional voters whose ballots were not counted, so it runs slightly above ballots counted. Mail means mailed absentee ballots counted by election night; counted after Election Day means mail ballots that arrived by the deadline and were counted later. Hand-counted mail ballots are included with mail.</p>
+      <p><b>About these numbers.</b> Voters counts everyone credited with voting, including provisional voters whose ballots were not counted, so it runs slightly above ballots counted. Mail includes every mailed absentee ballot, including hand-counted ones and those that arrived by the deadline after Election Day <span id="late-note"></span>.</p>
       <p>The early-voting line uses each day's absentee list, so its last pre-election point can differ slightly from the final count. Polling places are each election's Election Day locations; none are listed for November 2023. Precinct lines are today's, so a few older precincts may not line up exactly.</p>
     </section>
   </div>
@@ -255,12 +251,13 @@ const M=[ // display order for vote types
   {k:'ed',label:'Election Day',c:'--ed'},
   {k:'ev',label:'Early in person',c:'--ev'},
   {k:'mail',label:'Mail',c:'--mail'},
-  {k:'pe',label:'Mail counted after Election Day',short:'Counted after',c:'--pe',sub:true},
   {k:'prov',label:'Provisional',c:'--prov'}];
+// Late-arriving mail is reported separately by the state; here it is simply mail.
+DATA.elections.forEach(e=>[e.county,...e.precincts].forEach(x=>{x.late=x.pe;x.mail+=x.pe;x.pe=0}));
 const E=Object.fromEntries(DATA.elections.map(e=>[e.id,e]));
 const ORDER=DATA.elections.map(e=>e.id).sort();          // chronological
 const NAME=DATA.name;
-let S={sel:'2025-11',cmp:'2024-11',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
+let S={sel:E['2025-11']?'2025-11':ORDER[ORDER.length-1],cmp:'',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
 try{const h=location.hash.slice(1);if(E[h])S.sel=h}catch(e){}
 S.cmp=prevOf(S.sel);
 
@@ -268,7 +265,8 @@ const $=id=>document.getElementById(id);
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const fmt=n=>Math.round(n).toLocaleString('en-US');
 const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
-const pts=x=>(x>=0?'+':'−')+Math.abs(x*100).toFixed(1)+' pts';
+// relative change between two values: "21% lower"
+const rel=(a,b,more='higher',less='lower')=>{if(!b)return '';const r=a/b-1,v=Math.abs(r*100);return Math.abs(r)<0.0005?'the same':(v<10?v.toFixed(1):v.toFixed(0))+'% '+(r>=0?more:less)};
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const kfmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e4?Math.round(n/1e3)+'K':n>=1e3?(n/1e3).toFixed(1)+'K':String(Math.round(n));
 function prevOf(id){const i=ORDER.indexOf(id);return i>0?ORDER[i-1]:(ORDER[1]||'')}
@@ -296,12 +294,12 @@ $('q').oninput=e=>{S.q=e.target.value.toLowerCase();drawTable()};
 /* ---------- tiles ---------- */
 function tiles(e,c){
   const k=e.county, kc=c&&c.county;
-  const d=(a,b,isPct)=>b==null?'':`<span class="delta">${isPct?pts(a-b):((a-b)>=0?'+':'−')+fmt(Math.abs(a-b))} vs ${esc(short(c))}</span>`;
+  const d=(a,b,isCount)=>b==null?'':`<span class="delta">${isCount?rel(a,b,'more','fewer'):rel(a,b)} than ${esc(short(c))}</span>`;
   const t=[
-    ['Voters',fmt(k.t),`of ${fmt(k.r)} registered`,d(k.t,kc&&kc.t)],
-    ['Turnout',pct(k.t/k.r),'of registered voters',d(k.t/k.r,kc&&kc.t/kc.r,1)],
-    ['Voted before Election Day',pct(before(k)/k.t),`${fmt(before(k))} early in person or by mail`,d(before(k)/k.t,kc&&before(kc)/kc.t,1)],
-    ['Voted on Election Day',pct((k.ed+k.prov)/k.t),`${fmt(k.ed)} at the polls, ${fmt(k.prov)} provisional`,d((k.ed+k.prov)/k.t,kc&&(kc.ed+kc.prov)/kc.t,1)]];
+    ['Voters',fmt(k.t),`of ${fmt(k.r)} registered`,d(k.t,kc&&kc.t,1)],
+    ['Turnout',pct(k.t/k.r),'of registered voters',d(k.t/k.r,kc&&kc.t/kc.r)],
+    ['Voted before Election Day',pct(before(k)/k.t),`${fmt(before(k))} early in person or by mail`,d(before(k)/k.t,kc&&before(kc)/kc.t)],
+    ['Voted on Election Day',pct((k.ed+k.prov)/k.t),`${fmt(k.ed)} at the polls, ${fmt(k.prov)} provisional`,d((k.ed+k.prov)/k.t,kc&&(kc.ed+kc.prov)/kc.t)]];
   $('tiles').innerHTML=t.map(x=>`<div class="tile"><span class="eyebrow">${x[0]}</span><span class="v">${x[1]}</span><span class="s">${x[2]}</span>${x[3]}</div>`).join('');
 }
 
@@ -322,9 +320,9 @@ function mixSection(e,c){
   $('donut').innerHTML=donutSVG(k,180,[kfmt(k.t),'voters']);
   const kc=c&&c.county;
   $('legend').innerHTML=`<tr><th>Vote type</th><th>Voters</th><th>Share</th>${kc?`<th>vs ${esc(short(c))}</th>`:''}</tr>`+
-    M.map(m=>{const v=x=>m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.sub?'counted after Election Day':m.label}</td><td class="mono">${fmt(v(k))}</td><td class="mono">${pct(v(k)/k.t)}</td>${kc?`<td class="mono nw">${pts(v(k)/k.t-v(kc)/kc.t)}</td>`:''}</tr>`}).join('');
+    M.map(m=>{const v=x=>m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td><td class="mono">${fmt(v(k))}</td><td class="mono">${pct(v(k)/k.t)}</td>${kc?`<td class="mono nw">${rel(v(k)/k.t,v(kc)/kc.t)}</td>`:''}</tr>`}).join('');
   const top=M.slice().sort((a,b)=>k[b.k]-k[a.k])[0];
-  $('mix-lede').textContent=`${pct(k.ed/k.t,0)} of ${short(e)} voters voted in person on Election Day, ${pct(k.ev/k.t,0)} voted early in person and ${pct(mailAll(k)/k.t,0)} voted by mail. ${fmt(k.pe)} mail ballots, ${pct(k.pe/mailAll(k),0)} of all mail, were counted after Election Day.`;
+  $('mix-lede').textContent=`${pct(k.ed/k.t,0)} of ${short(e)} voters voted in person on Election Day, ${pct(k.ev/k.t,0)} voted early in person and ${pct(mailAll(k)/k.t,0)} voted by mail.`;
   $('mixes').innerHTML=ORDER.slice().reverse().map(id=>{const x=E[id].county;return `<div class="mixrow ${id===S.sel?'sel':''}"><span>${esc(short(E[id]))}</span><div class="mixbar" role="img" aria-label="${esc(E[id].label)} mix">${M.map(m=>`<span style="width:${x[m.k]/x.t*100}%;background:var(${m.c})" title="${m.label}: ${pct(x[m.k]/x.t)}"></span>`).join('')}</div></div>`}).join('');
   $('mixkeys').innerHTML=M.map(m=>`<span><span class="sw" style="background:var(${m.c})"></span>${m.short||m.label}</span>`).join('');
 }
@@ -337,31 +335,31 @@ function lineSection(e){
   let svg='';
   if(S.line==='abs'){
     const pts0=e.early.map(([d,ev,ma])=>({x:new Date(d+'T12:00'),ev,ma}));
-    const start=pts0.length?pts0[0].x:new Date(ed-45*DAY), end=new Date(+ed+3*DAY);
+    const start=pts0.length?pts0[0].x:new Date(ed-45*DAY), end=new Date(+ed+2*DAY);
     const X=d=>L+(d-start)/(end-start)*iw, Y=v=>T+ih-v/k.t*ih;
     const mailEd=Math.max(0,k.mail-(pts0.length?pts0[pts0.length-1].ma:0));
     // stacked series: early, mail, election day (+ mail arriving that day), provisional, late mail
     const seq=pts0.map(p=>[p.x,p.ev,p.ma,0,0,0]);
-    seq.push([ed,k.ev,k.mail,k.ed,k.prov,0]);seq.push([new Date(+ed+3*DAY),k.ev,k.mail,k.ed,k.prov,k.pe]);
-    const keys=['ev','mail','ed','prov','pe'];
+    seq.push([ed,k.ev,k.mail,k.ed,k.prov]);seq.push([new Date(+ed+2*DAY),k.ev,k.mail,k.ed,k.prov]);
+    const keys=['ev','mail','ed','prov'];
     let acc=seq.map(()=>0);
-    for(let j=0;j<5;j++){
+    for(let j=0;j<4;j++){
       const lo=acc.slice(),hi=seq.map((s,i)=>lo[i]+s[j+1]);acc=hi;
       // step after the last pre-election day so the jump lands on Election Day
       let top='',bot='';
       seq.forEach((s,i)=>{const x=X(s[0]);if(i>0){top+=`L${x},${Y(hi[i-1])}`}top+=`${i?'L':'M'}${x},${Y(hi[i])}`});
       for(let i=seq.length-1;i>=0;i--){const x=X(seq[i][0]);bot+=`L${x},${Y(lo[i])}`;if(i>0)bot+=`L${x},${Y(lo[i-1])}`}
-      svg+=`<path d="${top}${bot}Z" fill="${colorOf(keys[j])}" opacity="${keys[j]==='pe'?1:.92}"/>`;
+      svg+=`<path d="${top}${bot}Z" fill="${colorOf(keys[j])}" opacity=".92"/>`;
     }
     let grid='';for(let g=0;g<=4;g++){const v=k.t*g/4;grid+=`<line x1="${L}" x2="${L+iw}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${kfmt(v)}</text>`}svg=grid+svg;
     const months=[];for(let d=new Date(start);d<=end;d=new Date(+d+DAY)){if(d.getDate()===1||d.getDate()===15)months.push(new Date(d))}
     months.filter((d,i)=>!narrow||d.getDate()===1).forEach(d=>svg+=`<text x="${X(d)}" y="${H-10}" text-anchor="middle">${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text>`);
     svg+=`<line x1="${X(ed)}" x2="${X(ed)}" y1="${T}" y2="${T+ih}" stroke="var(--ink)" stroke-dasharray="3 3"/><text x="${X(ed)-6}" y="${T+10}" text-anchor="end" style="fill:var(--ink)">ELECTION DAY</text>`;
     const lbl=(v0,v1,txt)=>{const y=Y((v0+v1)/2);return `<text x="${L+iw+8}" y="${y+4}" style="fill:var(--ink2)">${txt}</text>`};
-    let cum=0;const ends=[[k.ev,'Early in person'],[k.mail,'Mail'],[k.ed,'Election Day'],[k.prov,'Provisional'],[k.pe,'Counted after']];
+    let cum=0;const ends=[[k.ev,'Early in person'],[k.mail,'Mail'],[k.ed,'Election Day'],[k.prov,'Provisional']];
     ends.forEach(([v,t])=>{if(v/k.t>0.035)svg+=lbl(cum,cum+v,t);cum+=v});
     const pre=pts0.length?pts0[pts0.length-1]:{ev:0,ma:0};
-    $('line-lede').textContent=`By the eve of Election Day, ${fmt(pre.ev+pre.ma)} voters had already voted, ${pct((pre.ev+pre.ma)/k.t,0)} of the final total. Election Day added ${fmt(k.ed+k.prov+mailEd)}, and ${fmt(k.pe)} more mail ballots were counted in the days after.`;
+    $('line-lede').textContent=`By the eve of Election Day, ${fmt(pre.ev+pre.ma)} voters had already voted, ${pct((pre.ev+pre.ma)/k.t,0)} of the final total. Election Day and the mail that arrived around it added the other ${fmt(k.t-pre.ev-pre.ma)}.`;
     $('linekeys').innerHTML='';
   } else {
     const days=45, X=d=>L+(days-d)/(days+3)*iw*1.0, Y=v=>T+ih-v*ih;
@@ -373,11 +371,11 @@ function lineSection(e){
     let keys='';
     ids.forEach((id,n)=>{const x=E[id],kk=x.county,edd=new Date(x.date+'T12:00');
       const pp=x.early.map(([d,ev,ma])=>[(edd-new Date(d+'T12:00'))/DAY,(ev+ma)/kk.t]).filter(p=>p[0]<=days&&p[0]>=1);
-      pp.push([0,1-kk.pe/kk.t]);
+      pp.push([0,1]);
       const d=pp.map((p,i)=>`${i?'L':'M'}${X(p[0])},${Y(p[1])}`).join('');
       const col=n===0?'var(--ink)':styles[n];
       svg+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="${n===0?3:1.8}" ${n===0?'':'stroke-dasharray="5 4"'} stroke-linejoin="round"/>`;
-      const last=pp[pp.length-2]||pp[0];
+      const last=pp.length>1?pp[pp.length-2]:pp[0];
       svg+=`<circle cx="${X(last[0])}" cy="${Y(last[1])}" r="4" fill="${col}" stroke="var(--card)" stroke-width="2"/>`;
       keys+=`<span><span class="sw" style="background:${col}"></span>${esc(x.label)}: ${pct(last[1],0)} in before Election Day</span>`;
     });
@@ -394,13 +392,13 @@ const MODES=[
   {k:'ev',label:'Early in person',v:p=>share(p,'ev'),c:'--ev'},
   {k:'mail',label:'Mail',v:p=>p.t?mailAll(p)/p.t:null,c:'--mail'},
   {k:'prov',label:'Provisional',v:p=>share(p,'prov'),c:'--prov'},
-  {k:'late',label:'Mail counted late',v:p=>mailAll(p)>=20?p.pe/mailAll(p):null,c:'--mail'},
   {k:'chg',label:'Turnout change',v:null,c:null}];
 function modeVal(m,p,cmpMap){
-  if(m.k==='chg'){const q=cmpMap&&cmpMap[p.code];return q&&q.r&&p.r?p.t/p.r-q.t/q.r:null}
+  if(m.k==='chg'){const q=cmpMap&&cmpMap[p.code];return q&&q.r&&q.t&&p.r?(p.t/p.r)/(q.t/q.r)-1:null}
   return m.v(p);
 }
 function drawMap(){
+  $('map').closest('section').hidden=!GEO;if(!GEO)return;
   const e=E[S.sel],c=E[S.cmp],P=byCode(e),Q=c?byCode(c):null;
   const m=MODES.find(x=>x.k===S.map)||MODES[0];
   if(m.k==='chg'&&!Q){S.map='turnout';return drawMap()}
@@ -410,7 +408,7 @@ function drawMap(){
   let colorFn,rampCss,lbl;
   if(m.k==='chg'){const a=Math.max(Math.abs(lo),Math.abs(hi))||.01;lo=-a;hi=a;
     colorFn=v=>v<0?mix(css('--mid'),css('--neg'),Math.min(1,-v/a)):mix(css('--mid'),css('--pos'),Math.min(1,v/a));
-    rampCss=`linear-gradient(90deg,${css('--neg')},${css('--mid')},${css('--pos')})`;lbl=[pts(-a).replace('−','−'),'no change',pts(a)];}
+    rampCss=`linear-gradient(90deg,${css('--neg')},${css('--mid')},${css('--pos')})`;lbl=[Math.round(a*100)+'% lower','no change',Math.round(a*100)+'% higher'];}
   else{const col=css(m.c),base=css('--ramp-lo');
     colorFn=v=>mix(base,col,Math.max(0,Math.min(1,(v-lo)/((hi-lo)||1)))*0.92+0.08);
     rampCss=`linear-gradient(90deg,${mix(base,col,.08)},${col})`;lbl=[pct(lo,0),'',pct(hi,0)];}
@@ -441,10 +439,10 @@ $('mapmode').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.map=b
 function panel(code){
   const e=E[S.sel],p=code?byCode(e)[code]:null,c=E[S.cmp],q=p&&c?byCode(c)[code]:null;
   const x=p||e.county;
-  const rows=M.map(m=>{const v=m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.sub?'counted after Election Day':m.label}</td><td class="mono">${fmt(v)}</td><td class="mono">${x.t?pct(v/x.t):'–'}</td></tr>`}).join('');
+  const rows=M.map(m=>{const v=m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td><td class="mono">${fmt(v)}</td><td class="mono">${x.t?pct(v/x.t):'–'}</td></tr>`}).join('');
   $('panel').innerHTML=`
     <div><div class="eyebrow">${p?'Precinct '+p.code:'Whole county'}</div><h3>${esc(p?p.n:NAME)}</h3>${p&&p.pp?`<div class="pp">Polling place: ${esc(p.pp)}<br><span class="muted">${esc(p.ppAddr)}</span></div>`:''}</div>
-    <div style="display:flex;gap:14px;align-items:center">${x.t?donutSVG(x,96):''}<div><div style="font-family:var(--display);font-weight:700;font-size:22px">${fmt(x.t)}</div><div class="muted" style="font-size:13px">voters · ${x.r?pct(x.t/x.r)+' turnout':''}</div>${q&&q.r?`<div class="delta">${pts(x.t/x.r-q.t/q.r)} vs ${esc(short(c))}</div>`:''}</div></div>
+    <div style="display:flex;gap:14px;align-items:center">${x.t?donutSVG(x,96):''}<div><div style="font-family:var(--display);font-weight:700;font-size:22px">${fmt(x.t)}</div><div class="muted" style="font-size:13px">voters · ${x.r?pct(x.t/x.r)+' turnout':''}</div>${q&&q.r&&q.t?`<div class="delta">Turnout ${rel(x.t/x.r,q.t/q.r)} than ${esc(short(c))}</div>`:''}</div></div>
     <table class="legend-t">${rows}</table>
     ${p?'':'<div class="muted" style="font-size:13px">Hover or tap a precinct for its numbers.</div>'}`;
 }
@@ -454,8 +452,11 @@ function select(code,scroll){
 }
 
 /* ---------- standouts ---------- */
+function minVoters(e){return e.precincts.filter(p=>p.t>=200).length>=6?200:e.precincts.filter(p=>p.t>=50).length>=3?50:1}
 function standouts(e,c){
-  const ps=e.precincts.filter(p=>p.t>=200),Q=c?byCode(c):null;
+  const mv=minVoters(e),ps=e.precincts.filter(p=>p.t>=mv&&p.r),Q=c?byCode(c):null;
+  $('stand-lede').textContent=(mv>1?`Precincts with at least ${mv} voters. `:'')+'Select one to find it on the map.';
+  if(ps.length<2){$('stand').closest('section').hidden=true;return}$('stand').closest('section').hidden=false;
   const pick=(f,dir)=>ps.reduce((a,b)=>(dir*(f(b)-f(a))>0?b:a));
   const items=[
     ['Highest turnout',pick(p=>p.t/p.r,1),p=>pct(p.t/p.r),p=>`${fmt(p.t)} of ${fmt(p.r)} registered`],
@@ -466,7 +467,7 @@ function standouts(e,c){
     ['Highest provisional rate',pick(p=>share(p,'prov'),1),p=>pct(share(p,'prov')),p=>`${fmt(p.prov)} provisional voters`],
     ['Most Election Day voters',pick(p=>p.ed,1),p=>fmt(p.ed),p=>p.pp?esc(p.pp):'at the polls'],
   ];
-  if(Q){const ch=p=>{const q=Q[p.code];return q&&q.r?p.t/p.r-q.t/q.r:0};const best=pick(ch,1);items.push([(ch(best)>=0?'Biggest turnout rise vs ':'Smallest turnout drop vs ')+short(c),best,p=>pts(ch(p)),p=>`${pct(p.t/p.r)} turnout`])}
+  if(Q){const ch=p=>{const q=Q[p.code];return q&&q.r&&q.t?(p.t/p.r)/(q.t/q.r)-1:-9};const best=pick(ch,1);items.push([(ch(best)>=0?'Biggest turnout rise vs ':'Smallest turnout drop vs ')+short(c),best,p=>rel(1+ch(p),1),p=>`${pct(p.t/p.r)} turnout`])}
   else items.push(['Fewest voters',pick(p=>p.t,-1),p=>fmt(p.t),p=>`of ${fmt(p.r)} registered`]);
   $('stand').innerHTML=items.map(([k,p,v,d])=>`<button type="button" class="st" data-c="${p.code}"><span class="k">${esc(k)}</span><span class="n">${esc(p.n)}</span><span class="v">${v(p)}</span><span class="d">${d(p)}</span></button>`).join('');
 }
@@ -474,6 +475,7 @@ $('stand').onclick=e=>{const b=e.target.closest('.st');if(b){S.hl=null;select(b.
 
 /* ---------- scatter + triangle ---------- */
 function scatter(e){
+  const enough=e.precincts.filter(p=>p.t>=50&&p.r).length>=4;$('scatter').closest('section').hidden=!enough;if(!enough)return;
   const W=560,H=420,L=52,R=14,T=12,B=40,iw=W-L-R,ih=H-T-B;
   const ps=e.precincts.filter(p=>p.t>=50&&p.r);
   const xs=ps.map(p=>p.t/p.r),ys=ps.map(p=>before(p)/p.t);
@@ -536,15 +538,14 @@ function load(e){
 function prov(e){
   const st=e.stats,k=e.county;
   const parts=[['Registered on Election Day',st.sdrDay],['Registered during early voting',st.sdrEarly],['Other reasons',st.provOther],['No ID',st.noId]].filter(x=>x[1]!=null);
+  if(!parts.length){$('reasons').innerHTML=`<p class="muted">Reasons weren't reported for this election.</p>`}
   const tot=parts.reduce((a,b)=>a+b[1],0)||1;
-  $('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct((st.sdrDay+st.sdrEarly)/tot,0)} of provisional voters were registering the same day. <b>${fmt(st.curbside||0)}</b> voters used curbside voting.</p>`;
-  const ps=e.precincts.filter(p=>p.t>=200).sort((a,b)=>share(b,'prov')-share(a,'prov')).slice(0,8);
-  $('provtop').innerHTML=hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov');
-  $('prov-lede').textContent=`${fmt(k.prov)} voters cast provisional ballots, ${pct(k.prov/k.t)} of all voters. ${fmt(k.pe)} mail ballots arrived by the deadline and were counted after Election Day.`;
-  const rows=ORDER.slice().reverse().map(id=>{const x=E[id].county;return {l:E[id].label,v:x.pe/mailAll(x),f:pct(x.pe/mailAll(x),0),title:fmt(x.pe)+' ballots'}});
-  $('late').innerHTML=hbars(rows,Math.max(...rows.map(r=>r.v)),'--mail');
-  const lp=e.precincts.filter(p=>mailAll(p)>=50).sort((a,b)=>b.pe/mailAll(b)-a.pe/mailAll(a)).slice(0,8);
-  $('latetop').innerHTML=hbars(lp.map(p=>({l:p.n,v:p.pe/mailAll(p),f:pct(p.pe/mailAll(p),0),title:fmt(p.pe)+' of '+fmt(mailAll(p))})),lp[0].pe/mailAll(lp[0]),'--mail');
+  if(parts.length)$('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct(((st.sdrDay||0)+(st.sdrEarly||0))/tot,0)} of provisional voters were registering the same day. <b>${fmt(st.curbside||0)}</b> voters used curbside voting.</p>`;
+  const ps=e.precincts.filter(p=>p.t>=minVoters(e)&&p.prov>0).sort((a,b)=>share(b,'prov')-share(a,'prov')).slice(0,8);
+  $('provtop').innerHTML=ps.length?hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov'):'<p class="muted">No precinct had provisional voters.</p>';
+  const reasonTotal=parts.reduce((a,b)=>a+(b[1]||0),0);
+  $('prov-lede').textContent=k.prov?`${fmt(k.prov)} voters cast provisional ballots, ${pct(k.prov/k.t)} of all voters.`:reasonTotal?`${fmt(reasonTotal)} voters cast provisional ballots, but the precinct numbers for this election don't list them separately.`:'No provisional voters were reported for this election.';
+  $('late-note').textContent=`(${fmt(k.late)} in ${e.label})`;
 }
 
 /* ---------- table ---------- */
@@ -557,12 +558,11 @@ const COLS=[
   {k:'ed',l:'Election Day',v:p=>p.ed,m:1},
   {k:'ev',l:'Early in person',v:p=>p.ev,m:1},
   {k:'mailall',l:'Mail',v:p=>mailAll(p),m:1},
-  {k:'pe',l:'Mail after ED',v:p=>p.pe,m:1},
   {k:'prov',l:'Provisional',v:p=>p.prov,m:1},
   {k:'chg',l:'Turnout change',v:null,pc:1,cmp:1},
   {k:'mix',l:'Mix',v:null}];
 function cellVal(col,p,Q){
-  if(col.k==='chg'){const q=Q&&Q[p.code];return q&&q.r&&p.r?p.t/p.r-q.t/q.r:null}
+  if(col.k==='chg'){const q=Q&&Q[p.code];return q&&q.r&&q.t&&p.r?(p.t/p.r)/(q.t/q.r)-1:null}
   if(col.m&&S.tbl==='p')return p.t?col.v(p)/p.t:0;
   return col.v(p);
 }
@@ -572,10 +572,10 @@ function drawTable(){
   let ps=e.precincts.filter(p=>!S.q||(p.code+' '+p.n+' '+(p.pp||'')).toLowerCase().includes(S.q));
   const sc=cols.find(x=>x.k===S.sort)||cols[3];
   ps=ps.slice().sort((a,b)=>{const va=sc.s?sc.s(a):cellVal(sc,a,Q),vb=sc.s?sc.s(b):cellVal(sc,b,Q);return (va==null?-1e9:va)>(vb==null?-1e9:vb)?S.dir:(va<vb?-S.dir:0)});
-  const fmtCell=(col,v)=>v==null?'–':col.k==='chg'?pts(v):col.pc||(col.m&&S.tbl==='p')?pct(v):col.n||col.m?fmt(v):esc(v);
+  const fmtCell=(col,v)=>v==null?'–':col.k==='chg'?rel(1+v,1):col.pc||(col.m&&S.tbl==='p')?pct(v):col.n||col.m?fmt(v):esc(v);
   const head=`<thead><tr>${cols.map(x=>`<th scope="col" data-k="${x.k}" ${x.k===S.sort?`aria-sort="${S.dir<0?'descending':'ascending'}"`:''}>${x.k==='chg'?'vs '+esc(short(c)):x.l}${x.k===S.sort?(S.dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr></thead>`;
   const k=e.county;
-  const total=`<tr style="font-weight:700"><td>County</td>${cols.slice(1).map(x=>x.k==='pp'?'<td></td>':x.k==='mix'?`<td>${mini(k)}</td>`:x.k==='chg'?`<td class="mono">${Q?pts(k.t/k.r-c.county.t/c.county.r):''}</td>`:`<td class="mono">${fmtCell(x,cellVal(x,k,null))}</td>`).join('')}</tr>`;
+  const total=`<tr style="font-weight:700"><td>County</td>${cols.slice(1).map(x=>x.k==='pp'?'<td></td>':x.k==='mix'?`<td>${mini(k)}</td>`:x.k==='chg'?`<td class="mono">${Q?rel(k.t/k.r,c.county.t/c.county.r):''}</td>`:`<td class="mono">${fmtCell(x,cellVal(x,k,null))}</td>`).join('')}</tr>`;
   const body=ps.map(p=>`<tr data-c="${p.code}" class="${S.hl===p.code?'hl':''}">${cols.map(x=>x.k==='mix'?`<td>${mini(p)}</td>`:x.k==='code'?`<td><span class="mono muted">${p.code}</span> ${esc(p.n)}</td>`:x.k==='pp'?`<td>${esc(p.pp||'')}</td>`:`<td class="mono">${fmtCell(x,cellVal(x,p,Q))}</td>`).join('')}</tr>`).join('');
   $('tbl').innerHTML=head+`<tbody>${total}${body}</tbody>`;
 }
@@ -585,9 +585,9 @@ $('tbl').onclick=ev=>{
   const tr=ev.target.closest('tr[data-c]');if(tr)select(tr.dataset.c,true);
 };
 $('copy').onclick=async()=>{
-  const e=E[S.sel];const head=['Precinct code','Precinct','Polling place','Registered','Voters','Election Day','Early in person','Mail by election night','Mail after Election Day','Provisional'];
+  const e=E[S.sel];const head=['Precinct code','Precinct','Polling place','Registered','Voters','Election Day','Early in person','Mail','Provisional'];
   const q=v=>/[",]/.test(v)?'"'+String(v).replace(/"/g,'""')+'"':v;
-  const csv=[head.join(',')].concat(e.precincts.map(p=>[p.code,p.n,p.pp||'',p.r,p.t,p.ed,p.ev,p.mail,p.pe,p.prov].map(q).join(','))).join('\n');
+  const csv=[head.join(',')].concat(e.precincts.map(p=>[p.code,p.n,p.pp||'',p.r,p.t,p.ed,p.ev,p.mail,p.prov].map(q).join(','))).join('\n');
   const msg=$('copied');
   try{await navigator.clipboard.writeText(csv);msg.textContent=`Copied ${e.precincts.length} precincts for ${e.label}. Paste into a spreadsheet.`}
   catch(x){msg.textContent='Copy was blocked here. Select the table and copy it instead.'}
@@ -600,7 +600,7 @@ function render(){
   if(S.map==='chg'&&!c)S.map='turnout';
   $('eyebrow').textContent=`${NAME} · ${e.label}`;
   $('title').textContent=`How ${NAME} voted`;
-  $('tab-early').href=`https://voteflow.raviudeshi.com/va/fairfax-county/${e.id}`;
+  $('tab-early').href=`https://voteflow.raviudeshi.com/va/${DATA.locality}/${e.id}`;
   controls();tiles(e,c);mixSection(e,c);lineSection(e);mapModes();drawMap();panel(S.hl);standouts(e,c);scatter(e);triangle(e);load(e);prov(e);drawTable();
 }
 render();

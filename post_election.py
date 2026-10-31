@@ -6,9 +6,9 @@ post-election), its statistics (provisional reasons, curbside) and the Election 
 polling place list, saving copies in sources/state-results/<election>/. Writes
 dist/post-election/<locality>.json with turnout numbers only: no candidate or party data.
 
-Usage: python3 post_election.py [locality-slug ...]   (default: fairfax-county)
+Usage: python3 post_election.py [locality-slug ...]   (default: every locality)
 """
-import csv, io, json, re, sys, urllib.parse
+import csv, io, json, re, subprocess, sys, urllib.parse
 from pathlib import Path
 from source_fetch import fetch_bytes
 
@@ -40,33 +40,32 @@ def cached(path, url, refresh=False):
 
 
 def num(v):
-    v = (v or '').replace(',', '').strip()
+    v = ('' if v in (None, 'None') else v).replace(',', '').strip()
     return int(float(v)) if v else 0
 
 
-def locality_name(slug):
-    return slug.replace('-', ' ').upper()
+def norm_name(n):
+    return re.sub(r'\s+', ' ', n.upper().replace('&', 'AND')).strip()
 
 
-def turnout_rows(text, name):
-    rows = []
+def turnout_rows(text):
+    """Precinct rows for every locality, keyed by normalized locality name."""
+    out = {}
     for r in csv.DictReader(io.StringIO(text)):
-        if r['locality'] != name:
-            continue
-        m = re.match(r'^\s*(\d+)\s*-\s*(.+?)\s*$', r['precinct'])
+        m = re.match(r'^\s*(\d+)\s*-?\s*(.+?)\s*$', r['precinct'])
         if not m and not any(num(r[c]) for c in list(METHODS) + ['TotalVoteTurnout']):
             continue  # empty countywide placeholder row (2024 "PROVISIONALS")
         if not m:
-            raise ValueError(f'unexpected precinct label {r["precinct"]!r}')
+            raise ValueError(f'unexpected precinct label {r["locality"]} {r["precinct"]!r}')
         p = {'code': m.group(1).zfill(3), 'n': m.group(2).title()}
         p.update({k: num(r[col]) for col, k in METHODS.items()})
         p['t'] = num(r['TotalVoteTurnout'])
         p['r'] = num(r['TotalRegisteredVoters'])
         p['ra'] = num(r['ActiveRegisteredVoters'])
         if sum(p[k] for k in METHODS.values()) != p['t']:
-            raise ValueError(f'{name} {r["precinct"]}: methods do not add to total')
-        rows.append(p)
-    return rows
+            raise ValueError(f'{r["locality"]} {r["precinct"]}: methods do not add to total')
+        out.setdefault(norm_name(r['locality']), []).append(p)
+    return out
 
 
 def stats_for(stats, name):
@@ -78,12 +77,12 @@ def stats_for(stats, name):
             if not key:
                 continue
             for c in g.get('children') or []:
-                if c['name'][0]['text'] == name:
+                if norm_name(c['name'][0]['text']) == name:
                     out[key] = num(str(c.get('value')))
     return out
 
 
-def polling_places(xlsx_bytes, name):
+def polling_places(xlsx_bytes):
     import openpyxl
     ws = openpyxl.load_workbook(io.BytesIO(xlsx_bytes), read_only=True).active
     rows = ws.iter_rows(values_only=True)
@@ -94,13 +93,15 @@ def polling_places(xlsx_bytes, name):
     out = {}
     for r in rows:
         r = dict(zip(head, r))
-        if str(r.get('Locality Name') or '').upper() != name:
+        loc = norm_name(str(r.get('Locality Name') or ''))
+        m = re.match(r'^\s*(\d+)', str(r['Voting Precinct Name'] or ''))
+        if not loc or not m:
             continue
-        code = re.match(r'^\s*(\d+)', str(r['Voting Precinct Name'])).group(1).zfill(3)
+        code = m.group(1).zfill(3)
         addr = ' '.join(str(r[k]).strip() for k in ('Address Line 1', 'Address Line 2') if r.get(k))
         city = str(r.get('City') or '').strip()
-        out[code] = {'name': str(r['Location']).strip().title(), 'addr': addr.title() if addr.isupper() else addr,
-                     'city': city.title() if city.isupper() else city}
+        out.setdefault(loc, {})[code] = {'name': str(r['Location']).strip().title(), 'addr': addr.title() if addr.isupper() else addr,
+                     'city': city.title() if city.isupper() else city, 'zip': str(r.get('Zip Code') or '').strip()[:5]}
     return out
 
 
@@ -118,38 +119,63 @@ def addr_key(a):
 
 
 GEOCACHE = SRC / 'geocode-cache.json'
-CENSUS = 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=json&address='
+CENSUS_BATCH = 'https://geocoding.geo.census.gov/geocoder/locations/addressbatch'
 
 
-def geocode(addr, cache):
-    """Census geocoder for polling places the county GIS layer does not list; results cached."""
-    if addr not in cache:
-        try:
-            m = json.loads(fetch_bytes(CENSUS + urllib.parse.quote(addr + ', VA'), timeout=30))['result']['addressMatches']
-            cache[addr] = [round(m[0]['coordinates']['x'], 5), round(m[0]['coordinates']['y'], 5)] if m else None
-        except Exception as error:
-            print('geocode failed', addr, error)
-            return None
-    return cache[addr]
+def geocode_batch(places, cache):
+    """Census batch geocoder for polling places; results cached by full address."""
+    todo = sorted({k for k in places if k not in cache})
+    for i in range(0, len(todo), 2000):
+        chunk = todo[i:i + 2000]
+        body = io.StringIO()
+        w = csv.writer(body)
+        for n, key in enumerate(chunk):
+            street, city, zip5 = places[key]
+            w.writerow([n, street, city, 'VA', zip5])
+        tmp = SRC / '.geocode-batch.csv'
+        tmp.write_text(body.getvalue())
+        res = subprocess.run(['curl', '-sS', '--max-time', '600', '--form', f'addressFile=@{tmp}',
+                              '--form', 'benchmark=Public_AR_Current', CENSUS_BATCH], capture_output=True, text=True)
+        tmp.unlink()
+        if res.returncode:
+            print('geocode batch failed', res.stderr[:200])
+            continue
+        for row in csv.reader(io.StringIO(res.stdout)):
+            if len(row) >= 6 and row[2] == 'Match':
+                lon, lat = map(float, row[5].split(','))
+                cache[chunk[int(row[0])]] = [round(lon, 5), round(lat, 5)]
+            elif row and row[0].isdigit():
+                cache[chunk[int(row[0])]] = None
+        print(f'geocoded {len(chunk)} polling places')
 
 
 def county_history(region, key, slug, election_date):
     """Cumulative early-in-person and mail returns by day from the absentee list."""
-    loc = next(l for l in region['elections'][key]['localities'] if l['id'] == slug)
+    loc = next((l for l in region['elections'][key]['localities'] if l['id'] == slug), None)
+    if not loc:
+        return []
     return [[h['date'], h['early'], h['mail']] for h in loc['history'] if h['date'] < election_date]
 
 
-def build(slug, refresh=False):
-    name = locality_name(slug)
-    region = json.loads((R / 'dist' / 'region.json').read_text())
+def gis_coords():
+    """Polling place points from county GIS layers we already hold (Fairfax)."""
     coords = {}
-    gis = R / 'sources' / 'election-results' / slug / 'polling-places.geojson'
-    if gis.exists():
+    for gis in (R / 'sources' / 'election-results').glob('*/polling-places.geojson'):
         for f in json.loads(gis.read_text())['features']:
             q = f['properties']
-            coords[addr_key(f"{q['STREET_NUMBER']} {q['STREET_NAME']}")] = f['geometry']['coordinates']
-    cache = json.loads(GEOCACHE.read_text()) if GEOCACHE.exists() else {}
-    elections = []
+            coords[(gis.parent.name, addr_key(f"{q['STREET_NUMBER']} {q['STREET_NAME']}"))] = f['geometry']['coordinates']
+    return coords
+
+
+def build(slugs=None, refresh=False):
+    region = json.loads((R / 'dist' / 'region.json').read_text())
+    names = {}
+    for el in region['elections'].values():
+        for l in el['localities']:
+            names[l['id']] = l['name']
+    by_name = {norm_name(n): slug for slug, n in names.items()}
+    coords, cache = gis_coords(), (json.loads(GEOCACHE.read_text()) if GEOCACHE.exists() else {})
+    sources = []
     for eid, sid, key, label, pp_file in ELECTIONS:
         folder = SRC / sid
         meta = json.loads(cached(folder / 'election.json', ENR + sid, refresh))
@@ -157,39 +183,58 @@ def build(slug, refresh=False):
         text = cached(folder / 'turnout.csv', CDN + meta['jurisdictionId'] + '/' +
                       urllib.parse.quote(blobs['Election Turnout']), refresh).decode('utf-8-sig')
         stats = json.loads(cached(folder / 'stats.json', ENR + sid + '/stats', refresh))
-        rows = turnout_rows(text, name)
-        if not rows:
-            raise ValueError(f'no {name} rows in {sid}')
-        places = polling_places(cached(folder / 'polling-places.xlsx', ELECT + urllib.parse.quote(pp_file), refresh), name) if pp_file else {}
-        for p in rows:
-            pl = places.get(p['code'])
-            if pl:
-                p['pp'] = pl['name']
-                p['ppAddr'] = f"{pl['addr']}, {pl['city']}"
-                xy = coords.get(addr_key(pl['addr'])) or geocode(p['ppAddr'], cache)
-                if xy:
-                    p['ppXY'] = [round(xy[0], 5), round(xy[1], 5)]
-        county = {k: sum(p[k] for p in rows) for k in list(METHODS.values()) + ['t', 'r', 'ra']}
-        st = stats_for(stats, name)
-        if st.get('sdrEarly') is not None and 'provOther' in st:
-            reasons = st['sdrEarly'] + st['sdrDay'] + st['provOther'] + st.get('noId', 0)
-            if reasons != county['prov']:
-                print(f'note: {sid} provisional reasons {reasons} vs precinct total {county["prov"]}')
-        el = region['elections'][key]
-        elections.append({'id': eid, 'date': meta['electionDate'], 'label': label,
-                          'official': bool(meta.get('isOfficialResults')), 'asOf': meta.get('asOf', '')[:10],
-                          'county': county, 'stats': st, 'precincts': rows,
-                          'early': county_history(region, key, slug, el['electionDate'])})
-        print(f'{eid}: {len(rows)} precincts, {county["t"]:,} voters, {sum(1 for p in rows if "pp" in p)} polling places, '
-              f'{sum(1 for p in rows if "ppXY" in p)} placed')
+        places = polling_places(cached(folder / 'polling-places.xlsx', ELECT + urllib.parse.quote(pp_file), refresh)) if pp_file else {}
+        rows = turnout_rows(text)
+        unknown = sorted(set(rows) - set(by_name))
+        if unknown:
+            raise ValueError(f'{sid}: localities not on the site: {unknown}')
+        sources.append((eid, key, label, meta, stats, places, rows))
+    # geocode every polling place we can't place from county GIS, in one batch
+    want = {}
+    for *_, places, rows in sources:
+        for loc, pls in places.items():
+            for pl in pls.values():
+                want[f"{pl['addr']}, {pl['city']}"] = (pl['addr'], pl['city'], pl['zip'])
+    geocode_batch(want, cache)
     GEOCACHE.write_text(json.dumps(cache, indent=0, sort_keys=True))
     OUT.mkdir(parents=True, exist_ok=True)
-    out = OUT / f'{slug}.json'
-    out.write_text(json.dumps({'locality': slug, 'name': name.title(), 'elections': elections}, separators=(',', ':')))
-    print('wrote', out.relative_to(R))
+    index = {}
+    for name, slug in sorted(by_name.items(), key=lambda x: x[1]):
+        if slugs and slug not in slugs:
+            continue
+        elections = []
+        for eid, key, label, meta, stats, places, rows in sources:
+            ps = [dict(p) for p in rows.get(name, [])]
+            if not ps:
+                continue
+            pls = places.get(name, {})
+            for p in ps:
+                pl = pls.get(p['code'])
+                if pl:
+                    p['pp'] = pl['name']
+                    p['ppAddr'] = f"{pl['addr']}, {pl['city']}"
+                    xy = coords.get((slug, addr_key(pl['addr']))) or cache.get(p['ppAddr'])
+                    if xy:
+                        p['ppXY'] = [round(xy[0], 5), round(xy[1], 5)]
+            county = {k: sum(p[k] for p in ps) for k in list(METHODS.values()) + ['t', 'r', 'ra']}
+            el = region['elections'].get(key, {})
+            elections.append({'id': eid, 'date': meta['electionDate'], 'label': label,
+                              'official': bool(meta.get('isOfficialResults')), 'asOf': meta.get('asOf', '')[:10],
+                              'county': county, 'stats': stats_for(stats, name), 'precincts': ps,
+                              'early': county_history(region, key, slug, el.get('electionDate', meta['electionDate'])) if el else []})
+        if not elections:
+            continue
+        (OUT / f'{slug}.json').write_text(json.dumps({'locality': slug, 'name': names[slug], 'elections': elections},
+                                                     separators=(',', ':')))
+        index[slug] = [e['id'] for e in elections]
+    if not slugs:
+        (OUT / 'index.json').write_text(json.dumps(index, separators=(',', ':')))
+    placed = sum(1 for *_, places, _ in sources for pls in places.values() for pl in pls.values()
+                 if cache.get(f"{pl['addr']}, {pl['city']}"))
+    total = sum(len(pls) for *_, places, _ in sources for pls in places.values())
+    print(f'wrote {len(index)} localities; polling places placed {placed:,} of {total:,}')
 
 
 if __name__ == '__main__':
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    for slug in args or ['fairfax-county']:
-        build(slug, refresh='--refresh' in sys.argv)
+    build(set(args) or None, refresh='--refresh' in sys.argv)

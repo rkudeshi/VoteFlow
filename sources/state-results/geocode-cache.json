@@ -1,31 +1,4802 @@
 {
+"1 County Complex Ct, Woodbridge": [
+-77.35115,
+38.67985
+],
+"1 Green Wave Ln, Narrows": null,
+"1 H C C Drive, Fredericksburg": null,
+"1 High ST, Wachapreague": [
+-75.68941,
+37.60423
+],
+"1 Learning Lane, Fredericksburg": null,
+"1 Learning Lane, Fredricksburg": null,
+"1 Little Patriot Dr (460 W), Montvale": [
+-79.71009,
+37.37626
+],
+"1 Maroon Way, Wytheville": null,
+"1 Partnership Cir Vhcc Campus, Abingdon": [
+-82.00208,
+36.6957
+],
+"1 S Mallory St, Hampton": [
+-76.32139,
+37.01913
+],
+"1 Scholar Ln, Forest": [
+-79.3059,
+37.37618
+],
+"1 Stoney Point RD, Cumberland": [
+-78.24469,
+37.49606
+],
+"10 Firehouse Ln, Washington": [
+-78.15417,
+38.71301
+],
+"10 Slice Rd, Palmyra": [
+-78.31392,
+37.89998
+],
+"10 West Marshall St, Middleburg": [
+-77.73611,
+38.96971
+],
+"100 1St, Colonial Beach": [
+-76.97025,
+38.25786
+],
+"100 Carolina Street, Lacrosse": null,
+"100 Cavs Ln, Hillsville": null,
+"100 D R Wildcat Cir, Ringgold": null,
+"100 Gretna Hawks Circle, Gretna": [
+-79.36783,
+36.94584
+],
+"100 Ireland Street, Hampton": [
+-76.3183,
+37.034
+],
+"100 Liberty Minutemen Drive, Bedford": [
+-79.49899,
+37.37251
+],
+"100 Lions Club Drive, Dublin": null,
+"100 Long Green Blvd, Yorktown": [
+-76.44698,
+37.11167
+],
+"100 Marshall Way Auditorium, Fieldale": [
+-79.93901,
+36.69999
+],
+"100 Maryland Ave, Harrisonburg": null,
+"100 Mount Airy Elementary Cir, Gretna": null,
+"100 Museum Dr., Newport News": [
+-76.48897,
+37.05388
+],
+"100 Noble St, Portsmouth": null,
+"100 Palmer Ln, Newport News": [
+-76.48831,
+37.10562
+],
+"100 Panther Dr, Fredericksburg": [
+-77.49972,
+38.36591
+],
+"100 Park Central Plaza Suite 103, Manassas Park": null,
+"100 Pleasants Lane, Petersburg": null,
+"100 Stony Mill Elementary Cir, Danville": [
+-79.56284,
+36.6399
+],
+"100 Trojan Cir, Dry Fork": [
+-79.52338,
+36.66973
+],
+"100 Twin Springs Elementary Cir, Danville": [
+-79.42966,
+36.68819
+],
+"100 Union Hall Elementary Cir, Chatham": [
+-79.54404,
+36.76978
+],
+"100 W Williamsburg Rd, Sandston": [
+-77.31591,
+37.52347
+],
+"100 W. Baker St, Richmond": [
+-77.43804,
+37.55123
+],
+"100 W. Cedarmeade Ave, Winchester": [
+-78.18113,
+39.1502
+],
+"100 Woodbrook Dr, Charlottesville": [
+-78.49602,
+38.01859
+],
+"1000 Avery Point Way, Richmond": null,
+"1000 Belmont Avenue, Charlottesville": [
+-78.47391,
+38.0229
+],
+"1000 Bennett'S Creek Park Road, Suffolk": [
+-76.46247,
+36.84993
+],
+"1000 Cherry Ave, Charlottesville": [
+-78.49699,
+38.02841
+],
+"1000 Cherry Avenue, Charlottesville": [
+-78.49699,
+38.02841
+],
+"1000 N Coalter St, Staunton": [
+-79.05883,
+38.1632
+],
+"1000 N Great Neck Rd, Virginia Beach": [
+-76.04535,
+36.86415
+],
+"1000 N. Lombardy Street, Richmond": [
+-77.45349,
+37.55708
+],
+"1000 Rio Rd E, Charlottesville": [
+-78.46513,
+38.06525
+],
+"1000 Winston Churchill Dr, Hopewell": [
+-77.29213,
+37.29104
+],
+"10000 Germanna Point Drive, Fredericksburg": [
+-77.49254,
+38.22899
+],
+"10001 Courthouse Rd, Chesterfield": [
+-77.50307,
+37.38738
+],
+"10001 Firetower Rd, Windsor": [
+-76.75276,
+36.88624
+],
+"10004 Learning Ln., Mechanicsville": [
+-77.3887,
+37.68847
+],
+"1001  Boulevard, Salem": null,
+"1001 A J Osborne Hwy, Blackwater": null,
+"1001 Boulevard, Salem": null,
+"1001 Boulvard, Salem": null,
+"1001 Cedar Fork Rd, Henrico": [
+-77.36415,
+37.57045
+],
+"1001 E Cork St, Winchester": null,
+"1001 Farmway Lane, Scottsburg": null,
+"1001 Park St SE, Vienna": null,
+"1001 River Walk Pkwy, Chesapeake": [
+-76.26771,
+36.74685
+],
+"1002 Melon Road, South Boston": [
+-79.04057,
+36.62433
+],
+"1002 Ruddell Rd, Vinton": [
+-79.88282,
+37.28215
+],
+"1005 Mt. Vernon Ave, Alexandria": [
+-77.05671,
+38.81596
+],
+"1005 N Main St, Danville": [
+-79.38152,
+36.59885
+],
+"10071 Atlantic Rd, Atlantic": [
+-75.50691,
+37.90115
+],
+"1009 Baptist Valley Rd, Cedar Bluff": [
+-81.68262,
+37.10902
+],
+"1009 Davis Hwy, Mineral": [
+-77.92378,
+38.02143
+],
+"101 Cedar Ln SW, Vienna": [
+-77.24429,
+38.88478
+],
+"101 Court Circle, Warsaw": [
+-76.75835,
+37.95827
+],
+"101 Den Rich Rd, Stafford": [
+-77.37172,
+38.48233
+],
+"101 East Franklin Street, Richmond": [
+-77.44265,
+37.5433
+],
+"101 Firehouse Road, Eggleston": [
+-80.62557,
+37.28836
+],
+"101 Shady Grove Drive, Thaxton": [
+-79.71915,
+37.32068
+],
+"101 W Elm St, Blackstone": null,
+"101 W Water St, Pocahontas": [
+-81.34044,
+37.30431
+],
+"101 Ymca Way, Covington": null,
+"10100 Foxes Way, King George": [
+-77.19565,
+38.27521
+],
+"10100 Georgetown Pike, Great Falls": [
+-77.2931,
+38.99848
+],
+"10100 Gunston Rd, Lorton": [
+-77.2088,
+38.68464
+],
+"10100 Hastings Drive, Manassas": [
+-77.47813,
+38.73342
+],
+"10100 Lomond Dr, Manassas": [
+-77.4997,
+38.78384
+],
+"1011 Black Walnut Church Rd, Alton": [
+-78.92188,
+36.61284
+],
+"1011 Sinai Elementary Drive, Halifax": [
+-78.95945,
+36.75449
+],
+"10110 Commonwealth Blvd, Fairfax": [
+-77.29609,
+38.81315
+],
+"1013 Penniman Rd, Williamsburg": [
+-76.66792,
+37.26543
+],
+"1014 Clay Street, Franklin": [
+-76.94042,
+36.68342
+],
+"1014 D A Justus Rd, Hurley": [
+-82.00998,
+37.41308
+],
+"1014 Kempsville Rd, Norfolk": [
+-76.19499,
+36.85647
+],
+"10140-8 Tinsley Ln, Bent Mountain": [
+-80.12245,
+37.15454
+],
+"1015 N Quincy St, Arlington": [
+-77.10779,
+38.88337
+],
+"10157 Little Creek Hwy, Dublin": null,
+"1016 Greenbrier Pkwy, Chesapeake": [
+-76.22403,
+36.75806
+],
+"1018 Middle School Cir, South Boston": [
+-78.91587,
+36.72369
+],
+"102 Bullpasture River Rd, Mc Dowell": [
+-79.48836,
+38.33185
+],
+"102 Cascade Drive, Pembroke": [
+-80.63546,
+37.33241
+],
+"1020 General Jackson Dr, Virginia Beach": [
+-76.04881,
+36.86586
+],
+"1020 North Gayle Street, Clover": [
+-78.73127,
+36.83424
+],
+"1020 Tyler Ave, Radford": [
+-80.5483,
+37.13071
+],
+"10207 Brock Rd, Spotsylvania": [
+-77.68206,
+38.28128
+],
+"1021 Jolliff Rd, Chesapeake": [
+-76.42004,
+36.78924
+],
+"1021 N Mallory St, Hampton": [
+-76.31283,
+37.02727
+],
+"1021 Tidewater Avenue, Victoria": [
+-78.22388,
+36.98571
+],
+"10233 Leesburg Pike, Vienna": [
+-77.29939,
+38.97122
+],
+"10239 Pine Ave, Nassawadox": [
+-75.85634,
+37.47988
+],
+"10244 Moccasin Valley Rd, Lebanon": null,
+"1025 Rio Rd E, Charlottesville": [
+-78.46515,
+38.06549
+],
+"10251 Moore Drive, Manassas": [
+-77.43203,
+38.73316
+],
+"1027 Huddleston Dr, Huddleston": [
+-79.47127,
+37.16332
+],
+"1028 Crow Pass Rd, Breaks": [
+-82.28551,
+37.30206
+],
+"1028 Killdeer Ln, Grundy": [
+-82.16398,
+37.22925
+],
+"10285 Zachary Taylor Hwy, Unionville": [
+-77.9561,
+38.26262
+],
+"10295 Chamberlayne Rd., Mechanicsville": [
+-77.38257,
+37.68956
+],
+"103 N 12th Ave, Hopewell": [
+-77.29688,
+37.30032
+],
+"103 River Street, Petersburg": [
+-77.40306,
+37.23402
+],
+"103 Woodland Dr, Clarksville": [
+-78.57109,
+36.62085
+],
+"1030 Mary Bethune Street LL3, Halifax": [
+-78.92404,
+36.7681
+],
+"1030 N Mckinley Rd, Arlington": [
+-77.14562,
+38.8787
+],
+"1030 University Boulevard, Suffolk": [
+-76.41858,
+36.87073
+],
+"10301 Courthouse Rd, Chesterfield": [
+-77.49449,
+37.38731
+],
+"10301 Courthouse Road, Chesterfield": [
+-77.49449,
+37.38731
+],
+"10304 Lynnhaven Place, Oakton": [
+-77.30237,
+38.88348
+],
+"10307 Chamberlayne Rd., Mechanicsville": [
+-77.38266,
+37.68991
+],
+"1033 Brittle St., Goodview": [
+-79.79171,
+37.26731
+],
+"1033 Little Neck Rd, Virginia Beach": [
+-76.09126,
+36.86978
+],
+"1036 N Main St, Hillsville": [
+-80.73874,
+36.76923
+],
+"10381 Ridge Rd, King George": [
+-77.16377,
+38.25779
+],
+"104 Bluff Mountain Rd, Graves Mill": null,
+"104 Thomas Bridge Rd, Marion": [
+-81.58246,
+36.78912
+],
+"1040 Thompson Avenue, West Point": [
+-76.79567,
+37.55658
+],
+"10400 Kim Graham Ln, Manassas": null,
+"10401 Woodman Rd, Glen Allen": [
+-77.49376,
+37.65537
+],
+"10415 Spotswood Trail, Stanardsville": [
+-78.41992,
+38.28444
+],
+"1043 Meade RD, Forest": null,
+"10455 Armstrong St, Fairfax": [
+-77.30709,
+38.84127
+],
+"10487 Harcum Rd, Gloucester": [
+-76.52854,
+37.50059
+],
+"105 E Main St, Remington": [
+-77.80835,
+38.53356
+],
+"105 Primmer House Rd, Fredericksburg": [
+-77.43781,
+38.34325
+],
+"105 Progress Place, Ruckersville": null,
+"10501 Copeland Drive, Manassas": [
+-77.50706,
+38.7898
+],
+"10501 Orange Plank Rd, Spotsylvania": [
+-77.6973,
+38.30373
+],
+"10504 Kettle Run Road, Nokesville": [
+-77.57739,
+38.72813
+],
+"1051 Mortons Ferry Rd, Nathalie": [
+-78.86347,
+36.90126
+],
+"10511 Wharfdale Pl, Gainesville": [
+-77.63559,
+38.79943
+],
+"1054 School House Rd, Big Rock": [
+-82.19082,
+37.3535
+],
+"1059 Turning Point Rd., Bedford": [
+-79.50095,
+37.3077
+],
+"106 Clark Ave, Max Meadows": [
+-80.94987,
+36.96921
+],
+"106 W Atlantic St, Emporia": [
+-77.53901,
+36.69578
+],
+"1060 Dragon Rd, Oakwood": null,
+"10600 Gayton Rd, Henrico": [
+-77.60682,
+37.60752
+],
+"10624 Colonial Hwy, Evington": [
+-79.29197,
+37.23338
+],
+"10629 Wards Rd, Rustburg": [
+-79.17168,
+37.27489
+],
+"1065 Bradley L. Gaertner Pl (off Coffee Rd), Lynchburg": null,
+"10658 George Washington Memorial Hwy, Gloucester": [
+-76.60328,
+37.46113
+],
+"1067 Big Bethel Rd, Hampton": [
+-76.42886,
+37.05185
+],
+"1067 Penicks Mill Road, Thaxton": [
+-79.61798,
+37.35097
+],
+"10686 Ivor Rd, Ivor": [
+-76.95849,
+36.87622
+],
+"107 Country Club Lane, Galax": [
+-80.90637,
+36.6788
+],
+"107 Northampton Blvd, Stafford": [
+-77.41891,
+38.45595
+],
+"1070 S Main St, Danville": [
+-79.40516,
+36.56622
+],
+"10700 Courthouse Rd, Charles City": [
+-77.0718,
+37.34279
+],
+"10700 Staples Mill Rd, Glen Allen": [
+-77.53279,
+37.66801
+],
+"10700 Winterpock Rd, Chesterfield": [
+-77.68001,
+37.36319
+],
+"10718 Courthouse Road, Fredericksburg": [
+-77.51062,
+38.24896
+],
+"10723 Main St, Fairfax": [
+-77.31579,
+38.84922
+],
+"10751 Savoy Rd, North Chesterfield": [
+-77.59148,
+37.51996
+],
+"1077 Viewpoint Ln., Forest": [
+-79.31376,
+37.37171
+],
+"10824 Cross School Rd, Reston": [
+-77.32097,
+38.93886
+],
+"10824 Orby Cantrell Hwy, Pound": [
+-82.59927,
+37.10757
+],
+"1085 Utterback Store Rd, Great Falls": [
+-77.32927,
+38.99529
+],
+"1088 Rustic Village Rd, Forest": [
+-79.28581,
+37.36232
+],
+"10900 Iron Bridge Rd, Chester": [
+-77.49923,
+37.36628
+],
+"10900 Santa Clara Dr, Fairfax": [
+-77.32269,
+38.83898
+],
+"1095 Golden Eagle Dr, Moneta": [
+-79.62388,
+37.24086
+],
+"10960 Greenwood Rd, Glen Allen": [
+-77.48511,
+37.67298
+],
+"110 Blue Devil Dr, Independence": null,
+"110 Climax Elementary Circle, Chatham": [
+-79.4875,
+36.89149
+],
+"110 E. Danville St., South Hill": [
+-78.12995,
+36.72429
+],
+"110 Main St, Newport News": [
+-76.45983,
+37.03325
+],
+"110 Sweetbriar Park Rd., Locust Grove": [
+-77.77112,
+38.34437
+],
+"1100 Country Club Rd, Newport News": [
+-76.49811,
+37.05485
+],
+"1100 Dinwiddie Ave, Hopewell": [
+-77.3118,
+37.2739
+],
+"1100 N. Main St., Culpeper": [
+-77.99353,
+38.49028
+],
+"1100 Portsmouth Boulevard, Portsmouth": [
+-76.31074,
+36.81917
+],
+"11001 W Providence Rd, North Chesterfield": [
+-77.60141,
+37.45931
+],
+"11009 Bill Tuck Hwy, Virgilina": [
+-78.72262,
+36.66167
+],
+"1101 Dance Street, Richmond": [
+-77.45676,
+37.5401
+],
+"1101 Jamestown Crescent, Norfolk": [
+-76.30003,
+36.89669
+],
+"1101 Janneys Ln, Alexandria": [
+-77.08253,
+38.81466
+],
+"1101 Morningside Street Se, Roanoke": [
+-79.92502,
+37.26626
+],
+"11023 Prince George Dr, Disputanta": [
+-77.27554,
+37.16171
+],
+"1103 Plaza Dr, Grundy": [
+-82.10699,
+37.25659
+],
+"1103 Varina Ave, Shenandoah": [
+-78.61474,
+38.49488
+],
+"1104 Lynchburg Ave, Brookneal": null,
+"11048 Fletchers Chapel Rd, King George": [
+-77.33125,
+38.26289
+],
+"1105  Hosier Road, Suffolk": [
+-76.58298,
+36.70046
+],
+"1105 Seaford Rd, Seaford": [
+-76.44394,
+37.18563
+],
+"11058 Dutch Hollow Rd, Culpeper": [
+-78.01023,
+38.55132
+],
+"1108 Blue Ridge Road, Glasgow": [
+-79.45073,
+37.63418
+],
+"1108 Jefferson Street, Alexandria": [
+-77.05366,
+38.79758
+],
+"11089 Brocks Gap Rd, Fulks Run": [
+-78.9007,
+38.65799
+],
+"111 Kents Store Way, Kents Store": [
+-78.10982,
+37.93191
+],
+"111 Sorrel Creek Ln, Gate City": [
+-82.64227,
+36.67045
+],
+"111 W Ocean View Avenue, Norfolk": [
+-76.25136,
+36.95412
+],
+"1110 Bennington Rd, Virginia Beach": [
+-76.21245,
+36.80654
+],
+"1110 W Leigh St, Richmond": [
+-77.44822,
+37.55392
+],
+"11100 Old Stage Rd, Prince George": [
+-77.20692,
+37.22942
+],
+"11100 Rockfish Valley Highway, Afton": [
+-78.83505,
+37.99307
+],
+"11101 Mill Rd, Glen Allen": [
+-77.52458,
+37.6784
+],
+"11108 Leavells Rd, Fredericksburg": [
+-77.54002,
+38.26181
+],
+"1111 Army Navy Dr, Arlington": [
+-77.06397,
+38.86578
+],
+"1112 Garrisonville Rd, Stafford": [
+-77.4703,
+38.47605
+],
+"1114 Schooldays Rd. (122N), Big Island": [
+-79.41478,
+37.5291
+],
+"1115 Martha Custis Drive, Alexandria": null,
+"11150 Emmanuel Church RD, Smithfield": [
+-76.7054,
+36.98858
+],
+"1116 Fentress Rd, Chesapeake": [
+-76.1974,
+36.70239
+],
+"1116 Hillwell Rd, Chesapeake": [
+-76.2223,
+36.68378
+],
+"11175 Bayside Rd, Machipongo": [
+-75.91586,
+37.42755
+],
+"1118 Indian Trail Rd, Keezletown": [
+-78.80573,
+38.40746
+],
+"112 Huffard Dr, Bluefield": [
+-81.26611,
+37.23614
+],
+"112 Laurel Ln, Williamsburg": [
+-76.73083,
+37.24766
+],
+"112 S. Main St, Gordonsville": [
+-78.18666,
+38.13514
+],
+"112 Tazewell St, Pearisburg": [
+-80.73355,
+37.32672
+],
+"112 catron st, Rural Retreat": [
+-81.27338,
+36.89404
+],
+"1120 Eden Way, N., Chesapeake": [
+-76.22167,
+36.77757
+],
+"1122 W Princess Anne Rd, Norfolk": [
+-76.30418,
+36.86831
+],
+"11245 Rixeyville Road, Culpeper": [
+-77.97872,
+38.54653
+],
+"1125 Quinn Branch Rd, Honaker": [
+-82.06849,
+37.07644
+],
+"1126 Laurel Ave, Chesapeake": [
+-76.22905,
+36.82085
+],
+"11275 Aviation Way, Orange": [
+-78.04965,
+38.24853
+],
+"1128 Old Blue Ridge Turnpike, Madison": [
+-78.30298,
+38.45977
+],
+"113 Fifth Ave, Dungannon": [
+-82.46627,
+36.83071
+],
+"113 Wellington Dr, Hampton": [
+-76.43863,
+37.03651
+],
+"11301 Johnson Rd, Petersburg": [
+-77.3967,
+37.15266
+],
+"11310 Coles Dr, Manassas": [
+-77.45327,
+38.70808
+],
+"1133 Academy Ln, Forest": [
+-79.30778,
+37.30772
+],
+"11360 Zachary Taylor Hwy, Unionville": [
+-77.95287,
+38.24682
+],
+"11375 Center Harbor Rd, Reston": [
+-77.34386,
+38.97913
+],
+"114 E Main St, Fries": [
+-80.97445,
+36.71527
+],
+"114 Gogginsville Rd, Rocky Mount": [
+-79.92635,
+37.04221
+],
+"114 N Halifax Rd, Jarratt": null,
+"114 Perrymont Avenue, Lynchburg": [
+-79.1891,
+37.39226
+],
+"114 W Boscawen Street, Winchester": [
+-78.16729,
+39.18449
+],
 "11400 S Lakes Dr, Reston": [
 -77.33839,
 38.93125
+],
+"11401 Ridge Heights Rd, Reston": [
+-77.33754,
+38.93596
+],
+"11415 Nickelsville Hwy, Nickelsville": [
+-82.42257,
+36.74955
+],
+"1145 Bolling Avenue, Norfolk": [
+-76.30233,
+36.89123
+],
+"11452 Wards Road, Rustburg": [
+-79.16693,
+37.28627
+],
+"1147 Susan Ave, Woodstock": [
+-78.52187,
+38.86811
+],
+"11475 Lee Hwy, Fincastle": [
+-79.79612,
+37.47127
+],
+"11487 General Puller Hwy, Hartfield": [
+-76.43825,
+37.55063
+],
+"1149 Greenville Road, Galax": [
+-80.95956,
+36.65482
+],
+"115 Bruner Rd, Monroe": [
+-79.10656,
+37.49505
+],
+"115 Kenwood Pl, Lynchburg": [
+-79.18891,
+37.36749
+],
+"115 Spring Church Road, Hot Springs": [
+-79.9762,
+37.88736
+],
+"11501 Boisseau Road St. Rt. 733, Dinwiddie": [
+-77.58493,
+37.114
+],
+"11501 Smoketree Dr, North Chesterfield": null,
+"11509 Waples Mill Rd, Oakton": [
+-77.34533,
+38.87702
 ],
 "11510 N Shore Dr, Reston": [
 -77.34616,
 38.96473
 ],
+"11541 Jefferson Ave, Newport News": [
+-76.47395,
+37.07224
+],
+"11555 Dry Bread Rd, Lawrenceville": [
+-77.79647,
+36.66803
+],
+"11599 Cumberland Gap Road, New Castle": [
+-80.29207,
+37.40264
+],
+"11600 Catharpin Rd, Spotsylvania": [
+-77.62353,
+38.27211
+],
+"11600 Holman Ridge Rd, Glen Allen": [
+-77.57867,
+37.68598
+],
+"1162 Freestone Valley Rd, Tannersville": [
+-81.62806,
+36.97092
+],
+"11632 Catharpin Rd, Spotsylvania": [
+-77.62334,
+38.27268
+],
+"11690 Old Washington Highway, Glen Allen": [
+-77.4997,
+37.68838
+],
+"117 Butler Street, Bowling Green": [
+-77.34487,
+38.0512
+],
+"117 N Central St, Broadway": [
+-78.7982,
+38.61324
+],
+"11701 Volunteer Lane, Spotsylvania": [
+-77.73644,
+38.12726
+],
+"11741 Callands Rd, Callands": [
+-79.58347,
+36.82317
+],
+"1176 Huell Matthews Hwy, South Boston": [
+-78.89944,
+36.68433
+],
+"11762 Harpers Ferry Rd, Hillsboro": [
+-77.722,
+39.28996
+],
+"118 Double Cabin Road, Dugspur": null,
+"11871 Lee Hwy, Sperryville": [
+-78.24042,
+38.65529
+],
+"119 Bradley Rd, Danville": [
+-79.37933,
+36.60576
+],
+"119 Fork Mountain Lane, Montebello": [
+-79.13109,
+37.85244
+],
+"119 Main St, Reedville": [
+-76.27332,
+37.84805
+],
+"119 Omaha Sunset Rd., Clintwood": [
+-82.43801,
+37.09683
+],
+"11900 Lake Newport Rd, Reston": [
+-77.35716,
+38.97995
+],
+"11901 Bailey Bridge Rd, Midlothian": [
+-77.61017,
+37.41857
+],
+"11970 Hedges Run Dr, Woodbridge": [
+-77.31129,
+38.69912
+],
+"12 Barron Dr, Troutville": [
+-79.84663,
+37.44092
+],
+"12 Browntown Rd, Browntown": [
+-78.23353,
+38.81131
+],
+"12 Grand St, Portsmouth": [
+-76.33878,
+36.81863
+],
+"12 Newton Rd, Fredericksburg": [
+-77.37524,
+38.30123
+],
+"12 Van Horn Ln, Stafford": [
+-77.52843,
+38.49278
+],
+"120 Cherry St, SE, Vienna": [
+-77.25919,
+38.90038
+],
+"120 Church Street NE, Blacksburg": [
+-80.41324,
+37.2301
+],
+"120 Edgewood Dr., Hillsville": [
+-80.7378,
+36.76836
+],
+"120 Juggins Rd, Stafford": [
+-77.41612,
+38.48235
+],
+"120 Spring Mountain Rd, Hot Springs": [
+-79.79169,
+38.03146
+],
+"1200 Gene Bolton Drive, Suffolk": null,
+"1200 Green Garden Cir, Virginia Beach": [
+-76.09324,
+36.80077
+],
+"1200 Hardy Rd, Vinton": [
+-79.87959,
+37.27339
+],
+"1200 St Julian Ave, Norfolk": null,
+"12000 Antietam Rd, Woodbridge": [
+-77.2967,
+38.6932
+],
+"12000 Government Center Pkwy Rm 2, Fairfax": [
+-77.35758,
+38.85212
+],
+"12000 Three Chopt Rd, Henrico": [
+-77.5985,
+37.6436
+],
+"12001 Tygart Lake Dr, Bristow": [
+-77.55375,
+38.75512
+],
+"12007 Cedar Ln., Ashland": null,
+"1201 Caroline Street, Fredericksburg": [
+-77.46084,
+38.30576
+],
+"1201 Cherokee Rd, Portsmouth": [
+-76.38273,
+36.81505
+],
+"1201 Floyd St, Lynchburg": [
+-79.15108,
+37.40617
+],
+"1201 Rosemont Rd, Virginia Beach": [
+-76.09941,
+36.80075
+],
+"1201 Timberwood Ln., Moneta": null,
+"1202 West Graham Road, Richmond": [
+-77.44954,
+37.56398
+],
+"1205 Buffalo Drive, Christiansburg": [
+-80.42326,
+37.12129
+],
+"1205 Waynewood Blvd, Alexandria": [
+-77.05563,
+38.72557
+],
+"12055 Government Center Pkwy, Fairfax": [
+-77.36151,
+38.85599
+],
+"12074 James Madison St, Remington": [
+-77.80626,
+38.53783
+],
+"12077 Marsh Rd., Bealeton": [
+-77.72935,
+38.53671
+],
+"121 Bobcat Circle, Pennington Gap": null,
+"121 James Monroe Hwy, Colonial Beach": [
+-76.99784,
+38.1841
+],
+"121 Thompson St, Ashland": [
+-77.4833,
+37.75902
+],
+"121 University Blvd, Fredericksburg": [
+-77.53245,
+38.37017
+],
+"121 W Liberty St, Norfolk": [
+-76.28475,
+36.83214
+],
+"12101 Liesfeld Farm Dr, Glen Allen": [
+-77.61285,
+37.66181
+],
+"12109 Aden Rd, Nokesville": [
+-77.56978,
+38.69262
+],
+"1211 S Allen Ave, Richmond": [
+-77.46848,
+37.53872
+],
+"12111 Braddock Road, Fairfax": [
+-77.36433,
+38.82933
+],
+"1212 Fifth Street, Sw, Roanoke": [
+-79.95095,
+37.26337
+],
+"1212 Princess Anne Rd, Virginia Beach": [
+-76.02925,
+36.66693
+],
+"12132 Percival St, Chester": [
+-77.44488,
+37.35393
+],
+"1214 Volvo Pkwy, Chesapeake": [
+-76.21909,
+36.76887
+],
+"1215 Industrial Ave, Danville": [
+-79.40174,
+36.57197
+],
+"1215 V E S Rd, Lynchburg": [
+-79.19011,
+37.44162
+],
+"12151 Fowlkes Bridge Rd, Amelia Court House": [
+-78.12199,
+37.3924
+],
+"1217 Godwin Ave, Chesapeake": [
+-76.27957,
+36.78786
+],
+"122 School Rd, Dillwyn": [
+-78.45317,
+37.41475
+],
+"1220 Bandy Mill Road, Hardy": [
+-79.81118,
+37.2358
+],
+"12200 Wyndham Lake Dr, Glen Allen": [
+-77.61359,
+37.69357
+],
+"12201 Genito Rd, Amelia Court House": [
+-77.89399,
+37.43305
+],
+"12217 Second Branch Road, Chesterfield": [
+-77.63361,
+37.33638
+],
+"12229 Mitchell Rd, Mitchells": [
+-78.02446,
+38.37953
+],
+"1224 Childrey Church Road, Nathalie": [
+-78.97642,
+36.99316
+],
+"12247 S Constitution Route, Scottsville": [
+-78.51581,
+37.70505
+],
+"12249 Wilson Rd, Blackstone": null,
+"12253 Smith Mountain Lake Pkwy, Huddleston": [
+-79.57641,
+37.10719
+],
+"12291 River Road, Goochland": [
+-77.62948,
+37.58722
+],
+"123 Henry St, Danville": [
+-79.38688,
+36.5927
+],
+"12300 Glade Dr, Reston": [
+-77.36842,
+38.94173
+],
+"12301 Spotswood Furnace Rd, Fredericksburg": [
+-77.57801,
+38.29574
+],
+"1233 Oaklawn Dr, Culpeper": [
+-78.0039,
+38.46573
+],
+"1234 Eagle Cir, Lynchburg": [
+-79.26132,
+37.45273
+],
+"12350 Mohican Rd, Woodbridge": [
+-77.30423,
+38.68477
+],
+"12351 Graham Meadows Dr, Henrico": [
+-77.63799,
+37.65675
+],
+"1239 Spring Hill Rd, Mclean": [
+-77.23012,
+38.94209
+],
+"124 Ridgeview Dr, Stuarts Draft": [
+-79.0332,
+38.00833
+],
+"124 West Queens Dr, Williamsburg": [
+-76.67147,
+37.28261
+],
+"1240 Blue Grass Trl, Lexington": [
+-79.57778,
+37.7391
+],
+"1240 Homestead Dr, Virginia Beach": [
+-76.14671,
+36.79902
+],
+"12400 Branders Bridge Rd, Chester": [
+-77.4716,
+37.34866
+],
+"12400 Knightsbridge Dr, Woodbridge": [
+-77.33497,
+38.68454
+],
+"1241 Buford Rd, Chesterfield": [
+-77.55416,
+37.51497
+],
+"12449 W Patrick Henry Rd., Ashland": [
+-77.53493,
+37.788
+],
+"12449 West Patrick Henry Rd., Ashland": [
+-77.53493,
+37.788
+],
+"12457 Hartley St, Stony Creek": [
+-77.40026,
+36.94801
+],
+"12481 Church Rd, Henrico": [
+-77.63252,
+37.63614
+],
+"125 City Farm Rd, Newport News": [
+-76.53055,
+37.08344
+],
+"125 Eastview St, Dayton": [
+-78.94238,
+38.41317
+],
+"125 N Bayard Avenue, Waynesboro": [
+-78.87903,
+38.06728
+],
+"12501 Bailey Bridge Rd, Midlothian": [
+-77.6224,
+37.40889
+],
+"12505 Kahns Road, Manassas": [
+-77.42056,
+38.68512
+],
+"1251 W. 42Nd Street, Norfolk": [
+-76.30476,
+36.88253
+],
+"1253 Nansemond Parkway, Suffolk": [
+-76.53824,
+36.75351
+],
+"1255 Big Bethel Rd, Hampton": [
+-76.42718,
+37.0624
+],
+"1255 Patriot Place (Off Rt 811), Forest": [
+-79.28669,
+37.3577
+],
+"12560 North Scenic Highway, Rocky Gap": [
+-81.1039,
+37.24073
+],
+"12581 Stonewall Jackson Rd, Woodford": [
+-77.42443,
+38.15288
+],
+"126 Blue Gray Rd Po Box 39, Ewing": null,
+"12600 Victory Lakes Loop, Bristow": [
+-77.56636,
+38.76184
+],
+"12601 Bailey Bridge Rd, Midlothian": [
+-77.62315,
+37.40846
+],
+"12601 Braemar Pkwy, Bristow": [
+-77.56864,
+38.73492
+],
+"1261 Laskin Rd, Virginia Beach": [
+-76.00304,
+36.85275
+],
+"12612 Fog Light Way, Bristow": null,
+"12635 Builders Rd, Herndon": [
+-77.39047,
+38.98416
+],
+"12641 Chapel Rd, Clifton": [
+-77.38399,
+38.78142
+],
+"1265 Sandbridge RD, Virginia Beach": [
+-75.98397,
+36.73113
+],
+"127 Baptist Union Rd, Dillwyn": [
+-78.3874,
+37.60842
+],
+"127 Woodrow Wilson Ave, Fishersville": [
+-78.9915,
+38.11391
+],
+"1271 Central Church RD, Appomattox": [
+-78.83302,
+37.25513
+],
+"12715 Acorn Dr, Petersburg": [
+-77.42035,
+37.09709
+],
+"1273 Central Church RD, Appomattox": [
+-78.83305,
+37.25515
+],
+"12742 Nettles Dr, Newport News": [
+-76.49613,
+37.08884
+],
+"12748 Richards Lane, Clifton": [
+-77.38753,
+38.78094
+],
+"1275 Gaskins Rd, Henrico": [
+-77.59127,
+37.60222
+],
+"1275 Goose Creek Rd, Fishersville": [
+-78.97309,
+38.08285
+],
+"128 Elydale Rd, Ewing": null,
+"1280 Bells Mill Rd, Chesapeake": [
+-76.28447,
+36.72392
+],
+"1280B Main Street, Altavista": [
+-79.27559,
+37.11902
+],
+"1284 Sunset Avenue Ext, Charlottesville": [
+-78.52615,
+38.00262
+],
+"1286 Browning Holw., Clintwood": [
+-82.4905,
+37.1329
+],
+"129 Francis Ave, Monroe": [
+-79.12439,
+37.50269
+],
+"12900 E Quaker Rd, Disputanta": [
+-77.22703,
+37.13501
+],
+"12915 Occoquan Rd, Woodbridge": [
+-77.25998,
+38.67134
+],
+"12935 Red House Rd, Brookneal": [
+-78.923,
+37.18954
+],
+"1294 Poquoson Ave, Poquoson": [
+-76.3464,
+37.12321
+],
+"12980 Queen Chapel Road, Woodbridge": [
+-77.3669,
+38.67376
+],
+"130 Grover Cleveland Ln, Gate City": [
+-82.62956,
+36.61763
+],
+"130 Learning Lane, Lambsburg": null,
+"1300 Dillons Fork Road, Fieldale": [
+-79.95442,
+36.69524
+],
+"1300 E Main Street, Bedford": null,
+"1300 Golden Wave Dr, Grundy": [
+-82.06255,
+37.28356
+],
+"1300 Greensville County Circle, Emporia": [
+-77.51546,
+36.73619
+],
+"1300 Horne Ave, Portsmouth": [
+-76.37119,
+36.79733
+],
+"1300 Thomas St, Hampton": [
+-76.36015,
+37.03683
+],
+"13006 Point Pleasant Dr, Fairfax": [
+-77.39516,
+38.8708
+],
+"1301 Berry Hill Road, Danville": [
+-79.53758,
+36.5905
+],
+"1301 N Stafford St, Arlington": [
+-77.11106,
+38.88745
+],
+"1301 Rockfish Rd., Waynesboro": null,
+"13020 Telegraph Road, Woodbridge": [
+-77.28378,
+38.67096
+],
+"13036 Nike Park Rd, Carrollton": [
+-76.56046,
+36.9624
+],
+"1306 S Quincy St, Arlington": [
+-77.09793,
+38.85694
+],
+"13065 Chinn Park Dr, Woodbridge": [
+-77.33441,
+38.67129
+],
+"13077 Wallace Pike, Bristol": [
+-82.12943,
+36.65117
+],
+"13092 Mcguffie Rd, Abingdon": [
+-82.04404,
+36.75096
+],
+"131 Retreat Rd, Bluemont": null,
+"131 Siege Ln, Yorktown": [
+-76.50469,
+37.20044
+],
+"1311 West Market St, Harrisonburg": [
+-78.89041,
+38.45282
+],
+"13122 Waltons Tavern Rd., Montpelier": [
+-77.66028,
+37.76373
+],
+"1313 Barterbrook Road, Staunton": [
+-79.06201,
+38.1272
+],
+"13181 Snow Creek Rd, Penhook": [
+-79.68725,
+36.91936
+],
+"13199 Kerrydale Rd, Woodbridge": [
+-77.34544,
+38.66656
+],
+"132 Amer Cir, Madison Heights": [
+-79.11925,
+37.46986
+],
+"132 Robertson Street, Suffolk": [
+-76.6882,
+36.58889
+],
+"132 Seminary Rd, Big Stone Gap": null,
+"13200 Bailey Bridge Rd, Midlothian": [
+-77.64095,
+37.3953
+],
+"13209 Parcher Ave, Herndon": [
+-77.40642,
+38.9619
+],
+"13224 Nickleson Dr, Woodbridge": [
+-77.37773,
+38.66811
+],
+"1325 S Dinwiddie St, Arlington": [
+-77.11293,
+38.84724
+],
+"133 Holiday Rd, North Tazewell": [
+-81.43315,
+37.21104
+],
+"1330 Branch Rd, Norfolk": [
+-76.2368,
+36.90413
+],
+"13300 Lankford Hwy, Mappsville": null,
+"13300 Poplar Tree Rd, Fairfax": [
+-77.40434,
+38.87528
+],
+"13301 Kelly Green Lane, Midlothian": [
+-77.64214,
+37.45004
+],
+"13340 Leland Rd, Centreville": [
+-77.416,
+38.84357
+],
+"1335 Longdale Dr, Norfolk": null,
+"13386 Danville Pike, Laurel Fork": [
+-80.52956,
+36.71634
+],
+"134 Commerce Court, Bristol": [
+-82.13322,
+36.62722
+],
+"134 Saddlebred Ln, Tazewell": null,
+"13400 Prince George Dr, Disputanta": [
+-77.31213,
+37.12699
+],
+"13428 Scotts Mill Road, Culpeper": [
+-78.07676,
+38.51786
+],
+"13440 Melville Ln, Chantilly": [
+-77.413,
+38.86354
+],
+"13446 Princedale Dr, Woodbridge": [
+-77.38308,
+38.65938
+],
+"13460 Woodside Ln, Newport News": [
+-76.52789,
+37.17446
+],
+"1349 Courthouse Rd, Stafford": [
+-77.40437,
+38.42114
+],
+"135 American Legion Blvd, Danville": [
+-79.3789,
+36.61957
+],
+"13500 Hollinger Avenue, Fairfax": [
+-77.4108,
+38.88953
+],
+"13501 Midlothian Tpke, Midlothian": [
+-77.64896,
+37.50284
+],
+"13501 Midlothian Turnpike, Midlothian": [
+-77.64896,
+37.50284
+],
+"13501 N Gayton Rd, Henrico": [
+-77.63784,
+37.65123
+],
+"13511 Hillendale Drive, Woodbridge": [
+-77.34147,
+38.65744
+],
+"13557 Spriggs Road, Manassas": [
+-77.39794,
+38.65971
+],
+"13618 Mclearen Road, Herndon": [
+-77.41971,
+38.92559
+],
+"13621 W Salisbury Rd, Midlothian": [
+-77.6529,
+37.52721
+],
+"13638 State Route 606, Keokee": null,
+"13639 Greenwood Dr, Woodbridge": [
+-77.34337,
+38.65317
+],
+"137 River Mountain Rd, Lebanon": null,
+"1370 Dunstan Ln, Virginia Beach": [
+-76.12876,
+36.88468
+],
+"13717 Bethany Church Rd, Smithfield": [
+-76.68478,
+37.01811
+],
+"1374 Finney Rd, Honaker": [
+-82.05402,
+36.99292
+],
+"1374 Rivermont Academy Rd, Goodview": [
+-79.78185,
+37.26318
+],
+"138 S 6Th Street, Suffolk": [
+-76.56484,
+36.72566
+],
+"13800 Genito Rd, Midlothian": [
+-77.65802,
+37.45086
+],
+"13833 Dumfries Rd, Manassas": [
+-77.44203,
+38.65443
+],
+"1384 Kempsville Road, Norfolk": [
+-76.20419,
+36.87073
+],
+"13900 Lindendale Rd, Woodbridge": [
+-77.3605,
+38.65189
+],
+"13901 Spring Run Rd, Midlothian": null,
+"14 Ben Salem Ln, Buena Vista": [
+-79.38254,
+37.74007
+],
+"14 Shackelford Well Rd, Fredericksburg": [
+-77.56419,
+38.40264
+],
+"140 Beach Rd, Hampton": [
+-76.30029,
+37.07007
+],
+"140 Spruce St, Rich Creek": null,
+"1400 Ewell Rd, Virginia Beach": null,
+"1400 George Washington Hwy N, Chesapeake": [
+-76.3308,
+36.7903
+],
+"1400 Independence Way, Charlottesville": [
+-78.48957,
+37.99861
+],
+"1400 Melbourne Road, Charlottesville": [
+-78.47281,
+38.0525
+],
+"1400 Nimmo Pkwy, Virginia Beach": [
+-76.01989,
+36.76353
+],
+"1400 Pemberton Rd, Henrico": null,
+"1400 Trap Rd, Vienna": [
+-77.26348,
+38.94677
+],
+"1400 West Main St, Danville": [
+-79.4354,
+36.56662
+],
+"14000 Smoketown Rd., Woodbridge": [
+-77.30169,
+38.64452
+],
+"14000 Sudley Manor Dr, Bristow": [
+-77.57757,
+38.74136
+],
+"14007 Carrollton Blvd, Carrollton": [
+-76.5349,
+36.94895
+],
+"1401 Ballentine Boulevard, Norfolk": [
+-76.24951,
+36.8589
+],
+"1401 Elmhurst Lane, Portsmouth": [
+-76.38129,
+36.81509
+],
+"1401 N Laburnum Ave, Henrico": [
+-77.37669,
+37.56372
+],
+"14050 Glenbrook Ave, Meadowview": [
+-81.85737,
+36.75487
+],
+"14051 Spriggs Road, Woodbridge": [
+-77.38623,
+38.6488
+],
+"1406 Todds Ln, Hampton": [
+-76.42585,
+37.04198
+],
+"1407 Crozet Ave, Crozet": [
+-78.69841,
+38.0745
+],
+"1407 Sherwood Ave, Richmond": [
+-77.4541,
+37.57009
+],
+"14091 Sinking Creek Rd, Bristol": [
+-82.11017,
+36.61374
+],
+"141 Spinning Wheel Lane, Winchester": [
+-78.22159,
+39.19836
+],
+"1410 Regents Parkway, Lynchburg": null,
+"14138 Norsworthy Dr, Carrollton": [
+-76.55954,
+36.94593
+],
+"1414 24th St S, Arlington": [
+-77.0697,
+38.85079
+],
+"1415 Grayland Ave, Richmond": [
+-77.4597,
+37.54377
+],
+"1415 S Queen St, Arlington": [
+-77.07254,
+38.86149
+],
+"14151 Ferndale Rd, Woodbridge": [
+-77.32065,
+38.64521
+],
+"1417 7Th Street, Victoria": null,
+"1417 Washington Dr, Stafford": [
+-77.3848,
+38.45793
+],
+"142 Lower Bearwallow Rd, Dante": [
+-82.29567,
+36.97721
+],
+"142 Murray Drive, Troutville": [
+-79.84599,
+37.35616
+],
+"1420 Great Bridge Blvd, Chesapeake": [
+-76.28169,
+36.76459
+],
 "14200 Saint Germain Drive, Centreville": [
 -77.44007,
 38.83711
+],
+"1421 6th St, Victoria": [
+-78.22572,
+36.99334
 ],
 "1421 Wiehle Av, Reston": [
 -77.33325,
 38.97179
 ],
+"1424 Aberdeen Rd, Hampton": [
+-76.40655,
+37.03414
+],
+"1426 N Quincy St., Arlington": [
+-77.10837,
+38.88865
+],
+"1427 W Braddock Rd, Alexandria": [
+-77.08197,
+38.82652
+],
+"143 3Rd Street Nw, Pulaski": [
+-80.78299,
+37.0489
+],
+"143 Factory Mill Rd, Bumpass": [
+-77.81341,
+37.79401
+],
+"14300 Fox Club Pkwy, Midlothian": [
+-77.69766,
+37.40776
+],
+"14302 old Courthouse Way, Newport News": [
+-76.53794,
+37.12635
+],
+"14330 Green Trails Blvd, Centreville": [
+-77.44017,
+38.81844
+],
+"1435 Roanoke Rd, Daleville": [
+-79.91392,
+37.40544
+],
+"14391 Minnieville Rd, Woodbridge": [
+-77.35219,
+38.63616
+],
+"144 Schoolhouse Rd, North Tazewell": null,
+"144 The Hollow Rd, Ararat": [
+-80.58063,
+36.59256
+],
+"14400 New Braddock Rd, Centreville": [
+-77.44432,
+38.82525
+],
+"1441 Stephens Rd, Virginia Beach": [
+-76.03038,
+36.88251
+],
+"14410 Rockahock Rd, Lanexa": [
+-76.92559,
+37.41846
+],
+"14449 Dismal River Rd, Pilgrims Knob": null,
+"14450 Brook Dr, Woodbridge": [
+-77.31224,
+38.63802
+],
+"145 Eagles Nest Dr, Eagle Rock": [
+-79.81057,
+37.65569
+],
+"1450 Aviation Road, Tappahannock": [
+-76.90365,
+37.86099
+],
+"1450 Talley Ave., Petersburg": [
+-77.41577,
+37.20605
+],
+"14500 John Marshall Highway, Gainesville": null,
+"14510 Spriggs Road, Woodbridge": [
+-77.3794,
+38.63819
+],
+"14556 Rockingham Pike, Elkton": [
+-78.65676,
+38.40193
+],
+"1457 James Madison Hwy, Gordonsville": [
+-78.18249,
+38.11255
+],
+"14571 Benns Church Blvd, Smithfield": [
+-76.58589,
+36.93686
+],
+"14601 Lamar Rd, Woodbridge": [
+-77.25644,
+38.63725
+],
+"147 Fox Valley Rd, Marion": [
+-81.61949,
+36.81754
+],
+"147 Herndon Rd, McClure": null,
+"147 Herndon Rd, Mcclure": null,
+"147 Younger Dr, Madison Heights": [
+-79.19445,
+37.51476
+],
+"14711 Lee Hwy, Amissville": [
+-78.00069,
+38.67577
+],
+"14715 Bristow Road, Manassas": [
+-77.43595,
+38.63506
+],
+"14741 Northumberland Hwy, Burgess": null,
+"1479 Stockton Ave, Greenbackville": [
+-75.39082,
+38.01197
+],
+"148 Hornet Loop, Pennington Gap": null,
+"148 Votech Rd, Jetersville": [
+-78.12834,
+37.26114
+],
+"14800 Darbydale Ave, Woodbridge": [
+-77.34263,
+38.63517
+],
+"14801 Woods Edge Rd, South Chesterfield": [
+-77.39225,
+37.32232
+],
+"1481 Senseny Rd, Winchester": [
+-78.13705,
+39.16934
+],
+"14836 Mud Fork Road, Falls Mills": [
+-81.31277,
+37.27525
+],
+"1490 Government Rd, Williamsburg": [
+-76.66348,
+37.25401
+],
+"14929 Glebe Rd, Dewitt": null,
+"15 Church Street, Ridgeway": [
+-79.85882,
+36.57672
+],
+"15 Osborne Drive, Bland": null,
+"15 Primary School Rd, Collinsville": [
+-79.90995,
+36.71895
+],
+"150 Duffey Dr, Stafford": [
+-77.43619,
+38.48247
+],
+"150 Elementary Circle, Clintwood": null,
+"150 George Taylor Road, Spencer": [
+-80.01241,
+36.6138
+],
+"150 Pioneer Road, Suffolk": [
+-76.7426,
+36.6893
+],
+"150 Rapidan Church Lane, Wolftown": null,
+"150 Rose Hill Dr, Rose Hill": [
+-83.36394,
+36.67635
+],
+"150 Technology Dr, Rocky Mount": [
+-79.89573,
+37.0143
+],
+"1500 A L Philpott Hwy, Axton": [
+-79.71339,
+36.66012
+],
+"1500 East Main Street, Richmond": [
+-77.42967,
+37.53422
+],
+"1500 Peppers Ferry Road NW, Christiansburg": [
+-80.45037,
+37.16369
+],
+"1500 Shenandoah Rd, Alexandria": null,
+"1501 Becontree Ln, Reston": [
+-77.33026,
+38.9686
+],
+"1501 Kiln Creek Pkwy, Newport News": [
+-76.48666,
+37.12119
+],
+"1501 Mediterranean Ave, Virginia Beach": [
+-75.98041,
+36.84182
+],
+"15044 Ryland Chapel Rd, Rixeyville": [
+-77.97541,
+38.57428
+],
+"1505 N Franklin Street, Christiansburg": [
+-80.4146,
+37.14987
+],
+"151 Skyline Vista Dr, Front Royal": [
+-78.20578,
+38.90838
+],
+"1510 Campostella Rd, Chesapeake": [
+-76.26932,
+36.77518
+],
+"15101 Blackburn Rd, Woodbridge": [
+-77.26785,
+38.62436
+],
+"15109 Carlbern Dr, Centreville": [
+-77.47256,
+38.85642
+],
+"1511 Willow Wood Dr, Norfolk": [
+-76.26718,
+36.88845
+],
+"1512 Churchville Ave, Staunton": [
+-79.0893,
+38.16931
+],
+"1512 Florida Ave, Lynchburg": [
+-79.13449,
+37.39205
+],
+"15143 Abner Church Rd., Glen Allen": [
+-77.61833,
+37.72226
+],
+"15155 Turner Dr, Smithfield": [
+-76.61065,
+36.93177
+],
+"15198 Warwick Blvd, Newport News": [
+-76.54805,
+37.1431
+],
+"15201 Neabsco Mills Road, Woodbridge": [
+-77.29105,
+38.62148
+],
+"1525 Stony Point RD, Charlottesville": [
+-78.44602,
+38.04292
+],
+"15300 Bowmans Folly Drive, Manassas": [
+-77.39352,
+38.62168
+],
 "15301 Lee Highway, Centreville": [
 -77.47623,
 38.83012
+],
+"15301 Route 29, Centreville": null,
+"15311 Forest Grove Drive, Woodbridge": [
+-77.27818,
+38.61804
+],
+"15312 Bayside Drive, Bloxom": [
+-75.62408,
+37.82821
+],
+"1535 Ferry Rd, Danville": [
+-79.47671,
+36.57217
+],
+"1543 Mount Tabor Rd, Blacksburg": [
+-80.39398,
+37.27001
+],
+"15450 Martins Hundred Dr, Centreville": [
+-77.48378,
+38.85201
+],
+"15473 Franklin Tpke, Dry Fork": [
+-79.57881,
+36.73616
+],
+"1548 N Hayfield Rd, Winchester": [
+-78.2854,
+39.23952
+],
+"15485 Beaverdam School Rd, Beaverdam": [
+-77.64083,
+37.93374
+],
+"155 Fleetwood Ave, Wakefield": [
+-76.98901,
+36.97278
+],
+"155 Westminster Dr, Front Royal": [
+-78.16654,
+38.91461
+],
+"1550 Halifax Rd, Danville": [
+-79.35231,
+36.5858
+],
+"15500 Benita Fitzgerald Drive, Woodbridge": [
+-77.30939,
+38.61889
+],
+"15500 Learning Lane, Haymarket": null,
+"1551 Eden Way, S, Chesapeake": [
+-76.22196,
+36.76616
+],
+"15513 Loyalty Rd, Waterford": [
+-77.60675,
+39.18651
+],
+"1552 Kempsville Rd, Virginia Beach": [
+-76.18085,
+36.78998
+],
+"1552 Sheppard Town Rd, Crozier": [
+-77.79501,
+37.68462
+],
+"15545 Cardinal Drive, Woodbridge": null,
+"156 Davis St, Amherst": [
+-79.04484,
+37.58855
+],
+"156 Dowell J Cir, Winchester": [
+-78.13476,
+39.18358
+],
+"156 Long Hollow Rd, Saltville": [
+-81.62632,
+36.93102
+],
+"15600 Pouncey Tract Rd., Rockville": [
+-77.64376,
+37.71375
+],
+"1562 Thomas Jefferson Rd., Forest": [
+-79.28342,
+37.3572
+],
+"15638 Warwick Blvd, Newport News": [
+-76.55684,
+37.16282
+],
+"157 Roanoke Ave, Colonial Heights": [
+-77.4123,
+37.24873
+],
+"1571 Mt Pleasant Rd, Chesapeake": [
+-76.17889,
+36.71449
+],
+"15721 Forest Park Drive, Woodbridge": null,
+"1575 Peach Grove Ave, Harrisonburg": [
+-78.87332,
+38.41471
+],
+"158 Big Spring Lane, Rileyville": null,
+"15800 Neabsco Rd, Woodbridge": [
+-77.28332,
+38.6061
+],
+"15801 Tanning House Pl, Haymarket": [
+-77.65868,
+38.8492
+],
+"159 S. Boundary Rd, Farmville": null,
+"1590 Corporate Landing Parkway, Virginia Beach": [
+-76.00901,
+36.78793
+],
+"15941 Donald Curtis Drive, Woodbridge": [
+-77.29531,
+38.60722
+],
+"1595 Turkeyfoot Rd., Forest": [
+-79.28731,
+37.32474
+],
+"1597 Corporate Landing Pkwy, Virginia Beach": [
+-76.00925,
+36.78798
+],
+"15998 Paint Bank Rd, Paint Bank": null,
+"16 Rockwell Rd, Hampton": [
+-76.33352,
+37.06796
+],
+"160 Apollo Dr, Hampton": [
+-76.33769,
+37.0579
+],
+"160 Bulldog Circle, Jonesville": null,
+"160 Clinchco Main St., Clinchco": [
+-82.35906,
+37.16038
+],
+"1600 Cartersville Road, Cartersville": [
+-78.13793,
+37.64028
+],
+"1600 Hilliard Rd, Henrico": [
+-77.46321,
+37.6174
+],
+"1600 Kings Fork Road, Suffolk": [
+-76.63281,
+36.77644
+],
+"1600 Learning Place Loop, Midlothian": [
+-77.66974,
+37.46749
+],
+"1600 N Franklin St, Christiansburg": [
+-80.41481,
+37.151
+],
+"1600 Skipwith Rd, Henrico": null,
+"1600 West Laburnum Avenue, Richmond": [
+-77.45921,
+37.58137
+],
+"1600 Westbrook Ave, Henrico": [
+-77.45863,
+37.59749
+],
+"1601 Clarendon Blvd, Arlington": [
+-77.07667,
+38.89349
+],
+"1601 Wilson Blvd, Arlington": [
+-77.07682,
+38.89443
+],
+"1605 Cameron Street, Alexandria": [
+-77.05628,
+38.80748
+],
+"1605 Sparrow Rd, Chesapeake": [
+-76.2257,
+36.8115
+],
+"16050 Mountain Rd, Montpelier": [
+-77.64837,
+37.79105
+],
+"16053 Carrollton Blvd, Carrollton": [
+-76.51193,
+36.91997
+],
+"1606 Craigs Store Rd, Afton": [
+-78.72729,
+37.99113
+],
+"1609-A Washington Plz N, Reston": [
+-77.34201,
+38.96914
+],
+"161 Apple Pie Ridge Rd, Winchester": [
+-78.17987,
+39.2123
+],
+"1610 Owensville Rd, Charlottesville": [
+-78.59727,
+38.08055
+],
+"1613 Great Falls St, McLean": [
+-77.19571,
+38.92568
+],
+"1613 Great Falls St, Mclean": [
+-77.19571,
+38.92568
+],
+"1616 19th St NW, Roanoke": [
+-79.96549,
+37.29313
+],
+"1616 Upton Dr, Virginia Beach": [
+-75.99305,
+36.78559
+],
+"16188 Highway Forty-Seven, Chase City": null,
+"162 Backbone Ridge, Haysi": null,
+"1620 Sharon Church Road, Arvonia": null,
+"16209 A L Philpott Hwy, Martinsville": [
+-79.93235,
+36.6393
+],
+"1625 Ivy St., Waynesboro": [
+-78.89661,
+38.08097
+],
+"16268 N. James Madison Hwy, Dillwyn": [
+-78.47138,
+37.5454
+],
+"16309 Highlands Pkwy, Whitetop": [
+-81.60292,
+36.61599
+],
+"1633 Davidson Rd, Mclean": [
+-77.18697,
+38.92435
+],
+"16330 Dunn St., Amelia": [
+-77.97718,
+37.33863
+],
+"1638 Briarfield Rd, Hampton": [
+-76.3975,
+37.01952
+],
+"164 Eagles Nest Ln, Duffield": [
+-82.69168,
+36.73613
+],
+"16433 Washington Hwy, Doswell": [
+-77.46454,
+37.86121
+],
+"1644 N Mckinley Rd #3, Arlington": [
+-77.14195,
+38.88592
+],
+"1644 N Mckinley Rd, Arlington": [
+-77.14195,
+38.88592
+],
+"1645 Buford Rd, Richmond": [
+-77.55592,
+37.52021
+],
+"1645 Cherry Avenue, Charlottesville": [
+-78.5089,
+38.02223
+],
+"1650 Auburn School Dr, Riner": null,
+"1650 Prince William Parkway, Woodbridge": [
+-77.26347,
+38.65117
+],
+"16520 Hull Street Road, Moseley": [
+-77.71734,
+37.39601
+],
+"1655 Roanoke Street, Christiansburg": [
+-80.37666,
+37.13298
+],
+"16622 Dumfries Road, Dumfries": [
+-77.33444,
+38.5921
+],
+"1669 Bethlehem Rd, Boones Mill": [
+-80.02113,
+37.06253
+],
+"1674 N. Mecklenburg Ave, South Hill": [
+-78.10554,
+36.74712
+],
+"1674 Zion Rd, Troy": [
+-78.23838,
+37.99201
+],
+"16762 Kings Hwy, Montross": [
+-76.81175,
+38.09425
+],
+"16950 McGuffeys Trail, Woodbridge": [
+-77.29548,
+38.58517
+],
+"1696 Noblin Farm Rd, Clarksville": [
+-78.5634,
+36.60263
+],
+"1697 Palmer Springs Rd, Boydton": [
+-78.23929,
+36.56062
+],
+"170 Fox Hill Rd, Hampton": [
+-76.33516,
+37.05162
+],
+"170 Harry Fry Drive 170 STATE ROAD 836, Gate City": [
+-82.56979,
+36.64006
+],
+"1700 Courthouse Rd, Stafford": [
+-77.39301,
+38.40627
+],
+"1700 Dahlia Dr, Virginia Beach": [
+-76.1098,
+36.80353
+],
+"1700 Pope St, Virginia Beach": [
+-76.19178,
+36.79149
+],
+"1700 Rose Hill Drive, Charlottesville": [
+-78.51174,
+38.02526
+],
+"1700 Shelton Rd, Virginia Beach": [
+-76.14743,
+36.89755
+],
+"1701 Alsace Avenue, Norfolk": [
+-76.26392,
+36.88409
+],
+"1701 Evergreen E Parkway, Midlothian": [
+-77.6311,
+37.46471
+],
+"1701 N Beauregard St., Alexandria": [
+-77.12401,
+38.83177
+],
+"1701 River Birch Run, N., Chesapeake": [
+-76.22082,
+36.78667
+],
+"17024 The Trail, King & Queen CH": [
+-76.88319,
+37.67506
+],
+"17024 The Trail, King & Queen Ch": [
+-76.88319,
+37.67506
+],
+"1706 St Matthew's Ln, Richmond": [
+-77.67694,
+37.67608
+],
+"171 Church House Hollow Rd, Bandy": [
+-81.55387,
+37.19919
+],
+"171 Price Lane, Appomattox": [
+-78.82749,
+37.36129
+],
+"1711 Warwick Moose Ln, Newport News": [
+-76.50124,
+37.08089
+],
+"17115 Evening Star Dr, Round Hill": null,
+"17116 Wayside Dr, Painter": [
+-75.7878,
+37.58636
+],
+"1712 Chestnut Ave, Newport News": [
+-76.40316,
+36.98223
+],
+"1716 Grey Friars Chase, Virginia Beach": null,
+"1717 Bellevue Avenue, Richmond": [
+-77.46726,
+37.58753
+],
+"1717 Melbourne Dr, Mclean": [
+-77.17611,
+38.92028
+],
+"1718 Farmers Field Road, Lawrenceville": [
+-77.77349,
+36.8106
+],
+"172 Ruritan Lane, Spout Spring": null,
+"1725 Green Street, Portsmouth": [
+-76.30489,
+36.82598
+],
+"1725 Westover Dr, Danville": [
+-79.45231,
+36.59307
+],
+"1727 Adria Rd, North Tazewell": [
+-81.53925,
+37.15499
+],
+"1730 Seabury Ave, Lynchburg": null,
+"17324 River Rd, Courtland": [
+-77.12811,
+36.7838
+],
+"17346 Warwick Blvd, Newport News": [
+-76.57166,
+37.18844
+],
+"17389 Parham Landing Rd. Unit 6, West Point": [
+-76.86045,
+37.51954
+],
+"1739 Richmond Highway, Stafford": null,
+"1741 Euclid Ave., Bristol": [
+-82.2002,
+36.59981
+],
+"1741 Pine Valley Dr, Vienna": [
+-77.24628,
+38.92046
+],
+"1745 Catalina Drive, Richmond": [
+-77.47672,
+37.49105
+],
+"1750 Campostella Road, Norfolk": [
+-76.26041,
+36.82312
+],
+"1753 Kirby Rd, McLean": [
+-77.1552,
+38.91967
+],
+"1753 Kirby Rd, Mclean": [
+-77.1552,
+38.91967
+],
+"1757 Avon Street Ext, Charlottesville": null,
+"176 School House Ridge Rd, Dryden": [
+-82.9419,
+36.779
+],
+"1764 Wilroy Rd., Suffolk": [
+-76.5541,
+36.76404
+],
+"1766 Joseph Martin Hwy, Martinsville": [
+-79.88115,
+36.62428
+],
+"17684 General Puller Hwy, Deltaville": [
+-76.33144,
+37.55495
+],
+"1770 N Glebe Rd, Arlington": [
+-77.1195,
+38.89208
+],
+"17700 Longhouse Lane, Chesterfield": null,
+"17700 Wayside Drive, Dumfries": [
+-77.30539,
+38.56544
+],
+"1772 Cedar Road, Chesapeake": [
+-76.30679,
+36.72774
+],
+"1775 Dry Bread Rd, Emporia": [
+-77.57874,
+36.68897
+],
+"17757 Main Street, Dumfries": [
+-77.32731,
+38.56716
+],
+"17784 Criders Rd, Criders": [
+-78.95797,
+38.76078
+],
+"17787 A L Philpott Hwy, Ridgeway": [
+-79.95178,
+36.62783
+],
+"1779 Mount Rush Hwy, Dillwyn": [
+-78.67396,
+37.46152
+],
+"17851 Woods View Drive, Dumfries": [
+-77.29042,
+38.5628
+],
+"179 Firehouse Rd, Buckingham": [
+-78.59548,
+37.67282
+],
+"1794 Richmond Rd, Troy": [
+-78.29245,
+37.98453
+],
+"1795 Thompson Creek Rd, Honaker": [
+-81.97957,
+37.01648
+],
+"18 Depot Street, Chatham": [
+-79.39919,
+36.8247
+],
+"18 Government Center Ln, Verona": null,
+"18 Hidy St, Craigsville": [
+-79.38423,
+38.07756
+],
+"180 E Evans St, Norfolk": [
+-76.25932,
+36.9344
+],
+"180 Horse Landing Rd #1, King William": [
+-77.01243,
+37.68995
+],
+"1800 Buffalo Gap Hwy, Swoope": [
+-79.21973,
+38.19403
+],
+"1800 Horner Rd, Woodbridge": [
+-77.27037,
+38.65747
+],
+"1800 Limerick St, Alexandria": null,
+"1800 Lynhaven Avenue, Richmond": [
+-77.44215,
+37.49616
+],
+"1800 S Church Street, Smithfield": null,
+"1800 Sandy Hook Rd, Goochland": [
+-77.88768,
+37.69347
+],
+"1801 Camborne Road, Richmond": [
+-77.56448,
+37.47428
+],
+"1801 Graves Rd, Sandston": [
+-77.29275,
+37.53895
+],
+"1801 Lauderdale Dr, Henrico": [
+-77.62809,
+37.6059
+],
+"1801 N. Quaker Lane, Alexandria": [
+-77.08514,
+38.83296
+],
+"1802 Courtland Road Ne, Roanoke": [
+-79.93658,
+37.28786
+],
+"1802 Liberty Rd NW, Roanoke": [
+-79.94444,
+37.2877
+],
+"1807 Arlington Rd, Hopewell": [
+-77.29344,
+37.27841
+],
+"1808 Ayers Orchard Rd, Stuart": [
+-80.20893,
+36.56607
+],
+"18080 Johnson Mill Rd, Sedley": [
+-76.98424,
+36.77497
+],
+"181 Piney Mountain Road, Appomattox": [
+-78.85499,
+37.43155
+],
+"181 Spring Road, Patrick Springs": null,
+"181 Vo-Tech Drive, Ben Hur": null,
+"18100 Genito Rd, Moseley": [
+-77.74395,
+37.45368
+],
+"18101 Clark & York Blvd, Ruther Glen": [
+-77.53361,
+38.02028
+],
+"18105 Mckenney Highway, Stony Creek": null,
+"18127 Railroad Ave, Boykins": [
+-77.20059,
+36.58422
+],
+"1819 Nickerson Blvd, Hampton": null,
+"182 Orchard Hill Dr, Cloverdale": [
+-79.90162,
+37.35834
+],
+"1820 2nd Street, Radford": [
+-80.58888,
+37.11796
+],
+"1820 Second St., Radford": [
+-80.58888,
+37.11796
+],
+"18230 Birmingham Road, Culpeper": [
+-78.09598,
+38.45184
+],
+"1828 Red Bank School Rd, Claudville": [
+-80.42036,
+36.57633
+],
+"1831 Deyerle Road SW, Roanoke": [
+-80.01347,
+37.25655
+],
+"184 Fort Defiance Rd., Fort Defiance": [
+-78.9748,
+38.24535
+],
+"18431 Dunne Ave, Parksley": null,
+"1845 Mt Torrey Rd, Lyndhurst": [
+-78.95432,
+37.9827
+],
+"18498 Springs Rd, Jeffersonton": [
+-77.91412,
+38.63698
+],
+"185 Buck Mountain Rd, Earlysville": [
+-78.48894,
+38.16274
+],
+"185 Richneck Rd, Newport News": [
+-76.52834,
+37.14721
+],
+"185 S Warrior Dr, Stephens City": [
+-78.1941,
+39.077
+],
+"1850 Cameron Glen Dr, Reston": [
+-77.3594,
+38.96355
+],
+"1851 Cranwell Dr, Richlands": null,
+"186 Rosenberger Ln, Winchester": [
+-78.33155,
+39.19019
+],
+"1860 Sandbridge Rd, Virginia Beach": [
+-75.99801,
+36.74715
+],
+"1863 Clark House Farm Rd, Stuart": [
+-80.23628,
+36.57661
+],
+"18701 James River Dr, Disputanta": null,
+"1874 Anderson Highway, Cumberland": [
+-78.27776,
+37.4797
+],
+"18849 Kings Highway, Montross": [
+-76.78443,
+38.07948
+],
+"18849 Kings Hwy, Montross": [
+-76.78443,
+38.07948
+],
+"18891 Leesville Road, Lynchburg": [
+-79.23437,
+37.32068
+],
+"1891 Old Buena Vista Rd, Buena Vista": [
+-79.36473,
+37.78711
+],
+"19 Howardsville Rd, Staunton": [
+-79.14137,
+38.0313
+],
+"19 Sanville School Rd, Bassett": [
+-80.05285,
+36.71627
+],
+"190 Bishops Gate Rd N.W, Christiansburg": [
+-80.42759,
+37.11711
+],
+"190 E Main St, Stanley": [
+-78.5031,
+38.57534
+],
+"190 Mustang Ln, Middletown": [
+-78.26203,
+39.04292
+],
+"1900 Lauderdale Dr, Henrico": [
+-77.63275,
+37.60896
+],
+"1900 N Great Neck Rd, Virginia Beach": [
+-76.0661,
+36.90096
+],
+"1900 New Post Blvd, Fredericksburg": [
+-77.39938,
+38.23699
+],
+"1901 Charles St, Henrico": [
+-77.52123,
+37.60057
+],
+"19019 Upper Belmont Place, Leesburg": [
+-77.49103,
+39.08783
+],
+"1903 Beulah Rd, Vienna": [
+-77.26772,
+38.91789
+],
+"1904 Mt Vernon Street, Waynesboro": [
+-78.91091,
+38.07341
+],
+"19045 Upper Belmont Place, Leesburg": [
+-77.49069,
+39.08797
+],
+"19155 Rogers Clark Blvd, Ruther Glen": null,
+"1916 Florida Avenue, Lynchburg": [
+-79.13127,
+37.38738
+],
+"1920 N Highland St, Arlington": [
+-77.09439,
+38.89332
+],
+"1920 Pleasure House Rd, Virginia Beach": [
+-76.13724,
+36.89991
+],
+"1925 Grove Ave, Richmond": [
+-77.46374,
+37.55107
+],
+"1927 Jeffress Boulevard, South Boston": [
+-78.90537,
+36.71137
+],
+"19278 Forest Rd., Lynchburg": [
+-79.23593,
+37.39212
+],
+"1928 Moneta Rd, Bedford": [
+-79.53617,
+37.30363
+],
+"19315 Southampton Parkway, Capron": [
+-77.17499,
+36.70705
+],
+"19350 Christanna Hwy, Lawrenceville": [
+-77.87288,
+36.77709
+],
+"19431 Woodland Hills Rd, Abingdon": [
+-82.01748,
+36.71257
+],
+"1945 Lord Fairfax Rd, Vienna": [
+-77.22996,
+38.9121
+],
+"1946 Riverside Drive, Bassett": [
+-79.97786,
+36.74893
+],
+"195 Bulldog Ln, Danville": [
+-79.60327,
+36.61996
+],
+"1953 Sunnyside Rd, Crewe": [
+-78.10921,
+37.16586
+],
+"1959 Urbine Rd, Powhatan": [
+-77.77967,
+37.50944
+],
+"19601 Church Rd, Brandy Station": [
+-77.89635,
+38.50155
+],
+"1969 Woodside Ln, Virginia Beach": [
+-76.07125,
+36.90039
+],
+"1977 New Chapel Road, Rustburg": null,
+"1978 Eagle Way, Manassas": null,
+"1981 Lowesville Rd, Amherst": [
+-79.08123,
+37.69226
+],
+"1986 Skippers Rd, Emporia": [
+-77.5543,
+36.65911
+],
+"19864 Benhams Rd, Bristol": [
+-82.17969,
+36.66408
+],
+"1989 Shelleys Road, Bistol": [
+-82.34083,
+36.61393
+],
+"1993 Sundevil Dr, Virginia Beach": [
+-76.14283,
+36.78257
+],
+"1994 Tiger Dr, Chesapeake": [
+-76.2565,
+36.73918
+],
+"1995 Old Baywood Rd, Galax": [
+-80.99523,
+36.61884
+],
+"1995 Old Chatham Road, Martinsville": [
+-79.82658,
+36.7078
+],
+"1997 Hawk Blvd, Chesapeake": [
+-76.21381,
+36.65198
+],
+"1997 Horseback Run, Chesapeake": null,
+"20 High St, Round Hill": [
+-77.76954,
+39.13515
+],
+"20 Robinson Ln, Emporia": [
+-77.53282,
+36.7169
+],
+"20 Sacramento Dr, Hampton": null,
+"200 Beaufont Hills, Richmond": [
+-77.51158,
+37.50548
+],
+"200 Cameron Station BLVD, Alexandria": [
+-77.11869,
+38.80847
+],
+"200 Colonial Hwy, Rustburg": [
+-79.1153,
+37.26884
+],
+"200 E 8th St, Front Royal": [
+-78.19137,
+38.92894
+],
+"200 Forest Glen Drive, Suffolk": [
+-76.65576,
+36.71517
+],
+"200 George St, Radford": [
+-80.55916,
+37.13257
+],
+"200 George St., Radford": [
+-80.55916,
+37.13257
+],
+"200 Granbery Rd, Martinsville": [
+-79.73867,
+36.72732
+],
+"200 Hammond Ln, Staunton": [
+-79.05928,
+38.09803
+],
+"200 Henry School Rd, Henry": [
+-79.92632,
+36.84815
+],
+"200 Marcella Rd, Hampton": [
+-76.39594,
+37.0502
+],
+"200 Miller St, Blacksburg": null,
+"200 Owen Davis Blvd, Yorktown": [
+-76.43873,
+37.10736
+],
+"200 Prince Edward St, Fredericksburg": [
+-77.45797,
+38.29483
+],
+"200 S Airport Dr, Highland Springs": [
+-77.32266,
+37.53603
+],
+"200 S Carlin Springs Rd, Arlington": null,
+"200 Stoney Creek Blvd, Edinburg": [
+-78.56744,
+38.82344
+],
+"200 W Main St, Wakefield": [
+-76.98703,
+36.96882
+],
+"2000 Barnesville Highway, Wylliesburg": [
+-78.59471,
+36.83637
+],
+"2000 Bennett's Creek Park Road, Suffolk": [
+-76.47003,
+36.85155
+],
+"2000 Parkway Blvd, Stafford": [
+-77.44764,
+38.46531
+],
+"2000 Westmoreland St, Falls Church": [
+-77.17268,
+38.9086
+],
+"2001 Concert Dr, Virginia Beach": [
+-76.09988,
+36.77748
+],
+"2001 Parkway Blvd, Stafford": [
+-77.4475,
+38.46533
+],
+"2004 Morehead Lane, Pulaski": null,
+"2007 Grizzly Trail, Chesapeake": [
+-76.31784,
+36.71529
+],
+"201 Archie Cannon Dr., Ashland": [
+-77.47488,
+37.77131
+],
+"201 E Nine Mile Rd, Highland Springs": [
+-77.3264,
+37.54467
+],
+"201 East Brookland Park Boulevard, Richmond": [
+-77.43035,
+37.5713
+],
+"201 Green St, Bridgewater": [
+-78.97401,
+38.38439
+],
+"201 Park Avenue Ne, Norton": [
+-82.6207,
+36.93998
+],
+"201 S Main St, Emporia": [
+-77.54187,
+36.68798
+],
+"201 Stadium Dr, Chesapeake": [
+-76.23431,
+36.70643
+],
+"201 W Holly Avenue, Sterling": [
+-77.40434,
+39.00244
+],
+"20101 Academic Way, Ashburn": [
+-77.44548,
+39.05975
+],
+"2011 Brandon Avenue SW, Roanoke": [
+-79.98405,
+37.25777
+],
+"20169 Princeton Rd, Stony Creek": [
+-77.28037,
+36.91333
+],
+"2019 Oak Level Rd, Halifax": [
+-79.10182,
+36.73944
+],
+"2019 Windy Rd, Chesapeake": [
+-76.25104,
+36.81464
+],
+"20196 Carter Ct, Sterling": [
+-77.41126,
+39.05638
+],
+"202 DAILEY Drive, Orange": [
+-78.11511,
+38.24029
+],
+"2020 Laskin Rd, Virginia Beach": [
+-76.03421,
+36.84812
+],
+"20235 Nightwatch Street, Ashburn": [
+-77.51177,
+39.05714
+],
+"20248 Courthouse Rd, Yale": [
+-77.28887,
+36.84194
+],
+"2025 Kempsville Rd, Virginia Beach": [
+-76.19687,
+36.77812
+],
+"20330 Warrior Dr, Onley": [
+-75.72611,
+37.68314
+],
+"2035 S. Spotswood Trl., Louisa": [
+-78.09951,
+38.07625
+],
+"2039 Sycamore Ave, Buena Vista": [
+-79.35573,
+37.73403
+],
+"204 Bow Cove, Stafford": [
+-77.37618,
+38.47249
+],
+"204 Walnut Street, Suffolk": [
+-76.57206,
+36.72307
+],
+"2040 Ivanhoe Road, Fries": [
+-80.97964,
+36.7415
+],
+"2040 Mountain Rd, Glen Allen": [
+-77.47977,
+37.65709
+],
+"205 Enos Farm Drive, Spring Grove": null,
+"205 Flatwoods School Rd, Jonesville": [
+-83.23398,
+36.65071
+],
+"205 Houston Ln, Glen Lyn": [
+-80.85237,
+37.37703
+],
+"205 Lake of the Woods Pkwy, Locust Grove": null,
+"205 Lake of the Woods Way, Locust Grove": null,
+"205 Lee St, Appalachia": [
+-82.7728,
+36.9098
+],
+"205 Tyner Dr, Newport News": [
+-76.52479,
+37.15586
+],
+"2055 Courthouse Road, Louisa": [
+-78.08831,
+37.95475
+],
+"20593 Blue And Gold Dr, Elkton": null,
+"20624 Countryside Blvd., Sterling": [
+-77.41558,
+39.04414
+],
+"20700 Marblehead Dr, Ashburn": [
+-77.45343,
+39.04341
+],
+"20747 Lowes Island Blvd, Sterling": [
+-77.35436,
+39.0409
+],
+"20755 Whitewater Dr, Sterling": [
+-77.34785,
+39.04136
+],
+"20809 Second Ave, South Chesterfield": [
+-77.42495,
+37.23889
+],
+"20880 Marblehead Dr, Ashburn": [
+-77.46109,
+39.03791
+],
+"209 Felton Rd, Portsmouth": [
+-76.38079,
+36.82409
+],
+"209 Halifax St, Emporia": [
+-77.53773,
+36.69127
+],
+"209 Halifax Street, Emporia": [
+-77.53773,
+36.69127
+],
+"2090 Blue Water Dr, Moneta": [
+-79.66304,
+37.07845
+],
+"20916 Old School Road Ste Rt 1003, McKenney": null,
+"20916 Old School Road Ste Rt 1003, Mckenney": null,
+"2095 Red Lane Road, Powhatan": [
+-77.84798,
+37.53482
+],
+"21 Alden Ave, Portsmouth": [
+-76.31597,
+36.80386
+],
+"21 Burns Dr, Newport News": [
+-76.45847,
+37.07722
+],
+"21 Cool Springs Rd, Fredericksburg": [
+-77.42758,
+38.32226
+],
+"21 Gilmores Mill Rd, Natural Bridge Station": [
+-79.50809,
+37.62296
+],
+"21 Starling Avenue, Martinsville": [
+-79.86486,
+36.68654
+],
+"210 Dillon Dr, Virginia Beach": [
+-76.08571,
+36.83413
+],
+"210 Ferdinand Street, Fredericksburg": [
+-77.458,
+38.29407
+],
+"210 Lambs Ln, Charlottesville": [
+-78.50551,
+38.07665
+],
+"2100 Cowan Blvd, Fredericksburg": null,
+"2100 Libbie Lake East Street, Henrico": [
+-77.49607,
+37.59078
+],
+"2100 North 29th Street, Richmond": [
+-77.4003,
+37.54508
+],
+"2100 Tarrallton Dr, Norfolk": [
+-76.22033,
+36.92473
+],
+"2101 Elm Ave, Grottoes": null,
+"2101 Pump Rd, Henrico": [
+-77.60641,
+37.61884
+],
+"2105 W. Great Neck Road, Virginia Beach": [
+-76.0697,
+36.90538
+],
+"21063 Blue And Gold Dr, Elkton": null,
+"2109 Centerville Turnpike, S., Chesapeake": [
+-76.20105,
+36.65065
+],
+"211 Swan Rd, Pamplin": [
+-78.6842,
+37.26892
+],
+"211 Westmoreland St, Richmond": [
+-77.50011,
+37.56439
+],
+"21100 Evergreen Mills Rd, Leesburg": [
+-77.58136,
+39.03751
+],
+"2111 Richmond Hwy, Arlington": null,
+"2117 Rocky Hill Road, Blackstone": [
+-77.91524,
+37.17744
+],
+"212 Holt Dr, Chesapeake": [
+-76.25105,
+36.71705
+],
+"212 Wood Brothers Dr, Stuart": null,
+"2120 Fendall Ave, Richmond": [
+-77.43773,
+37.56231
+],
+"21264 Battle Hill Dr, Bristol": [
+-82.10284,
+36.64392
+],
+"2130 Dry Pond Hwy, Stuart": [
+-80.34565,
+36.58329
+],
+"2130 Germanna Hwy, Locust Grove": [
+-77.77884,
+38.37644
+],
+"21309 South Bayside Rd, Cheriton": null,
+"2133 N Taft St, Arlington": [
+-77.08303,
+38.89894
+],
+"2135 Mountain View Rd, Stafford": [
+-77.49509,
+38.46212
+],
+"21395 Timberlake Road, Lynchburg": [
+-79.24562,
+37.33039
+],
+"214 Big Stoney Creek Rd, Ft Blackmore": [
+-82.57769,
+36.775
+],
+"214 Cowardin Avenue, Richmond": [
+-77.45023,
+37.52058
+],
+"214 Mountain Avenue SW, Roanoke": [
+-79.9439,
+37.26573
+],
+"2145 Cumberland Road, Farmville": [
+-78.37143,
+37.36755
+],
+"215 67Th Street, Virginia Beach": [
+-75.98961,
+36.8924
+],
+"215 Las Gaviotas Blvd., Chesapeake": [
+-76.28411,
+36.72023
+],
+"21641 Ridgetop Cir, Sterling": [
+-77.40851,
+39.02584
+],
+"21670 Ashburn Rd, Ashburn": [
+-77.49135,
+39.02423
+],
+"217 Church Hill Rd, Etlan": [
+-78.25904,
+38.52587
+],
+"217 Palmer Ave, Saltville": [
+-81.76467,
+36.8785
+],
+"218 Veterans Ln, Luray": [
+-78.41018,
+38.6763
+],
+"21801 Lake Chesdin Parkway, Chesterfield": null,
+"21892 Craigs Creek Rd, New Castle": [
+-80.0518,
+37.55711
+],
+"219 Breezewood Drive, Lynchburg": [
+-79.22369,
+37.39309
+],
+"2196 Harding Road, Blacksburg": [
+-80.36796,
+37.24374
+],
+"22 Lincoln St, Hampton": [
+-76.34348,
+37.02811
+],
+"22 Washington Ave., Colonial Beach": [
+-76.9633,
+38.25
+],
+"220 N Church St, Smithfield": [
+-76.63259,
+36.98413
+],
+"220 North Commerce Ave, Front Royal": [
+-78.19094,
+38.92213
+],
+"220 Rosa Ln, Winchester": [
+-78.14727,
+39.12718
+],
+"2200 Parks Ave, Virginia Beach": null,
+"2201 Centerville Tpke, Virginia Beach": [
+-76.18804,
+36.76689
+],
+"2201 Elson Green Ave, Virginia Beach": [
+-76.01489,
+36.75288
+],
+"2201 Old Ivy Rd, Charlottesville": [
+-78.51462,
+38.04492
+],
+"2201 Opitz Blvd, Woodbridge": null,
+"2201 York Drive, Woodbridge": [
+-77.27793,
+38.65461
+],
+"2209 Buffalo Springs Trnpk, Monroe": [
+-79.23982,
+37.61061
+],
+"221 Hillcrest Street, Blue Ridge": [
+-79.81726,
+37.36874
+],
+"221 Marston Ave, Urbanna": [
+-76.5743,
+37.64033
+],
+"221 N Commerce Ave, Front Royal": [
+-78.19071,
+38.92221
+],
+"2213 Round Hill Dr, Virginia Beach": [
+-76.13807,
+36.77551
+],
+"22146 General Thomas Highway, Newsoms": [
+-77.13241,
+36.62733
+],
+"2216 Peters Creek Rd NW, Roanoke": [
+-80.00679,
+37.31163
+],
+"2217 Oak Grove RD, Keeling": [
+-79.27415,
+36.72436
+],
+"2217 W Great Neck Rd, Virginia Beach": [
+-76.07059,
+36.90824
+],
+"222 3Rd Avenue, Quantico": [
+-77.28837,
+38.52242
+],
+"222 Main St, Stanardsville": [
+-78.4381,
+38.2974
+],
+"2221 Centerville Tpke, Virginia Beach": [
+-76.18797,
+36.76668
+],
+"2223 S Crater Road, Petersburg": [
+-77.37847,
+37.20101
+],
+"22294 U S Highway 19, Cedar Bluff": [
+-81.86761,
+36.97932
+],
+"223 Little Falls St, Falls Church": [
+-77.1716,
+38.88579
+],
+"2230 Grey Oak Dr, North Chesterfield": [
+-77.58009,
+37.46124
+],
+"22325 Mooreview Pkwy, Ashburn": [
+-77.50441,
+39.00025
+],
+"2239 Front Royal Pike, Winchester": [
+-78.15766,
+39.1027
+],
+"224 Richneck Rd, Newport News": [
+-76.52763,
+37.15102
+],
+"224 Taylor St, Staunton": [
+-79.07653,
+38.16299
+],
+"2240 Cranbeck Rd, North Chesterfield": [
+-77.60329,
+37.52376
+],
+"2245 Huguenot Trail, Powhatan": [
+-77.79994,
+37.59453
+],
+"22454 Front St, Accomac": [
+-75.68466,
+37.71664
+],
+"225 Al Smith Circle, Berryville": [
+-78.00378,
+39.16175
+],
+"2250 Old Greenbrier Road, Chesapeake": [
+-76.23506,
+36.79877
+],
+"22525 Belmont Ridge Rd, Ashburn": [
+-77.5282,
+38.99366
+],
+"2265 Harvey Rd, Phenix": [
+-78.74044,
+37.15737
+],
+"2273 Julia Simpkins Rd, Hiwassee": [
+-80.71412,
+36.96847
+],
+"228 Cleveland St, Danville": null,
+"228 Riverbend Road, Altavista": [
+-79.23084,
+37.14616
+],
+"22870 Dominion Ln, Sterling": [
+-77.40505,
+38.98324
+],
+"229 116th Regimental Road, Staunton": null,
+"22995 Minerva Dr, Ashburn": [
+-77.52488,
+38.9797
+],
+"230 Karl Linn Drive, North Chesterfield": null,
+"2300 1st Ave, Richmond": [
+-77.42427,
+37.56367
+],
+"2300 Cedarfield PKWY, Henrico": [
+-77.58401,
+37.63182
+],
+"2300 Key Blvd, Arlington": [
+-77.08703,
+38.89309
+],
+"2300 Mariner Lane, Woodbridge": [
+-77.27661,
+38.68314
+],
+"2300 North Main Street, Blacksburg": [
+-80.41367,
+37.26275
+],
+"2300 Trevvett Dr, Henrico": [
+-77.49079,
+37.63788
+],
+"2300 Wilson Blvd.,, Arlington": [
+-77.08662,
+38.89093
+],
+"2302 Carmine St, Richmond": [
+-77.41858,
+37.55578
+],
+"23070 Learning Cir., Ashburn": null,
+"231 Flower Gap Rd, Cana": [
+-80.68856,
+36.60558
+],
+"2310 Colts Neck Road, Reston": null,
+"2310 Nordok Pl, Alexandria": [
+-77.06996,
+38.74999
+],
+"23115 Learning Cir, Ashburn": null,
+"2315 Memorial Ave, Lynchburg": [
+-79.16718,
+37.40375
+],
+"2315 Victoria Blvd, Hampton": [
+-76.38176,
+37.00523
+],
+"2316 William Reid Dr, Suffolk": [
+-76.58777,
+36.76561
+],
+"23171 Minerva Drive, Ashburn": [
+-77.52756,
+38.9708
+],
+"2318 Cherry Hill Church Road, Buffalo Junction": [
+-78.63932,
+36.63487
+],
+"23181 Watauga Rd, Abingdon": [
+-81.95415,
+36.67169
+],
+"2320 Old Greenbrier Rd, Chesapeake": [
+-76.23495,
+36.80098
+],
+"2323 Fairview Road, Galax": [
+-80.9114,
+36.58395
+],
+"2324 Pump Rd, Henrico": [
+-77.60861,
+37.62497
+],
+"2325 E Washington St, Suffolk": [
+-76.55535,
+36.73517
+],
+"2327 Bull Creek Rd, Grundy": null,
+"233 4th Street NW, Charlottesville": [
+-78.48615,
+38.03186
+],
+"233 Mccauley Dr, Timberville": [
+-78.78175,
+38.63223
+],
+"233 Presidential Blvd, Virginia Beach": [
+-76.10105,
+36.83166
+],
+"233 South County Dr, Waverly": [
+-77.09059,
+37.03428
+],
+"2333 Roosevelt Blvd., Winchester": [
+-78.17826,
+39.15821
+],
+"2335 Electric Rd., Roanoke": [
+-80.0275,
+37.24179
+],
+"23361 Courthouse Hwy., Windsor": [
+-76.74737,
+36.8195
+],
+"234 Ferry Rd, Fredericksburg": [
+-77.4211,
+38.29759
+],
+"2341 Winterfield Rd, Midlothian": [
+-77.66421,
+37.52301
+],
+"23415 Evergreen Ridge Dr, Ashburn": [
+-77.51255,
+38.96825
+],
+"23557 Lignum Rd, Lignum": [
+-77.82686,
+38.41601
+],
+"2370 Sandlick Road, Birchleaf": [
+-82.27262,
+37.17817
+],
+"2380 Lynnhaven Pkwy, Virginia Beach": [
+-76.14794,
+36.78691
+],
+"2383 Oak Ridge Road, Arrington": [
+-78.88139,
+37.71064
+],
+"23894 U S Highway 58, Castlewood": [
+-82.24667,
+36.83633
+],
+"2394 Mt Zion Church Rd, Oak Park": null,
+"24 Channing Ave, Portsmouth": [
+-76.3211,
+36.80094
+],
+"24 W. Cross Road, Baskerville": [
+-78.28658,
+36.67567
+],
+"2400 Washington AVE, Newport News": null,
+"2401 Colts Neck Rd, Reston": [
+-77.36229,
+38.93369
+],
+"2401 Hartman St, Henrico": [
+-77.40157,
+37.55582
+],
+"2401 Skipwith Rd, Henrico": [
+-77.53789,
+37.61886
+],
+"2401 W. Leigh Street, Richmond": [
+-77.46289,
+37.56207
+],
+"24032 Sparta Rd, Sparta": null,
+"2409 Fort Dr, Alexandria": [
+-77.07324,
+38.78715
+],
+"2410 South Main Street, Rocky Mount": [
+-79.87571,
+36.9704
+],
+"2410 Wickham Ave, Newport News": [
+-76.41258,
+36.98414
+],
+"2411 Rosalind Avenue Sw, Roanoke": [
+-79.94942,
+37.24694
+],
+"2418 Cedar Rd, Chesapeake": [
+-76.32543,
+36.72541
+],
+"242 Teas Rd, Sugar Grove": [
+-81.41656,
+36.77435
+],
+"2422 N Fillmore St, Arlington": [
+-77.09715,
+38.90122
+],
+"2424 Rivermont Ave, Lynchburg": [
+-79.16819,
+37.436
+],
+"2425 Wilson Blvd, Arlington": [
+-77.08785,
+38.89077
+],
+"2430 Turnpike Road, Portsmouth": [
+-76.3294,
+36.83094
+],
+"2434 Saint Charles Road, Saint Charles": null,
+"24403 Mountain Valley Rd, Millboro": [
+-79.70005,
+38.04825
+],
+"2444 Flint Hill Rd, Vienna": [
+-77.28442,
+38.89663
+],
+"2445 Palmyra Street, Norfolk": [
+-76.24049,
+36.87009
+],
+"2446 Old Church Rd, Mechanicsville": [
+-77.19071,
+37.63722
+],
+"245 Chatham Elementary Ln, Chatham": null,
+"245 S. Rosemont Rd., Virginia Beach": [
+-76.09538,
+36.83207
+],
+"24501 Parksley Rd, Parksley": [
+-75.64641,
+37.77895
+],
+"2455 Reedy Creek Rd, Lunenburg": null,
+"24577 M N Smith Rd, Accomack": null,
+"2460 Potters Rd, Virginia Beach": [
+-76.05495,
+36.83634
+],
+"24603 Little Zion Road, Carson": [
+-77.48132,
+37.043
+],
+"2480 Batterson Rd, Powhatan": [
+-77.81606,
+37.52273
+],
+"2480 River Birch Road, Herndon": [
+-77.41804,
+38.95241
+],
+"2482 Warrenton Rd, Fredericksburg": [
+-77.60007,
+38.40982
+],
+"249 Gigg Rd, Dundas": [
+-78.04792,
+36.89128
+],
+"2490 Chestnut Grove Church Rd, Appomattox": [
+-78.77996,
+37.24417
+],
+"24945 Lobo Drive, Aldie": null,
+"24950 Riding Center Dr, South Riding": [
+-77.52617,
+38.92254
+],
+"2499 Thomas Jefferson Dr, Herndon": [
+-77.40754,
+38.94832
+],
+"25 Burlington Dr, Clarksville": [
+-78.55438,
+36.60151
+],
+"25 W Reed Ave, Alexandria": [
+-77.05775,
+38.83671
+],
+"25 Webbs Way Drive, Rustburg": null,
+"250 First Woods Dr, Winchester": [
+-78.11243,
+39.19233
+],
+"250 Ram Drive, Strasburg": [
+-78.36213,
+38.9842
+],
+"250 Sugar Run Rd, Pearisburg": [
+-80.71866,
+37.26711
+],
+"2500 Gilmerton Rd, Chesapeake": [
+-76.33404,
+36.78026
+],
+"2500 James Madison Dr, Vienna": [
+-77.27767,
+38.89579
+],
+"2500 James Madison Drive, Vienna": [
+-77.27767,
+38.89579
+],
+"2500 Parkers Ln, Alexandria": [
+-77.07414,
+38.73935
+],
+"2500 Rodgers St, Chesapeake": [
+-76.27159,
+36.80118
+],
+"2505 Cedar Ln, Vienna": [
+-77.24131,
+38.88926
+],
+"251 18th St S, Arlington": [
+-77.05019,
+38.85765
+],
+"251 First Woods Dr, Winchester": [
+-78.11254,
+39.1924
+],
+"25239 Craigs Creek Rd, New Castle": [
+-80.08547,
+37.51751
+],
+"2525 Linkhorne Dr, Lynchburg": [
+-79.19614,
+37.41901
+],
+"25376 New Market Rd, Courtland": [
+-76.98972,
+36.67263
+],
+"25450 Riding Center Dr, South Riding": [
+-77.53741,
+38.91379
+],
+"25480 Mindful Ct, Aldie": [
+-77.5569,
+38.91198
+],
+"25491 Riding Center Dr, South Riding": [
+-77.53753,
+38.91107
+],
+"255 Great Bridge Blvd., Chesapeake": [
+-76.24733,
+36.73663
+],
+"255 Schoolhouse Rd, Buchanan": [
+-79.70325,
+37.51137
+],
+"2551 New Market Rd, Henrico": [
+-77.35426,
+37.44534
+],
+"2553 Strawbridge Rd, Virginia Beach": [
+-76.01767,
+36.76714
+],
+"2559 Lovers Gap Rd, Vansant": [
+-82.11075,
+37.21706
+],
+"25609 Grant Ave., North Dinwiddie": [
+-77.46283,
+37.21477
+],
+"2562 Mendota Rd, Mendota": [
+-82.30539,
+36.70758
+],
+"257 Trojan Rd, Madison Heights": [
+-79.11444,
+37.45561
+],
+"25700 Us Highway 23, Big Stone Gap": null,
+"2579 Galts Mill Rd, Madison Heights": [
+-79.06648,
+37.44551
+],
+"2591 Ridge Rd., Powhatan": [
+-78.01055,
+37.56125
+],
+"26 Pleasant View Rd, Austinville": [
+-80.85147,
+36.79611
+],
+"26 Ruritan Drive, Ceres": null,
+"260 Elm Avenue, Portsmouth": [
+-76.3131,
+36.8404
+],
+"2600 N Stuart St, Arlington": [
+-77.11311,
+38.90622
+],
+"2600 Nine Mile Road, Richmond": [
+-77.40865,
+37.54075
+],
+"2601 Broad St, Chesapeake": [
+-76.25979,
+36.79946
+],
+"2601 Cameron Mills Road, Alexandria": [
+-77.0736,
+38.82813
 ],
 "2601 Viking Dr, Herndon": [
 -77.38284,
 38.92954
 ],
+"26020 Ticonderoga Road, Chantilly": [
+-77.52525,
+38.8955
+],
+"2607 New Kent Hwy, Quinton": [
+-77.18349,
+37.5212
+],
+"2607 Salem Church Rd, Fredericksburg": [
+-77.53352,
+38.27829
+],
+"261 Bluestone Dr., Harrisonburg": [
+-78.87038,
+38.43455
+],
+"2614 1st Ave, Richmond": [
+-77.4213,
+37.5663
+],
+"26155 Bullrun Postoffice Rd, Centreville": [
+-77.51458,
+38.8939
+],
+"2620 Carolina Avenue SW, Roanoke": [
+-79.95214,
+37.24515
+],
+"2631 Pocahntas trl, Quinton": [
+-77.18301,
+37.50455
+],
+"2635 Oak Hill Road, Mouth Of Wilson": [
+-81.33774,
+36.59935
+],
+"26484 Old Plank Road, Courtland": [
+-77.05656,
+36.70247
+],
+"265 Taylors Rd, Boones Mill": [
+-79.92951,
+37.08968
+],
+"2655 Seaboard Rd., Virginia Beach": [
+-76.02767,
+36.7445
+],
+"2657 N Independence Dr, Montross": [
+-76.78419,
+38.1646
+],
+"266 Rockland Ct, Front Royal": [
+-78.18094,
+38.97838
+],
+"2665 West Neck Rd, Virginia Beach": [
+-76.06021,
+36.74519
+],
+"267 Alleghany Spring Road, Shawsville": [
+-80.25584,
+37.16857
+],
+"2670 Main Street, Hot Springs": [
+-79.83954,
+38.00637
+],
+"2673 Darlington Heights Rd, Pamplin": null,
+"26804 Fort Emory Road, North Dinwiddie": [
+-77.44336,
+37.16077
+],
+"270 Valley Pike, Lexington": [
+-79.4083,
+37.81085
+],
+"2700 E. Princess Anne Rd, Norfolk": [
+-76.2577,
+36.85526
+],
+"2700 Ludlow St, Norfolk": [
+-76.27079,
+36.86816
+],
+"2700 S Lang St, Arlington": [
+-77.06736,
+38.84827
+],
+"2700 S Taylor St, Arlington": [
+-77.09193,
+38.84364
+],
+"27002 Smiths Ferry Rd, Franklin": [
+-76.94725,
+36.65362
+],
+"2701 Commonwealth Ave, Alexandria": [
+-77.0604,
+38.82884
+],
+"2701 Princess Anne St, Fredericksburg": [
+-77.47166,
+38.31772
+],
+"2701 Robious Crossing Dr, Midlothian": [
+-77.61484,
+37.52908
+],
+"2704 Hadensville-Fife Rd, Goochland": [
+-78.05699,
+37.75646
+],
+"2705 Chestnut Ave, Newport News": [
+-76.40726,
+36.98861
+],
+"2705 Taylor Rd, Chesapeake": [
+-76.41408,
+36.83164
+],
+"2708 Centreville Rd, Herndon": [
+-77.4135,
+38.93518
+],
+"2709 Hunter Mill Rd, Oakton": [
+-77.30413,
+38.89284
+],
+"2709 Hunter Mill Road, Oakton": [
+-77.30413,
+38.89284
+],
+"2709 Monument Ave, Richmond": [
+-77.47003,
+37.55955
+],
+"2709 Popkins Ln, Alexandria": [
+-77.0792,
+38.76466
+],
+"271 Southgate Shopping Ctr, Culpeper": [
+-78.00012,
+38.46334
+],
+"2714 Frederick Blvd, Portsmouth": [
+-76.32541,
+36.81671
+],
+"272 Benton Road, Suffolk": [
+-76.59923,
+36.71144
+],
+"2724 Blue Grass Valley Rd, Blue Grass": [
+-79.55165,
+38.49889
+],
+"27250 Highway Fifty-Eight, South Hill": null,
+"273 Titan Ln, Nickelsville": [
+-82.46279,
+36.77963
+],
+"2730 Melrose Ave Nw, Roanoke": [
+-79.98052,
+37.2881
+],
+"2731 Edgewood Street SW, Roanoke": [
+-79.99547,
+37.2642
+],
+"2737 West Street, Falls Church": [
+-77.19857,
+38.88016
+],
 "2739 W Ox Rd, Herndon": [
 -77.41114,
 38.93657
+],
+"2740 Proffit Rd, Charlottesville": [
+-78.41953,
+38.122
+],
+"2748 Dogtown Rd, Goochland": [
+-77.9271,
+37.74649
+],
+"276 Church St, Millboro": [
+-79.60371,
+37.97778
+],
+"2760 Walkers Creek Valley Rd, Pearisburg": [
+-80.83817,
+37.19333
+],
+"277 Philpott Dam Road, Bassett": [
+-80.02849,
+36.76672
+],
+"27746 Walters Hwy, Carrsville": [
+-76.8471,
+36.7744
+],
+"2775 Hydraulic Rd, Charlottesville": [
+-78.4994,
+38.07255
+],
+"2775 Powell Creek Dr, Charlottesville": [
+-78.43973,
+38.11348
+],
+"2788 Taylor Spring Lane (22801), Rockingham": [
+-78.85388,
+38.39936
+],
+"2791 Fox Mill Road, Herndon": [
+-77.36478,
+38.91439
+],
+"2791 Foxmill Road, Herndon": [
+-77.36478,
+38.91439
+],
+"280 N College Drive, Franklin": [
+-76.94317,
+36.67677
+],
+"2800 3rd Ave, Richmond": [
+-77.41911,
+37.56693
+],
+"2800 Hope Way, Alexandria": null,
+"2800 P St, Richmond": [
+-77.41016,
+37.53608
+],
+"2800 Rawley Pk, Harrisonburg": [
+-78.91713,
+38.4537
+],
+"2801 Robious Crossing Dr, Midlothian": [
+-77.61268,
+37.53318
+],
+"2805 Virgil H Goode Hwy, Rocky Mount": [
+-79.90043,
+36.84539
+],
+"281 Channing Dr, Winchester": [
+-78.10343,
+39.17041
+],
+"2812 Greenview Dr, Lynchburg": [
+-79.23412,
+37.34403
+],
+"2815 Spessard Avenue SW, Roanoke": [
+-79.98976,
+37.24589
+],
+"2820 Williamsburg Rd, Henrico": [
+-77.37741,
+37.51841
+],
+"2828 Greenwood Drive, Portsmouth": [
+-76.33665,
+36.80628
+],
+"2828 Pleasant Acres Dr, Virginia Beach": [
+-76.06605,
+36.76665
+],
+"2831 Graham Rd, Falls Church": [
+-77.19069,
+38.87488
+],
+"28328 Hatton St, Melfa": [
+-75.74302,
+37.65144
+],
+"28480 Bobtown Rd, Melfa": [
+-75.79318,
+37.65108
+],
+"2850 Rolfe Hwy., Dendron": [
+-76.93462,
+37.04552
+],
+"2855-A Annandale Rd, Falls Church": [
+-77.1744,
+38.87447
+],
+"2858 Jeb Stuart Highway, Meadows Of Dan": null,
+"287 Ephesus Church Road, Dunnsville": null,
+"288 E Little Creek Rd, Norfolk": [
+-76.26576,
+36.91754
+],
+"288 Etzler Rd, Troutville": [
+-79.92928,
+37.43104
+],
+"2880 W Midland Trl, Lexington": [
+-79.49093,
+37.85103
+],
+"2885 Hickory Fork Rd, Gloucester": [
+-76.60835,
+37.41175
+],
+"2885 Jubal Early Hwy, Boones Mill": [
+-79.85526,
+37.13361
+],
+"2893 Collierstown Rd, Lexington": [
+-79.55021,
+37.76231
+],
+"29 Copeland Ln, Newport News": [
+-76.47587,
+37.05418
+],
+"29 Morgans Fork Rd, Penhook": [
+-79.62583,
+36.98106
+],
+"29 Stafford Ave, Stafford": [
+-77.40534,
+38.42263
+],
+"290 College Ave, Blacksburg": [
+-80.41925,
+37.22811
+],
+"290 Raider Rd., Broadway": [
+-78.80545,
+38.61372
+],
+"2900 Drewry's Bluff Road, Richmond": [
+-77.44611,
+37.42936
+],
+"2900 Sutton Rd, Vienna": [
+-77.27976,
+38.87672
+],
+"2901 Margaret Booker Dr, Chesapeake": [
+-76.35115,
+36.7532
+],
+"2901 Thalen St, Henrico": [
+-77.38999,
+37.56862
+],
+"2902 Washington Ave., Vinton": [
+-79.8581,
+37.28253
+],
+"2909 16th St S, Arlington": [
+-77.08581,
+38.85723
+],
+"291 Ripshin Road, Troutdale": [
+-81.43572,
+36.7028
+],
+"2910 N Parham Rd, Henrico": [
+-77.54545,
+37.62873
+],
+"2910 Washington Ave, Vinton": [
+-79.85805,
+37.28256
+],
+"2911 Cameron Mills Road, Alexandria": [
+-77.07466,
+38.83093
+],
+"2911 General Puller Hwy, Saluda": [
+-76.56183,
+37.60336
+],
+"2915 Westminster Ave, Norfolk": [
+-76.25225,
+36.8448
+],
+"2920 Kingsdale Rd, North Chesterfield": [
+-77.43633,
+37.39546
+],
+"2927 Deerfield Valley Rd, Deerfield": [
+-79.3931,
+38.20099
+],
+"293 Firstwatch Drive, Moneta": [
+-79.69882,
+37.13494
+],
+"29361 Eleys Ford Rd, Richardsville": [
+-77.72685,
+38.39448
+],
+"2938 Oakleigh AVE, Appomattox": [
+-78.78373,
+37.3692
+],
+"2938 Richmond Highway, Stafford": null,
+"2945 2nd Ave E, Big Stone Gap": [
+-82.73824,
+36.88202
+],
+"29485 Horsey Rd, Oak Hall": [
+-75.55173,
+37.92289
+],
+"2955 Murphy Rd, Vansant": [
+-82.17324,
+37.12785
+],
+"29680 King William Road, West Point": [
+-76.8937,
+37.59146
+],
+"298 Cedar Rd, Chesapeake": [
+-76.2485,
+36.71442
+],
+"2986 W Lynchburg-Salem Tpke, Bedford": [
+-79.59057,
+37.34895
+],
+"2993 Brickland Road, Kenbridge": null,
+"3 Battaile Drive, Winchester": [
+-78.18622,
+39.13858
+],
+"30 Cleveland Ave, Martinsville": [
+-79.86748,
+36.688
+],
+"300 Apollo Ave, Danville": [
+-79.41292,
+36.59663
+],
+"300 Circle Dr, Sterling": [
+-77.39957,
+38.9973
+],
+"300 Crescent Dr, Franklin": [
+-76.94484,
+36.68796
+],
+"300 Dare Rd, Yorktown": [
+-76.45748,
+37.16158
+],
+"300 E 15th St, Richmond": [
+-77.44466,
+37.51712
+],
+"300 Kings Highway, Suffolk": [
+-76.5927,
+36.77241
+],
+"300 Lee St., Bristol": [
+-82.18096,
+36.59835
+],
+"300 Lee Street, Bristol": [
+-82.18096,
+36.59835
+],
+"300 Liberty St, Chesapeake": [
+-76.27575,
+36.82353
+],
+"300 N Park Dr, Arlington": [
+-77.11369,
+38.87231
+],
+"300 S 18th Ave, Hopewell": [
+-77.30162,
+37.29534
+],
+"3000 Belt Blvd, Richmond": [
+-77.46144,
+37.48043
+],
+"3000 North Landing Road, Virginia Beach": [
+-76.07576,
+36.74345
+],
+"3000 North Street, Portsmouth": null,
+"3001 Chichester Ln, Fairfax": [
+-77.24918,
+38.86554
+],
+"3001 Old Bridge Rd, Woodbridge": [
+-77.30492,
+38.68389
+],
+"3001 Vaden Dr, Fairfax": null,
+"30071 The Trail, Shacklefords": [
+-76.73461,
+37.55092
+],
+"301 East Baker St., Gordonsville": [
+-78.18993,
+38.13855
+],
+"301 King Street, Alexandria": [
+-77.04261,
+38.80457
+],
+"3015 Roundelay Rd, Lynchburg": [
+-79.22212,
+37.35838
+],
+"302 Azalea Ave, Henrico": [
+-77.4333,
+37.60264
+],
+"302 Franklin Blvd S, Gretna": null,
+"3020 Gallows Rd, Falls Church": [
+-77.22741,
+38.86915
+],
+"3021 Maplewood Ave, Richmond": [
+-77.48105,
+37.54835
+],
+"303 Academy Rd, Hilton": [
+-82.46507,
+36.65488
+],
+"303 S Main St, Kilmarnock": [
+-76.37904,
+37.70668
+],
+"3031 Memorial Ave, Lynchburg": [
+-79.17069,
+37.39707
+],
+"3035 S Abingdon St, Arlington": [
+-77.09736,
+38.83876
+],
+"304 Blue Devil Cir, Castlewood": [
+-82.29604,
+36.87038
+],
+"304 Career Tech Dr, Lebanon": [
+-82.05536,
+36.90244
+],
+"3045 John Wayland Hwy, Dayton": [
+-78.92735,
+38.42371
+],
+"3050 Eastbrook Rd, Lynchburg": [
+-79.10031,
+37.36751
+],
+"3050 Scottsburg Rd, Scottsburg": [
+-78.79093,
+36.75742
+],
+"3051 Old Bridge Rd, Woodbridge": [
+-77.30587,
+38.6843
+],
+"3055 Fairview Rd., Woodstock": [
+-78.5434,
+38.92613
+],
+"3055 Union Church Road, South Boston": [
+-79.00252,
+36.72338
+],
+"306 Aylor Grubbs Ave, Stanley": [
+-78.50274,
+38.57811
+],
+"3060 Smith Mountain Rd, Penhook": [
+-79.60199,
+36.99659
+],
+"307 Lees Crossing Ln, Appomattox": [
+-78.86339,
+37.36277
+],
+"307 South Park Street, Marion": [
+-81.51876,
+36.83013
+],
+"3080 S. Lynnhaven Rd., Virginia Beach": [
+-76.07952,
+36.84604
+],
+"309 South Dogwood Dr., Harrisonburg": [
+-78.88001,
+38.44844
+],
+"31 Smokey Ordinary Rd, Emporia": [
+-77.5891,
+36.82312
+],
+"310 N Birdneck Rd, Virginia Beach": [
+-75.99746,
+36.8311
+],
+"310 S Franklin St, Christiansburg": [
+-80.40434,
+37.12634
+],
+"310 Thole St, Norfolk": [
+-76.26911,
+36.9053
+],
+"3100 Panther Pride Drive, Dumfries": null,
+"3101 Fendall Ave, Richmond": [
+-77.43608,
+37.5732
+],
+"3101 Johnson Road, Petersburg": [
+-77.40057,
+37.18836
+],
+"3101 Sontag Rd, Rocky Mount": [
+-79.84511,
+36.93112
+],
+"3101 Wards Ferry Road, Lynchburg": [
+-79.20392,
+37.36274
+],
+"31046 Richmond Trpk, Hanover": [
+-77.36903,
+37.83649
+],
+"3105 Java RD, Java": null,
+"31077 Old Plank Rd, Locust Grove": [
+-77.83624,
+38.25829
+],
+"3109 Prices Fork Rd, Blacksburg": [
+-80.46082,
+37.21591
+],
+"3109 Rivermont Ave, Lynchburg": [
+-79.18265,
+37.43923
+],
+"311 Jackson Dr, Covington": [
+-79.96769,
+37.76638
+],
+"311 Maple Avenue, Richmond": [
+-77.51951,
+37.57404
+],
+"3110 Chichester Lane, Fairfax": [
+-77.24831,
+38.86364
+],
+"3111 Frying Pan Road VA HWY 625, Birchleaf": [
+-82.23438,
+37.10545
+],
+"3115 West Main St, Salem": [
+-80.11344,
+37.28104
+],
+"3117 Glendale Rd, Galax": [
+-80.87706,
+36.69873
+],
+"3121 Moss Side Avenue, Richmond": [
+-77.44074,
+37.57538
+],
+"31230 Constitution Hwy, Locust Grove": [
+-77.83116,
+38.30023
+],
+"3125 County Line Road, Patrick Springs": [
+-80.08459,
+36.70519
+],
+"3130 Panther Pride Drive, Dumfries": null,
+"31305 Rhea Valley Rd, Meadowview": [
+-81.8168,
+36.68154
+],
+"3131 Ironbound Rd, Williamsburg": [
+-76.76463,
+37.25007
+],
+"3133 Shipps Corner Road, Virginia Beach": [
+-76.0775,
+36.79297
+],
+"3137 Preston Ave NW, Roanoke": [
+-79.94789,
+37.31175
+],
+"314 Northumberland Highway, Callao": [
+-76.55482,
+37.96699
+],
+"314 Waller Mill Rd, Williamsburg": [
+-76.713,
+37.2913
+],
+"315 Flyfoot Drive, Stephenson": [
+-78.10148,
+39.22725
+],
+"315 Jouett School Rd, Mineral": [
+-77.84363,
+37.89716
+],
+"316 N. Main St., Chase City": [
+-78.45931,
+36.8006
+],
+"3160 Midlothian Tpke, Richmond": [
+-77.46624,
+37.51168
+],
+"3165 Martinsburg Pike, Clear Brook": [
+-78.10216,
+39.24926
+],
+"317 W Main St, Berryville": [
+-77.98722,
+39.15529
+],
+"31787 Old Saltworks Rd, Meadowview": [
+-81.81527,
+36.83232
+],
+"318 Shelby Rd, Madison": null,
+"3187 Peppers Ferry Rd, Radford": [
+-80.512,
+37.17117
+],
+"320 Telegraph Rd, Stafford": [
+-77.37819,
+38.48422
+],
+"3200 Deacon Dr, Saint Paul": null,
+"3200 Jermantown Rd, Oakton": [
+-77.31275,
+38.87502
+],
+"3200 Westley Rd, Falls Church": [
+-77.18362,
+38.86357
+],
+"3201 Berkmar Dr, Charlottesville": [
+-78.47586,
+38.08853
+],
+"3201 Edinburgh Dr, Virginia Beach": null,
+"3201 Western Branch Blvd, Chesapeake": [
+-76.40437,
+36.8633
+],
+"321 DC Truck Shop Rd, Clintwood": null,
+"321 North Bridge St, Bedford": [
+-79.52274,
+37.33656
 ],
 "3210 KINROSS CIRCLE, HERNDON": [
 -77.40802,
@@ -39,13 +4810,1202 @@
 -77.40802,
 38.91412
 ],
+"32101 Government Rd, Damascus": [
+-81.8044,
+36.63832
+],
+"3216 Mount Pleasant Blvd, Roanoke": [
+-79.90724,
+37.23699
+],
+"322 Haysi Main Street, Haysi": null,
+"322 Jennings St, Weber City": [
+-82.55513,
+36.62335
+],
+"322 Shirley Ave, Norfolk": [
+-76.29067,
+36.86462
+],
+"3220 Monet Dr, Virginia Beach": [
+-76.08245,
+36.78023
+],
+"3229 Partlow Road, Partlow": [
+-77.66181,
+38.05032
+],
+"3229 Williamson Road NW, Roanoke": [
+-79.94182,
+37.30059
+],
+"3230 Chatham Rd, Martinsville": [
+-79.78876,
+36.72023
+],
+"324 Modoc Avenue, Wise": [
+-82.57557,
+36.97845
+],
+"325 Courthouse Rd, North Chesterfield": [
+-77.59761,
+37.48487
+],
+"325 E. Lee Hwy, Chilhowie": [
+-81.68022,
+36.79992
+],
+"325 Pleasant Valley Rd Door 42, Harrisonburg": [
+-78.90242,
+38.40294
+],
+"328 E. Chilhowie St, Marion": [
+-81.51673,
+36.83843
+],
+"3290 Bandy Rd, Bandy": null,
+"33 N Calhoun St, Warrenton": [
+-77.79087,
+38.71186
+],
+"33 Pine Creek Rd, Swords Creek": [
+-81.90814,
+37.07785
+],
+"330 Tazewell St., Wytheville": [
+-81.08513,
+36.95139
+],
+"330 Wallace Lane, Fredericksburg": [
+-77.49591,
+38.26422
+],
+"3300 Lees Corner Rd, Chantilly": [
+-77.42151,
+38.91086
+],
+"3301 Hidden Meadow Dr, Herndon": [
+-77.40827,
+38.90718
+],
+"3301 Marshall Ave, Newport News": [
+-76.41894,
+36.98873
+],
+"3301 Nansemond Parkway, Suffolk": [
+-76.51814,
+36.80025
+],
+"3301 Peace Valley Ln, Falls Church": [
+-77.15056,
+38.85611
+],
+"3308 Pleasants Rd, Powhatan": [
+-77.8356,
+37.60556
+],
+"3308 S Stafford St, Arlington": [
+-77.08645,
+38.83479
+],
+"331 Big Bethel Rd, Hampton": [
+-76.4201,
+37.02922
+],
+"3314 Sandra Lane,, Virginia": [
+-76.22127,
+36.82404
+],
+"332 Schoolhouse Hill Dr NE, Coeburn": [
+-82.46864,
+36.94719
+],
+"3326 Ordway Drive NW, Room #15, Roanoke": null,
+"333 Carriage House Ln, Warrenton": [
+-77.80511,
+38.71125
+],
+"3330 King Street, Alexandria": [
+-77.08556,
+38.82552
+],
+"3330 Stonewall Jackson Hwy, Bentonville": [
+-78.30519,
+38.83756
+],
+"3333 Cheverly Road, Richmond": [
+-77.53496,
+37.54379
+],
+"3333 Sleepy Hollow Rd, Falls Church": [
+-77.16945,
+38.8552
+],
+"3340 Holland Rd, Virginia Beach": [
+-76.08891,
+36.80425
+],
+"3342 S. Main Street, Toms Brook": null,
+"33474 Stagecoach Rd, Glade Spring": [
+-81.7752,
+36.77995
+],
+"335 Mecklenburg Dr, Chase City": [
+-78.45732,
+36.79766
+],
+"3351 Fairfax Dr, Arlington": [
+-77.10078,
+38.88452
+],
+"3356 Main Street, Exmore": [
+-75.82314,
+37.52941
+],
+"3356 Union Branch Rd, Petersburg": [
+-77.34126,
+37.1553
+],
+"3370 Bradshaw Rd, Salem": [
+-80.06043,
+37.36674
+],
+"3395 Scenic Hwy, Mount Solon": [
+-79.08101,
+38.31468
+],
+"340 E Walnut St, Covington": [
+-79.98733,
+37.78639
+],
+"340 Ridgedale Dr, Martinsville": [
+-79.87337,
+36.76525
+],
+"3400 Broad Rock Blvd, Richmond": [
+-77.48322,
+37.47008
+],
+"3400 Hopkins Road, Richmond": [
+-77.46885,
+37.47396
+],
+"3400 Patterson Ave, Richmond": [
+-77.48089,
+37.56174
+],
+"3401 Beechtree Ln, Falls Church": [
+-77.18073,
+38.8547
+],
+"3401 Hemlock Drive, Falls Church": [
+-77.21367,
+38.85311
+],
+"3401 Matoaka Rd, Hampton": [
+-76.36521,
+37.0094
+],
+"3401 Panther Pride Drive, Dumfries": null,
+"3415 Lockheed Boulevard, Alexandria": [
+-77.08863,
+38.75951
+],
+"3425 Pump Rd, Henrico": [
+-77.61354,
+37.64879
+],
+"3434 Campbell Dr, Alexandria": [
+-77.08985,
+38.80065
+],
+"3440 South Jefferson Street, Falls Church": [
+-77.11938,
+38.85189
+],
+"3451 Conduit Rd, Colonial Heights": [
+-77.3911,
+37.2667
+],
+"3461 Ladysmith Rd, Ruther Glen": [
+-77.58301,
+38.00168
+],
+"347 Church Street, Mathews": [
+-76.32595,
+37.43527
+],
+"3488 Godwin Boulevard, Suffolk": [
+-76.58139,
+36.79611
+],
+"349 Apple Pie Ridge Rd, Winchester": [
+-78.17812,
+39.21425
+],
+"349 Madison Street, Boydton": [
+-78.3911,
+36.66755
+],
+"3493 King William Rd, Aylett": [
+-77.25903,
+37.79959
+],
+"35 Penick Pl, Hardy": [
+-79.82693,
+37.21956
+],
+"350 Kings Fork Road, Suffolk": [
+-76.59721,
+36.78577
+],
+"350 Spotswood Drive, Lexington": [
+-79.44322,
+37.77919
+],
+"350 Spring Hill Ter, Bristol": [
+-82.1403,
+36.62197
+],
+"350 W Government Ave, Norfolk": [
+-76.26124,
+36.95473
+],
+"3500 23rd St S, Arlington": [
+-77.08575,
+38.84903
+],
+"3500 Clifford Street, Portsmouth": [
+-76.34463,
+36.82983
+],
+"3500 Granby Street, Norfolk": [
+-76.28196,
+36.88004
+],
 "3500 W Ox Rd, Fairfax": [
 -77.37882,
 38.8904
 ],
+"3501 2nd St S, Arlington": [
+-77.0961,
+38.86896
+],
+"3501 Kecoughtan Rd, Hampton": [
+-76.36342,
+37.008
+],
+"3501 Lion Run, Fairfax": null,
+"3502 Old Mountain Road, NE, Roanoke": [
+-79.92538,
+37.30617
+],
+"351 Commonwealth Blvd E, Martinsville": [
+-79.86154,
+36.69377
+],
+"3510 James Madison Hwy, Haymarket": [
+-77.63366,
+38.88135
+],
+"3514 Crymes Rd, Meherrin": [
+-78.31857,
+36.99535
+],
+"35231 Snake Hill Rd, Middleburg": [
+-77.78756,
+39.00413
+],
+"353 Hertz Rd, Chesapeake": [
+-76.41192,
+36.76961
+],
+"3541 Horseshoe Bend Rd., Moneta": [
+-79.68743,
+37.19262
+],
+"3548 Triplet Rd, Lawrenceville": [
+-77.76586,
+36.60813
+],
+"3550 Wilson Blvd, Arlington": [
+-77.10198,
+38.8822
+],
+"3595 Grand Forks Blvd., Charlottesville": [
+-78.44161,
+38.13474
+],
+"3597 Dogwood Road, Critz": [
+-80.145,
+36.63046
+],
+"3600 Lee Hill School Dr, Fredericksburg": [
+-77.45839,
+38.22769
+],
+"3600 N Harrison St, Arlington": [
+-77.14605,
+38.90772
+],
+"3601 Seminary Ave, Richmond": [
+-77.44867,
+37.58171
+],
+"361 Bears Trl, Bastian": [
+-81.14722,
+37.15699
+],
+"3613 Graham Park Rd, Triangle": [
+-77.32047,
+38.55624
+],
+"3615 Lions Field Road, Triangle": [
+-77.32174,
+38.54161
+],
+"3619 Huguenot Trl, Powhatan": [
+-77.90046,
+37.61224
+],
+"3626 W Hundred Rd, Chester": [
+-77.43609,
+37.35986
+],
+"3632 Edinburgh Dr, Virginia Beach": [
+-76.09795,
+36.84638
+],
+"3645 Steelsburg Hwy, Cedar Bluff": [
+-81.77087,
+37.05383
+],
+"3649 Hartford St, Portsmouth": [
+-76.34843,
+36.84167
+],
+"365 Chester St, Phenix": null,
+"3651 Rochambeau Dr, Williamsburg": [
+-76.79288,
+37.39826
+],
+"36560 Philomont Rd, Purcellville": null,
+"368 Blazer Dr Auxiliary Gym DOOR 8, Penn Laird": [
+-78.76347,
+38.37498
+],
+"36803 Allder School Rd, Purcellville": [
+-77.73004,
+39.15927
+],
+"3687 Ironbound Rd, Williamsburg": [
+-76.76154,
+37.26372
+],
+"37 Stone Orchard Dr, Nellysford": null,
+"370 Ruritan Dr, Emporia": [
+-77.56584,
+36.71516
+],
+"370 Ruritan Rd, Rocky Mount": [
+-79.94038,
+36.94616
+],
+"3700 Chestnut Ave., Newport News": [
+-76.41088,
+36.99472
+],
+"3700 Goodell Rd, Henrico": [
+-77.38135,
+37.57197
+],
+"3700 Old Hundred Rd S, Midlothian": [
+-77.64454,
+37.44195
+],
+"3701 Garden Rd, Richmond": [
+-77.58372,
+37.54623
+],
 "3703 S. George Mason Drive, Falls Church": [
 -77.11515,
 38.84436
+],
+"3704 Golf Trail Ln, Fairfax": [
+-77.35804,
+38.87386
+],
+"3705 Blenheim Blvd, Fairfax": null,
+"3705 Crest Drive, Annandale": [
+-77.198,
+38.84377
+],
+"37098 Charles Town Pike, Hillsboro": null,
+"3710 Churchville Ave, Churchville": [
+-79.15595,
+38.22241
+],
+"3711 Big Bethel Rd, Yorktown": [
+-76.4301,
+37.11422
+],
+"3712 Chaparral Dr, Roanoke": [
+-80.00307,
+37.21335
+],
+"3718 Garden City Blvd SE, Roanoke": [
+-79.93015,
+37.2278
+],
+"3735 Fairystone Park Hwy, Bassett": null,
+"3738 Brambleton Ave, Roanoke": [
+-80.00487,
+37.23523
+],
+"3740 Blenheim Blvd, Fairfax": null,
+"3751 John Tyler Hwy, Williamsburg": [
+-76.78943,
+37.25433
+],
+"3752 Linville Edom Rd, Linville": [
+-78.85156,
+38.52306
+],
+"3753 Green Bay Rd, Green Bay": [
+-78.33317,
+37.1797
+],
+"3756 Garden Creek Rd, Rowe": [
+-82.03083,
+37.13506
+],
+"377 Dennis Riddle Drive, Rustburg": [
+-79.18657,
+37.25155
+],
+"379 Woodland Rd, Hampton": [
+-76.32235,
+37.04591
+],
+"3799 Waterway Dr, Dumfries": [
+-77.33742,
+38.61151
+],
+"38 Emmanuel Church Rd, Mount Solon": [
+-79.09016,
+38.36067
+],
+"3800 Cougar Trail, Chester": [
+-77.42921,
+37.30168
+],
+"3800 Van Buren Drive, Virginia Beach": [
+-76.10236,
+36.82289
+],
+"3801 Turnpike Road, Portsmouth": null,
+"3810 Meredith Dr, Fairfax": [
+-77.31719,
+38.85585
+],
+"3815 Marquis Pl, Woodbridge": [
+-77.32897,
+38.68905
+],
+"38174 W Colonial Hwy, Purcellville": null,
+"3820 Stoneshore Road,, Virginia Beach": [
+-76.09964,
+36.80567
+],
+"3829 N Stafford St, Arlington": [
+-77.12409,
+38.92295
+],
+"3830 Seminary Road, Alexandria": [
+-77.0956,
+38.8209
+],
+"3837 US Hwy 29, Danville": [
+-79.37522,
+36.66239
+],
+"3838 Overdale Rd, Roanoke": [
+-79.98931,
+37.23093
+],
+"3867 Swords Creek Rd, Swords Creek": [
+-81.91959,
+37.04063
+],
+"3868 Antioch Church Rd, Sandston": [
+-77.24684,
+37.51077
+],
+"387 Church St, Mathews": [
+-76.32628,
+37.43543
+],
+"3880 Tom Fork Rd, Ringgold": [
+-79.30535,
+36.58553
+],
+"3887 Jopling Rd, Bedford": [
+-79.53217,
+37.41481
+],
+"389 Elk Dr, Charlottesville": [
+-78.44864,
+38.03909
+],
+"3893 Stony Point Rd, Keswick": [
+-78.36862,
+38.11224
+],
+"3901 Bridge Road, Suffolk": [
+-76.45337,
+36.86243
+],
+"3901 Red Hill School Rd, North Garden": [
+-78.63693,
+37.96501
+],
+"3909 Austin Ave, Henrico": [
+-77.40149,
+37.58122
+],
+"3910 Longdale Furnace Rd, Clifton Forge": [
+-79.74537,
+37.81785
+],
+"3917 Daugherty Rd, Salem": [
+-80.1314,
+37.27896
+],
+"3927 Bridge Road, Suffolk": [
+-76.4494,
+36.86263
+],
+"3928 Pacific Ave, Virginia Beach": [
+-75.98153,
+36.86713
+],
+"39325 Little River Tpke, Aldie": null,
+"394 North Farnham Church Road, Farnham": [
+-76.62497,
+37.88391
+],
+"396 Newtown Rd, Saint Stephens Church": null,
+"3961 Salem Lakes Blvd, Virginia Beach": [
+-76.11926,
+36.77414
+],
+"3980 Jacks Shop Rd, Rochelle": null,
+"40 Tide Mill Ln, Hampton": [
+-76.37467,
+37.05551
+],
+"400 Bank Street, Suffolk": [
+-76.57789,
+36.72843
+],
+"400 Lorraine Ave, Fredericksburg": [
+-77.48566,
+38.25691
+],
+"400 Mountain View Drive, Harrisonburg": [
+-78.86228,
+38.44287
+],
+"400 Rich Acres School Rd, Martinsville": [
+-79.87778,
+36.63724
+],
+"400 S Mesa Dr, Hopewell": [
+-77.31352,
+37.28869
+],
+"400 W Laurel Ave, Sterling": [
+-77.39921,
+39.01342
+],
+"400 Ward Rd, Martinsville": [
+-79.80885,
+36.69937
+],
+"400 Westhill Rd, Hopewell": [
+-77.31685,
+37.28876
+],
+"4000 Cougar Trail, Chester": [
+-77.43237,
+37.29992
+],
+"4001 Brick Bat Rd, Williamsburg": [
+-76.81847,
+37.27421
+],
+"4001 New Kent Hwy, Quinton": [
+-77.1534,
+37.53144
+],
+"401 Charter Colony Parkway, Midlothian": [
+-77.66196,
+37.49691
+],
+"401 Charter Colony Pkwy, Midlothian": [
+-77.66196,
+37.49691
+],
+"401 Commerce Avenue, Iron Gate": [
+-79.79215,
+37.80029
+],
+"401 N Boundary St, Williamsburg": [
+-76.70769,
+37.27503
+],
+"401 Taswell Ave, Colonial Heights": [
+-77.41554,
+37.26693
+],
+"4011 Iva Ln, Fairfax": [
+-77.24755,
+38.83668
+],
+"4014 Helen Henderson Hwy, Davenport": null,
+"4015 Fielding St, Alexandria": [
+-77.10023,
+38.7436
+],
+"4015 Fielding Street, Alexandria": [
+-77.10023,
+38.7436
+],
+"4021 Prices Fork Road,, Blacksburg": [
+-80.48463,
+37.21165
+],
+"4028 Bunch Walnuts Rd, Chesapeake": [
+-76.28553,
+36.5875
+],
+"403 Broad St, South Boston": [
+-78.89989,
+36.6979
+],
+"403 Grafton Drive, Yorktown": [
+-76.4686,
+37.16523
+],
+"403 Harding St, Emporia": [
+-77.55258,
+36.68072
+],
+"404 Viking St, Portsmouth": [
+-76.3609,
+36.79997
+],
+"4048 Zulla Rd, Marshall": null,
+"405 Straightstone Road, Gretna": [
+-79.19203,
+36.97401
+],
+"405 Tanyard Rd, Rocky Mount": [
+-79.88233,
+37.00209
+],
+"4051 River Shore Rd, Portsmouth": [
+-76.38165,
+36.8792
+],
+"406 14th Street NW, Charlottesville": [
+-78.4973,
+38.03827
+],
+"4060 Prince William Pkwy, Woodbridge": [
+-77.3358,
+38.67176
+],
+"4070 Liberty Rd, Nathalie": [
+-78.97322,
+36.88965
+],
+"408 Canal St, Fredericksburg": [
+-77.46536,
+38.30844
+],
+"4081 Flat Rock Rd., Alberta": [
+-77.87929,
+36.90591
+],
+"409 First Colonial Rd, Virginia Beach": [
+-76.02116,
+36.8434
+],
+"409 South Main Street, Harrisonburg": [
+-78.86975,
+38.44557
+],
+"40915 Braddock Rd, Aldie": [
+-77.58851,
+38.92929
+],
+"4095 Ironbound Road, Williamsburg": [
+-76.74348,
+37.27318
+],
+"4096 Zulla Rd, Marshall": null,
+"410 Lakeside Dr, Yorktown": [
+-76.45461,
+37.14895
+],
+"410 N. Broad Street, Suffolk": [
+-76.59216,
+36.73603
+],
+"410 Tazewell Ave, Cape Charles": [
+-76.01618,
+37.269
+],
+"4100 W Grace St, Richmond": [
+-77.48583,
+37.57064
+],
+"41025 Collaboration Dr., Aldie": null,
+"411 Commerce Rd, Richmond": [
+-77.4377,
+37.51934
+],
+"411 Mud RD, Madison": [
+-78.25559,
+38.38403
+],
+"41135 Collaboration Dr., Aldie": null,
+"4115 Spring Grove Avenue, Claremont": [
+-76.96638,
+37.22679
+],
+"4116 Braddock Rd, Alexandria": [
+-77.15189,
+38.83483
+],
+"41221 Green Cove Rd, Damascus": [
+-81.64392,
+36.61904
+],
+"4130 Indian Valley Rd NW, Radford": [
+-80.5396,
+36.91558
+],
+"4130 Waterlick Road, Forest": [
+-79.26078,
+37.33357
+],
+"4135 Old Buckingham Road, Powhatan": [
+-77.93909,
+37.55164
+],
+"4136 Dam Neck Rd., Virginia Beach": [
+-76.10551,
+36.76433
+],
+"414 Jarratt Ave, Jarratt": [
+-77.47416,
+36.81818
+],
+"414 Moose Park Road, Covington": [
+-80.03069,
+37.80786
+],
+"414 N Fillmore St, Arlington": [
+-77.09178,
+38.87894
+],
+"414 N Thompson St, Richmond": [
+-77.48525,
+37.56173
+],
+"414 Tyler St, Crewe": null,
+"415 Dry Mill Rd SW, Leesburg": null,
+"415 S Providence Rd, North Chesterfield": [
+-77.54708,
+37.49189
+],
+"41534 Sacred Mountain St, Aldie": null,
+"41740 Tall Cedars Pkwy, Aldie": [
+-77.54477,
+38.93306
+],
+"4180 O\u2019Hare DR, Virginia Beach": [
+-76.12168,
+36.79722
+],
+"419 King St, Port Royal": [
+-77.19191,
+38.16941
+],
+"4199 Craig Valley Dr, New Castle": [
+-80.13072,
+37.43455
+],
+"42 Waterfall Rd, Chester Gap": [
+-78.1359,
+38.85108
+],
+"420 College View Dr, Bridgewater": [
+-78.96335,
+38.37763
+],
+"420 Woodland Dr, Stuart": null,
+"4200 Dover Rd, Richmond": [
+-77.49827,
+37.55572
+],
+"4200 Lees Corner Rd, Chantilly": [
+-77.4183,
+38.88193
+],
+"4200 Marshall Ave, Newport News": [
+-76.42237,
+36.9945
+],
+"4200 S Four Mile Run Dr, Arlington": [
+-77.10147,
+38.85076
+],
+"4201 Hawksley Dr, Chesapeake": null,
+"4201 Leda Grove Rd, Nathalie": [
+-79.10224,
+36.87314
+],
+"4201 Stringfellow Road, Chantilly": [
+-77.40856,
+38.87971
+],
+"4205 Victoria Blvd, Hampton": [
+-76.35174,
+37.02005
+],
+"4207 Victoria Blvd, Hampton": [
+-76.3516,
+37.02005
+],
+"421 Thalia Rd, Virginia Beach": [
+-76.12086,
+36.84715
+],
+"42149 Greenstone Dr, Stone Ridge": [
+-77.54568,
+38.92633
+],
+"42190 Seven Hills Drive, Aldie": [
+-77.54315,
+38.89899
+],
+"4220 Free Union RD, Free Union": null,
+"4224 University Dr, King George": null,
+"4225 Ketcham Dr, Chesterfield": [
+-77.52963,
+37.45135
+],
+"4225 Old Brook Rd, Richmond": [
+-77.44737,
+37.59313
+],
+"423 Shell RD, Chesapeake": [
+-76.34369,
+36.7523
+],
+"42361 Lucketts Road, Leesburg": [
+-77.53271,
+39.21633
+],
+"42380 Creighton Rd, Ashburn": [
+-77.54196,
+38.97644
+],
+"425 S. Buckmarsh St., Berryville": [
+-77.9894,
+39.14145
+],
+"425 W Hawthorne St, Covington": null,
+"42560 Black Angus Dr, Ashburn": null,
+"4260 Pughsville Rd., Suffolk": [
+-76.44369,
+36.84265
+],
+"427 Meadow Branch Ave., Winchester": [
+-78.191,
+39.18659
+],
+"4271 Rockhill Road, Mechanicsville": [
+-77.24949,
+37.58509
+],
+"4275 Middle Rd, Winchester": [
+-78.23866,
+39.1263
+],
+"428 North Arthur Ashe Boulevard, Richmond": null,
+"42819 Center Street, South Riding": [
+-77.52201,
+38.91442
+],
+"4283 Wilderness Road, Bland": [
+-80.96389,
+37.18693
+],
+"42901 Waxpool Rd, Broadlands": [
+-77.51905,
+39.01601
+],
+"42940 Ridgeway Dr, Ashburn": [
+-77.51789,
+39.01138
+],
+"43 Post Office Rd, Lebanon Church": [
+-78.36761,
+39.05573
+],
+"430 E Shirley Ave, Warrenton": [
+-77.78981,
+38.70069
+],
+"43000 Ellzey Dr, Broadlands": [
+-77.51461,
+39.0203
+],
+"4301 Cedar Lane, Portsmouth": [
+-76.37484,
+36.88144
+],
+"4301 Fort McHenry Pkwy, Glen Allen": [
+-77.56712,
+37.65666
+],
+"4301 Meadowdale Boulevard, North Chesterfield": [
+-77.47473,
+37.438
+],
+"4302 North Fork Rd, Elliston": [
+-80.26788,
+37.23848
+],
+"43055 Center Street, South Riding": [
+-77.51382,
+38.91377
+],
+"43100 Ashburn Farm Pkwy, Ashburn": [
+-77.5129,
+39.0363
+],
+"43100 Hay Rd, Ashburn": [
+-77.51227,
+39.04633
+],
+"43131 Lake Ridge Place, Leesburg": [
+-77.50887,
+39.11005
+],
+"4314 Crutchfield St, Richmond": [
+-77.48611,
+37.51078
+],
+"4316 Bruce Rd, Chesapeake": [
+-76.41242,
+36.84513
+],
+"4316 Pamela Court, Chesapeake": [
+-76.42336,
+36.80394
+],
+"4320 Bruce Rd, Chesapeake": [
+-76.41283,
+36.84521
+],
+"4321 Virginia Beach Boulevard, Virginia Beach": [
+-76.12215,
+36.84319
+],
+"4330 Morningside Dr, Lynchburg": [
+-79.21127,
+37.43788
+],
+"43330 Loudoun Reserve Dr, Ashburn": [
+-77.50428,
+38.97654
+],
+"43335 Gloucester Pkwy, Ashburn": null,
+"43345 Coton Commons Dr, Leesburg": [
+-77.50224,
+39.08536
+],
+"434 Blue Grass Trl, Newport": [
+-80.49244,
+37.29859
+],
+"43460 Loudoun Reserve Dr, Ashburn": [
+-77.50385,
+38.97645
+],
+"43464 Hyland Hills St, South Riding": [
+-77.49918,
+38.89768
+],
+"435 Ferdinand Day Dr, Alexandria": [
+-77.12597,
+38.8052
+],
+"4350 Gate City Hwy, Bristol": [
+-82.27198,
+36.63261
+],
+"436 Calhoun Street, Richmond": [
+-77.44061,
+37.55377
+],
+"43700 Tolamac Dr, Ashburn": [
+-77.49019,
+39.0375
+],
+"4375 School Lane, Tangier": null,
+"4380 Academy St, Draper": [
+-80.74593,
+37.00529
+],
+"4392 Virginia Beach Blvd, Virginia Beach": [
+-76.12631,
+36.84358
+],
+"440 E Witt Rd, Blairs": [
+-79.37306,
+36.68781
+],
+"440 S Nursery Ave, Purcellville": [
+-77.71909,
+39.13132
+],
+"4400 Beulah Rd, North Chesterfield": [
+-77.47412,
+37.42251
+],
+"4400 Stringfellow Rd, Chantilly": [
+-77.40862,
+38.87542
+],
+"4401 Forest Hill Ave, Richmond": null,
+"44020 Grace Bridge Dr, Ashburn": [
+-77.48124,
+39.01869
+],
+"44045 Bruceton Mills Cir, Ashburn": [
+-77.47831,
+39.03684
+],
+"44062 Fincastle Dr, Ashburn": [
+-77.4763,
+39.05067
+],
+"441 S. Battlefield Blvd., Chesapeake": [
+-76.23649,
+36.70772
+],
+"4414 Holborn Ave, Annandale": [
+-77.23487,
+38.82733
+],
+"4416 Broad Run Church Rd, Warrenton": [
+-77.69462,
+38.75974
+],
+"442 Westhampton Way, Richmond": [
+-77.54526,
+37.57511
+],
+"4422 Antioch Rd Corner of Rolling Rd S & Antioch Rd, Scottsville": [
+-78.42041,
+37.84666
+],
+"4424 Fort Chiswell Road, Austinville": [
+-80.864,
+36.86293
+],
+"44281 Gloucester Pkwy, Ashburn": [
+-77.47144,
+39.03786
+],
+"443 Conrad St, New Castle": null,
+"443 W. Washington Street, Suffolk": [
+-76.58952,
+36.72961
+],
+"4431 Big Bethel Rd, Yorktown": [
+-76.4325,
+37.12246
+],
+"4435 N Pershing Dr, Arlington": [
+-77.11039,
+38.8702
+],
+"4437 Portsmouth Blvd., Chesapeake": [
+-76.42263,
+36.82141
+],
+"444 Halifax Street, Petersburg": [
+-77.40708,
+37.22036
+],
+"4441 George Mason Blvd, Fairfax": [
+-77.30836,
+38.83485
+],
+"4460 Longhill Rd, Williamsburg": [
+-76.76401,
+37.31443
+],
+"44734 Audubon Sq, Ashburn": [
+-77.45331,
+39.03249
+],
+"4480 Anderson Hwy, Powhatan": [
+-77.96184,
+37.56236
+],
+"4481 3 Square Rd, Goochland": [
+-77.99636,
+37.67024
+],
+"4484 Catlett Rd, Midland": [
+-77.68927,
+38.62316
+],
+"449 Training Center Rd, Hillsville": [
+-80.79585,
+36.74345
+],
+"4491 Old Pike Rd, Pilot": [
+-80.35586,
+37.04981
+],
+"45 Campbell Hill Rd, Prospect": [
+-78.55985,
+37.30268
+],
+"45 School Street, Surry": [
+-76.83485,
+37.13387
+],
+"4500 Dixie Hill Road, Fairfax": [
+-77.36144,
+38.84991
+],
+"4500 First Court Rd, Virginia Beach": [
+-76.12484,
+36.89842
+],
+"4500 Millridge Pkwy, Midlothian": [
+-77.64637,
+37.42307
 ],
 "4500 West Ox Road, FAIRFAX": [
 -77.37176,
@@ -55,15 +6015,1538 @@
 -77.37176,
 38.85647
 ],
+"4501 Jackson Road, Fredericksburg": [
+-77.53145,
+38.28416
+],
+"451 Chicago Ave, Harrisonburg": [
+-78.87348,
+38.45493
+],
+"4511 Olley Lane, Fairfax": [
+-77.26779,
+38.82454
+],
+"4515 Delray Street NW, Roanoke": [
+-79.95348,
+37.31287
+],
+"4529 Morrisville Rd, Morrisville": [
+-77.70211,
+38.50356
+],
+"4537 Little John Dr, Norfolk": [
+-76.23822,
+36.87819
+],
+"454 Lloyds Road, Champlain": null,
+"45425 Winding Road, Sterling": [
+-77.4277,
+39.04649
+],
+"4543 Dorchester Rd, Norton": [
+-82.64776,
+36.93299
+],
+"4549 Malus Dr, Salem": [
+-80.13965,
+37.27995
+],
+"4555 Malus Dr, Salem": [
+-80.13972,
+37.28003
+],
+"4556 Indian River Rd, Virginia Beach": [
+-76.14973,
+36.76627
+],
+"4561 John Marshall Hwy, Linden": null,
+"457 Ruritan Run Rd, Gate City": [
+-82.57491,
+36.6715
+],
+"46 Boxwood Dr, Arvonia": [
+-78.34231,
+37.68088
+],
+"4602 Cary Street Rd, Richmond": [
+-77.50312,
+37.56291
+],
+"4603 Green Spring Rd, Alexandria": [
+-77.15787,
+38.82425
+],
+"4608 South Blvd, Virginia Beach": [
+-76.135,
+36.83236
+],
+"461 Godwin St, Portsmouth": [
+-76.31531,
+36.83534
+],
+"46105 Loudoun Park Lane, Sterling": [
+-77.40604,
+39.01251
+],
+"4611 Sadler Rd, Glen Allen": [
+-77.58652,
+37.66125
+],
+"4615 Opportunity Way, Williamsburg": [
+-76.75816,
+37.33713
+],
+"4622 Jericho Rd, Virginia Beach": null,
+"46240 Algonkian Pkwy, Sterling": [
+-77.39861,
+39.05156
+],
+"46245 Forest Ridge Dr, Sterling": null,
+"4626 Taylor Rd, Chesapeake": null,
+"4630 Stonecroft Blvd, Chantilly": null,
+"4633 Honeygrove Road, Virginia Beach": [
+-76.13442,
+36.87136
+],
+"46400 Algonkian Pkwy, Sterling": [
+-77.39365,
+39.04997
+],
+"46465 Esterbrook Cir, Sterling": [
+-77.39515,
+39.03863
+],
+"465 W 15th St, Front Royal": [
+-78.20425,
+38.93576
+],
+"465 W 15th St. Suite 500, Front Royal": [
+-78.20425,
+38.93576
+],
+"4651 N Frederick Pike, Winchester": [
+-78.24818,
+39.27145
+],
+"4653 Taney Ave, Alexandria": [
+-77.11195,
+38.81626
+],
+"46665 Broadmore Dr, Sterling": [
+-77.38502,
+39.04588
+],
+"4670 Waverly Farm Drive, Haymarket": [
+-77.64482,
+38.85822
+],
+"46727 Wilderness Rd, Duffield": [
+-82.90954,
+36.71007
+],
+"4689 Lillards Ford Rd, Brightwood": [
+-78.19906,
+38.41809
+],
+"4696 Princess Anne Rd, Virginia Beach": [
+-76.14276,
+36.81403
+],
+"4701 Pouncey Tract Rd, Glen Allen": [
+-77.61357,
+37.66625
+],
+"4709 Orange Rd, Radiant": null,
+"471 Aylor Rd, Stephens City": [
+-78.19875,
+39.09399
+],
+"471 White Oak Rd, White Post": [
+-78.17063,
+39.08444
+],
+"4711 Ararat Hwy, Ararat": [
+-80.51553,
+36.59541
+],
+"4712 Rippling Pond Dr, Fairfax": [
+-77.40471,
+38.8625
+],
+"4713 Haygood Rd, Virginia Beach": [
+-76.14039,
+36.87292
+],
+"4722 Jericho Rd, Virginia Beach": null,
+"4724 Hopkins Rd, Chesterfield": [
+-77.46869,
+37.45858
+],
+"4736 Ottobine Rd, Dayton": [
+-78.98618,
+38.40827
+],
+"474 Linda Lane, Harrisonburg": [
+-78.83829,
+38.44123
+],
+"4764 York River Road, Shacklefords": null,
+"4780 First Court Rd, Virginia Beach": [
+-76.13641,
+36.89832
+],
+"4780 Hopkins Rd, Richmond": [
+-77.46881,
+37.45725
+],
+"480 Colony Rd, Newport News": [
+-76.54395,
+37.11083
+],
+"4801 Drakes Main St, Drakes Branch": [
+-78.60187,
+36.99341
+],
+"4801 Main Street, Drakes Branch": [
+-78.60187,
+36.99341
+],
+"4801 Twin Hickory Rd, Glen Allen": [
+-77.60262,
+37.67341
+],
+"4804 Johnson Creek Rd, Covington": [
+-80.08226,
+37.83536
+],
+"4808 Haygood Road,, Virginia Beach": [
+-76.14321,
+36.87194
+],
+"4810 Portsmouth Blvd, Portsmouth": [
+-76.36924,
+36.81781
+],
+"4810 Three Chopt, Louisa": [
+-77.99751,
+37.84443
+],
+"4812 Mount Cross Rd, Danville": [
+-79.47874,
+36.63791
+],
+"4819 Monument Ave, Richmond": [
+-77.49688,
+37.57563
+],
+"4832 Haygood Road, Virginia Beach": [
+-76.14494,
+36.87123
+],
+"4845 Cloverdale Rd, Roanoke": [
+-79.87164,
+37.32725
+],
+"4850 Mark Center Drive, Alexandria": [
+-77.1163,
+38.83044
+],
+"4858 Lead Mine Rd, Hiwassee": [
+-80.59325,
+37.02357
+],
+"4860 Dry Fork Rd, Dry Fork": [
+-79.46321,
+36.7465
+],
+"4880 Brambleton Ave, Roanoke": [
+-80.01892,
+37.2151
+],
+"4897 Longhill Rd, Williamsburg": [
+-76.75083,
+37.30279
+],
+"49 Hornet Rd, Fishersville": null,
+"49 S. Loudoun Street, Lovettsville": [
+-77.64002,
+39.26754
+],
+"490 Evergreen Mill Rd SE, Leesburg": [
+-77.5713,
+39.08997
+],
+"4900 Caroline Avenue, Portsmouth": [
+-76.35606,
+36.83256
+],
+"4900 Skippers Rd, Skippers": [
+-77.55099,
+36.61697
+],
+"4901 Bennetts Pasture Rd, Suffolk": null,
+"4901 Cogbill Road, North Chesterfield": [
+-77.48293,
+37.43693
+],
+"4901 Dale Boulevard, Woodbridge": [
+-77.35282,
+38.66021
+],
+"4902 Hidden Valley School Rd, Roanoke": [
+-80.02855,
+37.25456
+],
+"4909 Francistown Rd, Glen Allen": [
+-77.54517,
+37.65836
+],
+"491 Evergreen Mill Rd SE, Leesburg": [
+-77.57147,
+39.08987
+],
+"4910 Willet Dr, Annandale": [
+-77.25076,
+38.82148
+],
+"4915 East Campus Drive, Alexandria": null,
+"4920 Tallowwood Dr, Dumfries": [
+-77.35708,
+38.62508
+],
+"4930 Pipers Gap Rd, Galax": [
+-80.8371,
+36.64284
+],
+"4934 High Street West, Portsmouth": [
+-76.37803,
+36.85123
+],
+"4940 Mountain Valley Rd, Warm Springs": [
+-79.88765,
+38.09544
+],
+"4968 Providence Rd, Virginia Beach": [
+-76.15441,
+36.80918
+],
+"497 Robinson Ferry Road, Ebony": [
+-77.99062,
+36.58178
+],
+"4975 Alliance Drive, Fairfax": [
+-77.37448,
+38.8483
+],
+"50 Honaker Elementary Rd, Honaker": null,
+"50 Indian Trail Road (22846), Rockingham": [
+-78.80929,
+38.39359
+],
+"50 Maple Avenue, Newport News": [
+-76.39134,
+36.98883
+],
+"50 Stokes Airport Rd, Front Royal": [
+-78.24625,
+38.9168
+],
+"50 Wood Dr, Stafford": [
+-77.48784,
+38.43952
+],
+"500 Conduit Rd, Colonial Heights": [
+-77.39956,
+37.24581
+],
+"500 E Frederick Dr, Sterling": [
+-77.3844,
+39.01388
+],
+"500 Jamestown Rd, Williamsburg": null,
+"500 Meriwether Ave, Henrico": [
+-77.43194,
+37.59488
+],
+"500 Osborne Street, Keysville": null,
+"5000 Fairbanks Ave., Alexandria": [
+-77.11602,
+38.83684
+],
+"5000 Polk Ave, Alexandria": [
+-77.11531,
+38.822
+],
+"5000 Titan Trl, Roanoke": null,
+"5004 Sideburn Rd, Fairfax": [
+-77.30885,
+38.81876
+],
+"5005 Duke Street, Alexandria": [
+-77.11731,
+38.81196
+],
+"5005 Grandin Road Ext, Roanoke": [
+-80.03258,
+37.24667
+],
+"501 Blount Point Rd, Newport News": null,
+"501 Cambridge St, Fredericksburg": [
+-77.45846,
+38.34587
+],
+"501 Coalfield Rd, Midlothian": [
+-77.65362,
+37.49519
+],
+"501 Tavistock Dr SE, Leesburg": [
+-77.54755,
+39.09093
+],
+"502 Doswell St, Farmville": [
+-78.38131,
+37.30302
+],
+"5024 Maury River Rd, Rockbridge Baths": [
+-79.41436,
+37.90471
+],
+"5025 Shell Rd, Virginia Beach": [
+-76.14917,
+36.89491
+],
+"503 Deacon Rd, Fredericksburg": [
+-77.42367,
+38.32965
+],
+"503 Indian Creek Rd, Cedar Bluff": [
+-81.75249,
+37.09026
+],
+"5035 Sideburn Rd, Fairfax": [
+-77.30862,
+38.81613
+],
+"505 E 5Th Street South, Big Stone Gap": [
+-82.77108,
+36.86294
+],
+"505 Edgemont Rd, Charlottesville": [
+-78.51722,
+38.03506
+],
+"5050 Ridgedale Parkway, North Chesterfield": [
+-77.49201,
+37.44881
+],
+"5051 Northampton Street, Richmond": [
+-77.40492,
+37.51536
+],
+"5052 Cross County Road, Mineral": [
+-77.88309,
+37.81993
+],
+"5068 Nickelsville Hwy, Gate City": [
+-82.48586,
+36.69067
+],
+"507 Miller Street, ": [
+-78.19356,
+37.18677
+],
+"507 Miller Street, Burkeville": [
+-78.19356,
+37.18677
+],
+"5075 Floyd Hwy S, Willis": [
+-80.46639,
+36.86431
+],
+"5077 John Tyler Hwy, Williamsburg": [
+-76.74484,
+37.25744
+],
+"5078 A. L. Philpott Highway, Martinsville": [
+-79.77231,
+36.67788
+],
+"508 Centerville Turnpike N, Chesapeake": [
+-76.18545,
+36.73605
+],
+"508 Harris Road, Charlottesville": [
+-78.50347,
+38.01498
+],
+"5083 Mt Pleasant Rd, Meherrin": [
+-78.44027,
+37.14
+],
+"509 East Main Street, Louisa": [
+-77.99119,
+38.01973
+],
+"509 George Washington Hwy N, Chesapeake": [
+-76.34512,
+36.75505
+],
+"509 Prospect Road, Hurt": [
+-79.29703,
+37.09053
+],
+"5094 Battlefield Rd, Harrisonburg": [
+-78.84123,
+38.35782
+],
+"51 Gibbons Avenue, Petersburg": [
+-77.37251,
+37.23475
+],
+"51 Ivy Ridge Ln, Fishersville": [
+-78.99393,
+38.07526
+],
+"510 Principal Drummond Way, SE, Leesburg": [
+-77.55383,
+39.10677
+],
+"510 West Third St, Farmville": [
+-78.398,
+37.30435
+],
+"5100 John Tyler Mem Highway, Charles City": [
+-77.18023,
+37.33437
+],
+"511 E 5th Ave, Kenbridge": [
+-78.11814,
+36.95987
+],
+"5113 Hopewell Road, New Kent": [
+-77.12974,
+37.58726
+],
+"5121 Nine Mile Rd, Henrico": [
+-77.36153,
+37.54729
+],
+"513 S Main St, Emporia": [
+-77.54463,
+36.68233
+],
+"5146 Snead Rd, Richmond": [
+-77.48849,
+37.47605
+],
+"5149 Jessie Dupont Mem Hwy, Heathsville": [
+-76.37823,
+37.81427
+],
+"515 E Pine St, Covington": [
+-79.98546,
+37.7901
+],
+"515 N. Marshall St., Chase City": [
+-78.45813,
+36.8015
+],
+"5170 Mary Ball Rd, Lancaster": null,
+"5181 Singleton Way, Virginia Beach": [
+-76.16098,
+36.82689
+],
+"5198 T C Walker Rd, Gloucester": [
+-76.51321,
+37.36498
+],
+"520 12th St S, Arlington": [
+-77.05458,
+38.86292
+],
+"520 Evergreen Mill Road, SE, Leesburg": [
+-77.57153,
+39.0889
+],
+"520 Oaklette Dr, Chesapeake": [
+-76.23962,
+36.82263
+],
+"520 W Oak St, Covington": [
+-79.99208,
+37.7849
+],
+"5200 Ecoff Ave, Chester": [
+-77.46091,
+37.35911
+],
+"5200 Francistown Rd, Glen Allen": [
+-77.54296,
+37.66684
+],
+"5200 Grove Avenue (enter from Tuckahoe Boulevard), Richmond": [
+-77.51081,
+37.57095
+],
+"5200 Mountcastle Rd, Providence Forge": null,
+"5200 Yorktown Blvd, Arlington": [
+-77.13949,
+38.90352
+],
+"5205 Franklin Rd, Roanoke": [
+-79.95259,
+37.20482
+],
+"522 Woodland Rd, Hampton": [
+-76.31862,
+37.05672
+],
+"5225 Learning Circle,, Virginia Beach": [
+-76.15757,
+36.86395
+],
+"5230 Chicora Dr, North Chesterfield": [
+-77.48896,
+37.44625
+],
+"5230 Goodes Ferry Rd, South Hill": [
+-78.17822,
+36.67198
+],
+"5230 Old Stage Hwy, Smithfield": [
+-76.67746,
+37.06975
+],
+"5241 Henry Road, Henry": [
+-80.02612,
+36.84847
+],
+"525 Kempsville Rd, Chesapeake": [
+-76.22136,
+36.74435
+],
+"5251 Spotswood Trl, Barboursville": [
+-78.28608,
+38.17524
+],
+"5263 Warwick Rd, Richmond": [
+-77.49127,
+37.49427
+],
+"53 Baker Lane, Lovingston": null,
+"53 King Carter Dr, Irvington": [
+-76.42793,
+37.66318
+],
+"53 Rugby Road, Mouth Of Wilson": [
+-81.44505,
+36.62342
+],
+"53 Tye Pine Ave, Vesuvius": [
+-79.19658,
+37.90659
+],
+"530 S. St. Asaph St, Alexandria": [
+-77.04681,
+38.79998
+],
+"5300 Waverly Farm Dr, Haymarket": [
+-77.65399,
+38.84347
+],
+"5301 Longhill Rd, Williamsburg": [
+-76.73744,
+37.29823
+],
+"5301 Sully Station Dr, Centreville": [
+-77.45918,
+38.86668
+],
+"5308 Sudley Rd, Manassas": [
+-77.53775,
+38.84107
+],
+"531 Oak Hill Dr SE, Floyd": [
+-80.30991,
+36.91049
+],
+"5312 Backlick Rd, Springfield": [
+-77.1843,
+38.80571
+],
+"5323 Amonate Rd, Bandy": null,
+"5336 Carrsville Highway, Carrsville": [
+-76.83484,
+36.71344
+],
+"535 Winding Rd, Wytheville": [
+-81.11424,
+36.9061
+],
+"5350 Darbytown Rd, Henrico": [
+-77.25951,
+37.44625
+],
+"5394 Studley Rd., Mechanicsville": [
+-77.28666,
+37.67347
+],
+"54 Administration Ln, Buckingham": [
+-78.55195,
+37.55187
+],
+"54 Cherry Grove Rd, Middlebrook": [
+-79.21339,
+38.05041
+],
+"54 Main Street, Alberta": null,
+"54 S Kerr St., Hamilton": [
+-77.66179,
+39.13315
+],
+"540 Homestead Rd, Chespeake": [
+-76.41295,
+36.77792
+],
+"5400 Harrow Way, Springfield": [
+-77.241,
+38.80363
+],
+"5400 Middle Rd., Prince George": [
+-77.30776,
+37.24742
+],
+"5400 Parliament Drive, Virginia Beach": null,
+"5400 Willow Springs School Rd, Fairfax": [
+-77.37691,
+38.82722
+],
+"5401 Timber Bluff Pkwy, Midlothian": [
+-77.69104,
+37.42614
+],
+"5404 Hoadly Road, Manassas": [
+-77.36892,
+38.6762
+],
+"5407 Potts Creek Rd, Covington": [
+-80.09257,
+37.6882
+],
+"5411 Nutting Dr, Springfield": [
+-77.22423,
+38.80434
+],
+"5414 Nansemond Parkway, Suffolk": [
+-76.45963,
+36.81725
+],
+"5420 Sideburn Rd, Fairfax": [
+-77.30886,
+38.80456
+],
+"5428 Providence Road, Virginia Beach": [
+-76.17673,
+36.81547
+],
+"5437 Crumpacker Dr, Roanoke": [
+-79.88197,
+37.3295
+],
+"5439 Patrick Henry Highway, Roseland": [
+-79.00304,
+37.73721
+],
+"5450 Highway Forty Seven, Chase City": null,
+"5497 Providence Rd, Virginia Beach": [
+-76.18133,
+36.81479
+],
+"55 Ivy Farms Rd, Newport News": [
+-76.45381,
+37.05462
+],
+"55 Round Hill School Rd, Fort Defiance": [
+-78.90702,
+38.19456
+],
+"550 Alwington Blvd, Warrenton": null,
+"550 Courthouse Rd, Stafford": [
+-77.45076,
+38.43627
+],
+"550 Hillsdale Drive, Charlottesville": [
+-78.48007,
+38.07034
+],
+"550 Virginia Ave, Winchester": [
+-78.15341,
+39.18628
+],
+"5500 Ox Rd, Fairfax Station": [
+-77.32626,
+38.80949
+],
+"5500 Sully Park Dr, Centreville": [
+-77.45336,
+38.85854
+],
+"5501 Conduit Rd, Colonial Heights": [
+-77.37208,
+37.28069
+],
+"5501 Mechanicsville Tpke, Mechanicsville": null,
+"5511 Midway Rd, Church Road": [
+-77.6162,
+37.19744
+],
+"5518 Dunlap Creek Rd, Covington": [
+-80.15383,
+37.74775
+],
+"5518 Wildway Road, Appomattox": [
+-78.79586,
+37.47832
+],
+"5549 Susquehanna Dr, Virginia Beach": [
+-76.18426,
+36.83216
+],
+"555 Rock Rd. W, Radford": [
+-80.56525,
+37.11524
+],
+"555 School Board Rd, Rocky Mount": [
+-79.86464,
+37.01892
+],
+"555 W. Rock Road, Radford": [
+-80.56525,
+37.11524
+],
+"5562 Brushy Ridge Road, Nora": [
+-82.35219,
+36.99449
+],
+"5580 Shell Rd, Virginia Beach": [
+-76.17503,
+36.88763
+],
+"5581 Fair Grounds Circle, Dublin": null,
+"5599 Holley Oak Lane, Fredericksburg": [
+-77.5322,
+38.21433
+],
+"56 Bainbridge Rd, Fries": null,
+"56 George Ben Whited Dr, Lebanon": null,
+"56-B SMI Way, Farmville": null,
+"5600 Bethlehem Rd, Henrico": [
+-77.50455,
+37.60199
+],
+"5600 McLeod Way, Haymarket": [
+-77.62609,
+38.83621
+],
+"5601 Jahnke Rd, Richmond": [
+-77.5024,
+37.51853
+],
+"5601 Michael Ln, Portsmouth": [
+-76.3849,
+36.85898
+],
+"5607 Patriot Dr, Wise": null,
+"5649 Bayside Rd, Virginia Beach": [
+-76.17961,
+36.89602
+],
+"5650 Sanger Ave, Alexandria": [
+-77.13033,
+38.82734
+],
+"5651 Rayburn Ave, Alexandria": [
+-77.12631,
+38.83262
+],
+"5674 Sam Snead Hwy, Hot Springs": [
+-79.8491,
+37.97403
+],
+"5685 Herbert Moore Road,, Virginia Beach": [
+-76.18017,
+36.86882
+],
+"57 E Broad Way, Lovettsville": [
+-77.6344,
+39.27049
+],
+"57 Salina St, Hampton": [
+-76.35394,
+37.04875
+],
+"57 White House Road, Nelson": [
+-78.65616,
+36.57816
+],
+"570 Kempsville Rd, Virginia Beach": [
+-76.16139,
+36.82249
+],
+"5700 Hedgerow LN, Portsmouth": [
+-76.38354,
+36.88969
+],
+"5700 Woodlake Village Pkwy, Chesterfield": [
+-77.67298,
+37.4192
+],
+"5701 Roberts Parkway, Burke": [
+-77.30289,
+38.79582
+],
+"5705 S Lee Hwy, Natural Bridge": [
+-79.52993,
+37.64619
+],
+"5705 S. Lee HWY, Natural Bridge": [
+-79.52993,
+37.64619
+],
+"5720 Clermont Dr, Alexandria": [
+-77.11054,
+38.79601
+],
+"5720 Marshall Ave, Newport News": [
+-76.4274,
+37.00268
+],
+"5725 James Madison Hwy, Fork Union": [
+-78.25239,
+37.77319
+],
+"5729 Sandy Point Rd, Kinsale": [
+-76.62261,
+38.0434
+],
+"575 Union Hill Rd, Amherst": [
+-79.03636,
+37.56842
+],
+"5751 Liberty Dr, Alexandria": [
+-77.06992,
+38.7953
+],
+"5767 Sellger Drive, Norfolk": [
+-76.2076,
+36.83851
+],
+"5770 McCoy Rd, McCoy": null,
+"5770 McCoy Rd, Mccoy": null,
+"5775 Spindle Court, Centreville": [
+-77.42593,
+38.83755
+],
+"5783 Cumberland Gap Rd, Newport": [
+-80.37458,
+37.38063
+],
+"579 Chesapeake Dr, White Stone": [
+-76.38687,
+37.64666
+],
+"58 Cedar Green Rd, Staunton": [
+-79.12105,
+38.15023
+],
+"58 Potomac River Rd, Monterey": [
+-79.57877,
+38.41289
+],
+"5800 Washington Blvd, Arlington": [
+-77.13793,
+38.88339
+],
+"5801 Backlick Rd, Springfield": [
+-77.18656,
+38.79216
+],
+"5801 Franconia Road, Alexandria": [
+-77.13312,
+38.78402
+],
+"5815 Ox Rd, Fairfax Station": [
+-77.32527,
+38.7986
+],
+"582 Leesville Rd, Lynchburg": [
+-79.20702,
+37.35449
+],
+"5829 Glen Forest Dr, Falls Church": [
+-77.12969,
+38.85621
+],
+"5833 Poplar Hall Drive, Norfolk": [
+-76.20624,
+36.8488
+],
+"5842 N Lee Hwy, Fairfield": [
+-79.27977,
+37.88346
+],
+"587 County Bridge Road, Warsaw": null,
+"5870 Rockfish Gap Tpke, Crozet": [
+-78.70414,
+38.05113
+],
+"5885 N Lee Hwy, Fairfield": [
+-79.28178,
+37.88306
+],
+"5900 Little Falls Rd, Arlington": null,
+"5901 Cove Rd, Roanoke": [
+-80.0213,
+37.3196
+],
+"5901 Elko Rd, Henrico": [
+-77.23462,
+37.50074
+],
+"5901 Main St, Mount Jackson": null,
+"5901 Old Buckingham Road, Powhatan": [
+-78.06248,
+37.49786
+],
+"5901 Plantation Cir, Roanoke": [
+-79.9377,
+37.33433
+],
+"5903 Lee Hwy, Atkins": [
+-81.4176,
+36.8679
+],
+"5905 Mount Eagle Drive, Alexandria": [
+-77.06954,
+38.78928
+],
+"5910 West Norfolk Rd, Portsmouth": [
+-76.39514,
+36.86468
+],
+"5911 Fairview Woods Drive, Fairfax Station": [
+-77.3285,
+38.7972
+],
+"5916 Kentucky Springs Road, Mineral": [
+-77.78388,
+38.03543
+],
+"5920 Seminole Trail, Ruckersville": null,
+"5920 Summers Lane, Falls Church": [
+-77.1346,
+38.84301
+],
+"5920 Summers Ln, Falls Church": [
+-77.1346,
+38.84301
+],
+"5926 Brink Rd, Emporia": [
+-77.62845,
+36.62174
+],
+"5927 Westchester St, Alexandria": [
+-77.12576,
+38.79027
+],
+"593 Castleton View Rd, Castleton": [
+-78.10689,
+38.61273
+],
+"5935 Freds Oak Rd, Burke": [
+-77.31718,
+38.78862
+],
+"5935 Freds Oak Rd., Burke": [
+-77.31718,
+38.78862
+],
+"5941 Rockfish Gap Tpke, Crozet": [
+-78.70767,
+38.05052
+],
+"5950 8th Rd N, Arlington": [
+-77.13589,
+38.87347
+],
+"5969 Partlow Rd, Spotsylvania": [
+-77.61851,
+38.12102
+],
+"597 Jasper Wood Rd, Hurt": [
+-79.34916,
+37.06709
+],
+"5972 Union Level, Union Level": null,
+"5995 Plank Road, Fredericksburg": [
+-77.58195,
+38.29299
+],
+"6 Grannys Branch Rd, New Castle": [
+-80.28142,
+37.47583
+],
+"6 Minor St, Cleveland": [
+-82.1574,
+36.94181
+],
+"60 Ida Lee Drive, NW, Leesburg": [
+-77.56554,
+39.12386
+],
+"60 Susa Dr, Unit 117, Stafford": [
+-77.40254,
+38.45062
+],
+"600 25Th Street, Virginia Beach": [
+-75.98336,
+36.85215
+],
+"600 Concord Dr, Hampton": [
+-76.41403,
+37.04902
+],
+"600 Factory Street, Suffolk": [
+-76.57753,
+36.71709
+],
+"600 Park Avenue, Chesapeake": [
+-76.27968,
+36.81173
+],
+"600 Prices Fork Rd, Blacksburg": null,
+"600 Roosevelt Blvd, Portsmouth": [
+-76.35764,
+36.79282
+],
+"600 Russell Rd, Alexandria": [
+-77.06454,
+38.81275
+],
+"600 S Laburnum Ave, Henrico": [
+-77.36559,
+37.53715
+],
+"600 S Wayne Avenue, Waynesboro": [
+-78.89361,
+38.06216
+],
+"600 W Poplar Rd, Sterling": [
+-77.41774,
+39.00138
+],
+"600 W. Pleasant St, Highland Springs": [
+-77.34157,
+37.542
+],
+"6000 Burke Centre Pkwy, Burke": [
+-77.29933,
+38.78648
+],
+"6000 R B Pamplin Drive, Sutherland": [
+-77.54236,
+37.19383
+],
+"6001 Hickory Road, South Chesterfield": [
+-77.47275,
+37.25527
+],
+"6001 Union Mill Rd, Clifton": [
+-77.41286,
+38.82576
+],
+"6009 Blackwater Road, Virginia Beach": [
+-76.08305,
+36.58545
+],
+"601 Corvus Court, Chester": null,
+"601 Dogwood Ave, Grottoes": [
+-78.82714,
+38.2658
+],
+"601 Madison Rd, Culpeper": [
+-78.01306,
+38.45916
+],
+"601 North Mechanic Street, Franklin": [
+-76.92291,
+36.68045
+],
+"601 S Oak St, Falls Church": [
+-77.17889,
+38.89315
+],
+"601 South Main Street, Galax": [
+-80.92208,
+36.65604
+],
+"601 Sparrow Rd, Chesapeake": [
+-76.22777,
+36.8288
+],
+"601 W Broad St, Richmond": [
+-77.44752,
+37.54883
+],
+"601 West Broad Street, Richmond": [
+-77.44752,
+37.54883
+],
+"6010 Hanover Ave, Springfield": [
+-77.19457,
+38.78808
+],
+"6016 Providence Road,, Virginia Beach": [
+-76.20219,
+36.81278
+],
+"6023 Jahnke Rd, Richmond": [
+-77.5078,
+37.51979
+],
+"605 Clay St, Lynchburg": [
+-79.14722,
+37.41566
+],
+"605 Fourth Street, Martinsville": [
+-79.89135,
+36.68273
+],
+"605 W Market St, Leesburg": [
+-77.57866,
+39.11954
+],
+"606 N Irving St, Arlington": [
+-77.09652,
+38.88032
+],
+"606 W 29th St, Norfolk": [
+-76.29098,
+36.87561
+],
+"608 David Bruce Ave, Charlotte Court House": [
+-78.64581,
+37.05538
+],
+"6099 T C Walker Rd, Gloucester": [
+-76.50975,
+37.37856
+],
+"610 Gayle St RISING STAR EARLY CHILDHOOD CNTR, Fredericksburg": [
+-77.47384,
+38.33233
+],
+"610 May Avenue, Norfolk": [
+-76.27618,
+36.84772
+],
+"6100 Rolling Rd, Springfield": [
+-77.2396,
+38.78764
+],
+"6100 Stone Rd, Centreville": [
+-77.45552,
+38.83963
+],
 "6101 Knollwood Dr., Falls Church": null,
 "6101 Knollwood Drive, Falls Church": null,
+"6101 Stevenson Ave, Alexandria": [
+-77.13851,
+38.81303
+],
+"611 W 31st St, Richmond": [
+-77.46629,
+37.51852
+],
+"6111 Knollwood Dr, Falls Church": [
+-77.14533,
+38.85287
+],
+"6111 Knollwood Drive, Falls Church": [
+-77.14533,
+38.85287
+],
 "6116 N Kings Hwy, Alexandria": [
 -77.0779,
 38.78555
 ],
+"612 North Lynnhaven Road, Virginia Beach": [
+-76.06709,
+36.82865
+],
+"6130 Shiplett Blvd, Burke": [
+-77.27096,
+38.78426
+],
+"6131 Willston Dr, Falls Church": [
+-77.1485,
+38.87141
+],
+"614 Audubon Dr, Danville": [
+-79.40645,
+36.60429
+],
+"615 East Street, Blackstone": [
+-77.99477,
+37.07054
+],
+"6155 Community Dr, Chincoteague": [
+-75.36104,
+37.93672
+],
+"6160 Jefferson Ave, Newport News": [
+-76.44845,
+37.0259
+],
+"6176 Dumfries Rd, Warrenton": [
+-77.7612,
+38.73582
+],
+"6194 Dumfries Rd, Warrenton": [
+-77.76198,
+38.7361
+],
+"620 Airport Road, Tappahannock": null,
+"620 Simms Center, Harrisonburg": [
+-78.85894,
+38.45401
+],
+"621 Piney mountain Road, Wytheville": null,
+"621 Sheffey School Rd, Wytheville": null,
+"6211 Wilson Hwy, Independence": null,
+"6211 Zepp Rd, Maurertown": [
+-78.50619,
+39.00333
+],
+"623 Brook Ave, Suffolk": [
+-76.59397,
+36.72101
+],
+"6248 Catlett Rd, Bealeton": [
+-77.76177,
+38.5856
+],
+"625 S Wakefield St, Arlington": [
+-77.10876,
+38.86219
+],
+"6255 Old Warwick Rd, Richmond": [
+-77.51073,
+37.49982
+],
+"63 School Blvd, Stuarts Draft": null,
+"63 Stafford Indians Ln, Fredericksburg": [
+-77.46519,
+38.36411
+],
+"63 Winding Ridge Rd, Fancy Gap": [
+-80.69942,
+36.69102
+],
+"630 Dranesville Rd, Herndon": [
+-77.37811,
+38.97595
+],
+"6300 Harrison Rd, Fredericksburg": [
+-77.5514,
+38.2763
+],
+"6300 Hull Street Rd, Richmond": [
+-77.5106,
+37.4802
+],
+"6300 Hull Street, Richmond": [
+-77.5106,
+37.4802
+],
+"6300 Independence Ave, Bealeton": [
+-77.76622,
+38.59085
+],
+"6300 Jahnke Road, Richmond": [
+-77.51199,
+37.5208
+],
+"6300 Jahnke Road, richmond": [
+-77.51199,
+37.5208
+],
+"6301 Rose Hill Dr, Alexandria": null,
+"6301 Stevenson Ave, Alexandria": [
+-77.14081,
+38.81318
+],
+"6303 Merriman Rd, Roanoke": [
+-80.0036,
+37.2039
+],
+"6308 Catharpin Road, Gainesville": [
+-77.60259,
+38.82314
+],
+"6310 Bardu Ave, Springfield": [
+-77.22079,
+38.78095
+],
+"6325 Sewells Point Rd, Norfolk": [
+-76.2393,
+36.8943
+],
+"6328 Merriman Rd, Roanoke": [
+-80.00021,
+37.20355
+],
+"6339 Hurley Rd, Hurley": [
+-81.99996,
+37.37987
+],
+"6344 Beryl Rd, Alexandria": [
+-77.15762,
+38.80151
+],
+"635 Brook Avenue, Suffolk": [
+-76.59418,
+36.72101
+],
+"635 Manakin Rd, Manakin Sabot": [
+-77.70215,
+37.61196
+],
+"636 S Main St, Farmville": [
+-78.39465,
+37.29468
+],
+"6361 Main St, Gloucester": [
+-76.53331,
+37.41593
+],
+"637 North St, Portsmouth": [
+-76.30463,
+36.83824
+],
+"64 Bee Line Dr., Galax": [
+-80.87339,
+36.69582
+],
+"640 Battlefield Blvd S, Chesapeake": [
+-76.23515,
+36.70291
+],
+"6400 Old Centreville Rd, Centreville": [
+-77.44042,
+38.82497
+],
+"6402 Franconia Road, Springfield": [
+-77.15974,
+38.7795
+],
+"641 Carriage Hill Road, Virginia Beach": [
+-76.07599,
+36.8176
+],
+"645 Miles Rd, Collinsville": [
+-79.92167,
+36.71004
+],
+"6459 Troutdale Hwy., Troutdale": [
+-81.40565,
+36.65285
+],
+"6470 Main St, Gloucester": [
+-76.53117,
+37.41522
+],
+"648 North Coolwell Road, Amherst": null,
+"6482 Hampton Roads Parkway, Suffolk": [
+-76.42747,
+36.8769
+],
+"6484 Rockfish River Rd, Schuyler": [
+-78.70243,
+37.79129
+],
+"65  E. Church St, Kilmarnock": [
+-76.37826,
+37.7117
+],
+"65 Sugarland Run Dr, Sterling": [
+-77.383,
+39.03781
+],
+"650 Long Crescent Dr, Bristol": [
+-82.17872,
+36.61478
+],
+"650 Maskell St, Alexandria": [
+-77.05031,
+38.83082
+],
+"6500 Middle Rd, Prince George": [
+-77.28826,
+37.25781
+],
+"6500 Quander Rd, Alexandria": [
+-77.06978,
+38.77651
+],
+"6501 New Kent Hwy, Quinton": [
+-77.09887,
+37.53001
+],
+"6502 Creighton Rd., Mechanicsville": [
+-77.32295,
+37.58604
+],
+"6506 Boydton Plank Road, North Dinwiddie": [
+-77.4891,
+37.1823
+],
+"6507 Main St, The Plains": [
+-77.77641,
+38.86253
+],
+"6509 Sydenstricker Rd, Burke": [
+-77.26797,
+38.77575
+],
+"6512 Carsley Rd, Waverly": [
+-77.01741,
+37.10549
+],
+"652 Antioch Church Road, Clarksville": [
+-78.38323,
+36.54601
+],
 "6520 Diana Ln, Alexandria": [
 -77.10163,
 38.77487
+],
+"6520 Georgetown Pike, Mclean": [
+-77.16513,
+38.94815
+],
+"6525 Hampton Blvd, Norfolk": [
+-76.30373,
+36.90083
+],
+"6525 Montrose Street, Alexandria": [
+-77.16253,
+38.81628
+],
+"6530 Elder Ave, Springfield": [
+-77.16893,
+38.77539
 ],
 "6531 LITTLE OX ROAD, Fairfax Station": [
 -77.31944,
@@ -73,20 +7556,1714 @@
 -77.31944,
 38.77638
 ],
+"6533 Peters Creek Rd, Roanoke": null,
+"6535 Whitetop Rd, Troutdale": [
+-81.60551,
+36.67258
+],
+"6540 Columbia Pike, Falls Church": [
+-77.16744,
+38.8379
+],
+"6540 Franconia Rd, Springfield": [
+-77.16812,
+38.77799
+],
+"6550 26th St N, Arlington": [
+-77.15891,
+38.89386
+],
+"6560 Braddock Rd, Alexandria": [
+-77.1676,
+38.81713
+],
+"660 Ferrum School Road, Ferrum": [
+-80.03158,
+36.92201
+],
+"6600 Kemper Road, Wise": [
+-82.60202,
+36.99259
+],
+"6601 Smith Station Road, Spotsylvania": [
+-77.55193,
+38.22327
+],
+"6601 Telegraph Road, Alexandria": [
+-77.1093,
+38.77601
+],
+"6604 Plantation Road, Roanoke": [
+-79.94284,
+37.34031
+],
+"661 Park Ave, Danville": [
+-79.43824,
+36.58347
+],
+"6616 Haycock Rd, Falls Church": [
+-77.17274,
+38.90344
+],
+"662 Fernwood Farms Road, Chesapeake": [
+-76.27473,
+36.7484
+],
+"6624 Peters Creek Rd, Roanoke": [
+-79.96108,
+37.34507
+],
+"663 Duff Patt Hwy, Duffield": [
+-82.80337,
+36.71073
+],
+"6633 Brawner Street, Mclean": [
+-77.17324,
+38.93473
+],
+"6641 IronBridge Parkway, Chester": [
+-77.49364,
+37.35969
+],
+"6651 Willson Rd, Henrico": [
+-77.36793,
+37.48332
+],
+"6680 Short Ln, Gloucester": [
+-76.52316,
+37.38292
+],
+"6687 Fairystone Park Hwy, Stuart": [
+-80.14449,
+36.77303
+],
+"6700 Cedar Croft St, Henrico": [
+-77.47815,
+37.61352
+],
+"6700 E Tanners Creek Dr, Norfolk": [
+-76.22973,
+36.90137
+],
 "6701 Ft Hunt Rd, Alexandria": [
 -77.06225,
 38.77249
+],
+"6701 Respass Beach Road, Suffolk": [
+-76.4119,
+36.89001
+],
+"6703 Barnack Dr, Springfield": [
+-77.23186,
+38.76972
+],
+"671 Bell St, Hampton": [
+-76.37457,
+37.01757
+],
+"6722 St Rt 606, Keokee": [
+-82.97476,
+36.82906
+],
+"674 Hastings Ln, Warrenton": [
+-77.7979,
+38.733
 ],
 "6744 S. Kings Hwy, Alexandria": [
 -77.10095,
 38.77194
 ],
+"6746 Drill Rd, Honaker": null,
+"6758 Northside High School Rd, Roanoke": [
+-79.99904,
+37.32933
+],
+"680 Arnett Blvd, Danville": [
+-79.39881,
+36.61667
+],
+"680 Garbers Church Rd., Harrisonburg": [
+-78.90608,
+38.44748
+],
+"6800 Columbia Pike, Annandale": [
+-77.17925,
+38.83601
+],
+"6800 Staples Mill Rd, Henrico": [
+-77.49642,
+37.61035
+],
+"6801 Union Mill Rd., Clifton": [
+-77.41996,
+38.80451
+],
+"6802 Deland Dr, Springfield": [
+-77.21912,
+38.77035
+],
+"6807 Northumberland Hwy, Heathsville": [
+-76.47317,
+37.91883
+],
+"6810 Floyd Hwy N, Copper Hill": [
+-80.16511,
+37.03523
+],
+"682 Weyers Cave Rd, Weyers Cave": [
+-78.90738,
+38.28299
+],
+"6820 Cedar Springs Road, Speedwell": null,
+"6820 Sydenstricker Rd, Springfield": [
+-77.25694,
+38.76782
+],
+"6825 Skipwith Rd, Skipwith": [
+-78.49535,
+36.70567
+],
+"6829 Fredericks Hall Rd, Mineral": [
+-77.85026,
+37.99879
+],
+"683 Oak St, Franklin": [
+-76.92524,
+36.66621
+],
+"685 Main Street, Bland": [
+-81.11409,
+37.0995
+],
+"6900 Harrison Lane, Alexandria": [
+-77.09396,
+38.76875
+],
+"6900 Wilkinson Rd, Henrico": null,
+"6901 Arthur Hills Dr, Gainesville": [
+-77.60059,
+38.80801
+],
+"6901 Messer Rd, Henrico": [
+-77.37388,
+37.47721
+],
+"691 Potomac Station Dr NE, Leesburg": [
+-77.52397,
+39.09778
+],
+"691 Princess Anne Rd, Virginia Beach": [
+-76.03515,
+36.61493
+],
+"6915 Sylvatus Hwy, Hillsville": [
+-80.76321,
+36.85525
+],
+"692 Mt Zion Road, Elk Creek": null,
+"6975 Courthouse Road, Spotsylvania": [
+-77.658,
+38.16214
+],
+"6975 Jefferson Hwy, Mineral": [
+-77.89449,
+37.94811
+],
+"6988 Burkes Garden Rd, Tazewell": [
+-81.34382,
+37.10076
+],
+"7 Greenway Ave S, Boyce": [
+-78.06093,
+39.09229
+],
+"7 Naglee Ave, Sandston": [
+-77.31266,
+37.52295
+],
+"70 Hines LN, Lexington": [
+-79.42393,
+37.80268
+],
+"700 Bennett St, Herndon": [
+-77.37568,
+38.98528
+],
+"700 Emancipation Drive, Hampton": null,
+"7000 Cindy Ln, Annandale": [
+-77.18723,
+38.82195
+],
+"7000 Park Ave, Henrico": [
+-77.53022,
+37.59303
+],
+"701 Church St, Clifton Forge": [
+-79.82223,
+37.81663
+],
+"701 Forest Ave, Henrico": [
+-77.55346,
+37.58495
+],
+"701 Menchville Rd, Newport News": [
+-76.52765,
+37.09661
+],
+"701 N 25th St, Richmond": [
+-77.41537,
+37.53512
+],
+"701 Potomac Station Dr NE, Leesburg": [
+-77.52324,
+39.09725
+],
+"701 S Highland St, Arlington": [
+-77.08986,
+38.8664
+],
+"701 Walker Rd, Great Falls": [
+-77.29244,
+39.00083
+],
+"703 Lemaster Ave, Hampton": [
+-76.31654,
+37.06066
+],
+"7030 Abbs Valley Rd, Bluefield": null,
+"7049 Snow Creek Rd, Penhook": [
+-79.73424,
+36.84569
+],
+"705 Thompson Dr, Abingdon": [
+-81.95447,
+36.71997
+],
+"705 Waterloo Rd, Warrenton": [
+-77.81434,
+38.71859
+],
+"7052 Mechanicsville Tpke, Mechanicsville": [
+-77.3395,
+37.61207
+],
+"7053 Messer RD, Henrico": [
+-77.37696,
+37.47468
+],
+"7087 Powhatan Dr, Hayes": [
+-76.51289,
+37.29119
+],
+"7088 Fort Valley Rd, Fort Valley": [
+-78.4165,
+38.84419
+],
+"709 Airport Road, Blacksburg": [
+-80.40778,
+37.21448
+],
+"710 E Dolly Ann Dr, Covington": [
+-79.97645,
+37.7809
+],
+"710 Smith St, Martinsville": [
+-79.88526,
+36.69141
+],
+"7100 Churchill Rd, Mclean": [
+-77.19037,
+38.94613
+],
+"7101 Newport Ave, Norfolk": [
+-76.28004,
+36.90806
+],
+"7101 Old Keene Mill Rd, Springfield": [
+-77.18914,
+38.77857
+],
+"7107 Sydenstricker Road, Springfield": [
+-77.24492,
+38.76252
+],
+"7114 Chatham Rd, Nathalie": [
+-79.03605,
+36.83544
+],
+"7114 Cople Hwy, Hague": [
+-76.67492,
+38.07487
+],
+"7116 Fort Hunt Rd, Alexandria": [
+-77.05973,
+38.76221
+],
+"712 Canal Dr, Chesapeake": [
+-76.3236,
+36.76746
+],
+"7124 Belmont Road, Mineral": [
+-77.86619,
+38.15412
+],
+"7128 Columbia Pike, Annandale": [
+-77.19095,
+38.83261
+],
+"7130 Bent Mountain Rd, Roanoke": [
+-80.07315,
+37.19987
+],
+"7137 Beulah St, Alexandria": [
+-77.15748,
+38.76223
+],
+"7146 Clearfork Rd, Bastian": [
+-81.30247,
+37.17516
+],
+"7151 Belmont Road, Chesterfield": [
+-77.52458,
+37.43822
+],
+"7155 Dry Hill Rd, Ferrum": [
+-80.08582,
+36.90809
+],
+"7161 Studley Rd., Mechanicsville": [
+-77.34014,
+37.66749
+],
+"717 Tucson Rd, Virginia Beach": [
+-76.14617,
+36.81787
+],
+"7190 Yates Ford Rd, Manassas": [
+-77.41795,
+38.73124
+],
+"7200 Dorey Park Dr, Henrico": [
+-77.33746,
+37.46947
+],
+"721 Baker St SE, Floyd": [
+-80.30834,
+36.90943
+],
+"7230 Idylwood Rd, Falls Church": [
+-77.19504,
+38.90292
+],
+"724 Commercial Avenue, Clifton Forge": [
+-79.82563,
+37.82131
+],
+"724 Piney Pond Road, Brodnax": [
+-78.02918,
+36.70704
+],
+"725 Patrick Henry Dr, Blacksburg": [
+-80.41117,
+37.24409
+],
+"7250 Brooks Mill Rd, Wirtz": [
+-79.75096,
+37.08041
+],
+"727 Old Graves Mill Road, Lynchburg": [
+-79.22742,
+37.36493
+],
+"7270 Riley Rd, Warrenton": [
+-77.7142,
+38.73658
+],
+"7283 Dry Bread Rd, Lawrenceville": [
+-77.85668,
+36.64673
+],
+"729 S Sugarland Run Dr, Sterling": [
+-77.37198,
+39.03543
+],
+"73 Maxwell Ln, Newport News": [
+-76.50385,
+37.08829
+],
+"730 Marshall Road SW, Vienna": [
+-77.26482,
+38.88282
+],
+"7300 Galaxie Rd, Henrico": [
+-77.48957,
+37.61987
+],
+"7301 B Boydton Plank Rd, North Dinwiddie": [
+-77.50321,
+37.17178
+],
+"7305 Hampton Boulevard, Norfolk": [
+-76.30593,
+36.91027
+],
+"7311 Richmond Rd, Williamsburg": [
+-76.76799,
+37.3655
+],
+"7320 Smith Station Road, Fredericksburg": [
+-77.57907,
+38.25261
+],
+"7330 Roanoke Rd, Fincastle": [
+-79.8788,
+37.47982
+],
+"7341 Jackson River Rd, Monterey": null,
+"735 18th St S, Arlington": [
+-77.05834,
+38.85722
+],
+"735 Falling Branch Rd, Christiansburg": [
+-80.36922,
+37.12611
+],
+"736 Edwin Drive, Virginia Beach": [
+-76.14183,
+36.81843
+],
+"737 S Carlin Springs Rd, Arlington": [
+-77.12596,
+38.8572
+],
+"74 Edgewood Dr, Stanleytown": [
+-79.9406,
+36.73596
+],
+"740 Tunstall High Rd, Dry Fork": [
+-79.52197,
+36.67182
+],
+"7401 Hull Street Road, North Chesterfield": [
+-77.52956,
+37.47008
+],
+"7403 Academic Ave, Nokesville": [
+-77.67793,
+38.73246
+],
+"7405 Hoadly Road, Manassas": [
+-77.43062,
+38.65901
+],
+"742 New Hope Rd, Alberta": [
+-77.9577,
+36.90415
+],
+"7420 Reservation Dr, Springfield": [
+-77.27106,
+38.7547
+],
+"7422 Deer Branch Rd, Roanoke": [
+-79.95926,
+37.34679
+],
+"7423 Camp Alger Ave, Falls Church": [
+-77.20174,
+38.85773
+],
+"7425 Mechanicsville Elem Dr., Mechanicsville": null,
+"743 24Th St, Newport News": [
+-76.41653,
+36.98246
+],
+"743 Mustang St Rt 65 1/2 Mi N Of Hwy 23, Duffield": null,
+"7430 Spring Village Dr, Springfield": [
+-77.20175,
+38.768
+],
+"7433 Sam Snead Hwy, Hot Springs": [
+-79.83208,
+37.99506
+],
+"745 Little Neck Rd, Virginia Beach": [
+-76.08778,
+36.85804
+],
+"746 Adams Dr, Newport News": [
+-76.46098,
+37.05816
+],
+"746 Indian Trl, Martinsville": [
+-79.85272,
+36.67635
+],
+"7461 Sherwood Crossing Pl., Mechanicsville": [
+-77.34382,
+37.61455
+],
+"7485 General Puller Hwy, Locust Hill": null,
+"7488 Highway 15, Clarksville": null,
+"749 Old White Hill Rd, Stuarts Draft": [
+-79.06068,
+38.03897
+],
+"75 Old Farm Rd, Lexington": [
+-79.43778,
+37.77237
+],
+"75 Walpole St, Stafford": [
+-77.45833,
+38.45191
+],
+"750 23rd St S, Arlington": [
+-77.05852,
+38.85322
+],
+"7500 Magarity Rd, Falls Church": [
+-77.20403,
+38.91905
+],
+"751 Norwood Ln, Woodbridge": [
+-77.23982,
+38.65777
+],
+"7510 Lisle Ave, Falls Church": [
+-77.20451,
+38.9161
+],
+"7511 N Spring Run Rd., Chesterfield": [
+-77.66736,
+37.39838
+],
+"7516 County Complex Rd., Hanover": [
+-77.36647,
+37.76454
+],
+"7525 Shreve Rd, Falls Church": [
+-77.20579,
+38.88972
+],
+"7539 Stage RD, Concord": [
+-78.95919,
+37.35106
+],
+"7545 Diven St, Norfolk": [
+-76.29391,
+36.91479
+],
+"7550 Reservation Dr, Springfield": [
+-77.27544,
+38.75093
+],
+"7565 Courthouse Rd, Spotsylvania": [
+-77.6004,
+38.15472
+],
+"760 W Main St, Danville": [
+-79.41983,
+36.57243
+],
+"7600 Halprin Dr, Norfolk": [
+-76.22222,
+36.91219
+],
+"7600 Ox Road, Fairfax Station": [
+-77.29901,
+38.75136
+],
+"7600 Studley Rd., Mechanicsville": [
+-77.36653,
+37.65474
+],
+"7602 Heming Ct., Springfield": [
+-77.20598,
+38.80119
+],
+"7604 Herald St, Annandale": [
+-77.20714,
+38.82653
+],
+"7607 Willow Ln, Falls Church": [
+-77.20787,
+38.87142
+],
+"7609 Highway Nine O Three, Bracey": null,
+"7609 Marshall Ave, Newport News": [
+-76.43651,
+37.01712
+],
+"7610 Old Centreville Road, Manassas": [
+-77.4582,
+38.79053
+],
+"7625 Porters Rd, Esmont": [
+-78.59554,
+37.82043
+],
+"763 Conicville Rd, Mount Jackson": [
+-78.67898,
+38.8275
+],
+"7630 Telegraph Rd, Alexandria": [
+-77.14381,
+38.74806
+],
+"7633 Telegraph Rd, Alexandria": [
+-77.1406,
+38.75087
+],
+"7639 Stillwater Drive, Belspring": [
+-80.60661,
+37.19238
+],
+"764 Fort Chiswell Rd, Max Meadows": [
+-80.94109,
+36.92996
+],
+"7668 Oak Level Rd, Bassett": [
+-79.9392,
+36.8146
+],
+"7710 Beef Steak Rd, Waverly": [
+-77.17382,
+37.01362
+],
+"7720 Hayters Gap Rd, Saltville": null,
+"7721 Azalea Garden Rd, Norfolk": [
+-76.21011,
+36.91175
+],
+"7731 Leesburg Pike, Falls Church": [
+-77.21267,
+38.90777
+],
+"7741 Terrapin Cove Rd, Gloucester Point": [
+-76.49165,
+37.25554
+],
+"7757 Chippenham Parkway, Richmond": [
+-77.53749,
+37.54253
+],
+"779 S Main Street, Mount Crawford": [
+-78.94486,
+38.35137
+],
+"78 Moores Ordinary Road, Meherrin": null,
+"7800 Laurel Spring Rd, Prince George": [
+-77.26129,
+37.20498
+],
+"7800 Woodman Rd, Henrico": [
+-77.48018,
+37.62573
+],
+"7817 Richmond Rd, Toano": [
+-76.80009,
+37.37767
+],
+"7825 Heritage Dr, Annandale": [
+-77.21423,
+38.82107
+],
+"7845 Snake Creek Rd, Hillsville": [
+-80.61046,
+36.6872
+],
+"7855 Morning View Ln, Alexandria": [
+-77.16992,
+38.74497
+],
+"7862 Brookneal Hwy, Gladys": [
+-79.07577,
+37.1696
+],
+"7868 Scottsville Rd, Scottsville": [
+-78.51058,
+37.81964
+],
+"7900 Tarpon Pl, Norfolk": [
+-76.20993,
+36.91672
+],
+"7901 Plum Point Road, West Point": [
+-76.81215,
+37.51784
+],
+"7921 Jones Branch Drive, Mclean": [
+-77.21657,
+38.92867
+],
+"7936 Richmond-Tappahannock Hwy, Aylett": [
+-77.10766,
+37.78103
+],
+"7945 Corinth Chapel Road, Suffolk": null,
+"7945 Forest Hill Avenue, Richmond": [
+-77.53995,
+37.53378
+],
+"797 Spottswood Rd, Steeles Tavern": [
+-79.21599,
+37.95633
+],
+"80 Burnt Chimney Rd, Wirtz": [
+-79.81553,
+37.10184
+],
+"80 Cavalier Dr, King William": [
+-77.13022,
+37.74282
+],
+"80 Menchville Rd, Newport News": [
+-76.52234,
+37.10867
+],
+"800 E Market Street, Charlottesville": [
+-78.47601,
+38.02983
+],
+"800 Eustace Rd, Stafford": null,
+"800 N King St, Leesburg": [
+-77.55725,
+39.12618
+],
+"800 Waterloo Rd, Warrenton": [
+-77.81999,
+38.71946
+],
+"8000 Rodes Dr, Manassas": [
+-77.53092,
+38.78559
+],
+"8001 Limestone Drive, Gainesville": [
+-77.59919,
+38.78203
+],
+"8001 Newington Forest Ave, Springfield": [
+-77.24067,
+38.7399
+],
+"8008 Midlothian Tpke, North Chesterfield": [
+-77.54392,
+37.49794
+],
+"801 N King St, Leesburg": [
+-77.57015,
+39.10439
+],
+"801 Prince Hall Drive, Richmond": [
+-77.46678,
+37.50241
+],
+"801 Prince Hall Drive, richmond": [
+-77.46678,
+37.50241
+],
+"8013 Doctor Ralph Stanley Hwy, Coeburn": [
+-82.39163,
+36.99978
+],
+"8019 Old Ocean View Road, Norfolk": [
+-76.25046,
+36.91821
+],
+"802 Zion Hill Rd, Keswick": [
+-78.297,
+38.05984
+],
+"803 Jewell Main Rd, Jewell Ridge": [
+-81.78918,
+37.18343
+],
+"8031 Urbanna Road, Manassas": [
+-77.49873,
+38.78174
+],
+"804 Main St, Newport News": [
+-76.45192,
+37.04176
+],
+"804 Whitaker Lane, Norfolk": [
+-76.28353,
+36.85624
+],
+"805 Chinook Pl, Lynchburg": [
+-79.20283,
+37.38262
+],
+"805 Kempsville Rd, Virginia Beach": [
+-76.16437,
+36.81572
+],
+"8051 Ashton Ave, Manassas": [
+-77.52085,
+38.78714
+],
+"8052 Florence Avenue, Virgilina": [
+-78.77455,
+36.54532
+],
+"806 Lyons Blvd, Fredericksburg": [
+-77.49762,
+38.36414
+],
+"806 Tiger Trail, Bedford": [
+-79.53265,
+37.32519
+],
+"8061 Shady Grove Rd., Mechanicsville": [
+-77.37116,
+37.61929
+],
+"8063 Ladysmith Rd, Ruther Glen": [
+-77.50934,
+38.01815
+],
+"8065 Carlton St, Norfolk": [
+-76.23822,
+36.91877
+],
+"8081 Old Franklin Tpke, Glade Hill": [
+-79.7509,
+36.98718
+],
+"8096 Leedstown Rd, Colonial Beach": [
+-76.99641,
+38.17971
+],
+"8100 Beth Nelson Drive, Fairlawn": [
+-80.56662,
+37.15513
+],
+"8100 Guinevere Dr, Annandale": [
+-77.22583,
+38.84887
+],
+"8100 Old Keene Mill Rd, Springfield": [
+-77.22254,
+38.77988
+],
+"8100 Wolftrap Rd, Vienna": [
+-77.22502,
+38.90266
+],
+"8101 Cumberland Rd, New Kent": [
+-76.97341,
+37.5254
+],
+"8105 Walnut Grove Rd, Mechanicsville": [
+-77.29891,
+37.61964
+],
+"8111 Northumberland Rd, Springfield": [
+-77.21463,
+38.73701
+],
+"8115 Gatehouse Road, Falls Church": [
+-77.22417,
+38.86895
+],
+"813 Beginners Trail Loop, Chester": null,
+"813 North 28th Street, Richmond": [
+-77.464,
+37.52171
+],
+"813 Toms Creek Rd, Blacksburg": [
+-80.42682,
+37.23696
+],
+"814 Ferndale Ave, Herndon": [
+-77.39439,
+38.97191
+],
+"814 Yorktown Rd, Poquoson": [
+-76.39944,
+37.13803
+],
+"816 Burks Hill Rd, Bedford": [
+-79.53062,
+37.32507
+],
+"816 E Bank Street, Petersburg": [
+-77.391,
+37.23408
+],
+"818 Happy Valley Dr., Clintwood": [
+-82.43894,
+37.145
+],
+"820 Cathedral Drive, Virginia Beach": [
+-76.12872,
+36.86409
+],
+"820 W Edgemont Dr, Covington": null,
+"8200 Euclid Ave, Manassas Park": [
+-77.43898,
+38.78041
+],
+"8200 Saint Charles Rd, Henrico": [
+-77.44097,
+37.63161
+],
+"8201 Cinder Bed Road, Lorton": [
+-77.18399,
+38.7345
+],
+"8201 Jefferson Davis Hwy, Fredericksburg": [
+-77.51396,
+38.1827
+],
+"8201 Lewinsville Rd, Mclean": [
+-77.22833,
+38.94009
+],
+"8201 Patriot Highway, Fredericksburg": null,
+"821 Battlefield Pkwy NE, Leesburg": [
+-77.53385,
+39.1232
+],
+"8215 Little Low Ground Rd, Emporia": [
+-77.44697,
+36.57537
+],
+"8246 Dahlgren Rd, King George": [
+-77.20315,
+38.27874
+],
+"8248 Lee Davis Rd., Mechanicsville": [
+-77.34104,
+37.62903
+],
+"826 Moyer Rd, Newport News": [
+-76.56445,
+37.12836
+],
+"827 Green St, Danville": [
+-79.39631,
+36.58036
+],
+"8290 New Ashcake Rd., Mechanicsville": [
+-77.38917,
+37.67706
+],
+"8295 Main Street, Ivor": [
+-76.89685,
+36.90577
+],
+"8301 Hungary Spring Rd, Henrico": [
+-77.51879,
+37.63205
+],
+"8301 Irish Road, Faber": [
+-78.74202,
+37.83155
+],
+"8301 Linton Hall Road, Bristow": [
+-77.59541,
+38.77466
+],
+"831 Poquoson Ave, Poquoson": [
+-76.37608,
+37.13301
+],
+"832 Kempsville Rd, Virginia Beach": [
+-76.16428,
+36.81529
+],
+"8320 Buffin Rd, Henrico": [
+-77.34422,
+37.43711
+],
+"8320 Ruthville Road, Charles City": null,
+"8335 N Valley Pike, Harrisonburg": [
+-78.77299,
+38.53601
+],
+"8337 Free School Lane, Saxis": [
+-75.72043,
+37.92704
+],
+"834 Arrow Head Rd, Victoria": [
+-78.38052,
+36.91584
+],
+"8352 Greensboro Dr., Mclean": [
+-77.23385,
+38.92632
+],
+"836 Regency Drive, Virginia Beach": [
+-76.03444,
+36.85391
+],
+"839  Garrisonville Rd, Stafford": [
+-77.45408,
+38.47044
+],
+"8390 Laurel Crest Drive, Lorton": [
+-77.23448,
+38.7183
+],
+"8410 Old Mount Vernon Rd, Alexandria": [
+-77.09396,
+38.72868
+],
+"8421 Arlington Blvd, Fairfax": [
+-77.23438,
+38.86543
+],
+"8451 Callaway Rd, Callaway": [
+-80.0488,
+37.01174
+],
+"8465 US Highway 29, Blair'S": [
+-79.38548,
+36.72346
+],
+"8465 US Highway 29, Blair's": [
+-79.38548,
+36.72346
+],
+"848 Baker Rd, Virginia Beach": [
+-76.18056,
+36.86777
+],
+"848 Stage St, Marion": [
+-81.50274,
+36.84012
+],
+"8484 Mary Ball Rd, Lancaster": [
+-76.46282,
+37.76947
+],
+"8484 Riverside Rd, Alexandria": [
+-77.06771,
+38.72854
+],
+"8496 Flatridge Road, Troutdale": [
+-81.34563,
+36.69787
+],
+"850 Broad Street Rd, Manakin Sabot": [
+-77.74238,
+37.68698
+],
+"850 Jolly Pond Rd, Williamsburg": [
+-76.80707,
+37.33504
+],
+"850 North King St., Leesburg": [
+-77.55636,
+39.12712
+],
+"8501 Silverbrook Rd, Lorton": [
+-77.2358,
+38.71747
+],
+"8508 Franconia Rd, Henrico": [
+-77.44018,
+37.64121
+],
+"8508 Hooes Road, Springfield": [
+-77.23998,
+38.75569
+],
+"8508 Leesburg Pike, Vienna": [
+-77.24018,
+38.92775
+],
+"852 Mowbray Arch, Norfolk": null,
+"853 Harpersville Rd, Newport News": [
+-76.4527,
+37.08657
+],
+"855 Lucas Creek Rd, Newport News": [
+-76.54974,
+37.13281
+],
+"855 N Edison St, Arlington": [
+-77.12274,
+38.87963
+],
+"8584 Sedge Wren Dr, Gainesville": [
+-77.6148,
+38.76888
+],
+"8592 Richmond Hwy, Alexandria": [
+-77.1173,
+38.72459
+],
+"8596 Baptist Valley Rd, North Tazewell": [
+-81.5473,
+37.14648
+],
+"86 Bacon's Castle Trl, Surry": [
+-76.72877,
+37.10598
+],
+"860 Churchill Dr, Virginia Beach": [
+-76.15606,
+36.81099
+],
+"8600 Forrester Blvd, Springfield": [
+-77.23903,
+38.79187
+],
+"8602 Mathis Avenue, Manassas": [
+-77.45567,
+38.76897
+],
+"8613 Willow Terrace, Norfolk": [
+-76.2346,
+36.93496
+],
+"8621 North Valley Pike, Harrisonburg": [
+-78.76845,
+38.53964
+],
+"8641 Namozine Rd, Amelia Court House": [
+-77.82084,
+37.25084
+],
+"8646 Waggys Creek Rd, Dayton": [
+-79.04359,
+38.43576
+],
+"8666 Slate Creek Rd, Grundy": [
+-81.9703,
+37.31117
+],
+"8701 Polk St, North Chesterfield": [
+-77.56292,
+37.52984
+],
+"8701 Ridge Rd, Henrico": [
+-77.56673,
+37.59186
+],
+"8701 Three Chopt Rd, Henrico": [
+-77.55712,
+37.60235
+],
+"871 Tasker Rd, Stephens City": [
+-78.19281,
+39.1005
+],
 "8718 Old Mount Vernon Rd, Alexandria": [
 -77.09541,
 38.7215
 ],
+"872 Clearfield Ave, Chesapeake": [
+-76.20725,
+36.73825
+],
+"8740 Mill Gap Rd, Monterey": null,
+"8750 Weems Rd, Manassas": [
+-77.46749,
+38.76761
+],
+"8775 Mount Olive Ave, Glen Allen": [
+-77.46701,
+37.64532
+],
+"8784 Guinea Rd, Hayes": [
+-76.45745,
+37.27085
+],
+"88 4th ST, Cleveland": [
+-82.15089,
+36.94382
+],
+"8800 Derbyshire Rd, Henrico": [
+-77.5768,
+37.58834
+],
+"8800 History Land Hwy, Warsaw": [
+-76.67996,
+37.89915
+],
+"8800 Jacobs Rd, Chesterfield": [
+-77.55192,
+37.43354
+],
+"8800 Nesslewood Dr, Henrico": [
+-77.55835,
+37.62429
+],
+"8800 Old Dominion Dr, Manassas": [
+-77.46323,
+38.72727
+],
+"8820 Rixlew Lane, Manassas": [
+-77.50713,
+38.76433
+],
+"8832 Linton Ln, Alexandria": [
+-77.06538,
+38.71866
+],
+"8834 Richmond Highway, Gladstone": null,
+"884 Bells Mill Rd., Chesapeake": [
+-76.26568,
+36.71777
+],
+"8841 Richmond Road, Toano": [
+-76.83417,
+37.40366
+],
+"885 Schumann Dr, Virginia Beach": [
+-75.98176,
+36.77326
+],
+"8850 Cross Chase Cir., Fairfax Station": [
+-77.26114,
+38.71804
+],
+"8881 Eclipse Dr, Suffolk": [
+-76.4944,
+36.90956
+],
+"8901 Pocahontas Trl, Williamsburg": [
+-76.61741,
+37.21093
+],
+"892 Mt Torrey Rd, Lyndhurst": [
+-78.94724,
+38.01811
+],
+"892 Newtown Rd, Virginia Beach": [
+-76.16429,
+36.8648
+],
+"8922 Little River Tpke, Fairfax": [
+-77.25125,
+38.83865
+],
+"8925 Thompson Valley Rd, Tazewell": [
+-81.5488,
+37.0754
+],
+"895 Washington Street, SW, Blacksburg": [
+-80.42389,
+37.22067
+],
+"8950 Otterburn Rd, Amelia Court House": [
+-77.98965,
+37.33811
+],
+"8982 Newtown Road, St. Stephens Church": null,
+"8990 Worthington Dr, Bristow": [
+-77.58934,
+38.75946
+],
+"8993 Pole Green Park Ln., Mechanicsville": [
+-77.30733,
+37.64131
+],
+"9 S Buckmarsh St, Berryville": [
+-77.98276,
+39.15168
+],
+"900 N Taylor St, Arlington": [
+-77.11266,
+38.88113
+],
+"900 Old Hundred Road, Midlothian": [
+-77.70609,
+37.49265
+],
+"900 Second Street, Alexandria": [
+-77.04644,
+38.8166
+],
+"900 Starlight Ln, North Chesterfield": [
+-77.54208,
+37.489
+],
+"900 Vista View Ln, Ridgeway": [
+-79.85546,
+36.5768
+],
+"9000 Hull Street Rd, North Chesterfield": [
+-77.55877,
+37.45268
+],
+"9000 Hull Street Road, Richmond": [
+-77.55877,
+37.45268
+],
+"9000 Hungary Spring Rd, Henrico": [
+-77.517,
+37.63938
+],
+"9000 Three Chopt Rd, Henrico": [
+-77.56212,
+37.60941
+],
+"901 Locust St, Herndon": [
+-77.39245,
+38.9684
+],
+"901 Maybeury Dr, Henrico": [
+-77.58397,
+37.59258
+],
+"901 Wythe Street, Alexandria": [
+-77.04781,
+38.81223
+],
+"9017 Riverside Dr, Oakwood": [
+-81.96945,
+37.20246
+],
+"9019 New Bethesda Rd., Mechanicsville": [
+-77.25405,
+37.64713
+],
+"9020 Jericho Rd., Ruther Glen": [
+-77.50124,
+37.92801
+],
+"9025 Washington Henry Dr., Mechanicsville": [
+-77.38505,
+37.64547
+],
+"903 Forest Ave, Henrico": [
+-77.55132,
+37.58894
+],
+"905 Lusters Gate Rd, Blacksburg": [
+-80.36684,
+37.19231
+],
+"907 Floyd Ave, Richmond": [
+-77.45297,
+37.54712
+],
+"907 Floyd Avenue, Richmond": [
+-77.45297,
+37.54712
+],
+"9075 Park Ave, Manassas": [
+-77.49069,
+38.76135
+],
+"908 Centerville Turnpike, South, Chesapeake": [
+-76.1843,
+36.69715
+],
+"9100 Cherrytree Dr, Alexandria": [
+-77.10309,
+38.71019
+],
+"9107 Horner Ct, Fairfax": [
+-77.25916,
+38.8483
+],
+"9109 Elk Creek Pkwy, Elk Creek": null,
+"9119 Dean Ridings Lane, Spotsylvania": null,
+"912 S. Birdneck Rd, Virginia Beach": [
+-75.99296,
+36.81132
+],
+"9144 Dyke Rd, Dyke": null,
+"915 E 5th Ave, Kenbridge": [
+-78.10772,
+36.95415
+],
+"916 Centerville Turnpike, North, Chesapeake": [
+-76.18466,
+36.75007
+],
+"92 School Days Drive, Lawrenceville": null,
+"920 Maybeury Dr, Henrico": [
+-77.5841,
+37.59263
+],
+"9200 Burke Lake Rd, Burke": [
+-77.2619,
+38.8032
+],
+"9200 Lydell Dr, Henrico": [
+-77.48078,
+37.64249
+],
+"9200 Mapleview Ave, Henrico": [
+-77.54735,
+37.64044
+],
+"9200 New Ashcake Rd, Mechanicsville,": [
+-77.41006,
+37.69834
+],
+"9212 Rutlandshire Dr., Mechanicsville": [
+-77.39668,
+37.65256
+],
+"922 Orkney Grade, Basye": [
+-78.80301,
+38.80368
+],
+"9226 Stewartsville Rd, Moneta": [
+-79.69939,
+37.25131
+],
+"923 Saint Luke Rd, Woodstock": [
+-78.58043,
+38.90337
+],
+"925 Briar Hill Rd, Norfolk": [
+-76.2145,
+36.85449
+],
+"925 N Garfield St, Arlington": [
+-77.09345,
+38.88327
+],
+"926 Cherokee Rd, Portsmouth": [
+-76.37763,
+36.81539
+],
+"9261 Forest Road, Goode": [
+-79.3906,
+37.3678
+],
+"9280 Tower Hill Rd, Williamsville": [
+-79.6441,
+38.17808
+],
+"9285 Warwick Blvd, Newport News": [
+-76.45201,
+37.02014
+],
+"9298 Lewis Chapel Rd, Lorton": [
+-77.21751,
+38.7056
+],
+"9300 George Washington Mem Hwy, Yorktown": [
+-76.50199,
+37.20316
+],
+"9347 Bastable Mill Rd, Catlett": [
+-77.67791,
+38.64783
+],
+"935 Armory Dr, Franklin": [
+-76.93293,
+36.67261
+],
+"9350 Crosspointe Dr, Fairfax Station": [
+-77.26888,
+38.72777
+],
+"9357 Fairview Rd, Duffield": [
+-82.899,
+36.63442
+],
+"9388 Village Hwy, Concord": [
+-78.97954,
+37.33711
+],
+"94 Mount Bethel Rd, Cana": [
+-80.61504,
+36.55957
+],
+"94 Wares Bridge Rd, Church View": [
+-76.69639,
+37.67905
+],
+"9400 Quioccasin Rd, Henrico": [
+-77.58021,
+37.60743
+],
+"9405 Singers Glen Road, Singers Glen": [
+-78.92086,
+38.54718
+],
+"9414 Atlee Station Rd, Mechanicsville": [
+-77.41129,
+37.6633
+],
+"9432 N. James Madison Hwy, Rapidan": [
+-78.07128,
+38.39879
+],
+"945 Fodderstack Road, Flint Hill": [
+-78.10226,
+38.76181
+],
+"9450 Atlee Station Rd., Mechanicsville": [
+-77.41208,
+37.6645
+],
+"9467 Red House Road, Red House": [
+-78.8115,
+37.18776
+],
+"948 King Arthur Dr., Chesapeake": [
+-76.34717,
+36.7774
+],
+"948 Rices Depot Rd, Rice": [
+-78.28948,
+37.27235
+],
+"95 Reservoir Rd, Fredericksburg": [
+-77.5344,
+38.36251
+],
+"9500 Norfolk St, Glen Allen": null,
+"9500 Norfolk Street, Glen Allen": null,
+"9508 Spotswood Trl, Mcgaheysville": null,
+"9514 Richmond Road, Warsaw": [
+-76.69712,
+37.94957
+],
+"9520 E. 20th Bay St, Norfolk": [
+-76.19464,
+36.92701
+],
+"9520 Richmond Hwy., Lorton": [
+-77.21051,
+38.701
+],
 "9524 Old Creek Dr, Fairfax": [
 -77.2759,
 38.83163
+],
+"9525 Main St., Fairfax": [
+-77.27367,
+38.84127
+],
+"9553 Birmingham Drive, Manassas": [
+-77.43533,
+38.74872
+],
+"958 N Milton Rd, Charlottesville": [
+-78.39618,
+38.01068
+],
+"960 Ingleside Road, Norfolk": [
+-76.23798,
+36.85174
+],
+"960 Windsor Oaks Blvd, Virginia Beach": [
+-76.12557,
+36.80129
+],
+"9601 Hull Street Road, Richmond": [
+-77.57209,
+37.4463
+],
+"9601 Prince William St, Manassas": [
+-77.48757,
+38.74706
+],
+"9601 Redbridge Rd, North Chesterfield": [
+-77.57604,
+37.49178
+],
+"9610 Norfolk Ave., Norfolk": [
+-76.24745,
+36.94897
+],
+"9614 River Rd, Henrico": [
+-77.60072,
+37.58204
+],
+"965 Baker Rd, Virginia Beach": [
+-76.1816,
+36.87263
+],
+"9668 Maidstone Rd, Delaplane": [
+-77.91183,
+38.89968
+],
+"9696 Maury River Rd, Goshen": [
+-79.49837,
+37.9819
+],
+"9700 Salem Church Road, Chesterfield": null,
+"9732 Ironmaster Dr, Burke": [
+-77.28431,
+38.76685
+],
+"9744 Copeland Drive, Manassas": [
+-77.48809,
+38.79338
+],
+"975 Dorset Rd, Powhatan": [
+-77.80645,
+37.47113
+],
+"975 Main St, Danville": [
+-79.40003,
+36.5817
+],
+"977 Balls Hill Rd, McLean": [
+-77.193,
+38.95299
+],
+"977 Balls Hill Rd, Mclean": [
+-77.193,
+38.95299
+],
+"977 First Colonial Road, Virginia Beach": [
+-76.0264,
+36.85881
+],
+"9771 S. Congress St., New Market": [
+-78.67836,
+38.63885
+],
+"98 Seneca Ridge Dr, Sterling": [
+-77.377,
+39.03087
+],
+"9800 West Huguenot Road, Richmond": [
+-77.57679,
+37.53267
+],
+"9819 Five Oaks Rd, Fairfax": [
+-77.28591,
+38.87156
+],
+"9830 Georgetown Pike, Great Falls": [
+-77.28697,
+38.99771
+],
+"985 Huguenot Trl, Midlothian": [
+-77.70813,
+37.56524
+],
+"9889 Buckley Hall Road, Mathews": [
+-76.32534,
+37.44949
+],
+"99 Adams St, Manassas Park": [
+-77.46255,
+38.78645
+],
+"9900 Carriage Rd, Providence Forge": [
+-77.02403,
+37.44026
+],
+"9900 Old Keene Mill Rd, Burke": [
+-77.28671,
+38.77063
+],
+"9911 Courthouse Road, Spotsylvania": [
+-77.54581,
+38.23817
+],
+"9950 Wellington Rd, Manassas": [
+-77.46528,
+38.74369
+],
+"9962 Woolwine Highway, Woolwine": null,
+"One Memorial Place, Norfolk": [
+-76.29362,
+36.85558
 ]
 }

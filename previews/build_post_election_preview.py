@@ -67,15 +67,21 @@ def project_map(slug):
 
 def main(slug, dest):
     data = json.loads((R / 'dist' / 'post-election' / f'{slug}.json').read_text())
-    geo = project_map(slug)
+    geo = project_map(slug) if (R / 'dist' / 'maps' / f'{slug}.json').exists() else None
     for e in data['elections']:
         for p in e['precincts']:
             if 'ppXY' in p:
-                lon, lat = p['ppXY']
-                p['ppXY'] = [round((lon * geo['k'] - geo['x0']) * geo['s'], 1), round((geo['y1'] - lat) * geo['s'], 1)]
-    for key in ('k', 'x0', 'y1', 's'):
-        geo.pop(key)
-    html = (R / 'previews' / 'post-election-template.html').read_text()
+                lon, lat = p.pop('ppXY')
+                if not geo:
+                    continue
+                x, y = (lon * geo['k'] - geo['x0']) * geo['s'], (geo['y1'] - lat) * geo['s']
+                # a geocode that lands well outside the locality is wrong; leave that dot off
+                if -20 < x < geo['w'] + 20 and -20 < y < geo['h'] + 20:
+                    p['ppXY'] = [round(x, 1), round(y, 1)]
+    if geo:
+        for key in ('k', 'x0', 'y1', 's'):
+            geo.pop(key)
+    html = (R / 'previews' / 'post-election-template.html').read_text().replace('__TITLE__', f"{data['name']} Full Election")
     html = html.replace('/*DATA*/null', json.dumps(data, separators=(',', ':'))).replace('/*GEO*/null', json.dumps(geo, separators=(',', ':')))
     Path(dest).write_text(html)
     print('wrote', dest, f'{len(html) / 1e6:.2f} MB')
