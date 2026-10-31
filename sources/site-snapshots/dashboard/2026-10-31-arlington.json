@@ -1,0 +1,332 @@
+{
+  "election": "2026",
+  "locality": "arlington-county",
+  "source": "https://vote.arlingtonva.gov/Elections/Results-Data",
+  "retrievedAt": "2026-10-31T13:12:00.309Z",
+  "reportDate": "2026-10-31",
+  "activityThrough": "2026-10-30",
+  "early": 34017,
+  "mail": 10735,
+  "capture": "sources/dashboard-archive/arlington-county/2026-10-31/0912-powerbi-data.json",
+  "sitesDaily": [
+    {
+      "date": "2026-09-18",
+      "early": 808,
+      "sites": {
+        "courthouse": 808,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-21",
+      "early": 449,
+      "sites": {
+        "courthouse": 449,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-22",
+      "early": 272,
+      "sites": {
+        "courthouse": 272,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-23",
+      "early": 325,
+      "sites": {
+        "courthouse": 325,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-24",
+      "early": 304,
+      "sites": {
+        "courthouse": 304,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-25",
+      "early": 514,
+      "sites": {
+        "courthouse": 514,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "early": 386,
+      "sites": {
+        "courthouse": 386,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "early": 309,
+      "sites": {
+        "courthouse": 309,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "early": 322,
+      "sites": {
+        "courthouse": 322,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-01",
+      "early": 347,
+      "sites": {
+        "courthouse": 347,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-02",
+      "early": 555,
+      "sites": {
+        "courthouse": 555,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "early": 498,
+      "sites": {
+        "courthouse": 498,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "early": 431,
+      "sites": {
+        "courthouse": 431,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "early": 412,
+      "sites": {
+        "courthouse": 412,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "early": 434,
+      "sites": {
+        "courthouse": 434,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-09",
+      "early": 795,
+      "sites": {
+        "courthouse": 795,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-12",
+      "early": 583,
+      "sites": {
+        "courthouse": 583,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "early": 508,
+      "sites": {
+        "courthouse": 508,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "early": 438,
+      "sites": {
+        "courthouse": 438,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "early": 433,
+      "sites": {
+        "courthouse": 433,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "early": 690,
+      "sites": {
+        "courthouse": 690,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-17",
+      "early": 2890,
+      "sites": {
+        "courthouse": 1001,
+        "langston_brown": 928,
+        "walter_reed": 961
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "early": 1507,
+      "sites": {
+        "courthouse": 452,
+        "langston_brown": 449,
+        "walter_reed": 606
+      }
+    },
+    {
+      "date": "2026-10-19",
+      "early": 642,
+      "sites": {
+        "courthouse": 642,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-20",
+      "early": 592,
+      "sites": {
+        "courthouse": 592,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "early": 552,
+      "sites": {
+        "courthouse": 552,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "early": 1990,
+      "sites": {
+        "courthouse": 759,
+        "langston_brown": 503,
+        "walter_reed": 728
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "early": 2252,
+      "sites": {
+        "courthouse": 1086,
+        "langston_brown": 498,
+        "walter_reed": 668
+      }
+    },
+    {
+      "date": "2026-10-24",
+      "early": 2764,
+      "sites": {
+        "courthouse": 1169,
+        "langston_brown": 692,
+        "walter_reed": 903
+      }
+    },
+    {
+      "date": "2026-10-25",
+      "early": 1616,
+      "sites": {
+        "courthouse": 575,
+        "langston_brown": 501,
+        "walter_reed": 540
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "early": 865,
+      "sites": {
+        "courthouse": 865,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-27",
+      "early": 857,
+      "sites": {
+        "courthouse": 857,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-28",
+      "early": 960,
+      "sites": {
+        "courthouse": 960,
+        "langston_brown": 0,
+        "walter_reed": 0
+      }
+    },
+    {
+      "date": "2026-10-29",
+      "early": 2937,
+      "sites": {
+        "courthouse": 1326,
+        "langston_brown": 668,
+        "walter_reed": 943
+      }
+    },
+    {
+      "date": "2026-10-30",
+      "early": 3779,
+      "sites": {
+        "courthouse": 2016,
+        "langston_brown": 772,
+        "walter_reed": 991
+      }
+    }
+  ],
+  "siteTableGap": -1,
+  "totalRowMismatch": {
+    "2026-09-19": 213
+  }
+}
