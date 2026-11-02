@@ -22,27 +22,41 @@ def parse(text,url,digest,election='November 3, 2026',election_day=None):
  def nums(s):return [int(n.replace(',','')) for n in re.findall(r'(?<![\w.])\d[\d,]*(?![\w.])',s)]
  head=next(line for line in first.splitlines() if line.strip().startswith('Total '));totals=nums(head)[:6];registered,sent,postal,dropbox,early=totals[:5]
  ballot_total=int(re.search(r'Total Ballots Cast\s+([\d,]+)',first)[1].replace(',',''));assert postal+dropbox+early==ballot_total
+ # Tables can run onto "continued" pages, so group pages into sections by
+ # their headings rather than by fixed page numbers.
+ sections={}
+ for pg in pages[1:]:
+  if 'Absentee Ballot-by-Mail Applicants' in pg:key='switched'
+  elif 'Early In Person Voting' in pg:key='early'
+  elif 'Returned by Dropbox' in pg:key='dropbox'
+  elif 'Returned by Mail' in pg:key='postal'
+  elif 'Mailed Absentee' in pg:key='sent'
+  else:continue
+  sections[key]=sections.get(key,'')+'\n'+pg
  by={};tabletotals={};extras={};cutoffs=[]
- for page,metric,title in [(1,'sent','Mailed Absentee'),(2,'postal','Returned by Mail'),(3,'dropbox','Returned by Dropbox'),(4,'early','Early In Person')]:
-  assert title in pages[page],(page,title)
-  line=next(l for l in pages[page].splitlines() if re.match(r'^\s*Total\s+\d',l));tt=nums(line);tabletotals[metric]=tt[0]
+ for metric,title in [('sent','Mailed Absentee'),('postal','Returned by Mail'),('dropbox','Returned by Dropbox'),('early','Early In Person')]:
+  sec=sections.get(metric,'')
+  assert title in sec,(metric,title)
+  seen=set()
+  line=next(l for l in sec.splitlines() if re.match(r'^\s*Total\s+\d',l));tt=nums(line);tabletotals[metric]=tt[0]
   if metric=='sent':extras.update(dict(zip(['mailedDomestic','UOCAVApostal','email'],tt[1:4])))
   if metric=='postal':extras['undeliverable']=tt[2]
   if metric=='dropbox':extras.update(dict(zip(['dropbox24Hour','dropboxEarlyVotingSites'],tt[1:3])))
-  for line in pages[page].splitlines():
+  for line in sec.splitlines():
    m=re.match(r'^\s*(\d{1,2}-[A-Za-z]{3})\s+(.*)',line)
    if not m:continue
    day=datetime.strptime(m[1]+'-2026','%d-%b-%Y').date().isoformat();vs=nums(m[2])
    # A lone template zero is not an observation. Full detail verifies activity.
    if len(vs)<2:continue
    assert day<=report, ('Detailed activity after report date',day,report)
+   assert day not in seen,('Day listed twice',metric,day);seen.add(day)
    row=by.setdefault(day,{'date':day,'sites':{}});row[metric]=vs[0];cutoffs.append(day)
    if metric=='early':
     assert len(vs)-1 in (3,16), 'Unexpected site columns; review the PDF layout'
     row['sites']={k:vs[i+1] if i+1<len(vs) else None for i,k in enumerate(KEYS)}
     assert sum(v for v in row['sites'].values() if v is not None)==vs[0],day
   # Final reports add drop-box ballots collected at Election Day precincts as one undated line.
-  ed=re.search(r'^\s*ED Precincts\s+([\d,]+)\s*$',pages[page],re.M) if metric=='dropbox' else None
+  ed=re.search(r'^\s*ED Precincts\s+([\d,]+)\s*$',sec,re.M) if metric=='dropbox' else None
   if ed:
    assert election_day,'Election Day precinct drop-box line needs the election date'
    row=by.setdefault(election_day,{'date':election_day,'sites':{}});row['dropbox']=(row.get('dropbox') or 0)+nums(ed[1])[0];cutoffs.append(election_day)
@@ -53,7 +67,7 @@ def parse(text,url,digest,election='November 3, 2026',election_day=None):
   history.append({**row,'cumulative':dict(c)})
  assert c==tabletotals,(c,tabletotals)
  assert c==dict(sent=sent,postal=postal,dropbox=dropbox,early=early)
- sw=nums(next(l for l in pages[5].splitlines() if re.match(r'^\s*Total\s+\d',l)))
+ sw=nums(next(l for l in sections['switched'].splitlines() if re.match(r'^\s*Total\s+\d',l)))
  extras.update(switchedTotal=sw[0],switchedNotSurrendered=sw[1],switchedSurrendered=sw[2]);assert sw[0]==sw[1]+sw[2]
  return {'source':url,'reportDate':report,'activityThrough':last,'contentHash':digest,'registered':registered,'siteKeys':KEYS,'history':history,'extras':extras}
 def main():

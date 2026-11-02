@@ -27,6 +27,16 @@ class FairfaxRefreshTests(unittest.TestCase):
                 result = parse(path.read_text(), 'https://example.test/report.pdf', 'test')
                 self.assertEqual(result['reportDate'], path.name[:10])
 
+    def test_tables_continued_onto_extra_pages_are_combined(self):
+        # From Nov 1, 2026 the county splits each daily table across two pages.
+        text = (ROOT / 'sources/fairfax-snapshots/2026-11-01-f5ec89d6bac0.txt').read_text()
+        self.assertGreater(len(text.split('\f')), 7)
+        result = parse(text, 'https://example.test/report.pdf', 'test')
+        self.assertEqual(result['reportDate'], '2026-11-01')
+        self.assertEqual(result['history'][-1]['cumulative'], dict(sent=87485, postal=43966, dropbox=15331, early=170945))
+        self.assertEqual(result['extras']['switchedTotal'], 2351)
+        self.assertEqual(next(r for r in result['history'] if r['date'] == '2026-10-31')['postal'], 1194)
+
     def test_april_special_report_counts_election_day_precinct_drop_boxes(self):
         text = (ROOT / 'sources/fairfax-snapshots/april-2026-special/2026-04-24-61050ee3accb.txt').read_text()
         result = parse(text, 'https://example.test/report.pdf', 'test', election='April 21, 2026', election_day='2026-04-21')
