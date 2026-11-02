@@ -47,6 +47,8 @@ YEAR = 2026
 SITES = {"OFFICE": "office", "DMV": "dmv", "HAYMARKET": "haymarket", "BRENTSVILLE": "brentsville", "DUMFRIES": "dumfries", "FERLAZZO": "ferlazzo"}
 # The county sheet's in-person running total may differ from DAL's by a few ballots.
 DAL_SLACK = 50
+# Last day of in-person early voting. Once it is in, later mail-only rows are kept too.
+LAST_IN_PERSON = "2026-10-31"
 
 
 def num(cell):
@@ -129,10 +131,10 @@ def mail_totals(text):
 
 def county_series(days, mail):
     """The county's own daily series in the Fairfax report shape. Stops at the last complete
-    in-person day so every row has all four running totals."""
+    in-person day so every row has all four running totals, until in-person voting is over."""
     if not days:
         return []
-    through = days[-1]["date"]
+    through = days[-1]["date"] if days[-1]["date"] < LAST_IN_PERSON else "9999-12-31"
     by_site = {x["date"]: x for x in days}
     by_mail = {x["date"]: x for x in mail}
     cum = {"sent": 0, "postal": 0, "dropbox": 0, "early": 0}
@@ -216,7 +218,7 @@ def main(force=False):
     loc = next(l for l in data["elections"][str(YEAR)]["localities"] if l["id"] == LID)
     dal_last = loc["history"][-1]
     dal_day = dal_last.get("activityDate", dal_last["date"])
-    run = {x["date"]: x["cumulative"]["early"] for x in series}
+    run = {x["date"]: x["cumulative"]["early"] for x in series if x["date"] <= days[-1]["date"]}
     gap = run[dal_day] - dal_last["early"] if dal_day in run else None
     if gap is not None and abs(gap) <= DAL_SLACK:
         for d, early in run.items():

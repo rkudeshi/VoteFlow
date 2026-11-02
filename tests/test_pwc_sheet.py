@@ -46,6 +46,18 @@ class PwcSheetTests(unittest.TestCase):
         self.assertEqual(series[-1]['date'], '2026-09-21')
         self.assertEqual(series[-1]['cumulative'], {'sent': 26605, 'postal': 1, 'dropbox': 2, 'early': 1720})
 
+    def test_mail_only_days_kept_once_in_person_voting_is_over(self):
+        import refresh_pwc_sheet
+        mail = parse_mail(MAIL)
+        old, refresh_pwc_sheet.LAST_IN_PERSON = refresh_pwc_sheet.LAST_IN_PERSON, '2026-09-21'
+        try:
+            series = county_series(parse_sites(HEAD), mail)
+        finally:
+            refresh_pwc_sheet.LAST_IN_PERSON = old
+        self.assertEqual(series[-1]['date'], '2026-09-22')
+        self.assertEqual(series[-1]['early'], 0)
+        self.assertEqual(series[-1]['cumulative']['postal'], 1393)
+
 
 if __name__ == '__main__':
     unittest.main()
