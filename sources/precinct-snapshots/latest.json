@@ -1,7 +1,7 @@
 {
-  "fingerprint": "ee7a161b53be8a0d",
-  "capturedAt": "2026-11-03T11:47:00.289Z",
-  "observedAt": "2026-11-03T11:05:11.399520+00:00",
-  "data": "sources/precinct-snapshots/2026-11-03/0646-current.json.gz",
-  "screenshot": "sources/precinct-snapshots/2026-11-03/0646-tracker.png"
+  "fingerprint": "f565a8d20e87915c",
+  "capturedAt": "2026-11-03T14:31:55.544Z",
+  "observedAt": "2026-11-03T14:05:11.343368+00:00",
+  "data": "sources/precinct-snapshots/2026-11-03/0931-current.json.gz",
+  "screenshot": "sources/precinct-snapshots/2026-11-03/0931-tracker.png"
 }
