@@ -115,9 +115,12 @@ def parse_mail(text):
         if len(r) < 8 or "/" not in r[1] or num(r[4]) is None:
             continue
         d = day_of(r[1])
-        assert d not in out, (d, "listed twice in the mail tab")
-        out[d] = {"date": d, "sentMail": num(r[2]) or 0, "sentEmail": num(r[3]) or 0, "retMail": num(r[4]) or 0,
-                  "retEmail": num(r[5]) or 0, "dropbox": num(r[6]) or 0, "undeliverable": num(r[7]) or 0}
+        row = {"sentMail": num(r[2]) or 0, "sentEmail": num(r[3]) or 0, "retMail": num(r[4]) or 0,
+               "retEmail": num(r[5]) or 0, "dropbox": num(r[6]) or 0, "undeliverable": num(r[7]) or 0}
+        # A day can be entered as more than one batch (Election Day was); add them up.
+        prev = out.setdefault(d, {"date": d, **dict.fromkeys(row, 0)})
+        for k, v in row.items():
+            prev[k] += v
     return [out[d] for d in sorted(out)]
 
 
