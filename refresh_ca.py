@@ -232,12 +232,14 @@ def main():
                         obs['registrationError'] = str(e)
                 new.append(('registration', '15-day', False))
         # Unprocessed ballots report: archive whatever the state links, unparsed for now.
-        for url in found['unprocessed']:
+        # The state used these file-server names through 2022; since 2024 it has posted only a web page.
+        cdn = 'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/unprocessed-ballots-report.'
+        for url in dict.fromkeys(found['unprocessed'] + [cdn + 'pdf', cdn + 'xlsx']):
             if not re.search(r'\.(pdf|xlsx?|csv)(\?|$)', url, re.I):
                 obs.setdefault('unprocessedPages', []).append(url)
                 continue
             code, hdr, data, final = get(url)
-            if code == 200 and data and hashlib.sha256(data).hexdigest() not in known_unprocessed():
+            if code == 200 and data[:4] in (b'%PDF', b'PK\x03\x04') and hashlib.sha256(data).hexdigest() not in known_unprocessed():
                 name = re.sub(r'[^A-Za-z0-9.-]+', '-', urllib.parse.urlparse(final).path.split('/')[-1])
                 if not dry:
                     UNPROCESSED.mkdir(parents=True, exist_ok=True)
