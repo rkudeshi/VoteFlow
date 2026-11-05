@@ -11,6 +11,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 R=Path(__file__).resolve().parent
 HOME='https://www.fairfaxcounty.gov/elections/'
+ELECTION_DAY='2026-11-03'
 KEYS=['government_center','mt_vernon','north_county','burke','centreville','franconia','great_falls','herndon_fortnightly','jim_scott','lorton','mason','mclean','sully','thomas_jefferson','tysons_pimmit','west_springfield']
 def fetch(url):return fetch_bytes(url)
 def parse(text,url,digest,election='November 3, 2026',election_day=None):
@@ -84,7 +85,7 @@ def main():
  pending=saved[0] if saved else dest/('retrieved-'+datetime.now(ZoneInfo('America/New_York')).date().isoformat()+'-'+digest[:12]+'.pdf')
  if not saved:pending.write_bytes(raw)
  with tempfile.TemporaryDirectory() as td:
-  pdf=Path(td)/'report.pdf';out=Path(td)/'report.txt';pdf.write_bytes(raw);subprocess.run(['pdftotext','-layout',str(pdf),str(out)],check=True,capture_output=True);text=out.read_text();o=parse(text,url,digest)
+  pdf=Path(td)/'report.pdf';out=Path(td)/'report.txt';pdf.write_bytes(raw);subprocess.run(['pdftotext','-layout',str(pdf),str(out)],check=True,capture_output=True);text=out.read_text();o=parse(text,url,digest,election_day=ELECTION_DAY)
  assert o['activityThrough']>=old['activityThrough'],'Report coverage regressed; retain saved observations and review'
  if old.get('userReport'):o['userReport']=old['userReport']
  d['official']['2026']=o

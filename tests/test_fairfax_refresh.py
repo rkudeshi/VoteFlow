@@ -24,7 +24,7 @@ class FairfaxRefreshTests(unittest.TestCase):
     def test_archived_reports_remain_parseable(self):
         for path in (ROOT / 'sources/fairfax-snapshots').glob('*.txt'):
             with self.subTest(path=path.name):
-                result = parse(path.read_text(), 'https://example.test/report.pdf', 'test')
+                result = parse(path.read_text(), 'https://example.test/report.pdf', 'test', election_day='2026-11-03')
                 self.assertEqual(result['reportDate'], path.name[:10])
 
     def test_tables_continued_onto_extra_pages_are_combined(self):
@@ -36,6 +36,17 @@ class FairfaxRefreshTests(unittest.TestCase):
         self.assertEqual(result['history'][-1]['cumulative'], dict(sent=87485, postal=43966, dropbox=15331, early=170945))
         self.assertEqual(result['extras']['switchedTotal'], 2351)
         self.assertEqual(next(r for r in result['history'] if r['date'] == '2026-10-31')['postal'], 1194)
+
+    def test_post_election_report_counts_election_day_precinct_drop_boxes(self):
+        # The Nov 4, 2026 report adds an undated "ED Precincts" drop-box line.
+        text = (ROOT / 'sources/fairfax-snapshots/2026-11-04-4c5d97f52685.txt').read_text()
+        result = parse(text, 'https://example.test/report.pdf', 'test', election_day='2026-11-03')
+        self.assertEqual(result['reportDate'], '2026-11-04')
+        self.assertEqual(result['activityThrough'], '2026-11-03')
+        self.assertEqual(result['history'][-1]['cumulative'], dict(sent=87506, postal=46270, dropbox=19517, early=170945))
+        self.assertEqual(next(r for r in result['history'] if r['date'] == '2026-11-03')['dropbox'], 3773)
+        with self.assertRaises(AssertionError):
+            parse(text, 'https://example.test/report.pdf', 'test')
 
     def test_april_special_report_counts_election_day_precinct_drop_boxes(self):
         text = (ROOT / 'sources/fairfax-snapshots/april-2026-special/2026-04-24-61050ee3accb.txt').read_text()
