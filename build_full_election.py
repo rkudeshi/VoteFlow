@@ -138,6 +138,11 @@ addEventListener('popstate', () => { const id = location.pathname.split('/')[3];
 '''
 
 
+# Localities whose Full election pages are on the site. Data for every locality is built by
+# post_election.py; add a locality here once its pages have been checked.
+PUBLISHED = ['fairfax-county']
+
+
 def live():
     head, css, body, js = parts()
     code = js.replace('const DATA=/*DATA*/null, GEO=/*GEO*/null;', '')
@@ -156,7 +161,11 @@ def live():
              '<link rel="stylesheet" href="/vf/full.css"><script defer src="/vf/full.js"></script>' +
              (beacon.group(0) if beacon else '') + '</head>\n<body>' + body.strip() + '\n</body></html>\n')
     (DIST / 'full.html').write_text(shell)
-    index = json.loads((DIST / 'post-election' / 'index.json').read_text())
+    index = {}
+    for slug in PUBLISHED:
+        data = json.loads((DIST / 'post-election' / f'{slug}.json').read_text())
+        index[slug] = [e['id'] for e in data['elections']]
+    (DIST / 'post-election' / 'published.json').write_text(json.dumps(index, separators=(',', ':')))
     (DIST / 'post-election' / 'geo').mkdir(exist_ok=True)
     for slug in index:
         data = json.loads((DIST / 'post-election' / f'{slug}.json').read_text())

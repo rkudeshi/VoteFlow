@@ -21,7 +21,7 @@ DATA.elections.forEach(e=>[e.county,...e.precincts].forEach(x=>{x.late=x.pe;x.ma
 const E=Object.fromEntries(DATA.elections.map(e=>[e.id,e]));
 const ORDER=DATA.elections.map(e=>e.id).sort();          // chronological
 const NAME=DATA.name;
-let S={sel:E['2025-11']?'2025-11':ORDER[ORDER.length-1],cmp:'',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
+let S={sel:ORDER.filter(id=>E[id].official).pop()||ORDER[ORDER.length-1],cmp:'',map:'turnout',pp:false,line:'abs',tbl:'n',sort:'t',dir:-1,q:'',hl:null};
 try{const h=location.hash.slice(1);if(E[h])S.sel=h}catch(e){}
 if(window.VF_START&&E[window.VF_START])S.sel=window.VF_START;
 S.cmp=prevOf(S.sel);
@@ -34,8 +34,11 @@ const pct=(x,d=1)=>(x*100).toFixed(d)+'%';
 const rel=(a,b,more='higher',less='lower')=>{if(!b)return '';const r=a/b-1,v=Math.abs(r*100);return Math.abs(r)<0.0005?'the same':(v<10?v.toFixed(1):v.toFixed(0))+'% '+(r>=0?more:less)};
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const kfmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e4?Math.round(n/1e3)+'K':n>=1e3?(n/1e3).toFixed(1)+'K':String(Math.round(n));
-function prevOf(id){const i=ORDER.indexOf(id);return i>0?ORDER[i-1]:(ORDER[1]||'')}
+// compare a general election with the general before it, a special with whatever came before
+function prevOf(id){const i=ORDER.indexOf(id),gen=x=>x.endsWith('-11');const p=ORDER.slice(0,i).reverse();return (gen(id)?p.find(gen):p[0])||(ORDER.find(x=>x!==id)||'')}
 function short(e){return e.label.replace('November','Nov').replace(' special','')}
+// a vote type the state hasn't reported yet for an uncertified election
+function pending(e,k){const g=(e.status||{}).groups||{};return !e.official&&k==='prov'&&!/complete|fully/.test(g['Provisional']||'')}
 function before(p){return p.ev+p.mail+p.pe}
 function share(p,k){return p.t?p[k]/p.t:0}
 function mailAll(p){return p.mail+p.pe}
@@ -61,10 +64,10 @@ function tiles(e,c){
   const k=e.county, kc=c&&c.county;
   const d=(a,b,isCount)=>b==null?'':`<span class="delta">${isCount?rel(a,b,'more','fewer'):rel(a,b)} than ${esc(short(c))}</span>`;
   const t=[
-    ['Voters',fmt(k.t),`of ${fmt(k.r)} registered`,d(k.t,kc&&kc.t,1)],
-    ['Turnout',pct(k.t/k.r),'of registered voters',d(k.t/k.r,kc&&kc.t/kc.r)],
+    e.basis?['Ballots counted so far',fmt(e.status.counted),`of ${fmt(k.r)} registered`,d(e.status.counted,kc&&kc.t,1)]:['Voters',fmt(k.t),`of ${fmt(k.r)} registered`,d(k.t,kc&&kc.t,1)],
+    e.basis?['Turnout so far',pct(e.status.counted/k.r),'of registered voters',d(e.status.counted/k.r,kc&&kc.t/kc.r)]:['Turnout',pct(k.t/k.r),'of registered voters',d(k.t/k.r,kc&&kc.t/kc.r)],
     ['Voted before Election Day',pct(before(k)/k.t),`${fmt(before(k))} early in person or by mail`,d(before(k)/k.t,kc&&before(kc)/kc.t)],
-    ['Voted on Election Day',pct((k.ed+k.prov)/k.t),`${fmt(k.ed)} at the polls, ${fmt(k.prov)} provisional`,d((k.ed+k.prov)/k.t,kc&&(kc.ed+kc.prov)/kc.t)]];
+    ['Voted on Election Day',pct((k.ed+k.prov)/k.t),`${fmt(k.ed)} at the polls, ${pending(e,'prov')?'provisionals still to come':fmt(k.prov)+' provisional'}`,d((k.ed+k.prov)/k.t,kc&&(kc.ed+kc.prov)/kc.t)]];
   $('tiles').innerHTML=t.map(x=>`<div class="tile"><span class="eyebrow">${x[0]}</span><span class="v">${x[1]}</span><span class="s">${x[2]}</span>${x[3]}</div>`).join('');
 }
 
@@ -85,7 +88,7 @@ function mixSection(e,c){
   $('donut').innerHTML=donutSVG(k,180,[kfmt(k.t),'voters']);
   const kc=c&&c.county;
   $('legend').innerHTML=`<tr><th>Vote type</th><th>Voters</th><th>Share</th>${kc?`<th>vs ${esc(short(c))}</th>`:''}</tr>`+
-    M.map(m=>{const v=x=>m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td><td class="mono">${fmt(v(k))}</td><td class="mono">${pct(v(k)/k.t)}</td>${kc?`<td class="mono nw">${rel(v(k)/k.t,v(kc)/kc.t)}</td>`:''}</tr>`}).join('');
+    M.map(m=>{const v=x=>m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td>${pending(e,m.k)?`<td class="mono muted">to come</td><td></td>${kc?'<td></td>':''}`:`<td class="mono">${fmt(v(k))}</td><td class="mono">${pct(v(k)/k.t)}</td>${kc?`<td class="mono nw">${rel(v(k)/k.t,v(kc)/kc.t)}</td>`:''}`}</tr>`}).join('');
   const top=M.slice().sort((a,b)=>k[b.k]-k[a.k])[0];
   $('mix-lede').textContent=`${pct(k.ed/k.t,0)} of ${short(e)} voters voted in person on Election Day, ${pct(k.ev/k.t,0)} voted early in person and ${pct(mailAll(k)/k.t,0)} voted by mail.`;
   $('mixes').innerHTML=ORDER.slice().reverse().map(id=>{const x=E[id].county;return `<div class="mixrow ${id===S.sel?'sel':''}"><span>${esc(short(E[id]))}</span><div class="mixbar" role="img" aria-label="${esc(E[id].label)} mix">${M.map(m=>`<span style="width:${x[m.k]/x.t*100}%;background:var(${m.c})" title="${m.label}: ${pct(x[m.k]/x.t)}"></span>`).join('')}</div></div>`}).join('');
@@ -197,14 +200,15 @@ function drawMap(){
   $('pptoggle').hidden=!e.precincts.some(p=>p.ppXY);
 }
 function mapModes(){
-  const c=E[S.cmp];
-  $('mapmode').innerHTML=MODES.filter(m=>m.k!=='chg'||c).map(m=>`<button type="button" data-v="${m.k}" aria-pressed="${m.k===S.map}">${m.k==='chg'&&c?'Turnout vs '+esc(short(c)):m.label}</button>`).join('');
+  const c=E[S.cmp],e=E[S.sel];
+  if(pending(e,S.map))S.map='turnout';
+  $('mapmode').innerHTML=MODES.filter(m=>(m.k!=='chg'||c)&&!pending(e,m.k)).map(m=>`<button type="button" data-v="${m.k}" aria-pressed="${m.k===S.map}">${m.k==='chg'&&c?'Turnout vs '+esc(short(c)):m.label}</button>`).join('');
 }
 $('mapmode').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.map=b.dataset.v;mapModes();drawMap()};
 function panel(code){
   const e=E[S.sel],p=code?byCode(e)[code]:null,c=E[S.cmp],q=p&&c?byCode(c)[code]:null;
   const x=p||e.county;
-  const rows=M.map(m=>{const v=m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td><td class="mono">${fmt(v)}</td><td class="mono">${x.t?pct(v/x.t):'–'}</td></tr>`}).join('');
+  const rows=M.map(m=>{const v=m.k==='mail'?mailAll(x):x[m.k];return `<tr class="${m.sub?'sub':''}"><td><span class="sw" style="background:var(${m.c})"></span>${m.label}</td>${pending(e,m.k)?'<td class="mono muted">to come</td><td></td>':`<td class="mono">${fmt(v)}</td><td class="mono">${x.t?pct(v/x.t):'–'}</td>`}</tr>`}).join('');
   $('panel').innerHTML=`
     <div><div class="eyebrow">${p?'Precinct '+p.code:'Whole county'}</div><h3>${esc(p?p.n:NAME)}</h3>${p&&p.pp?`<div class="pp">Polling place: ${esc(p.pp)}<br><span class="muted">${esc(p.ppAddr)}</span></div>`:''}</div>
     <div style="display:flex;gap:14px;align-items:center">${x.t?donutSVG(x,96):''}<div><div style="font-family:var(--display);font-weight:700;font-size:22px">${fmt(x.t)}</div><div class="muted" style="font-size:13px">voters · ${x.r?pct(x.t/x.r)+' turnout':''}</div>${q&&q.r&&q.t?`<div class="delta">Turnout ${rel(x.t/x.r,q.t/q.r)} than ${esc(short(c))}</div>`:''}</div></div>
@@ -229,11 +233,11 @@ function standouts(e,c){
     ['Most Election Day',pick(p=>share(p,'ed'),1),p=>pct(share(p,'ed')),p=>`${fmt(p.ed)} at the polls`],
     ['Most voted early',pick(p=>before(p)/p.t,1),p=>pct(before(p)/p.t),p=>`in person or by mail before Election Day`],
     ['Most by mail',pick(p=>mailAll(p)/p.t,1),p=>pct(mailAll(p)/p.t),p=>`${fmt(mailAll(p))} mail ballots`],
-    ['Highest provisional rate',pick(p=>share(p,'prov'),1),p=>pct(share(p,'prov')),p=>`${fmt(p.prov)} provisional voters`],
+    ...(pending(e,'prov')?[]:[['Highest provisional rate',pick(p=>share(p,'prov'),1),p=>pct(share(p,'prov')),p=>`${fmt(p.prov)} provisional voters`]]),
     ['Most Election Day voters',pick(p=>p.ed,1),p=>fmt(p.ed),p=>p.pp?esc(p.pp):'at the polls'],
   ];
   if(Q){const ch=p=>{const q=Q[p.code];return q&&q.r&&q.t?(p.t/p.r)/(q.t/q.r)-1:-9};const best=pick(ch,1);items.push([(ch(best)>=0?'Biggest turnout rise vs ':'Smallest turnout drop vs ')+short(c),best,p=>rel(1+ch(p),1),p=>`${pct(p.t/p.r)} turnout`])}
-  else items.push(['Fewest voters',pick(p=>p.t,-1),p=>fmt(p.t),p=>`of ${fmt(p.r)} registered`]);
+  if(!Q||pending(e,'prov'))items.push(['Fewest voters',pick(p=>p.t,-1),p=>fmt(p.t),p=>`of ${fmt(p.r)} registered`]);
   $('stand').innerHTML=items.map(([k,p,v,d])=>`<button type="button" class="st" data-c="${p.code}"><span class="k">${esc(k)}</span><span class="n">${esc(p.n)}</span><span class="v">${v(p)}</span><span class="d">${d(p)}</span></button>`).join('');
 }
 $('stand').onclick=e=>{const b=e.target.closest('.st');if(b){S.hl=null;select(b.dataset.c,true)}};
@@ -307,10 +311,11 @@ function prov(e){
   const tot=parts.reduce((a,b)=>a+b[1],0)||1;
   if(parts.length)$('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct(((st.sdrDay||0)+(st.sdrEarly||0))/tot,0)} of provisional voters were registering the same day. <b>${fmt(st.curbside||0)}</b> voters used curbside voting.</p>`;
   const ps=e.precincts.filter(p=>p.t>=minVoters(e)&&p.prov>0).sort((a,b)=>share(b,'prov')-share(a,'prov')).slice(0,8);
-  $('provtop').innerHTML=ps.length?hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov'):'<p class="muted">No precinct had provisional voters.</p>';
+  $('provtop').innerHTML=ps.length?hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov'):`<p class="muted">${pending(e,'prov')?'Precinct provisional counts come in after the canvass.':'No precinct had provisional voters.'}</p>`;
   const reasonTotal=parts.reduce((a,b)=>a+(b[1]||0),0);
   $('prov-lede').textContent=k.prov?`${fmt(k.prov)} voters cast provisional ballots, ${pct(k.prov/k.t)} of all voters.`:reasonTotal?`${fmt(reasonTotal)} voters cast provisional ballots, but the precinct numbers for this election don't list them separately.`:'No provisional voters were reported for this election.';
-  $('late-note').textContent=`(${fmt(k.late)} in ${e.label})`;
+  $('late-note').textContent=e.official?`(${fmt(k.late)} in ${e.label})`:'';
+  if(!e.official&&!k.prov&&reasonTotal)$('prov-lede').textContent=`${fmt(reasonTotal)} voters have cast provisional ballots so far. The electoral board decides each one during the canvass, so they aren't in the precinct numbers yet.`;
 }
 
 /* ---------- table ---------- */
@@ -333,7 +338,7 @@ function cellVal(col,p,Q){
 }
 function drawTable(){
   const e=E[S.sel],c=E[S.cmp],Q=c?byCode(c):null;
-  const cols=COLS.filter(x=>!x.cmp||Q).filter(x=>x.k!=='pp'||e.precincts.some(p=>p.pp));
+  const cols=COLS.filter(x=>!x.cmp||Q).filter(x=>x.k!=='pp'||e.precincts.some(p=>p.pp)).filter(x=>!pending(e,x.k));
   let ps=e.precincts.filter(p=>!S.q||(p.code+' '+p.n+' '+(p.pp||'')).toLowerCase().includes(S.q));
   const sc=cols.find(x=>x.k===S.sort)||cols[3];
   ps=ps.slice().sort((a,b)=>{const va=sc.s?sc.s(a):cellVal(sc,a,Q),vb=sc.s?sc.s(b):cellVal(sc,b,Q);return (va==null?-1e9:va)>(vb==null?-1e9:vb)?S.dir:(va<vb?-S.dir:0)});
@@ -360,6 +365,25 @@ $('copy').onclick=async()=>{
 };
 
 /* ---------- render ---------- */
+/* ---------- unofficial election ---------- */
+const STEP={'Early Voting':'Early in person','Election Day':'Election Day','Mailed Absentee':'Mail','Provisional':'Provisional','Post-Election':'Mail arriving after Election Day'};
+const KN={ev:'early in person',ed:'Election Day',mail:'mail',prov:'provisional',pe:'mail arriving after Election Day'};
+function when(iso){if(!iso)return '';const d=new Date(/Z$/.test(iso)?iso:iso+'Z');return d.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET'}
+function stamp2iso(s){return s.replace(/^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z$/,'$1-$2-$3T$4:$5:$6Z')}
+function liveSection(e){
+  const el=$('live');el.hidden=e.official;$('note-basis').hidden=!e.basis;$('note-voters').hidden=!!e.basis;
+  if(e.official)return;
+  const st=e.status||{},g=st.groups||{};
+  const chips=Object.entries(STEP).map(([k,l])=>{const v=g[k]||'';const done=/complete|fully/.test(v);return `<span class="chip ${done?'done':'wait'}"><i></i>${l}: ${done?(v==='fully-reported'?'final':'counted'):'still to come'}</span>`}).join('');
+  const out=e.outstanding?` Up to ${fmt(e.outstanding)} mail ballots that were still out before Election Day can still count if they were postmarked by Election Day and arrive in time.`:'';
+  const ch=(e.changes||[]).slice().reverse();
+  const moves=ch.length?`<div><div class="eyebrow" style="margin-bottom:6px">What changed in recent updates</div><ul class="moves">${ch.slice(0,12).map(c=>`<li>${when(stamp2iso(c.at))} · ${esc(c.code+' '+c.n)} · ${esc(KN[c.k])} ${c.d>0?'+':''}${fmt(c.d)} (now ${fmt(c.v)})</li>`).join('')}</ul></div>`:`<p class="muted" style="font-size:13px">No precinct numbers have changed since we started tracking this election.</p>`;
+  el.innerHTML=`<h2 id="h-live">Unofficial results · updated ${esc(when(st.asOf||e.asOf))}</h2>
+    <p>The state is still counting. Early in-person and Election Day numbers should change little; provisional ballots and mail that arrives after Election Day are added during the canvass, before the results are certified.${out} This page updates on its own as the state posts new numbers.</p>
+    <div class="chips">${chips}</div>${moves}`;
+  if(e.basis)$('note-basis').innerHTML=`<b>About these numbers.</b> Until the state posts its final turnout file, the precinct numbers by method come from the race with the most votes (${esc(e.basis.replace(/^Member, /,''))}). The headline count is all ${fmt(st.counted)} ballots counted; the precinct numbers add up to ${fmt(e.county.t)}, because some voters skip that race. Mail includes hand-counted ballots.`;
+}
+
 function render(){
   const e=E[S.sel],c=E[S.cmp]||null;
   if(S.map==='chg'&&!c)S.map='turnout';
@@ -367,7 +391,7 @@ function render(){
   $('title').textContent=`How ${NAME} voted`;
   $('tab-early').href=`${window.VF_NAV?'':'https://voteflow.raviudeshi.com'}/va/${DATA.locality}/${e.id}`;
   if(window.VF_NAV)document.title=`${NAME} · ${e.label} full election · VoteFlow`;
-  controls();tiles(e,c);mixSection(e,c);lineSection(e);mapModes();drawMap();panel(S.hl);standouts(e,c);scatter(e);triangle(e);load(e);prov(e);drawTable();
+  controls();liveSection(e);tiles(e,c);mixSection(e,c);lineSection(e);mapModes();drawMap();panel(S.hl);standouts(e,c);scatter(e);triangle(e);load(e);prov(e);drawTable();
 }
 render();
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>lineSection(E[S.sel]),150)});
