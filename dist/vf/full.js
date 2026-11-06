@@ -177,7 +177,7 @@ function drawMap(){
   if(m.k==='chg'){const a=Math.max(Math.abs(lo),Math.abs(hi))||.01;lo=-a;hi=a;
     colorFn=v=>v<0?mix(css('--mid'),css('--neg'),Math.min(1,-v/a)):mix(css('--mid'),css('--pos'),Math.min(1,v/a));
     rampCss=`linear-gradient(90deg,${css('--neg')},${css('--mid')},${css('--pos')})`;lbl=[Math.round(a*100)+'% lower','no change',Math.round(a*100)+'% higher'];}
-  else{const col=css(m.c),base=css('--ramp-lo');
+  else{const col=css(m.c),base=css(m.k==='turnout'?'--turn-lo':'--ramp-lo');
     colorFn=v=>mix(base,col,Math.max(0,Math.min(1,(v-lo)/((hi-lo)||1)))*0.92+0.08);
     rampCss=`linear-gradient(90deg,${mix(base,col,.08)},${col})`;lbl=[pct(lo,0),'',pct(hi,0)];}
   $('ramp').style.background=rampCss;
@@ -284,16 +284,21 @@ function triangle(e){
 }
 
 /* ---------- election day load ---------- */
+// polling-place bars: one segment per precinct voting there, alternating two shades
+function segbars(rows,max){return rows.map(r=>`<div class="hbar" title="${esc(r.title||'')}"><span class="lbl">${esc(r.l)}</span><span class="track" style="display:flex">${r.segs.map((g,i)=>`<span class="seg-p" style="width:${Math.max(.5,g.v/max*100)}%;background:var(${i%2?'--ed2':'--ed'})" title="${esc(g.n)}: ${fmt(g.v)}"></span>`).join('')}</span><span class="num">${fmt(r.v)}</span></div>`).join('')}
+function segless(rows,max){return hbars(rows,max,'--prov')}
 function hbars(rows,max,color){return rows.map(r=>`<div class="hbar" title="${esc(r.title||'')}"><span class="lbl">${esc(r.l)}</span><span class="track"><span class="fill" style="display:block;width:${Math.max(1,r.v/max*100)}%;background:var(${color})"></span></span><span class="num">${r.f||fmt(r.v)}</span></div>`).join('')}
 function load(e){
   const g={};
-  e.precincts.forEach(p=>{const key=p.ppAddr||('#'+p.code);(g[key]=g[key]||{name:p.pp||('Precinct '+p.n),addr:p.ppAddr||'',ed:0,prov:0,precincts:[]});g[key].ed+=p.ed;g[key].prov+=p.prov;g[key].precincts.push(p.n)});
+  e.precincts.forEach(p=>{const key=p.ppAddr||('#'+p.code);(g[key]=g[key]||{name:p.pp||('Precinct '+p.n),addr:p.ppAddr||'',ed:0,prov:0,precincts:[]});g[key].ed+=p.ed;g[key].prov+=p.prov;g[key].precincts.push(p.n);(g[key].segs=g[key].segs||[]).push({n:p.code+' '+p.n,v:p.ed})});
   const places=Object.values(g).sort((a,b)=>b.ed-a.ed);
   const has=e.precincts.some(p=>p.pp);
   const med=places[Math.floor(places.length/2)].ed,max=places[0].ed;
   $('load-lede').textContent=has?`${places.length} polling places served ${fmt(e.county.ed)} Election Day voters, a median of ${fmt(med)} each. The busiest handled ${fmt(max)}, ${(max/med).toFixed(1)} times the median. Shared polling places count every precinct they serve.`:`Polling places aren't listed for ${e.label}, so this shows Election Day voters by precinct. The median precinct had ${fmt(med)}.`;
-  $('busiest').innerHTML=hbars(places.slice(0,15).map(x=>({l:x.name,v:x.ed,title:x.addr+(x.precincts.length>1?' · precincts: '+x.precincts.join(', '):'')})),max,'--ed');
-  $('quietest').innerHTML=hbars(places.slice(-5).reverse().map(x=>({l:x.name,v:x.ed,title:x.addr})),max,'--ed');
+  const row=x=>({l:x.name,v:x.ed,segs:x.segs.sort((a,b)=>b.v-a.v),title:x.addr+(x.segs.length>1?' · '+x.segs.map(g=>g.n+' '+fmt(g.v)).join(', '):'')});
+  $('busiest').innerHTML=segbars(places.slice(0,15).map(row),max);
+  $('quietest').innerHTML=segbars(places.slice(-5).reverse().map(row),max);
+  $('load-key').hidden=!places.slice(0,15).some(x=>x.segs.length>1);
   // histogram
   const W=520,H=180,L=36,B=28,T=8,iw=W-L-8,ih=H-T-B,bin=Math.max(100,Math.ceil(max/14/100)*100),n=Math.ceil((max+1)/bin);
   const counts=Array(n).fill(0);places.forEach(x=>counts[Math.min(n-1,Math.floor(x.ed/bin))]++);
@@ -309,7 +314,11 @@ function prov(e){
   const parts=[['Registered on Election Day',st.sdrDay],['Registered during early voting',st.sdrEarly],['Other reasons',st.provOther],['No ID',st.noId]].filter(x=>x[1]!=null);
   if(!parts.length){$('reasons').innerHTML=`<p class="muted">Reasons weren't reported for this election.</p>`}
   const tot=parts.reduce((a,b)=>a+b[1],0)||1;
-  if(parts.length)$('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct(((st.sdrDay||0)+(st.sdrEarly||0))/tot,0)} of provisional voters were registering the same day. <b>${fmt(st.curbside||0)}</b> voters used curbside voting.</p>`;
+  if(parts.length)$('reasons').innerHTML=hbars(parts.map(([l,v])=>({l,v,f:fmt(v)})),Math.max(...parts.map(x=>x[1]),1),'--prov')+`<p class="callout">${pct(((st.sdrDay||0)+(st.sdrEarly||0))/tot,0)} of provisional voters were registering the same day.</p>`;
+  const cs=ORDER.slice().reverse().map(id=>E[id]).filter(x=>x.curbState);
+  $('curb').innerHTML=cs.length?segless(cs.map(x=>({l:short(x)+(x.id===e.id?' ◀':''),v:x.curbState.rate,f:x.curbState.rate.toFixed(1),title:`${fmt(x.stats.curbside)} curbside voters`})),Math.max(...cs.map(x=>Math.max(x.curbState.rate,x.curbState.median)))):'<p class="muted">Curbside voting wasn\'t reported.</p>';
+  const cb=e.curbState;
+  $('curb-note').innerHTML=cb?`<b>${fmt(st.curbside)}</b> voters used curbside voting in ${esc(e.label)}, ${cb.rate.toFixed(1)} per 1,000 voters. The typical Virginia locality had ${cb.median.toFixed(1)}; ${esc(NAME)} ranked ${cb.rank} of ${cb.of}. The state reports curbside voting by locality only, so there is no precinct or polling place breakdown.`:'';
   const ps=e.precincts.filter(p=>p.t>=minVoters(e)&&p.prov>0).sort((a,b)=>share(b,'prov')-share(a,'prov')).slice(0,8);
   $('provtop').innerHTML=ps.length?hbars(ps.map(p=>({l:p.n,v:share(p,'prov'),f:pct(share(p,'prov'))})),share(ps[0],'prov'),'--prov'):`<p class="muted">${pending(e,'prov')?'Precinct provisional counts come in after the canvass.':'No precinct had provisional voters.'}</p>`;
   const reasonTotal=parts.reduce((a,b)=>a+(b[1]||0),0);
@@ -321,6 +330,7 @@ function prov(e){
 /* ---------- table ---------- */
 const COLS=[
   {k:'code',l:'Precinct',v:p=>p.code+' '+p.n,s:p=>p.code},
+  {k:'mix',l:'Mix',v:null},
   {k:'pp',l:'Polling place',v:p=>p.pp||'',s:p=>p.pp||''},
   {k:'r',l:'Registered',v:p=>p.r,n:1},
   {k:'t',l:'Voters',v:p=>p.t,n:1},
@@ -329,8 +339,7 @@ const COLS=[
   {k:'ev',l:'Early in person',v:p=>p.ev,m:1},
   {k:'mailall',l:'Mail',v:p=>mailAll(p),m:1},
   {k:'prov',l:'Provisional',v:p=>p.prov,m:1},
-  {k:'chg',l:'Turnout change',v:null,pc:1,cmp:1},
-  {k:'mix',l:'Mix',v:null}];
+  {k:'chg',l:'Turnout change',v:null,pc:1,cmp:1}];
 function cellVal(col,p,Q){
   if(col.k==='chg'){const q=Q&&Q[p.code];return q&&q.r&&q.t&&p.r?(p.t/p.r)/(q.t/q.r)-1:null}
   if(col.m&&S.tbl==='p')return p.t?col.v(p)/p.t:0;
@@ -340,7 +349,7 @@ function drawTable(){
   const e=E[S.sel],c=E[S.cmp],Q=c?byCode(c):null;
   const cols=COLS.filter(x=>!x.cmp||Q).filter(x=>x.k!=='pp'||e.precincts.some(p=>p.pp)).filter(x=>!pending(e,x.k));
   let ps=e.precincts.filter(p=>!S.q||(p.code+' '+p.n+' '+(p.pp||'')).toLowerCase().includes(S.q));
-  const sc=cols.find(x=>x.k===S.sort)||cols[3];
+  const sc=cols.find(x=>x.k===S.sort)||cols.find(x=>x.k==='t');
   ps=ps.slice().sort((a,b)=>{const va=sc.s?sc.s(a):cellVal(sc,a,Q),vb=sc.s?sc.s(b):cellVal(sc,b,Q);return (va==null?-1e9:va)>(vb==null?-1e9:vb)?S.dir:(va<vb?-S.dir:0)});
   const fmtCell=(col,v)=>v==null?'–':col.k==='chg'?rel(1+v,1):col.pc||(col.m&&S.tbl==='p')?pct(v):col.n||col.m?fmt(v):esc(v);
   const head=`<thead><tr>${cols.map(x=>`<th scope="col" data-k="${x.k}" ${x.k===S.sort?`aria-sort="${S.dir<0?'descending':'ascending'}"`:''}>${x.k==='chg'?'vs '+esc(short(c)):x.l}${x.k===S.sort?(S.dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr></thead>`;

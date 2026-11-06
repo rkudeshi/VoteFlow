@@ -299,6 +299,9 @@ def build(slugs=None, refresh=False):
     OUT.mkdir(parents=True, exist_ok=True)
     index = {}
     sid_of = {e[0]: e[1] for e in ELECTIONS}
+    curb_by = {eid: [(nm, status[nm]['counted'] if nm in status else sum(p['t'] for p in rows.get(nm, [])), stats_for(stats, nm).get('curbside'))
+                     for nm in set(rows) | set(status) if stats_for(stats, nm).get('curbside') is not None]
+               for eid, key, label, meta, stats, places, rows, status, changes in sources}
     for name, slug in sorted(by_name.items(), key=lambda x: x[1]):
         if slugs and slug not in slugs:
             continue
@@ -357,6 +360,14 @@ def build(slugs=None, refresh=False):
                 loc = next((l for l in el['localities'] if l['id'] == slug), None)
                 if loc and loc['history']:
                     extra['outstanding'] = loc['history'][-1].get('outstanding')
+            # the state reports curbside voting by locality only; rank it per 1,000 voters statewide
+            rates = sorted((v / t * 1000 for nm, t, v in curb_by[eid] if t), reverse=True)
+            mine = stats_for(stats, name).get('curbside')
+            voters = status[name]['counted'] if name in status else county['t']
+            if mine is not None and voters and rates:
+                r = mine / voters * 1000
+                extra['curbState'] = {'rate': round(r, 2), 'rank': 1 + sum(1 for x in rates if x > r + 1e-9),
+                                      'of': len(rates), 'median': round(rates[len(rates) // 2], 2)}
             elections.append({'id': eid, 'date': meta['electionDate'], 'label': label, **extra,
                               'official': bool(meta.get('isOfficialResults')), 'asOf': meta.get('asOf', '')[:19],
                               'county': county, 'stats': stats_for(stats, name), 'precincts': ps,
