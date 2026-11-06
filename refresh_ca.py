@@ -195,10 +195,13 @@ def main():
                     break
                 except Exception as e:
                     rec['validation'] = 'invalid: ' + str(e)
-        if 'xlsx' not in got:
+        if 'xlsx' not in got and not (found['xlsx'] or found['pdf']):
+            # After the election the state took the daily report down; keep watching for unprocessed ballots.
+            obs['reportsUnlinked'] = True
+            got = {}
+        elif 'xlsx' not in got:
             raise RuntimeError('no valid workbook: ' + '; '.join(f'{f["url"]} → {f.get("validation")}' for f in obs['files'] if f['format'] == 'xlsx'))
-        xrec, xdata = got['xlsx']
-        day = xrec['asOf']
+        day = got['xlsx'][0]['asOf'] if got else None
         prec = got.get('pdf', (None, None))[0]
         obs['asOf'] = day
         obs['pairMatches'] = bool(prec and prec['asOf'] == day)
@@ -269,7 +272,7 @@ def finish(obs, dry, code):
     if not dry:
         with LOG.open('a') as f:
             f.write(line + '\n')
-    summary = {0: 'New California data: ' + ', '.join(obs.get('saved', [])), 3: 'No new California report (latest ' + str(obs.get('asOf')) + ')',
+    summary = {0: 'New California data: ' + ', '.join(obs.get('saved', [])), 3: 'No new California report (latest ' + (str(obs.get('asOf')) if obs.get('asOf') else 'daily report no longer posted') + ')',
                1: 'California refresh failed: ' + str(obs.get('error'))}[code]
     print(summary)
     if code == 0 and not obs.get('pairMatches'):
