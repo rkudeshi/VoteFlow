@@ -846,5 +846,13 @@
     "message": "Updated precinct counts for 10 localities from Daily Absentee List records.",
     "through": "2026-11-08",
     "url": null
+  },
+  {
+    "at": "2026-11-11T04:45:56.300167+00:00",
+    "source": "Daily Absentee List",
+    "message": "Checked for new data. The latest published file still runs through 2026-11-08; nothing new to load.",
+    "through": "2026-11-08",
+    "url": null,
+    "check": true
   }
 ]
