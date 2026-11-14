@@ -870,5 +870,13 @@
     "through": "2026-11-08",
     "url": null,
     "check": true
+  },
+  {
+    "at": "2026-11-14T04:46:14.928017+00:00",
+    "source": "Daily Absentee List",
+    "message": "Checked for new data. The latest published file still runs through 2026-11-08; nothing new to load.",
+    "through": "2026-11-08",
+    "url": null,
+    "check": true
   }
 ]
