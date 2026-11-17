@@ -268,6 +268,6 @@ Each completed election from Nov 2023 on has a Full election tab at `/va/<locali
 
 1. Add a row to `ELECTIONS` in `post_election.py` (state results id from `enr.elections.virginia.gov/results/public/api/jurisdictions/Virginia`, the region.json key, label and the Election Day polling place file name).
 2. `python3 post_election.py` downloads into `sources/state-results/<id>/` and writes `dist/post-election/<slug>.json` for every locality.
-3. `python3 build_full_election.py` rebuilds `dist/vf/full.{css,js}`, `dist/full.html`, the per-locality maps in `dist/post-election/geo/` and `dist/vf/full-elections.js` (which turns on the tab on locality pages). `build_routes.py` copies the page to each route at deploy.
+3. `python3 build_full_election.py` rebuilds `dist/vf/full.{css,js}`, `dist/full.html`, the per-locality maps in `dist/post-election/geo/` and `dist/vf/full-elections.js` (which turns on the tab on locality pages). `build_routes.py` copies the page to each route at deploy. Every locality in `dist/post-election/index.json` gets the tab. If the state results site refuses the fetch (it has blocked cloud servers since mid-November 2026), `post_election.py` falls back to the saved copies in `sources/state-results/` and says so.
 
 The page is authored in `previews/full-election-template.html`; `python3 build_full_election.py --preview <slug> OUT.html` makes a self-contained copy for review.

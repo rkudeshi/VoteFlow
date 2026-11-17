@@ -46,11 +46,34 @@ def settled(meta):
     return datetime.now(timezone.utc) - last > timedelta(days=42)
 
 
+OFFLINE = []  # saved copies used because the state site refused the fetch
+
+
 def cached(path, url, refresh=False):
     if refresh or not path.exists():
+        try:
+            data = fetch_bytes(url)
+        except Exception as err:
+            # the state site sometimes blocks cloud fetches; fall back to the last saved copy
+            if not path.exists():
+                raise
+            OFFLINE.append(f'{path.relative_to(R)} ({err})')
+            return path.read_bytes()
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(fetch_bytes(url))
+        path.write_bytes(data)
     return path.read_bytes()
+
+
+def saved_locality_names():
+    """State locality ids to names, from saved statistics files (for runs where the state site is unreachable)."""
+    out = {}
+    for f in SRC.glob('*/stats.json'):
+        for d in json.loads(f.read_text()).get('data') or []:
+            for g in d['groups']:
+                for c in g.get('children') or []:
+                    if c.get('id'):
+                        out[c['id'].lower()] = norm_name(c['name'][0]['text'])
+    return out
 
 
 def num(v):
@@ -253,8 +276,12 @@ def build(slugs=None, refresh=False):
     by_name = {norm_name(n): slug for slug, n in names.items()}
     coords, cache, gis_places = gis_coords(), (json.loads(GEOCACHE.read_text()) if GEOCACHE.exists() else {}), gis_polling_places()
     sources = []
-    jur = json.loads(fetch_bytes(ENR.replace('elections/', 'jurisdictions/').rstrip('/')))
-    loc_names = {l['id'].lower(): norm_name(l['name'][0]['text']) for l in jur['childLocalities']}
+    try:
+        jur = json.loads(fetch_bytes(ENR.replace('elections/', 'jurisdictions/').rstrip('/')))
+        loc_names = {l['id'].lower(): norm_name(l['name'][0]['text']) for l in jur['childLocalities']}
+    except Exception as err:
+        OFFLINE.append(f'locality list ({err})')
+        loc_names = saved_locality_names()
     for eid, sid, key, label, pp_file in ELECTIONS:
         folder = SRC / sid
         # an election that isn't certified yet keeps changing: fetch it fresh every run
@@ -383,6 +410,8 @@ def build(slugs=None, refresh=False):
                  if cache.get(f"{pl['addr']}, {pl['city']}"))
     total = sum(len(pls) for *_, places, _, _, _ in sources for pls in places.values())
     print(f'wrote {len(index)} localities; polling places placed {placed:,} of {total:,}')
+    if OFFLINE:
+        print('state site unreachable; used saved copies for:\n  ' + '\n  '.join(OFFLINE))
 
 
 if __name__ == '__main__':

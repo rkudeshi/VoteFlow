@@ -140,7 +140,8 @@ addEventListener('popstate', () => { const id = location.pathname.split('/')[3];
 
 # Localities whose Full election pages are on the site. Data for every locality is built by
 # post_election.py; add a locality here once its pages have been checked.
-PUBLISHED = ['fairfax-county']
+# every locality the state's results cover (written by post_election.py)
+PUBLISHED = sorted(json.loads((DIST / 'post-election' / 'index.json').read_text()))
 
 
 def live():
